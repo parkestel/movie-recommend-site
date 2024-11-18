@@ -21,7 +21,8 @@ const currentStepIndex = ref(0)
 // 단계별 입력 데이터 저장
 const formData = ref({
     username:'',
-    password:'',
+    password1:'',
+    password2:'',
     email:'',
     last_name:'',
     first_name:'',
