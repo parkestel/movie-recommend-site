@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <img :src="getImgUrl(movie.poster_path)" alt="">
+      <img :src="store.getImgUrl(movie.poster_path,200)" alt="">
     </div>
     <h5>{{ movie.title }}</h5>
     <button @click="moveToDetail(movie.id)">Detail</button>
@@ -18,10 +18,6 @@ import { useRouter } from 'vue-router'
 
 const store = useMovieStore()
 const router = useRouter()
-
-const getImgUrl = function(poster_path) {
-  return `${store.IMAGE_BASE_URL}/${poster_path}`
-}
 
 const moveToDetail = function (movieId) {
   router.push({name:'movie-detail', params:{'movieid':movieId}})
