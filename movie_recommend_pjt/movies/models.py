@@ -15,3 +15,8 @@ class Ott(models.Model):
 class Genre(models.Model):
     tmdb_id = models.IntegerField(primary_key=True)
     name = models.TextField(max_length=20)
+
+class Director(models.Model):
+    tmdb_id = models.IntegerField(primary_key=True)
+    name = models.TextField()
+    profile_path = models.TextField()
