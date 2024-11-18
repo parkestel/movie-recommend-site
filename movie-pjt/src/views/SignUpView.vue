@@ -24,11 +24,11 @@ const formData = ref({
     password1:'',
     password2:'',
     email:'',
-    last_name:'',
-    first_name:'',
+    lastname:'',
+    firstname:'',
     birth:'',
     nickname:'',
-    study_level:''
+    studylevel:''
 })
 
 // 현재 컴포넌트
