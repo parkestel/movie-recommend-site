@@ -19,7 +19,7 @@
 <script setup>
 import { reactive } from 'vue';
 const props = defineProps(['formData']);
-const emit = defineEmits(['update-data', 'previous']);
+const emit = defineEmits(['update-data','next', 'previous']);
 
 const localForm = reactive({
     email: props.formData.email,
