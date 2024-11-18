@@ -3,11 +3,11 @@
         <h1>아이디, 패스워드, 패스워드 확인</h1>
         <form>
             <input type="text" id="username" v-model="localForm.username" placeholder="ID">
-
+            <br>
             <input type="password" id="password1" v-model="localForm.password1" placeholder="Password">
-
+            <br>
             <input type="password" id="password2" v-model="localForm.password2" placeholder="Confirm Password">
-
+            <br>
             <button @click="goNext">Next</button>
         </form>
     </div>
@@ -24,7 +24,8 @@ const emit = defineEmits(['update-data', 'next']);
 // 로컬 상태로 데이터 복사
 const localForm = reactive({
     username: props.formData.username,
-    password: props.formData.password,
+    password1: props.formData.password1,
+    password2: props.formData.password2,
 });
 
 // 다음 단계로 이동
