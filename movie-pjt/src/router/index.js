@@ -5,6 +5,7 @@ import LogInView from '@/views/LogInView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import ProfileView from '@/views/ProfileView.vue'
 import VocaNote from '@/views/VocaNoteView.vue'
+import { useMovieStore } from '@/stores/movie'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -42,4 +43,9 @@ const router = createRouter({
   ],
 })
 
+router.beforeEach((to, from) => {
+  const store = useMovieStore()
+  // 앞으로 로그인 권한이 필요한 곳이라면 로그인이 필요하다고 알려주고
+  // 로그인 창으로 보내기
+})
 export default router
