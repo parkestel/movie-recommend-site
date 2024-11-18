@@ -6,4 +6,8 @@ class Star(models.Model):
     name = models.TextField()
     profile_path = models.TextField()
     characters = models.JSONField()
-    
+
+class Ott(models.Model):
+    tmdb_id = models.IntegerField(primary_key=True)
+    name = models.TextField()
+    logo_path = models.TextField()
