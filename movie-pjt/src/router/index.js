@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import MovieListView from '@/views/MovieListView.vue'
-import MovieDetail from '@/views/MovieDetail.vue'
+import MovieDetail from '@/views/MovieDetailView.vue'
 import LogInView from '@/views/LogInView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import ProfileView from '@/views/ProfileView.vue'
-import VocaNote from '@/views/VocaNote.vue'
+import VocaNote from '@/views/VocaNoteView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

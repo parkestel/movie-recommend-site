@@ -22,6 +22,11 @@
     </div>
   </nav>
   <RouterView/>
+  <footer>
+    <div>
+      <p>ⓒ 2024. </p>
+    </div>
+  </footer>
 </div>
 </template>
 

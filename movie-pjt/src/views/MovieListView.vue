@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import MovieCard from "@/components/MovieCard.vue"
+import MovieCard from "@/components/MovieListView/MovieCard.vue"
 import { useMovieStore } from "@/stores/movie"
 
 const store = useMovieStore()
