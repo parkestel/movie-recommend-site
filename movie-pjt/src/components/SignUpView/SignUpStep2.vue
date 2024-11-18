@@ -22,14 +22,14 @@ const props = defineProps(['formData']);
 const emit = defineEmits(['update-data', 'previous']);
 
 const localForm = reactive({
-  email: props.formData.email,
-  firstname: props.formData.firstname,
-  lastname: props.formData.lastname,
-  brith: props.formData.birth
+    email: props.formData.email,
+    firstname: props.formData.firstname,
+    lastname: props.formData.lastname,
+    brith: props.formData.birth
 });
 
 const goPrevious = () => {
-  emit('previous');
+    emit('previous');
 };
 
 // 다음 단계로 이동
