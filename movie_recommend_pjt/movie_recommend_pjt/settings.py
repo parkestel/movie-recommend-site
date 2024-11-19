@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'accounts',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
     # 'rest_framework_simplejwt',
     'dj_rest_auth',
     'django.contrib.sites',
@@ -53,9 +54,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-INSTALLED_APPS += [
-    'corsheaders',
-]
+# INSTALLED_APPS += [
+#     'corsheaders',
+# ]
 
 SITE_ID = 1
 
