@@ -78,6 +78,10 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
 ]
 
+REST_AUTH = {
+    'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
+}
+
 # SIMPLE_JWT = {
 #     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30), # 엑세스 토큰 발급 후 30qsn
 #     'REFRESH_TOKEN_LIFETIME': timedelta(days=7), # 리프레시 토큰 7일 동안 유효
