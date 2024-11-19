@@ -1,3 +1,6 @@
+# 난이도 있는 영화들 총 1860개  
+# 1860개 csv 데이터만 movies.json으로 변환 시키기 
+
 import csv
 import json
 
