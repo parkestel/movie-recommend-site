@@ -1,6 +1,9 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
-from rest_framework.serializers import PrimaryKeyRelatedField
+
+from allauth.account.adapter import DefaultAccountAdapter
+from allauth.account.utils import user_email, user_field, user_username
+
 from dj_rest_auth.registration.serializers import RegisterSerializer
 from dj_rest_auth.serializers import LoginSerializer, UserDetailsSerializer
 from django.contrib.auth import get_user_model
@@ -43,21 +46,66 @@ class CustomLoginSerializer(LoginSerializer):
     username = serializers.CharField(required=True)
     email = None
 
-class CustomUserDetailsSerializer(UserDetailsSerializer):
+
+class FollowSerializer(serializers.ModelSerializer):
+    """
+    followings/followers 필드를 위한 서브 직렬화
+    """
     class Meta:
-        extra_fields = []
-        if hasattr(User, 'USERNAME_FIELD'):
-            extra_fields.append(User.USERNAME_FIELD)
-        if hasattr(User, 'EMAIL_FIELD'):
-            extra_fields.append(User.EMAIL_FIELD)
-        if hasattr(User, 'STUDY_LEVEL_FIELD'):
-            extra_fields.append(User.STUDY_LEVEL_FIELD)    
-        if hasattr(User, 'first_name'):
-            extra_fields.append('first_name')
-        if hasattr(User, 'last_name'):
-            extra_fields.append('last_name')
-        if hasattr(User, 'nickname'):
-            extra_fields.append('nickname')    
         model = User
-        fields = ('pk', *extra_fields)
-        read_only_fields = ('email',)
+        fields = ['id', 'username', 'nickname']  # 필요한 필드만 포함
+
+# 사용자 조회
+class CustomUserDetailsSerializer(UserDetailsSerializer):
+    followings = FollowSerializer(many=True, read_only=True)
+    followers = FollowSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = User
+        # id == pk 값
+        fields = [
+            'id', 'username', 'email', 'first_name', 'last_name', 'nickname',
+            'birth', 'study_level', 'experience', 'achievement_level', 'followings', 'followers'
+        ]
+        read_only_fields = ['email', 'id', 'followings', 'followers']  # 읽기 전용 필드
+
+class CustomAccountAdapter(DefaultAccountAdapter):
+    def save_user(self, request, user, form, commit=True):
+        """
+        사용자 데이터를 저장할 때 커스텀 처리
+        """
+        data = form.cleaned_data
+        first_name = data.get("first_name")
+        last_name = data.get("last_name")
+        email = data.get("email")
+        username = data.get("username")
+        nickname = data.get("nickname")
+        birth = data.get("birth")
+        study_level = data.get("study_level")
+        experience = data.get("experience", 0)
+        achievement_level = data.get("achievement_level", 0)
+
+        user_email(user, email)
+        user_username(user, username)
+        if first_name:
+            user_field(user, "first_name", first_name)
+        if last_name:
+            user_field(user, "last_name", last_name)
+        if nickname:
+            user_field(user, "nickname", nickname)
+        if birth:
+            user_field(user, "birth", birth)
+        if study_level:
+            user_field(user, "study_level", study_level)
+        if experience:
+            user_field(user, "experience", experience)
+        if achievement_level:
+            user_field(user, "achievement_level", achievement_level)
+        if "password1" in data:
+            user.set_password(data["password1"])
+        else:
+            user.set_unusable_password()
+        self.populate_username(request, user)
+        if commit:
+            user.save()
+        return user
