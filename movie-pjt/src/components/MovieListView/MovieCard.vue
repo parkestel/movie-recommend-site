@@ -2,6 +2,7 @@
   <div>
     <button v-if="!movie.isLiked" @click="store.toggleLikeMovie(movie.id)">🤍</button>
     <button v-else  @click="store.toggleLikeMovie(movie.id)">💖</button>
+
     <div>
       <img :src="store.getImgUrl(movie.poster_path,200)" alt="">
     </div>
