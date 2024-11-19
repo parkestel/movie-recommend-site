@@ -1,7 +1,8 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
+from rest_framework.serializers import PrimaryKeyRelatedField
 from dj_rest_auth.registration.serializers import RegisterSerializer
-from dj_rest_auth.serializers import LoginSerializer
+from dj_rest_auth.serializers import LoginSerializer, UserDetailsSerializer
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -41,3 +42,22 @@ class CustomRegisterSerializer(RegisterSerializer):
 class CustomLoginSerializer(LoginSerializer):
     username = serializers.CharField(required=True)
     email = None
+
+class CustomUserDetailsSerializer(UserDetailsSerializer):
+    class Meta:
+        extra_fields = []
+        if hasattr(User, 'USERNAME_FIELD'):
+            extra_fields.append(User.USERNAME_FIELD)
+        if hasattr(User, 'EMAIL_FIELD'):
+            extra_fields.append(User.EMAIL_FIELD)
+        if hasattr(User, 'STUDY_LEVEL_FIELD'):
+            extra_fields.append(User.STUDY_LEVEL_FIELD)    
+        if hasattr(User, 'first_name'):
+            extra_fields.append('first_name')
+        if hasattr(User, 'last_name'):
+            extra_fields.append('last_name')
+        if hasattr(User, 'nickname'):
+            extra_fields.append('nickname')    
+        model = User
+        fields = ('pk', *extra_fields)
+        read_only_fields = ('email',)
