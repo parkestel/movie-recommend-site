@@ -29,6 +29,10 @@ export const useMovieStore = defineStore('movie', () => {
     return targetMovie
   }
 
+  const getWishMovies = function () {
+    return movies.value.filter((movie)=>movie.isLiked===true)
+  }
+
   const toggleLikeMovie = function (movieId){
     const targetMovieId = movies.value.findIndex((movie)=>movie.id==movieId)
     const isLiked = movies.value[targetMovieId].isLiked
@@ -42,6 +46,6 @@ export const useMovieStore = defineStore('movie', () => {
     // axios 요청...! then -> token 값 받아오기
   }
   
-  return { IMAGE_BASE_URL, movies, getImgUrl, getMovie, logIn, toggleLikeMovie, token, isLogin }
+  return { IMAGE_BASE_URL, movies, getImgUrl, getMovie, logIn, toggleLikeMovie, getWishMovies, token, isLogin }
 
 })
