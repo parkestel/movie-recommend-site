@@ -6,6 +6,7 @@ import SignUpView from '@/views/SignUpView.vue'
 import ProfileView from '@/views/ProfileView.vue'
 import VocaNote from '@/views/VocaNoteView.vue'
 import { useMovieStore } from '@/stores/movie'
+import WishMovieListView from '@/views/WishMovieListView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,6 +40,11 @@ const router = createRouter({
       path:'/myprofie',
       name:'profile',
       component: ProfileView
+    },
+    {
+      path:'/mywishmovies',
+      name:'wishmovies',
+      component:WishMovieListView
     }
   ],
 })
