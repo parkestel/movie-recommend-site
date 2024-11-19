@@ -7,7 +7,7 @@
     </div>
     <h5>{{ wishMovie.title }}</h5>
     <button @click="moveToDetail(wishMovie.id)">Detail</button>
-    <button @click="goVocaNote(wishMovie.id,noteId)">VocaNote</button>
+    <button @click="popUp(noteId)">VocaNote</button>
   </div>
 </template>
 
@@ -31,9 +31,9 @@ const moveToDetail = function (movieId) {
   router.push({name:'movie-detail', params:{'movieid':movieId}})
 }
 
-const goVocaNote = function (movieId, noteId) {
-  router.push({name:'vocanote', params:{'note_id':noteId}})
-} 
+const popUp = function (noteId) {
+  window.open(`/note/${noteId}`, '__blank', 'width=400,height=650')
+}
 </script>
 
 <style scoped>
