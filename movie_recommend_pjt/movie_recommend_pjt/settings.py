@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+
+
 # from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -82,6 +84,7 @@ REST_AUTH = {
     'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
 }
 
+ACCOUNT_EMAIL_VERIFICATION = "none"
 # SIMPLE_JWT = {
 #     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30), # 엑세스 토큰 발급 후 30qsn
 #     'REFRESH_TOKEN_LIFETIME': timedelta(days=7), # 리프레시 토큰 7일 동안 유효
