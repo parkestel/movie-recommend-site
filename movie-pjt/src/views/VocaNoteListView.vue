@@ -9,12 +9,9 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
-import VocaNoteItem from '@/components/VocaNoteView/VocaNoteItem.vue'
+import VocaNoteItem from '@/components/VocaNoteListView/VocaNoteItem.vue'
 import { useMovieStore } from "@/stores/movie";
 
-const router = useRouter()
 const store = useMovieStore()
 
 </script>
