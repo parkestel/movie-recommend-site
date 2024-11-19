@@ -21,7 +21,7 @@
           </a>
           <ul class="dropdown-menu">
             <li><RouterLink :to="{name:'wishmovies'}" class="dropdown-item">Wish Movie</RouterLink></li>
-            <li><RouterLink :to="{name:'vocanote'}" class="dropdown-item">Voca Note</RouterLink></li>
+            <li><RouterLink :to="{name:'mynotelist'}" class="dropdown-item">Voca Note</RouterLink></li>
             <li><hr class="dropdown-divider"></li>
             <li><RouterLink :to="{name:'profile'}" class="dropdown-item">My Page</RouterLink></li>
           </ul>
