@@ -4,9 +4,10 @@ import MovieDetail from '@/views/MovieDetailView.vue'
 import LogInView from '@/views/LogInView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import ProfileView from '@/views/ProfileView.vue'
-import VocaNote from '@/views/VocaNoteView.vue'
+import VocaNoteListView from '@/views/VocaNoteListView.vue'
 import { useMovieStore } from '@/stores/movie'
 import WishMovieListView from '@/views/WishMovieListView.vue'
+import VocaNoteListItemView from '@/views/VocaNoteListItemView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,9 +33,14 @@ const router = createRouter({
       component: SignUpView
     },
     {
-      path:'/vocanote',
+      path:'/vocanotes',
+      name:'mynotelist',
+      component: VocaNoteListView
+    },
+    {
+      path:'/vocanotes/:note_id',
       name:'vocanote',
-      component: VocaNote
+      component:VocaNoteListItemView
     },
     {
       path:'/myprofie',
