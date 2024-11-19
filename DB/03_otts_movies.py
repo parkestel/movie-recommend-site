@@ -3,7 +3,7 @@
 import json
 import requests
 
-API_KEY = '39c9908752032848483d2c4bbb58a1ec'
+API_KEY = ''
 API_URL = 'https://api.themoviedb.org/3/'
 
 
