@@ -15,8 +15,16 @@
         <li class="nav-item mx-2">
           <RouterLink :to="{name:'movies'}">영화 추천 목록</RouterLink>
         </li>
-        <li class="nav-item mx-2">
-          <RouterLink :to="{name:'profile'}">My Page</RouterLink>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            My Menu
+          </a>
+          <ul class="dropdown-menu">
+            <li><RouterLink :to="{name:'wishmovies'}" class="dropdown-item">Wish Movie</RouterLink></li>
+            <li><RouterLink :to="{name:'vocanote'}" class="dropdown-item">Voca Note</RouterLink></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><RouterLink :to="{name:'profile'}" class="dropdown-item">My Page</RouterLink></li>
+          </ul>
         </li>
       </ul>
     </div>
