@@ -85,7 +85,7 @@ REST_AUTH = {
 }
 
 ACCOUNT_EMAIL_VERIFICATION = "none"
-ACCOUNT_AUTHENTICATION_METHOD = "username"  # 사용자 이름으로 로그인
+ACCOUNT_AUTHENTICATION_METHOD = "username"  # 사용자 이름으로 로그인, email로 로그인 안하려고
 ACCOUNT_USERNAME_REQUIRED = True  # username 필드 활성화
 
 
