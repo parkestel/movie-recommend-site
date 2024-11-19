@@ -93,9 +93,9 @@ CORS_ALLOWED_ORIGINS = [
 REST_AUTH = {
     'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
     'LOGIN_SERIALIZER': 'accounts.serializers.CustomLoginSerializer',
-     'USER_DETAILS_SERIALIZER': 'accounts.serializers.CustomUserDetailsSerializer',
+    'USER_DETAILS_SERIALIZER': 'accounts.serializers.CustomUserDetailsSerializer',
 }
-
+ACCOUNT_ADAPTER  = 'accounts.models.CustomAccountAdapter'
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_AUTHENTICATION_METHOD = "username"  # 사용자 이름으로 로그인, email로 로그인 안하려고
 ACCOUNT_USERNAME_REQUIRED = True  # username 필드 활성화
