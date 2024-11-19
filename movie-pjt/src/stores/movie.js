@@ -24,6 +24,11 @@ export const useMovieStore = defineStore('movie', () => {
     {id:2, movieId: 1, movie: 'Toy Story', is_public: false},
     {id:3, movieId: 2, movie: 'Toy Story 2', is_public: true},
   ])
+
+  const vocaList = ref([
+    {id:1, word: 'toy', word_mean: '장난감', note_id: 1, examples:'I buy a toy', memo:'', is_memorized:true},
+    {id:2, word: 'play', word_mean: '놀다', note_id: 1, examples:'I play with my sister', memo:'play-played-played', is_memorized:false},
+  ])
   
 
   const getImgUrl = function(poster_path,width) {
@@ -44,6 +49,10 @@ export const useMovieStore = defineStore('movie', () => {
     return targetNote
   }
 
+  const getVocas = function (noteId) {
+    return vocaList.value.filter((voca)=>voca.note_id===Number(noteId))
+  }
+
   const toggleLikeMovie = function (movieId){
     const targetMovieId = movies.value.findIndex((movie)=>movie.id==movieId)
     const isLiked = movies.value[targetMovieId].isLiked
@@ -57,6 +66,6 @@ export const useMovieStore = defineStore('movie', () => {
     // axios 요청...! then -> token 값 받아오기
   }
   
-  return { IMAGE_BASE_URL, movies, vocaNoteList, getImgUrl, getMovie, getNote, logIn, toggleLikeMovie, getWishMovies, token, isLogin }
+  return { IMAGE_BASE_URL, movies, vocaNoteList, vocaList, getImgUrl, getMovie, getNote, getVocas, logIn, toggleLikeMovie, getWishMovies, token, isLogin }
 
 })
