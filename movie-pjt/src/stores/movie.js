@@ -20,7 +20,9 @@ export const useMovieStore = defineStore('movie', () => {
   ])
 
   const vocaNoteList = ref([
-    {id:1, movie: 'Toy Story', is_public: true}
+    {id:1, movieId: 1, movie: 'Toy Story', is_public: true},
+    {id:2, movieId: 1, movie: 'Toy Story', is_public: false},
+    {id:3, movieId: 2, movie: 'Toy Story 2', is_public: true},
   ])
   
 
@@ -37,6 +39,11 @@ export const useMovieStore = defineStore('movie', () => {
     return movies.value.filter((movie)=>movie.isLiked===true)
   }
 
+  const getNote = function (noteId) {
+    const targetNote = vocaNoteList.value.find((note)=>note.id===Number(noteId))
+    return targetNote
+  }
+
   const toggleLikeMovie = function (movieId){
     const targetMovieId = movies.value.findIndex((movie)=>movie.id==movieId)
     const isLiked = movies.value[targetMovieId].isLiked
@@ -50,6 +57,6 @@ export const useMovieStore = defineStore('movie', () => {
     // axios 요청...! then -> token 값 받아오기
   }
   
-  return { IMAGE_BASE_URL, movies, vocaNoteList, getImgUrl, getMovie, logIn, toggleLikeMovie, getWishMovies, token, isLogin }
+  return { IMAGE_BASE_URL, movies, vocaNoteList, getImgUrl, getMovie, getNote, logIn, toggleLikeMovie, getWishMovies, token, isLogin }
 
 })
