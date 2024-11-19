@@ -102,6 +102,8 @@ ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_AUTHENTICATION_METHOD = "username"  # 사용자 이름으로 로그인, email로 로그인 안하려고
 ACCOUNT_USERNAME_REQUIRED = True  # username 필드 활성화
 ACCOUNT_EMAIL_REQUIRED = False  # 이메일 필드 비활성화
+ACCOUNT_LOGOUT_ON_GET = False  # 로그아웃 버튼 클릭 시 자동 로그아웃 방지, GET 로그아웃 발생 안함.
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # 로그아웃 후 리다이렉션 설정, 나중에 메인페이지로 바꾸기
 
 
 # SIMPLE_JWT = {
