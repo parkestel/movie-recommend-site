@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from dj_rest_auth.registration.serializers import RegisterSerializer
+from dj_rest_auth.serializers import LoginSerializer
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -37,3 +38,6 @@ class CustomRegisterSerializer(RegisterSerializer):
         user.save()
         return user
 
+class CustomLoginSerializer(LoginSerializer):
+    username = serializers.CharField(required=True)
+    email = None
