@@ -53,6 +53,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+INSTALLED_APPS += [
+    'corsheaders',
+]
+
 SITE_ID = 1
 
 REST_FRAMEWORK = {
@@ -78,6 +82,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+]
+
+MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',  # Vue.js 프로젝트 URL
 ]
 
 REST_AUTH = {
