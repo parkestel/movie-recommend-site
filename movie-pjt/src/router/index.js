@@ -4,10 +4,11 @@ import MovieDetail from '@/views/MovieDetailView.vue'
 import LogInView from '@/views/LogInView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import ProfileView from '@/views/ProfileView.vue'
-import VocaNoteListView from '@/views/VocaNoteListView.vue'
+import VocaNoteListView from '@/views/ProfileNesting/VocaNoteListView.vue'
 import { useMovieStore } from '@/stores/movie'
-import WishMovieListView from '@/views/WishMovieListView.vue'
+import WishMovieListView from '@/views/ProfileNesting/WishMovieListView.vue'
 import VocaNotePopUpView from '@/views/VocaNotePopUpView.vue'
+import MyLevel from '@/views/ProfileNesting/MyLevel.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,25 +34,32 @@ const router = createRouter({
       component: SignUpView
     },
     {
-      path:'/vocanotes',
-      name:'mynotelist',
-      component: VocaNoteListView,
-    },
-    {
       path:'/note/:note_id',
       name:'vocanote',
       component:VocaNotePopUpView
     },
     {
       path:'/myprofie',
-      name:'profile',
-      component: ProfileView
+      component: ProfileView,
+      children:[
+        {
+          path:'',
+          name:'profile',
+          component:MyLevel
+        },
+        {
+          path:'/vocanotes',
+          name:'mynotelist',
+          component: VocaNoteListView,
+        },
+        {
+          path:'/mywishmovies',
+          name:'wishmovies',
+          component:WishMovieListView
+        }
+      ]
     },
-    {
-      path:'/mywishmovies',
-      name:'wishmovies',
-      component:WishMovieListView
-    }
+
   ],
 })
 
