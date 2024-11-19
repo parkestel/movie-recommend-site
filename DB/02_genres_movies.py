@@ -1,4 +1,4 @@
-# movies.json 에 genres 필드와 id_adult 필드 수정하기
+# movies.json 에 genres 필드 추가 
 
 import csv
 import json
