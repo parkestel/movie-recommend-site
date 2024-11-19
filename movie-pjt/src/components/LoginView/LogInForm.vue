@@ -1,0 +1,35 @@
+<template>
+    <div>
+        <form @submit.prevent="logIn">
+            <label for="username">ID: </label>
+            <input type="text" id="username" v-model.trim="username"><br>
+
+            <label for="password">PW: </label>
+            <input type="password" id="password"><br>
+
+            <input type="submit" value="logIn">
+        </form>
+    </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { useMovieStore } from '@/stores/movie'
+
+const store = useMovieStore()
+
+const username = ref(null)
+const password = ref(null)
+
+const logIn = function () {
+    const payload = {
+        username: username.value,
+        password: password.value
+    }
+    store.logIn(payload)
+}
+</script>
+
+<style scoped>
+
+</style>
