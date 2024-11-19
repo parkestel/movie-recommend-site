@@ -2,7 +2,7 @@
   <div>
     <h5>My Voca Note Page</h5>
     <VocaNoteItem
-    v-for="note in vocaNoteList"
+    v-for="note in store.vocaNoteList"
     :key="note.id"
     :note="note"/>
   </div>
@@ -12,13 +12,10 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import VocaNoteItem from '@/components/VocaNoteView/VocaNoteItem.vue'
+import { useMovieStore } from "@/stores/movie";
 
 const router = useRouter()
-const noteId = ref(null)
-
-const vocaNoteList = ref([
-  {id:1, movie: 'Toy Story', is_public: true}
-])
+const store = useMovieStore()
 
 </script>
 

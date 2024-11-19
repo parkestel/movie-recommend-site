@@ -17,8 +17,12 @@ export const useMovieStore = defineStore('movie', () => {
     { id: 1, title: 'Toy Story', tmdb_id: 862, summary:'summary of movie', release_date: '1995-04-01', genre:'Animation', poster_path:'/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg', isLiked: true},
     { id: 2, title: 'Toy Story 2', tmdb_id: 9082, summary:'summary of movie', release_date: '2003-04-01', genre:'Animation',  poster_path:'/2MFIhZAW0CVlEQrFyqwa4U6zqJP.jpg', isLiked: false},
     { id: 3, title: 'Toy Story 3', tmdb_id: 234235, summary:'summary of movie', release_date: '2009-04-01', genre:'Animation', poster_path:'/AbbXspMOwdvwWZgVN0nabZq03Ec.jpg', isLiked: false}
-
   ])
+
+  const vocaNoteList = ref([
+    {id:1, movie: 'Toy Story', is_public: true}
+  ])
+  
 
   const getImgUrl = function(poster_path,width) {
     return `${IMAGE_BASE_URL}/w${width}/${poster_path}`
@@ -46,6 +50,6 @@ export const useMovieStore = defineStore('movie', () => {
     // axios 요청...! then -> token 값 받아오기
   }
   
-  return { IMAGE_BASE_URL, movies, getImgUrl, getMovie, logIn, toggleLikeMovie, getWishMovies, token, isLogin }
+  return { IMAGE_BASE_URL, movies, vocaNoteList, getImgUrl, getMovie, logIn, toggleLikeMovie, getWishMovies, token, isLogin }
 
 })
