@@ -82,6 +82,7 @@ MIDDLEWARE = [
 
 REST_AUTH = {
     'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
+    'LOGIN_SERIALIZER': 'accounts.serializers.CustomLoginSerializer',
 }
 
 ACCOUNT_EMAIL_VERIFICATION = "none"
