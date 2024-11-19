@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        <h1>Voca Note of movie {{  }}</h1>
     </div>
 </template>
 

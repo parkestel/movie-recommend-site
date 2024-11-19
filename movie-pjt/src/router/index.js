@@ -7,7 +7,7 @@ import ProfileView from '@/views/ProfileView.vue'
 import VocaNoteListView from '@/views/VocaNoteListView.vue'
 import { useMovieStore } from '@/stores/movie'
 import WishMovieListView from '@/views/WishMovieListView.vue'
-import VocaNoteListItemView from '@/views/VocaNoteListItemView.vue'
+import VocaNotePopUpView from '@/views/VocaNotePopUpView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,7 +18,7 @@ const router = createRouter({
       component: MovieListView
     },
     {
-      path: '/:movieid',
+      path: '/movies/:movieid',
       name:'movie-detail',
       component: MovieDetail
     },
@@ -35,12 +35,12 @@ const router = createRouter({
     {
       path:'/vocanotes',
       name:'mynotelist',
-      component: VocaNoteListView
+      component: VocaNoteListView,
     },
     {
-      path:'/vocanotes/:note_id',
+      path:'/note/:note_id',
       name:'vocanote',
-      component:VocaNoteListItemView
+      component:VocaNotePopUpView
     },
     {
       path:'/myprofie',
