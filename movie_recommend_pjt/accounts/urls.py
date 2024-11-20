@@ -5,6 +5,7 @@ urlpatterns = [
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
     path('dj-rest-auth/user/profile/', views.profile, name='user-profile'),
+    path('delete/', views.delete_user, name='delete_user'),
 ]
 
 # 회원가입
