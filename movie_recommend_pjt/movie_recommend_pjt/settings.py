@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'accounts',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
     # 'rest_framework_simplejwt',
     'dj_rest_auth',
     'django.contrib.sites',
@@ -53,6 +54,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+# INSTALLED_APPS += [
+#     'corsheaders',
+# ]
+
 SITE_ID = 1
 
 REST_FRAMEWORK = {
@@ -64,9 +69,10 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
 #     # permission
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.AllowAny',
-#     ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
+    ],
 }
 
 MIDDLEWARE = [
@@ -80,15 +86,24 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
 ]
 
+MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',  # Vue.js 프로젝트 URL
+]
+
 REST_AUTH = {
     'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
     'LOGIN_SERIALIZER': 'accounts.serializers.CustomLoginSerializer',
+    'USER_DETAILS_SERIALIZER': 'accounts.serializers.CustomUserDetailsSerializer',
 }
-
+# ACCOUNT_ADAPTER  = 'accounts.serializers.CustomAccountAdapter'
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_AUTHENTICATION_METHOD = "username"  # 사용자 이름으로 로그인, email로 로그인 안하려고
 ACCOUNT_USERNAME_REQUIRED = True  # username 필드 활성화
 ACCOUNT_EMAIL_REQUIRED = False  # 이메일 필드 비활성화
+# ACCOUNT_LOGOUT_ON_GET = False  # 로그아웃 버튼 클릭 시 자동 로그아웃 방지, GET 로그아웃 발생 안함.
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # 로그아웃 후 리다이렉션 설정, 나중에 메인페이지로 바꾸기
 
 
 # SIMPLE_JWT = {
