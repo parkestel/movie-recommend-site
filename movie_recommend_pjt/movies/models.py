@@ -40,3 +40,8 @@ class Movie(models.Model):
     otts = models.ManyToManyField(Ott, related_name="provide_movies")
     directors = models.ManyToManyField(Director, related_name="directed_movies")
     wish_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='wish_movies')
+
+class Comment(models.Model):
+    content = models.TextField()
+    movies = models.ManyToManyField(Movie, related_name='comments')
+    users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='user_comments')

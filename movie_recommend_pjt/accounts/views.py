@@ -61,14 +61,17 @@ def delete_user(request):
 # 팔로잉 기능
 @api_view(['POST'])
 def followings(request, user_pk):
-    person = get_user_model()
-    me = User.objects.get(pk=user_pk)
-
-    if person.followers.filter(pk=user_pk).exists():
-        # 팔로잉 취소
-        person.followers.remove(me)
-        return Response({'status': 'following 취소', '끊은 person': person.nickname}, status=status.HTTP_200_OK)
+    person = User.objects.get(pk=user_pk)
+    me = request.user
+    if me != person:
+        if me in person.followers.all():
+            # 팔로잉 취소
+            person.followers.remove(me)
+            return Response({'status': 'following 취소', '끊은 person': person.nickname}, status=status.HTTP_200_OK)
+        else:
+            # 팔로잉 추가
+            person.followers.add(me)
+            return Response({'status': 'following', 'followings': person.nickname}, status=status.HTTP_200_OK)
     else:
-        # 팔로잉 추가
-        person.followers.add(me)
-        return Response({'status': 'following', 'followings': person.nickname}, status=status.HTTP_200_OK)
+            return Response({'error': '자기 자신을 팔로우할 수 없습니다.'}, status=status.HTTP_400_BAD_REQUEST)
+    
