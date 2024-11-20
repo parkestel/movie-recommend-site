@@ -11,6 +11,7 @@ import VocaNotePopUpView from '@/views/VocaNotePopUpView.vue'
 import MyLevel from '@/views/ProfileNesting/MyLevel.vue'
 import UserInfoUpdateView from '@/views/UserInfoUpdateView.vue'
 import UserAccountDeleteView from '@/views/UserAccountDeleteView.vue'
+import PasswordUpdateView from '@/views/PasswordUpdateView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -64,6 +65,11 @@ const router = createRouter({
       path:'/accountdelete',
       name:'accountdelete',
       component:UserAccountDeleteView
+    },
+    {
+      path:'/password',
+      name:'password',
+      component:PasswordUpdateView
     },
     {
       path:'/note/:note_id',

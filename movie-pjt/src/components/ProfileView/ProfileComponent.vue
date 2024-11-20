@@ -3,6 +3,7 @@
         <h1>My Page</h1>
         <h3>username 님의 페이지임</h3>
         <hr>
+        <RouterLink :to="{name:'password'}">비밀 번호 수정</RouterLink> | 
         <RouterLink :to="{name:'userinfoupdate'}">회원 정보 수정</RouterLink> | 
         <RouterLink :to="{name:'accountdelete'}">회원 탈퇴</RouterLink>
         <hr>
