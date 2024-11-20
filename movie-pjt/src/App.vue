@@ -10,6 +10,9 @@
           <RouterLink :to="{name:'login'}">Log in</RouterLink>
         </li>
         <li class="nav-item mx-2">
+          <RouterLink :to="{name:'logout'}">Log out</RouterLink>
+        </li>
+        <li class="nav-item mx-2">
           <RouterLink :to="{name:'signup'}">Sign Up</RouterLink>
         </li>
         <li class="nav-item mx-2">

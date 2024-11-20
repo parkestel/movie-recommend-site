@@ -9,6 +9,9 @@ import { useMovieStore } from '@/stores/movie'
 import WishMovieListView from '@/views/ProfileNesting/WishMovieListView.vue'
 import VocaNotePopUpView from '@/views/VocaNotePopUpView.vue'
 import MyLevel from '@/views/ProfileNesting/MyLevel.vue'
+import UserInfoUpdateView from '@/views/UserInfoUpdateView.vue'
+import UserAccountDeleteView from '@/views/UserAccountDeleteView.vue'
+import PasswordUpdateView from '@/views/PasswordUpdateView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,9 +32,44 @@ const router = createRouter({
       component: LogInView
     },
     {
+      path:'/logout',
+      name:'logout',
+      // https://codesandbox.io/p/sandbox/vue-router-logout-route-dcnh3?file=%2Fsrc%2Frouter%2Findex.js%3A28%2C7-43%2C8
+      component: {
+        beforeRouteEnter(to, from, next) {
+          console.log({ from });
+          const destination = {
+            path: from.path || "/",
+            query: from.query,
+            params: from.params
+          };
+          if (!from) {
+            console.log("no from");
+          }
+          console.log("running before hook");
+          next(destination);
+        }
+      }
+    },
+    {
       path:'/signup',
       name:'signup',
       component: SignUpView
+    },
+    {
+      path:'/userinfoupdate',
+      name:'userinfoupdate',
+      component:UserInfoUpdateView
+    },
+    {
+      path:'/accountdelete',
+      name:'accountdelete',
+      component:UserAccountDeleteView
+    },
+    {
+      path:'/password',
+      name:'password',
+      component:PasswordUpdateView
     },
     {
       path:'/note/:note_id',

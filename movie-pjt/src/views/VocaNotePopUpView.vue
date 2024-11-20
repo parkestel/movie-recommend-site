@@ -1,15 +1,12 @@
 <template>
     <div>
         <h1 v-if="note">{{ note.movie }}'s vocanote</h1>
-    </div>
-    <div>
         <VocaCreate/>
-    </div>
-    <div>
         <VocaListRead
         v-for="voca in vocaList"
         :key="voca.id"
         :voca="voca"
+        @delete-event="deleteWord"
         />
     </div>
 </template>
@@ -26,6 +23,11 @@ const route = useRoute()
 
 const note = ref(null)
 const vocaList = ref(null)
+
+const deleteWord = function (id) {
+    const targetId = vocaList.value.findIndex((voca)=>voca.id===id)
+    vocaList.value.splice(targetId, 1)
+}
 
 onMounted(()=>{
     const noteId = route.params.note_id
