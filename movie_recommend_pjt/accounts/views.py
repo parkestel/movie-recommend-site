@@ -36,7 +36,7 @@ def profile(request):
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
 
-
+# 회원 탈퇴 기능 & 로그아웃까지 연동
 @api_view(['POST'])
 @authentication_classes([TokenAuthentication, BasicAuthentication])
 @permission_classes([IsAuthenticated])
@@ -57,3 +57,18 @@ def delete_user(request):
             "status": "failure"
         }
         return Response(data=message, status=status.HTTP_401_UNAUTHORIZED)
+    
+# 팔로잉 기능
+@api_view(['POST'])
+def followings(request, user_pk):
+    person = get_user_model()
+    me = User.objects.get(pk=user_pk)
+
+    if person.followers.filter(pk=user_pk).exists():
+        # 팔로잉 취소
+        person.followers.remove(me)
+        return Response({'status': 'following 취소', '끊은 person': person.nickname}, status=status.HTTP_200_OK)
+    else:
+        # 팔로잉 추가
+        person.followers.add(me)
+        return Response({'status': 'following', 'followings': person.nickname}, status=status.HTTP_200_OK)
