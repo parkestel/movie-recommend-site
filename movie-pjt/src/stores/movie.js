@@ -75,9 +75,20 @@ export const useMovieStore = defineStore('movie', () => {
   }
 
   const toggleLikeMovie = function (movieId){
-    const targetMovieId = movies.value.findIndex((movie)=>movie.id==movieId)
-    const isLiked = movies.value[targetMovieId].isLiked
-    movies.value[targetMovieId].isLiked = !isLiked
+    axios({
+      method:'post',
+      url:`${API_BASE_URL}/movies/${movieId}/wish-movie/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      console.log('좋아요 성공')
+
+    })
+    .catch(err=>{
+      console.log(err)
+    })
   }
 
   const deleteNote = function (id) {
