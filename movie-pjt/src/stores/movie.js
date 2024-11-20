@@ -113,6 +113,20 @@ export const useMovieStore = defineStore('movie', () => {
     const username = payload.username
     const password = payload.password
     // axios 요청...! then -> token 값 받아오기
+    axios({
+      method:'post',
+      url:`${API_BASE_URL}/accounts/dj-rest-auth/login/`,
+      data:{
+        username, password
+      }
+    })
+    .then(res=>{
+      token.value = res.data.key
+      console.log(res.data)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
   }
   
   return { IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, signUp, getImgUrl, getMovie, getNote, getVocas, logIn, toggleLikeMovie, getWishMovies, deleteNote, token, isLogin }
