@@ -14,9 +14,14 @@ export const useMovieStore = defineStore('movie', () => {
   })
 
   const movies = ref([
-    { id: 1, title: 'Toy Story', tmdb_id: 862, summary:'summary of movie', release_date: '1995-04-01', genre:'Animation', poster_path:'/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg', isLiked: true},
-    { id: 2, title: 'Toy Story 2', tmdb_id: 9082, summary:'summary of movie', release_date: '2003-04-01', genre:'Animation',  poster_path:'/2MFIhZAW0CVlEQrFyqwa4U6zqJP.jpg', isLiked: false},
-    { id: 3, title: 'Toy Story 3', tmdb_id: 234235, summary:'summary of movie', release_date: '2009-04-01', genre:'Animation', poster_path:'/AbbXspMOwdvwWZgVN0nabZq03Ec.jpg', isLiked: false}
+    { id: 1, title: 'Toy Story', tmdb_id: 862, summary:'summary of movie', release_date: '1995-04-01', genre:['Animation'], poster_path:'/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg', isLiked: true},
+    { id: 2, title: 'Toy Story 2', tmdb_id: 9082, summary:'summary of movie', release_date: '2003-04-01', genre:['Animation'],  poster_path:'/2MFIhZAW0CVlEQrFyqwa4U6zqJP.jpg', isLiked: false},
+    { id: 3, title: 'Toy Story 3', tmdb_id: 234235, summary:'summary of movie', release_date: '2009-04-01', genre:['Animation','Adventure'], poster_path:'/AbbXspMOwdvwWZgVN0nabZq03Ec.jpg', isLiked: false}
+  ])
+
+  const genres = ref([
+    {id: 1, name: 'Animation'},
+    {id: 2, name:'Adventure'},
   ])
 
   const vocaNoteList = ref([
@@ -59,6 +64,11 @@ export const useMovieStore = defineStore('movie', () => {
     movies.value[targetMovieId].isLiked = !isLiked
   }
 
+  const deleteNote = function (id) {
+    const targetId = vocaNoteList.value.findIndex(note => note.id===id)
+    vocaNoteList.value.splice(targetId, 1)
+  }
+
 
   const logIn = function(payload) {
     const username = payload.username
@@ -66,6 +76,5 @@ export const useMovieStore = defineStore('movie', () => {
     // axios 요청...! then -> token 값 받아오기
   }
   
-  return { IMAGE_BASE_URL, movies, vocaNoteList, vocaList, getImgUrl, getMovie, getNote, getVocas, logIn, toggleLikeMovie, getWishMovies, token, isLogin }
-
+  return { IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, getImgUrl, getMovie, getNote, getVocas, logIn, toggleLikeMovie, getWishMovies, deleteNote, token, isLogin }
 })
