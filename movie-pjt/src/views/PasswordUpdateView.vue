@@ -2,7 +2,7 @@
   <div>
     <h1>비밀 번호 수정</h1>
     <form>
-      <label for="password">origin password</label>
+      <label for="password">password</label>
       <input type="password" id="password">
       <br>
       <label for="password1">new password</label>
