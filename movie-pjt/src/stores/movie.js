@@ -64,6 +64,11 @@ export const useMovieStore = defineStore('movie', () => {
     movies.value[targetMovieId].isLiked = !isLiked
   }
 
+  const deleteNote = function (id) {
+    const targetId = vocaNoteList.value.findIndex(note => note.id===id)
+    vocaNoteList.value.splice(targetId, 1)
+  }
+
 
   const logIn = function(payload) {
     const username = payload.username
@@ -71,5 +76,5 @@ export const useMovieStore = defineStore('movie', () => {
     // axios 요청...! then -> token 값 받아오기
   }
   
-  return { IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, getImgUrl, getMovie, getNote, getVocas, logIn, toggleLikeMovie, getWishMovies, token, isLogin }
+  return { IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, getImgUrl, getMovie, getNote, getVocas, logIn, toggleLikeMovie, getWishMovies, deleteNote, token, isLogin }
 })

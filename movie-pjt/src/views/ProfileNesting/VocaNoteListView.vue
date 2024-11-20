@@ -4,7 +4,8 @@
     <VocaNoteItem
     v-for="note in store.vocaNoteList"
     :key="note.id"
-    :note="note"/>
+    :note="note"
+    @delete-event="store.deleteNote"/>
   </div>
 </template>
 
@@ -13,7 +14,6 @@ import VocaNoteItem from '@/components/VocaNoteListView/VocaNoteItem.vue'
 import { useMovieStore } from "@/stores/movie";
 
 const store = useMovieStore()
-
 </script>
 
 <style scoped>
