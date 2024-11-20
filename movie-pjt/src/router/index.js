@@ -9,6 +9,8 @@ import { useMovieStore } from '@/stores/movie'
 import WishMovieListView from '@/views/ProfileNesting/WishMovieListView.vue'
 import VocaNotePopUpView from '@/views/VocaNotePopUpView.vue'
 import MyLevel from '@/views/ProfileNesting/MyLevel.vue'
+import UserInfoUpdateView from '@/views/UserInfoUpdateView.vue'
+import UserAccountDeleteView from '@/views/UserAccountDeleteView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -52,6 +54,16 @@ const router = createRouter({
       path:'/signup',
       name:'signup',
       component: SignUpView
+    },
+    {
+      path:'/userinfoupdate',
+      name:'userinfoupdate',
+      component:UserInfoUpdateView
+    },
+    {
+      path:'/accountdelete',
+      name:'accountdelete',
+      component:UserAccountDeleteView
     },
     {
       path:'/note/:note_id',
