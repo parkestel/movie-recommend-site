@@ -89,7 +89,7 @@ MIDDLEWARE = [
 MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  # Vue.js 프로젝트 URL
+    'http://localhost:5173',  # Vue.js 프로젝트 URL
 ]
 
 REST_AUTH = {
