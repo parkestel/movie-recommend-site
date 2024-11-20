@@ -17,12 +17,14 @@
     @click="updateFilter($event, 'genre', genre)"
     >{{ genre.name }}</button>
     <div>
-        <MovieCard 
-        v-for="movie in filteredMovies" 
-        :key="movie.id" 
-        :movie="movie"
-        />
-        <p v-if="!filteredMovies">영화가 없습니다.</p>
+        <div v-if="filteredMovies">
+            <MovieCard 
+            v-for="movie in filteredMovies" 
+            :key="movie.id" 
+            :movie="movie"
+            />
+        </div>
+        <p v-else>영화가 없습니다.</p>
     </div>
 </div>
 </template>
@@ -80,8 +82,8 @@ const applyFilters = () => {
 
 
 onMounted(()=>{
+    store.getMovies()
     filteredMovies.value = store.movies
-    console.log(filteredMovies.value[1])
 })
 </script>
 
