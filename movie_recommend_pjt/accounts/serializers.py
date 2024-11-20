@@ -69,43 +69,43 @@ class CustomUserDetailsSerializer(UserDetailsSerializer):
         ]
         read_only_fields = ['email', 'id', 'followings', 'followers']  # 읽기 전용 필드
 
-class CustomAccountAdapter(DefaultAccountAdapter):
-    def save_user(self, request, user, form, commit=True):
-        """
-        사용자 데이터를 저장할 때 커스텀 처리
-        """
-        data = form.cleaned_data
-        first_name = data.get("first_name")
-        last_name = data.get("last_name")
-        email = data.get("email")
-        username = data.get("username")
-        nickname = data.get("nickname")
-        birth = data.get("birth")
-        study_level = data.get("study_level")
-        experience = data.get("experience", 0)
-        achievement_level = data.get("achievement_level", 0)
+# class CustomAccountAdapter(DefaultAccountAdapter):
+#     def save_user(self, request, user, form, commit=True):
+#         """
+#         사용자 데이터를 저장할 때 커스텀 처리
+#         """
+#         data = form.cleaned_data
+#         first_name = data.get("first_name")
+#         last_name = data.get("last_name")
+#         email = data.get("email")
+#         username = data.get("username")
+#         nickname = data.get("nickname")
+#         birth = data.get("birth")
+#         study_level = data.get("study_level")
+#         experience = data.get("experience", 0)
+#         achievement_level = data.get("achievement_level", 0)
 
-        user_email(user, email)
-        user_username(user, username)
-        if first_name:
-            user_field(user, "first_name", first_name)
-        if last_name:
-            user_field(user, "last_name", last_name)
-        if nickname:
-            user_field(user, "nickname", nickname)
-        if birth:
-            user_field(user, "birth", birth)
-        if study_level:
-            user_field(user, "study_level", study_level)
-        if experience:
-            user_field(user, "experience", experience)
-        if achievement_level:
-            user_field(user, "achievement_level", achievement_level)
-        if "password1" in data:
-            user.set_password(data["password1"])
-        else:
-            user.set_unusable_password()
-        self.populate_username(request, user)
-        if commit:
-            user.save()
-        return user
+#         user_email(user, email)
+#         user_username(user, username)
+#         if first_name:
+#             user_field(user, "first_name", first_name)
+#         if last_name:
+#             user_field(user, "last_name", last_name)
+#         if nickname:
+#             user_field(user, "nickname", nickname)
+#         if birth:
+#             user_field(user, "birth", birth)
+#         if study_level:
+#             user_field(user, "study_level", study_level)
+#         if experience:
+#             user_field(user, "experience", experience)
+#         if achievement_level:
+#             user_field(user, "achievement_level", achievement_level)
+#         if "password1" in data:
+#             user.set_password(data["password1"])
+#         else:
+#             user.set_unusable_password()
+#         self.populate_username(request, user)
+#         if commit:
+#             user.save()
+#         return user
