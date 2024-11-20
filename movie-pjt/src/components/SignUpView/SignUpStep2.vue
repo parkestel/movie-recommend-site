@@ -2,9 +2,9 @@
     <div>
         <h1>성, 이름, 이메일, 생년월일</h1>
         <form>
-            <input type="text" id="lastname" v-model="localForm.lastname" placeholder="Last Name">
+            <input type="text" id="lastname" v-model="localForm.last_name" placeholder="Last Name">
             <br>
-            <input type="text" id="firstname" v-model="localForm.firstname" placeholder="First Name">
+            <input type="text" id="firstname" v-model="localForm.first_name" placeholder="First Name">
             <br>
             <input type="email" id="email" v-model="localForm.email" placeholder="Email">
             <br>
@@ -23,9 +23,9 @@ const emit = defineEmits(['update-data','next', 'previous']);
 
 const localForm = reactive({
     email: props.formData.email,
-    firstname: props.formData.firstname,
-    lastname: props.formData.lastname,
-    brith: props.formData.birth
+    first_name: props.formData.first_name,
+    last_name: props.formData.last_name,
+    birth: props.formData.birth
 });
 
 const goPrevious = () => {

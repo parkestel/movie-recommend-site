@@ -1,8 +1,12 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import axios from 'axios'
+import { useRouter } from 'vue-router'
 
 export const useMovieStore = defineStore('movie', () => {
+  const router = useRouter()
   const token = ref(null)
+  const API_BASE_URL = 'http://127.0.0.1:8000'
   const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p'
 
   const isLogin = computed(()=>{
@@ -35,7 +39,42 @@ export const useMovieStore = defineStore('movie', () => {
     {id:2, word: 'play', word_mean: '놀다', note_id: 1, examples:'I play with my sister', memo:'play-played-played', is_memorized:false},
   ])
   
+  const signUp = function (payload) {
+    const username = payload.username
+    const password1 = payload.password1
+    const password2 = payload.password2
+    const email = payload.email
+    const last_name = payload.last_name
+    const first_name = payload.first_name
+    const birth = payload.birth
+    const nickname = payload.nickname
+    const study_level = payload.study_level
 
+    axios({
+      method:'post',
+      url:`${API_BASE_URL}/accounts/dj-rest-auth/registration/`,
+      data: {
+        username,
+        password1,
+        password2,
+        email,
+        last_name,
+        first_name,
+        birth,
+        nickname,
+        study_level,
+      }
+    })
+    .then(res=>{
+      // console.log('회원가입 완료')
+      // 자동 로그인 구현
+      router.push({name:'movies'})
+    })
+    .catch(err=>{
+      window.alert('회원가입에 실패했습니다! 다시 시도 해주십시오.')
+      router.push({name:'signup'})
+    })
+  }
   const getImgUrl = function(poster_path,width) {
     return `${IMAGE_BASE_URL}/w${width}/${poster_path}`
   }
@@ -74,7 +113,21 @@ export const useMovieStore = defineStore('movie', () => {
     const username = payload.username
     const password = payload.password
     // axios 요청...! then -> token 값 받아오기
+    axios({
+      method:'post',
+      url:`${API_BASE_URL}/accounts/dj-rest-auth/login/`,
+      data:{
+        username, password
+      }
+    })
+    .then(res=>{
+      token.value = res.data.key
+      console.log(res.data)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
   }
   
-  return { IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, getImgUrl, getMovie, getNote, getVocas, logIn, toggleLikeMovie, getWishMovies, deleteNote, token, isLogin }
+  return { IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, signUp, getImgUrl, getMovie, getNote, getVocas, logIn, toggleLikeMovie, getWishMovies, deleteNote, token, isLogin }
 })
