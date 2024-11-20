@@ -36,45 +36,6 @@ export const useMovieStore = defineStore('movie', () => {
     {id:2, word: 'play', word_mean: '놀다', note_id: 1, examples:'I play with my sister', memo:'play-played-played', is_memorized:false},
   ])
   
-  const signUp = function (payload) {
-    const username = payload.username
-    const password1 = payload.password1
-    const password2 = payload.password2
-    const email = payload.email
-    const last_name = payload.last_name
-    const first_name = payload.first_name
-    const birth = payload.birth
-    const nickname = payload.nickname
-    const study_level = payload.study_level
-
-    axios({
-      method:'post',
-      url:`${API_BASE_URL}/accounts/dj-rest-auth/registration/`,
-      data: {
-        username,
-        password1,
-        password2,
-        email,
-        last_name,
-        first_name,
-        birth,
-        nickname,
-        study_level,
-      }
-    })
-    .then(res=>{
-      // console.log('회원가입 완료')
-      // 자동 로그인 구현
-      const password = password1
-      logIn({username, password})
-      router.push({name:'movies'})
-    })
-    .catch(err=>{
-      window.alert('회원가입에 실패했습니다! 다시 시도 해주십시오.')
-      router.push({name:'signup'})
-    })
-  }
-
   const getMovies = function () {
     axios({
       method:'get',
@@ -124,6 +85,45 @@ export const useMovieStore = defineStore('movie', () => {
     vocaNoteList.value.splice(targetId, 1)
   }
 
+  const signUp = function (payload) {
+    const username = payload.username
+    const password1 = payload.password1
+    const password2 = payload.password2
+    const email = payload.email
+    const last_name = payload.last_name
+    const first_name = payload.first_name
+    const birth = payload.birth
+    const nickname = payload.nickname
+    const study_level = payload.study_level
+
+    axios({
+      method:'post',
+      url:`${API_BASE_URL}/accounts/dj-rest-auth/registration/`,
+      data: {
+        username,
+        password1,
+        password2,
+        email,
+        last_name,
+        first_name,
+        birth,
+        nickname,
+        study_level,
+      }
+    })
+    .then(res=>{
+      // console.log('회원가입 완료')
+      // 자동 로그인 구현
+      const password = password1
+      logIn({username, password})
+      router.push({name:'movies'})
+    })
+    .catch(err=>{
+      window.alert('회원가입에 실패했습니다! 다시 시도 해주십시오.')
+      router.push({name:'signup'})
+    })
+  }
+
 
   const logIn = function(payload) {
     const username = payload.username
@@ -163,5 +163,5 @@ export const useMovieStore = defineStore('movie', () => {
 
   }
   
-  return { IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, signUp, getImgUrl, getMovies, getMovie, getNote, getVocas, logIn, logOut, toggleLikeMovie, getWishMovies, deleteNote, token, isLogin }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getMovie, getNote, getVocas,  signUp, logIn, logOut, toggleLikeMovie, getWishMovies, deleteNote, token, isLogin }
 }, { persist: true })
