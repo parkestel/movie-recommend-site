@@ -122,10 +122,12 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       token.value = res.data.key
-      console.log(res.data)
+      // console.log(res.data)
+      router.push({name:'movies'})
     })
     .catch(err=>{
-      console.log(err)
+      window.alert('로그인에 실패 했습니다!')
+      router.push({name:'login'})
     })
   }
   
