@@ -22,6 +22,7 @@ class Director(models.Model):
     name = models.TextField()
     profile_path = models.TextField(null=True, blank=True)
 
+
 class Movie(models.Model):
     tmdb_id = models.IntegerField() # id
     title = models.TextField() # title
