@@ -31,26 +31,26 @@ const router = createRouter({
       name:'login',
       component: LogInView
     },
-    {
-      path:'/logout',
-      name:'logout',
-      // https://codesandbox.io/p/sandbox/vue-router-logout-route-dcnh3?file=%2Fsrc%2Frouter%2Findex.js%3A28%2C7-43%2C8
-      component: {
-        beforeRouteEnter(to, from, next) {
-          console.log({ from });
-          const destination = {
-            path: from.path || "/",
-            query: from.query,
-            params: from.params
-          };
-          if (!from) {
-            console.log("no from");
-          }
-          console.log("running before hook");
-          next(destination);
-        }
-      }
-    },
+    // {
+    //   path:'/logout',
+    //   name:'logout',
+    //   // https://codesandbox.io/p/sandbox/vue-router-logout-route-dcnh3?file=%2Fsrc%2Frouter%2Findex.js%3A28%2C7-43%2C8
+    //   component: {
+    //     beforeRouteEnter(to, from, next) {
+    //       console.log({ from });
+    //       const destination = {
+    //         path: from.path || "/",
+    //         query: from.query,
+    //         params: from.params
+    //       };
+    //       if (!from) {
+    //         console.log("no from");
+    //       }
+    //       console.log("running before hook");
+    //       next(destination);
+    //     }
+    //   }
+    // },
     {
       path:'/signup',
       name:'signup',

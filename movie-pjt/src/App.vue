@@ -10,9 +10,6 @@
           <RouterLink :to="{name:'login'}" v-if="!store.isLogin">Log in</RouterLink>
         </li>
         <li class="nav-item mx-2">
-          <RouterLink :to="{name:'logout'}" v-if="store.isLogin">Log out</RouterLink>
-        </li>
-        <li class="nav-item mx-2">
           <RouterLink :to="{name:'signup'}" v-if="!store.isLogin">Sign Up</RouterLink>
         </li>
         <li class="nav-item mx-2">
@@ -27,6 +24,8 @@
             <li><RouterLink :to="{name:'mynotelist'}" class="dropdown-item">Voca Note</RouterLink></li>
             <li><hr class="dropdown-divider"></li>
             <li><RouterLink :to="{name:'profile'}" class="dropdown-item">My Page</RouterLink></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><button @click="store.logOut">Log out</button></li>
           </ul>
         </li>
       </ul>

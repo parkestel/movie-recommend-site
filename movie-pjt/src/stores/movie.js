@@ -146,6 +146,22 @@ export const useMovieStore = defineStore('movie', () => {
       router.push({name:'login'})
     })
   }
+
+  const logOut = function () {
+    axios({
+      method:'post',
+      url: `${API_BASE_URL}/accounts/dj-rest-auth/logout/`
+    })
+    .then(res=>{
+      token.value=null
+      window.alert('Bye! See you soon')
+      router.push({name:'login'})
+    })
+    .catch(err=>{
+      window.alert('로그아웃에 실패했습니다.')
+    })
+
+  }
   
-  return { IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, signUp, getImgUrl, getMovies, getMovie, getNote, getVocas, logIn, toggleLikeMovie, getWishMovies, deleteNote, token, isLogin }
+  return { IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, signUp, getImgUrl, getMovies, getMovie, getNote, getVocas, logIn, logOut, toggleLikeMovie, getWishMovies, deleteNote, token, isLogin }
 }, { persist: true })
