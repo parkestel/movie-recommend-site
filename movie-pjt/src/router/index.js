@@ -12,6 +12,7 @@ import MyLevel from '@/views/ProfileNesting/MyLevel.vue'
 import UserInfoUpdateView from '@/views/UserInfoUpdateView.vue'
 import UserAccountDeleteView from '@/views/UserAccountDeleteView.vue'
 import PasswordUpdateView from '@/views/PasswordUpdateView.vue'
+import MyReview from '@/views/ProfileNesting/MyReview.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,26 +31,6 @@ const router = createRouter({
       path:'/login',
       name:'login',
       component: LogInView
-    },
-    {
-      path:'/logout',
-      name:'logout',
-      // https://codesandbox.io/p/sandbox/vue-router-logout-route-dcnh3?file=%2Fsrc%2Frouter%2Findex.js%3A28%2C7-43%2C8
-      component: {
-        beforeRouteEnter(to, from, next) {
-          console.log({ from });
-          const destination = {
-            path: from.path || "/",
-            query: from.query,
-            params: from.params
-          };
-          if (!from) {
-            console.log("no from");
-          }
-          console.log("running before hook");
-          next(destination);
-        }
-      }
     },
     {
       path:'/signup',
@@ -94,7 +75,12 @@ const router = createRouter({
           path:'/mywishmovies',
           name:'wishmovies',
           component:WishMovieListView
-        }
+        },
+        {
+          path:'/myreviews',
+          name:'myreviews',
+          component:MyReview
+        },
       ]
     },
 
@@ -105,5 +91,38 @@ router.beforeEach((to, from) => {
   const store = useMovieStore()
   // 앞으로 로그인 권한이 필요한 곳이라면 로그인이 필요하다고 알려주고
   // 로그인 창으로 보내기
+  if (to.name === 'movies' && !store.isLogin) {
+    window.alert('로그인이 필요합니다.')
+    return { name:'login'}
+  }
+  if (to.name === 'movie-detail' && !store.isLogin) {
+    window.alert('로그인이 필요합니다.')
+    return { name:'login'}
+  }
+  if (to.name === 'userinfoupdate' && !store.isLogin) {
+    window.alert('로그인이 필요합니다.')
+    return { name:'login'}
+  }
+  if (to.name === 'accountdelete' && !store.isLogin) {
+    window.alert('로그인이 필요합니다.')
+    return { name:'login'}
+  }
+  if (to.name === 'password' && !store.isLogin) {
+    window.alert('로그인이 필요합니다.')
+    return { name:'login'}
+  }
+  if (to.name === 'vocanote' && !store.isLogin) {
+    window.alert('로그인이 필요합니다.')
+    return { name:'login'}
+  }
+  if (to.name === 'profile' && !store.isLogin) {
+    window.alert('로그인이 필요합니다.')
+    return { name:'login'}
+  } 
+
+  if ((to.name === 'signup' || to.name === 'login') && (store.isLogin)) {
+    window.alert('이미 로그인 되어 있습니다.')
+    return {name:'movies'}
+  }
 })
 export default router

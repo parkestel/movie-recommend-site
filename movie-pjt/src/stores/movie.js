@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 
+
 export const useMovieStore = defineStore('movie', () => {
   const router = useRouter()
   const token = ref(null)
@@ -17,11 +18,7 @@ export const useMovieStore = defineStore('movie', () => {
     }
   })
 
-  const movies = ref([
-    { id: 1, title: 'Toy Story', tmdb_id: 862, summary:'summary of movie', release_date: '1995-04-01', genre:['Animation'], poster_path:'/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg', isLiked: true},
-    { id: 2, title: 'Toy Story 2', tmdb_id: 9082, summary:'summary of movie', release_date: '2003-04-01', genre:['Animation'],  poster_path:'/2MFIhZAW0CVlEQrFyqwa4U6zqJP.jpg', isLiked: false},
-    { id: 3, title: 'Toy Story 3', tmdb_id: 234235, summary:'summary of movie', release_date: '2009-04-01', genre:['Animation','Adventure'], poster_path:'/AbbXspMOwdvwWZgVN0nabZq03Ec.jpg', isLiked: false}
-  ])
+  const movies = ref([])
 
   const genres = ref([
     {id: 1, name: 'Animation'},
@@ -39,6 +36,66 @@ export const useMovieStore = defineStore('movie', () => {
     {id:2, word: 'play', word_mean: '놀다', note_id: 1, examples:'I play with my sister', memo:'play-played-played', is_memorized:false},
   ])
   
+  const getMovies = function () {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/movies/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      console.log(res.data)
+      movies.value = res.data
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
+  const getImgUrl = function(poster_path,width) {
+    return `${IMAGE_BASE_URL}/w${width}/${poster_path}`
+  }
+
+  const getMovie = function (movieId) {
+    const targetMovie = movies.value.find((movie)=>movie.id==Number(movieId))
+    return targetMovie
+  }
+
+  const getWishMovies = function () {
+    return movies.value.filter((movie)=>movie.isLiked===true)
+  }
+
+  const getNote = function (noteId) {
+    const targetNote = vocaNoteList.value.find((note)=>note.id===Number(noteId))
+    return targetNote
+  }
+
+  const getVocas = function (noteId) {
+    return vocaList.value.filter((voca)=>voca.note_id===Number(noteId))
+  }
+
+  const addWishMovie = function (movieId){
+    axios({
+      method:'post',
+      url:`${API_BASE_URL}/movies/${movieId}/wish-movie/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      console.log('좋아요 성공')
+
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
+
+  const deleteNote = function (id) {
+    const targetId = vocaNoteList.value.findIndex(note => note.id===id)
+    vocaNoteList.value.splice(targetId, 1)
+  }
+
   const signUp = function (payload) {
     const username = payload.username
     const password1 = payload.password1
@@ -68,44 +125,14 @@ export const useMovieStore = defineStore('movie', () => {
     .then(res=>{
       // console.log('회원가입 완료')
       // 자동 로그인 구현
+      const password = password1
+      logIn({username, password})
       router.push({name:'movies'})
     })
     .catch(err=>{
       window.alert('회원가입에 실패했습니다! 다시 시도 해주십시오.')
       router.push({name:'signup'})
     })
-  }
-  const getImgUrl = function(poster_path,width) {
-    return `${IMAGE_BASE_URL}/w${width}/${poster_path}`
-  }
-
-  const getMovie = function (movieId) {
-    const targetMovie = movies.value.find((movie)=>movie.id==Number(movieId))
-    return targetMovie
-  }
-
-  const getWishMovies = function () {
-    return movies.value.filter((movie)=>movie.isLiked===true)
-  }
-
-  const getNote = function (noteId) {
-    const targetNote = vocaNoteList.value.find((note)=>note.id===Number(noteId))
-    return targetNote
-  }
-
-  const getVocas = function (noteId) {
-    return vocaList.value.filter((voca)=>voca.note_id===Number(noteId))
-  }
-
-  const toggleLikeMovie = function (movieId){
-    const targetMovieId = movies.value.findIndex((movie)=>movie.id==movieId)
-    const isLiked = movies.value[targetMovieId].isLiked
-    movies.value[targetMovieId].isLiked = !isLiked
-  }
-
-  const deleteNote = function (id) {
-    const targetId = vocaNoteList.value.findIndex(note => note.id===id)
-    vocaNoteList.value.splice(targetId, 1)
   }
 
 
@@ -122,12 +149,30 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       token.value = res.data.key
-      console.log(res.data)
+      localStorage
+      router.push({name:'movies'})
     })
     .catch(err=>{
-      console.log(err)
+      window.alert('로그인에 실패 했습니다!')
+      router.push({name:'login'})
     })
   }
+
+  const logOut = function () {
+    axios({
+      method:'post',
+      url: `${API_BASE_URL}/accounts/dj-rest-auth/logout/`
+    })
+    .then(res=>{
+      token.value=null
+      window.alert('Bye! See you soon')
+      router.push({name:'login'})
+    })
+    .catch(err=>{
+      window.alert('로그아웃에 실패했습니다.')
+    })
+
+  }
   
-  return { IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, signUp, getImgUrl, getMovie, getNote, getVocas, logIn, toggleLikeMovie, getWishMovies, deleteNote, token, isLogin }
-})
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getMovie, getNote, getVocas,  signUp, logIn, logOut, addWishMovie, getWishMovies, deleteNote, token, isLogin }
+}, { persist: true })
