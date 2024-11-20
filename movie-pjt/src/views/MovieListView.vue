@@ -34,15 +34,6 @@ import { useMovieStore } from "@/stores/movie"
 import { onMounted, ref } from "vue";
 
 const store = useMovieStore()
-// const searchedMovies = ref([])
-
-// const searchGroup = function (event) {
-//     const query = event.target.value.toLowerCase(); // 대소문자 구분 없이 검색
-//     searchedMovies.value = store.movies.filter(movie => 
-//         movie.title.toLowerCase().includes(query) || 
-//         movie.release_date.includes(query) 
-//     )
-// }
 
 const searchQuery = ref(""); // 검색어 상태
 const selectedGenre = ref(""); // 선택된 장르 상태
