@@ -37,7 +37,7 @@ const store = useMovieStore()
 
 const searchQuery = ref(""); // 검색어 상태
 const selectedGenre = ref(""); // 선택된 장르 상태
-const filteredMovies = ref([]); // 필터링된 영화 목록
+const filteredMovies = ref(null); // 필터링된 영화 목록
 
 // 검색 및 필터 업데이트 함수
 const updateFilters = function (event, type = 'search') {
@@ -69,7 +69,8 @@ const applyFilters = function () {
 };
 
 onMounted(()=>{
-    filteredMovies.value = store.getMovies()
+    filteredMovies.value = store.movies
+    console.log(filteredMovies.value)
 })
 </script>
 

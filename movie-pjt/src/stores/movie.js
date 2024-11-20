@@ -69,6 +69,8 @@ export const useMovieStore = defineStore('movie', () => {
     .then(res=>{
       // console.log('회원가입 완료')
       // 자동 로그인 구현
+      const password = password1
+      logIn({username, password})
       router.push({name:'movies'})
     })
     .catch(err=>{
@@ -150,4 +152,4 @@ export const useMovieStore = defineStore('movie', () => {
   }
   
   return { IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, signUp, getImgUrl, getMovies, getMovie, getNote, getVocas, logIn, toggleLikeMovie, getWishMovies, deleteNote, token, isLogin }
-}, { persist:true })
+}, { persist: true })
