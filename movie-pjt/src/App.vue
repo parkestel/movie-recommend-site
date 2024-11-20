@@ -7,18 +7,18 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item mx-2">
-          <RouterLink :to="{name:'login'}">Log in</RouterLink>
+          <RouterLink :to="{name:'login'}" v-if="!store.isLogin">Log in</RouterLink>
         </li>
         <li class="nav-item mx-2">
-          <RouterLink :to="{name:'logout'}">Log out</RouterLink>
+          <RouterLink :to="{name:'logout'}" v-if="store.isLogin">Log out</RouterLink>
         </li>
         <li class="nav-item mx-2">
-          <RouterLink :to="{name:'signup'}">Sign Up</RouterLink>
+          <RouterLink :to="{name:'signup'}" v-if="!store.isLogin">Sign Up</RouterLink>
         </li>
         <li class="nav-item mx-2">
-          <RouterLink :to="{name:'movies'}">영화 추천 목록</RouterLink>
+          <RouterLink :to="{name:'movies'}" v-if="store.isLogin">영화 추천 목록</RouterLink>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" v-if="store.isLogin">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             My Menu
           </a>
@@ -42,7 +42,9 @@
 </template>
 
 <script setup>
+import { useMovieStore } from './stores/movie';
 
+const store = useMovieStore()
 </script>
 
 <style scoped>
