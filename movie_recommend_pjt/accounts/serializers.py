@@ -7,6 +7,7 @@ from allauth.account.utils import user_email, user_field, user_username
 from dj_rest_auth.registration.serializers import RegisterSerializer
 from dj_rest_auth.serializers import LoginSerializer, UserDetailsSerializer
 from django.contrib.auth import get_user_model
+from movies.serializers import WishMovieSerializer
 
 User = get_user_model()
 
@@ -59,13 +60,14 @@ class FollowSerializer(serializers.ModelSerializer):
 class CustomUserDetailsSerializer(UserDetailsSerializer):
     followings = FollowSerializer(many=True, read_only=True)
     followers = FollowSerializer(many=True, read_only=True)
-
+    wish_movies = WishMovieSerializer(many=True, read_only=True)
     class Meta:
         model = User
         # id == pk 값
+        # fields = '__all__'
         fields = [
             'id', 'username', 'email', 'first_name', 'last_name', 'nickname',
-            'birth', 'study_level', 'experience', 'achievement_level', 'followings', 'followers'
+            'birth', 'study_level', 'experience', 'achievement_level', 'followings', 'followers', 'wish_movies'
         ]
         read_only_fields = ['email', 'id', 'followings', 'followers']  # 읽기 전용 필드
 
