@@ -4,7 +4,12 @@ from .models import Voca, VocaNote
 
 User = get_user_model()
 
-class VocaNoteListSerializers(serializers.ModelSerializer):
+class VocaNoteSerializers(serializers.ModelSerializer):
     class Meta:
         model = VocaNote
+        fields = '__all__'
+
+class VocaSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Voca
         fields = '__all__'
