@@ -4,12 +4,14 @@
         @next="goToNextStep" 
         @previous="goToPreviousStep"
         @updateData="updateFormData"
+        @submit="signUp"
         :form-data="formData"/>
     </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue';
+import { useMovieStore } from '@/stores/movie';
 import SignUpStep1 from '@/components/SignUpView/SignUpStep1.vue';
 import SignUpStep2 from '@/components/SignUpView/SignUpStep2.vue';
 import SignUpStep3 from '@/components/SignUpView/SignUpStep3.vue';
@@ -17,6 +19,7 @@ import SignUpStep4 from '@/components/SignUpView/SignUpStep4.vue';
 
 const steps = [SignUpStep1, SignUpStep2, SignUpStep3, SignUpStep4]
 const currentStepIndex = ref(0)
+const store = useMovieStore()
 
 // 단계별 입력 데이터 저장
 const formData = ref({
@@ -24,11 +27,11 @@ const formData = ref({
     password1:'',
     password2:'',
     email:'',
-    lastname:'',
-    firstname:'',
     birth:'',
+    last_name:'',
+    first_name:'',
     nickname:'',
-    studylevel:''
+    study_level:''
 })
 
 // 현재 컴포넌트
@@ -51,6 +54,12 @@ const goToPreviousStep = function () {
 // 데이터 업데이트
 const updateFormData = function (newData) {
     formData.value = {...formData.value, ...newData}
+    console.log(formData.value)
+    // store.signUp(formData)
+}
+
+const signUp = function (newData) {
+    store.signUp(newData)
 }
 </script>
 
