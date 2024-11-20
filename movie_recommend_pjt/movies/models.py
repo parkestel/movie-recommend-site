@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 class Star(models.Model):
@@ -37,3 +38,4 @@ class Movie(models.Model):
     genres = models.ManyToManyField(Genre, related_name="included_movies")
     otts = models.ManyToManyField(Ott, related_name="provide_movies")
     directors = models.ManyToManyField(Director, related_name="directed_movies")
+    wish_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='wish_movies')
