@@ -74,7 +74,7 @@ export const useMovieStore = defineStore('movie', () => {
     return vocaList.value.filter((voca)=>voca.note_id===Number(noteId))
   }
 
-  const toggleLikeMovie = function (movieId){
+  const addWishMovie = function (movieId){
     axios({
       method:'post',
       url:`${API_BASE_URL}/movies/${movieId}/wish-movie/`,
@@ -174,5 +174,5 @@ export const useMovieStore = defineStore('movie', () => {
 
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getMovie, getNote, getVocas,  signUp, logIn, logOut, toggleLikeMovie, getWishMovies, deleteNote, token, isLogin }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getMovie, getNote, getVocas,  signUp, logIn, logOut, addWishMovie, getWishMovies, deleteNote, token, isLogin }
 }, { persist: true })

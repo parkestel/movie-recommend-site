@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button v-if="!movie.isLiked" @click="store.toggleLikeMovie(movie.id)">🤍</button>
+    <button v-if="!movie.isLiked" @click="store.addWishMovie(movie.id)">🤍</button>
     <button v-else  @click="store.toggleLikeMovie(movie.id)">💖</button>
 
     <div>
