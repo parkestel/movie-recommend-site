@@ -39,15 +39,6 @@ const genresList = store.genres // 장르 목록
 const selectedGenres = ref([]) // 선택된 장르 목록
 const filteredMovies = ref(null); // 필터링된 영화 목록
 
-// const toggleGenre = function (genre) {
-//     if (selectedGenres.value.includes(genre)) {
-//         selectedGenres.value = selectedGenres.value.filter(g => g.id !== genre.id) // 선택 해제
-//     } else {
-//         selectedGenres.value.push(genre) // 선택 추가
-//     }
-//     applyFilters()
-// }
-
 const updateFilter = function(event, type='search', genre=null){
     if (type === 'search') {
         searchQuery.value = event.target.value.toLowerCase()
@@ -68,7 +59,7 @@ const applyFilters = () => {
     filteredMovies.value = store.movies.filter((movie) => {
     // 검색 조건
         const matchesSearch =
-        //영화 제목, 배우, 감독 이름, 
+        //영화 제목, 배우, 감독 이름, 배우 이름, 나라, 제작사, 개봉 연도 검색 가능
         movie.title?.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
         movie.director?.some(director => director.name.toLowerCase().includes(searchQuery.value.toLowerCase())) ||
         movie.stars?.some(star => star.name.toLowerCase().includes(searchQuery.value.toLowerCase()))||
