@@ -91,5 +91,38 @@ router.beforeEach((to, from) => {
   const store = useMovieStore()
   // 앞으로 로그인 권한이 필요한 곳이라면 로그인이 필요하다고 알려주고
   // 로그인 창으로 보내기
+  if (to.name === 'movies' && !store.isLogin) {
+    window.alert('로그인이 필요합니다.')
+    return { name:'login'}
+  }
+  if (to.name === 'movie-detail' && !store.isLogin) {
+    window.alert('로그인이 필요합니다.')
+    return { name:'login'}
+  }
+  if (to.name === 'userinfoupdate' && !store.isLogin) {
+    window.alert('로그인이 필요합니다.')
+    return { name:'login'}
+  }
+  if (to.name === 'accountdelete' && !store.isLogin) {
+    window.alert('로그인이 필요합니다.')
+    return { name:'login'}
+  }
+  if (to.name === 'password' && !store.isLogin) {
+    window.alert('로그인이 필요합니다.')
+    return { name:'login'}
+  }
+  if (to.name === 'vocanote' && !store.isLogin) {
+    window.alert('로그인이 필요합니다.')
+    return { name:'login'}
+  }
+  if (to.name === 'profile' && !store.isLogin) {
+    window.alert('로그인이 필요합니다.')
+    return { name:'login'}
+  } 
+
+  if ((to.name === 'signup' || to.name === 'login') && (store.isLogin)) {
+    window.alert('이미 로그인 되어 있습니다.')
+    return {name:'movies'}
+  }
 })
 export default router
