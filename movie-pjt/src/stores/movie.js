@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 
+
 export const useMovieStore = defineStore('movie', () => {
   const router = useRouter()
   const token = ref(null)
@@ -18,9 +19,9 @@ export const useMovieStore = defineStore('movie', () => {
   })
 
   const movies = ref([
-    { id: 1, title: 'Toy Story', tmdb_id: 862, summary:'summary of movie', release_date: '1995-04-01', genre:['Animation'], poster_path:'/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg', isLiked: true},
-    { id: 2, title: 'Toy Story 2', tmdb_id: 9082, summary:'summary of movie', release_date: '2003-04-01', genre:['Animation'],  poster_path:'/2MFIhZAW0CVlEQrFyqwa4U6zqJP.jpg', isLiked: false},
-    { id: 3, title: 'Toy Story 3', tmdb_id: 234235, summary:'summary of movie', release_date: '2009-04-01', genre:['Animation','Adventure'], poster_path:'/AbbXspMOwdvwWZgVN0nabZq03Ec.jpg', isLiked: false}
+    // { id: 1, title: 'Toy Story', tmdb_id: 862, summary:'summary of movie', release_date: '1995-04-01', genre:['Animation'], poster_path:'/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg', isLiked: true},
+    // { id: 2, title: 'Toy Story 2', tmdb_id: 9082, summary:'summary of movie', release_date: '2003-04-01', genre:['Animation'],  poster_path:'/2MFIhZAW0CVlEQrFyqwa4U6zqJP.jpg', isLiked: false},
+    // { id: 3, title: 'Toy Story 3', tmdb_id: 234235, summary:'summary of movie', release_date: '2009-04-01', genre:['Animation','Adventure'], poster_path:'/AbbXspMOwdvwWZgVN0nabZq03Ec.jpg', isLiked: false}
   ])
 
   const genres = ref([
@@ -75,6 +76,23 @@ export const useMovieStore = defineStore('movie', () => {
       router.push({name:'signup'})
     })
   }
+
+  const getMovies = function () {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/movies/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      console.log(res.data)
+      movies.value = res.data
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
   const getImgUrl = function(poster_path,width) {
     return `${IMAGE_BASE_URL}/w${width}/${poster_path}`
   }
@@ -122,7 +140,7 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       token.value = res.data.key
-      // console.log(res.data)
+      localStorage
       router.push({name:'movies'})
     })
     .catch(err=>{
@@ -131,5 +149,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, signUp, getImgUrl, getMovie, getNote, getVocas, logIn, toggleLikeMovie, getWishMovies, deleteNote, token, isLogin }
-})
+  return { IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, signUp, getImgUrl, getMovies, getMovie, getNote, getVocas, logIn, toggleLikeMovie, getWishMovies, deleteNote, token, isLogin }
+}, { persist:true })

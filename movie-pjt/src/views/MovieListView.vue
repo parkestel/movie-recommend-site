@@ -69,7 +69,7 @@ const applyFilters = function () {
 };
 
 onMounted(()=>{
-    filteredMovies.value = store.movies
+    filteredMovies.value = store.getMovies()
 })
 </script>
 
