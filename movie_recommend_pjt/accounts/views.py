@@ -23,8 +23,8 @@ def login_user_data(request):
 @authentication_classes([TokenAuthentication, BasicAuthentication])
 @permission_classes([IsAuthenticated])
 #  특정 사용자의 프로필 정보 조회 API (로그인 인증된 사용자만 접근 가능)
-def profile(request, user_nickname):
-    person = get_object_or_404(User, nickname=user_nickname)
+def profile(request, username):
+    person = get_object_or_404(User, username=username)
     serializer = PersonUserDetailsSerializer(person)
     return Response(serializer.data)
  

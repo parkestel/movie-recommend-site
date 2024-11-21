@@ -59,7 +59,7 @@ const router = createRouter({
       component:VocaNotePopUpView
     },
     {
-      path:'/profile/:username',
+      path:'/profile',
       component: ProfileView,
       children:[
         {
@@ -98,7 +98,6 @@ router.beforeEach((to, from) => {
   // 앞으로 로그인 권한이 필요한 곳이라면 로그인이 필요하다고 알려주고
   // 로그인 창으로 보내기
   if (to.name === 'movies' && !store.isLogin) {
-    window.alert('로그인이 필요합니다.')
     return { name:'login'}
   }
   if (to.name === 'movie-detail' && !store.isLogin) {
