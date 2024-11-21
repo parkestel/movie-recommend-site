@@ -13,6 +13,7 @@ import UserInfoUpdateView from '@/views/UserInfoUpdateView.vue'
 import UserAccountDeleteView from '@/views/UserAccountDeleteView.vue'
 import PasswordUpdateView from '@/views/PasswordUpdateView.vue'
 import MyReview from '@/views/ProfileNesting/MyReview.vue'
+import LikedReviews from '@/views/ProfileNesting/LikedReviews.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -80,6 +81,11 @@ const router = createRouter({
           path:'/myreviews',
           name:'myreviews',
           component:MyReview
+        },
+        {
+          path:'/likedreviews',
+          name:'likedreviews',
+          component:LikedReviews
         },
       ]
     },

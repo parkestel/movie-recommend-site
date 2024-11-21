@@ -7,6 +7,7 @@ import { useRouter } from 'vue-router'
 export const useMovieStore = defineStore('movie', () => {
   const router = useRouter()
   const token = ref(null)
+  const logedinUsername = ref(null)
   const API_BASE_URL = 'http://127.0.0.1:8000'
   const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p'
 
@@ -74,7 +75,7 @@ export const useMovieStore = defineStore('movie', () => {
     return vocaList.value.filter((voca)=>voca.note_id===Number(noteId))
   }
 
-  const addWishMovie = function (movieId){
+  const addToggleWishMovie = function (movieId){
     axios({
       method:'post',
       url:`${API_BASE_URL}/movies/${movieId}/wish-movie/`,
@@ -149,7 +150,9 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       token.value = res.data.key
+      getLogedInUserName(token.value)
       localStorage
+      console.log(res)
       router.push({name:'movies'})
     })
     .catch(err=>{
@@ -165,6 +168,7 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       token.value=null
+      userPk.value=null
       window.alert('Bye! See you soon')
       router.push({name:'login'})
     })
@@ -173,6 +177,22 @@ export const useMovieStore = defineStore('movie', () => {
     })
 
   }
+
+  const getLogedInUserName = function(key) {
+    axios({
+      method:'get',
+      url:``,
+      params:{
+        key:key
+      }
+    })
+    .then(res=>{
+      logedinUsername.value=res.data.username
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getMovie, getNote, getVocas,  signUp, logIn, logOut, addWishMovie, getWishMovies, deleteNote, token, isLogin }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getMovie, getNote, getVocas,  signUp, logIn, logOut, getLogedInUserName, addToggleWishMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })
