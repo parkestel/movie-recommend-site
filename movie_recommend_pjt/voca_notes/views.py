@@ -39,7 +39,7 @@ def create_voca_note(request, movie_pk, user_pk):
 
         serializer = VocaNoteSerializers(voca_note)
         return Response(serializer.data, status=201)
-        ## 근데 이때 Voca도 하나 같이 생성되야함.
+
 
     elif request.method == 'DELETE':
         # 삭제 - 로그인한 사용자만 가능
@@ -103,3 +103,21 @@ def voca_note_list(request, user_pk):
 
     serializer = VocaNoteSerializers(voca_notes, many=True)
     return Response(serializer.data, status=200)
+
+@api_view(['POST'])
+def create_voca(request, vocanote_pk):
+    voca_data = request.data.get('voca')
+
+    voca = Voca.objects.create(
+        word = voca_data.get('word'),
+        word_mean = voca_data.get('word_mean'),
+        examples = voca_data.get('examples'),
+        memo = voca_data.get('memo'),
+    )
+    voca.save()
+
+    voca_note = VocaNote.objects.get(pk=vocanote_pk)
+    voca_note.vocas.add(voca)
+    voca_note.save()
+    serializer = VocaNoteSerializers(voca_note, many=True)
+    return Response(serializer.data)
