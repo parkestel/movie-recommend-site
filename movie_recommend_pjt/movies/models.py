@@ -5,6 +5,7 @@ from django.conf import settings
 class Star(models.Model):
     tmdb_id = models.IntegerField(primary_key=True)
     name = models.TextField()
+    name_kr = models.TextField()
     profile_path = models.TextField(null=True, blank=True)
     characters = models.JSONField()
 
@@ -12,6 +13,7 @@ class Ott(models.Model):
     tmdb_id = models.IntegerField(primary_key=True)
     name = models.TextField()
     logo_path = models.TextField()
+    site_url = models.TextField()
 
 class Genre(models.Model):
     tmdb_id = models.IntegerField(primary_key=True)
@@ -26,6 +28,7 @@ class Director(models.Model):
 class Movie(models.Model):
     tmdb_id = models.IntegerField() # id
     title = models.TextField() # title
+    title_kr = models.TextField()
     rank = models.FloatField() # vote_average
     release_date = models.DateField() # release_date
     runtime = models.IntegerField()
