@@ -5,7 +5,7 @@ import csv
 import json
 
 # CSV 파일 경로
-csv_file_path = 'movie_data.csv'
+csv_file_path = 'filtered_300.csv'
 json_file_path = 'movies.json'
 
 # JSON 변환에 필요한 모델 이름 지정
@@ -27,6 +27,7 @@ with open('movie_data.csv', 'r', encoding='utf-8') as csv_file:
             "fields": {
                 "tmdb_id": int(row["tmdbid"]),
                 "title": row["title"],
+                "title_kr": '',
                 "rank": float(row["rank"]),
                 "release_date": row["release_date"],
                 "runtime":int(row["runtime"]),
