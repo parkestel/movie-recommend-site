@@ -3,8 +3,8 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
-from .models import Movie
-from .serializers import MovieListSerializers, WishMovieSerializer
+from .models import Movie, Genre, Ott
+from .serializers import MovieListSerializers, WishMovieSerializer, OttListSerializers, GenreListSerializers
 
 
 # 영화 전체 조회
@@ -39,3 +39,14 @@ def logined_wish_movie_list(request):
     serializer = WishMovieSerializer(wished_movies, many=True)
     return Response(serializer.data)
     
+@api_view(['GET'])
+def genres_list(request):
+    genres = Genre.objects.all()
+    serializer = GenreListSerializers(genres, many=True)
+    return Response(serializer.data)
+
+# @api_view(['GET'])
+# def otts_list(request):
+#     otts = Ott.objects.all()
+#     serializer = OttListSerializers(otts, many=True)
+#     return Response(serializer.data)
