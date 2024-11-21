@@ -24,7 +24,6 @@
             :movie="movie"
             />
         </div>
-        <p v-else>영화가 없습니다.</p>
     </div>
 </div>
 </template>
@@ -33,13 +32,16 @@
 import MovieCard from "@/components/MovieListView/MovieCard.vue"
 import { useMovieStore } from "@/stores/movie"
 import { onMounted, ref, watch } from "vue";
+import { storeToRefs } from "pinia";
 
 const store = useMovieStore()
 
 const searchQuery = ref(""); // 검색어 상태
-const genresList = store.genres // 장르 목록
 const selectedGenres = ref([]) // 선택된 장르 목록
-const filteredMovies = ref(null); // 필터링된 영화 목록
+
+const { movies, genres } = storeToRefs(store)
+const filteredMovies = ref([])
+const genresList = ref([])
 
 const updateFilter = function(event, type='search', genre=null){
     if (type === 'search') {
@@ -73,17 +75,23 @@ const applyFilters = () => {
         const matchesGenres =
         selectedGenres.value.length === 0 || // 선택된 장르가 없으면 true
         selectedGenres.value.every((selectedGenre) =>
-            movie.genres?.some((genre) => genre.name === selectedGenre.name)
+            movie.genres?.some((genre) => genre.tmdb_id === selectedGenre.tmdb_id)
         );
 
         return matchesSearch && matchesGenres;
     });
 };
 
+watch([movies, genres], () => {
+    filteredMovies.value = movies.value
+    genresList.value = genres.value
+})
 
 onMounted(()=>{
     store.getMovies()
+    store.getGenres()
     filteredMovies.value = store.movies
+    genresList.value = store.genres 
 })
 </script>
 

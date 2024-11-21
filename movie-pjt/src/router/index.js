@@ -68,22 +68,22 @@ const router = createRouter({
           component:MyLevel
         },
         {
-          path:'/vocanotes',
+          path:'/vocanotes/:username',
           name:'mynotelist',
           component: VocaNoteListView,
         },
         {
-          path:'/mywishmovies',
+          path:'/mywishmovies/:username',
           name:'wishmovies',
           component:WishMovieListView
         },
         {
-          path:'/myreviews',
+          path:'/myreviews/:username',
           name:'myreviews',
           component:MyReview
         },
         {
-          path:'/likedreviews',
+          path:'/likedreviews/:username',
           name:'likedreviews',
           component:LikedReviews
         },

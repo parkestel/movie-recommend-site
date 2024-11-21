@@ -17,11 +17,11 @@
         </li>
         <li class="nav-item dropdown" v-if="store.isLogin">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            My Menu
+            안녕하세요! {{ store.logedinUsername }} 님!
           </a>
-          <ul class="dropdown-menu">
-            <li><RouterLink :to="{name:'wishmovies', params:{username:user}}" class="dropdown-item">Wish Movie</RouterLink></li>
-            <li><RouterLink :to="{name:'mynotelist', params:{username:user}}" class="dropdown-item">Voca Note</RouterLink></li>
+          <ul class="dropdown-menu" v-if="store.logedinUsername">
+            <li><RouterLink :to="{name:'wishmovies', params:{username:store.logedinUsername}}" class="dropdown-item">Wish Movie</RouterLink></li>
+            <li><RouterLink :to="{name:'mynotelist', params:{username:store.logedinUsername}}" class="dropdown-item">Voca Note</RouterLink></li>
             <li><hr class="dropdown-divider"></li>
             <li><RouterLink :to="{name:'profile', params:{username:store.logedinUsername}}" class="dropdown-item">My Page</RouterLink></li>
             <li><hr class="dropdown-divider"></li>
@@ -42,10 +42,8 @@
 
 <script setup>
 import { useMovieStore } from './stores/movie';
-import { onMounted, ref } from 'vue';
 
 const store = useMovieStore()
-const user = store.logedinUsername
 </script>
 
 <style scoped>

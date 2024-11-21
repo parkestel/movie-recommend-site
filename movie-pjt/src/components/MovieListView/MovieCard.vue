@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button v-if="!movie.isLiked" @click="store.addToggleWishMovie(movie.id)">🤍</button>
+    <button v-if="!store.isLikedMovie(movie.id)" @click="store.addToggleWishMovie(movie.id)">🤍</button>
     <button v-else  @click="store.addToggleWishMovie(movie.id)">💖</button>
 
     <div>
@@ -17,13 +17,19 @@ defineProps({
 })
 
 import { useMovieStore } from "@/stores/movie"
+import { storeToRefs } from "pinia";
 import { useRouter } from 'vue-router'
 
 const store = useMovieStore()
 const router = useRouter()
+const { userProfile } = storeToRefs(store)
 
 const moveToDetail = function (movieId) {
   router.push({name:'movie-detail', params:{'movieid':movieId}})
+}
+
+const isLikedMovie = function (movieId) {
+  return userProfile.value.wish_movies?.some(movie => movie.id===movieId)
 }
 </script>
 

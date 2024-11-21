@@ -3,12 +3,15 @@
         <h1 v-if="note">{{ note.movie }}'s vocanote</h1>
         <VocaCreate/>
         <button @click="toggleDeleteButtons">{{ showDeleteButton ? '취소' : '삭제' }}</button>
+        <button @click="toggleUpdateButtons">{{ showUpdateButton ? '취소' : '수정' }}</button>
         <VocaListRead
         v-for="voca in vocaList"
         :key="voca.id"
         :voca="voca"
         :show-delete="showDeleteButton"
+        :show-update="showUpdateButton"
         @delete-event="deleteWord"
+        @update-event="updateWord"
         />
     </div>
 </template>
@@ -26,14 +29,23 @@ const route = useRoute()
 const note = ref(null)
 const vocaList = ref(null)
 const showDeleteButton = ref(false)
+const showUpdateButton = ref(false)
 
 const deleteWord = function (id) {
     const targetId = vocaList.value.findIndex((voca)=>voca.id===id)
     vocaList.value.splice(targetId, 1)
 }
 
+const updateWord = function (id) {
+    // axios post 
+}
+
 const toggleDeleteButtons = function () {
     showDeleteButton.value = !showDeleteButton.value
+}
+
+const toggleUpdateButtons = function () {
+    showUpdateButton.value = !showUpdateButton.value
 }
 
 onMounted(()=>{
