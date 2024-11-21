@@ -56,19 +56,15 @@ class FollowSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'username', 'nickname']  # 필요한 필드만 포함
 
-# 정보 변경할때 사용자 조회
+# 현재 로그인 한 사용자 정보 반환
 class CustomUserDetailsSerializer(UserDetailsSerializer):
-    followings = FollowSerializer(many=True, read_only=True)
-    followers = FollowSerializer(many=True, read_only=True)
-    wish_movies = WishMovieSerializer(many=True, read_only=True)
     class Meta:
         model = User
         # id == pk 값
         fields = [
-            'id', 'last_name', 'first_name', 'birth','email','nickname','study_level', 'experience', 
-            'achievement_level', 'followings', 'followers', 'wish_movies'
+            'id', 'nickname'
         ]
-        read_only_fields = ['id', 'followings', 'followers']  # 읽기 전용 필드
+        read_only_fields = ['id', 'nickname']  # 읽기 전용 필드
 
 
 # 특정 사용자 조회

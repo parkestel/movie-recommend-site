@@ -9,9 +9,15 @@ from rest_framework.authentication import TokenAuthentication, BasicAuthenticati
 from rest_framework.permissions import IsAuthenticated
 
 from django.contrib.auth import get_user_model
-from .serializers import PersonUserDetailsSerializer
+from .serializers import PersonUserDetailsSerializer, CustomUserDetailsSerializer
 
 User = get_user_model()
+
+@api_view(['GET'])
+def login_user_data(request, user_pk):
+    login_user = get_object_or_404(User, pk=user_pk)
+    serializer = CustomUserDetailsSerializer(login_user)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 @authentication_classes([TokenAuthentication, BasicAuthentication])
