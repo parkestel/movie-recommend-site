@@ -127,8 +127,8 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log('좋아요 성공')
-
+      // console.log('좋아요 성공')
+      getUserProfile(logedinUsername.value)
     })
     .catch(err=>{
       console.log(err)
@@ -227,6 +227,23 @@ export const useMovieStore = defineStore('movie', () => {
       window.alert('로그아웃에 실패했습니다.')
     })
 
+  }
+
+  const SignOut = function() {
+    axios({
+      method:'post',
+      url:`${API_BASE_URL}/accounts/delete/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      console.log('탈퇴 완료')
+      router.push({name:'login'})
+    })
+    .catch(err=>{
+      window.alert('탈퇴에 실패하셨습니다.')
+    })
   }
 
   const getLogedInUserName = function() {
