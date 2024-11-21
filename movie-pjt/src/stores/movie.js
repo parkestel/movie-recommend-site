@@ -78,7 +78,7 @@ export const useMovieStore = defineStore('movie', () => {
   }
 
   const getGenres = function () {
-    axios({
+    return axios({
       method:'get',
       url:`${API_BASE_URL}/movies/genres-list/`,
       headers:{
