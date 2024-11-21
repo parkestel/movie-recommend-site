@@ -6,7 +6,7 @@ urlpatterns = [
     path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
     path('delete/', views.delete_user),
     path('<int:user_pk>/follow/', views.followings),
-    path('dj-rest-auth/user/<int:user_pk>/', views.login_user_data),
+    path('dj-rest-auth/user/', views.login_user_data),
     path('dj-rest-auth/user/<str:user_nickname>/', views.profile),
 ]
 

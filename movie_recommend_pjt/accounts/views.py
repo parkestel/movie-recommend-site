@@ -14,9 +14,9 @@ from .serializers import PersonUserDetailsSerializer, CustomUserDetailsSerialize
 User = get_user_model()
 
 @api_view(['GET'])
-def login_user_data(request, user_pk):
-    login_user = get_object_or_404(User, pk=user_pk)
-    serializer = CustomUserDetailsSerializer(login_user)
+def login_user_data(request):
+    user = request.user
+    serializer = CustomUserDetailsSerializer(user)
     return Response(serializer.data)
 
 @api_view(['GET'])
