@@ -20,10 +20,10 @@
             My Menu
           </a>
           <ul class="dropdown-menu">
-            <li><RouterLink :to="{name:'wishmovies'}" class="dropdown-item">Wish Movie</RouterLink></li>
-            <li><RouterLink :to="{name:'mynotelist'}" class="dropdown-item">Voca Note</RouterLink></li>
+            <li><RouterLink :to="{name:'wishmovies', params:{username:user}}" class="dropdown-item">Wish Movie</RouterLink></li>
+            <li><RouterLink :to="{name:'mynotelist', params:{username:user}}" class="dropdown-item">Voca Note</RouterLink></li>
             <li><hr class="dropdown-divider"></li>
-            <!-- <li><RouterLink :to="{name:'profile', params:{username:store.logedinUsername}}" class="dropdown-item">My Page</RouterLink></li> -->
+            <li><RouterLink :to="{name:'profile', params:{username:user}}" class="dropdown-item">My Page</RouterLink></li>
             <li><hr class="dropdown-divider"></li>
             <li><button @click="store.logOut">Log out</button></li>
           </ul>
@@ -42,8 +42,10 @@
 
 <script setup>
 import { useMovieStore } from './stores/movie';
+import { onMounted, ref } from 'vue';
 
 const store = useMovieStore()
+const user = store.logedinUsername
 </script>
 
 <style scoped>
