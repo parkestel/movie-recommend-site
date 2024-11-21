@@ -5,7 +5,8 @@
         <RouterLink :to="{name:'profile'}">My Level</RouterLink> | 
         <RouterLink :to="{name:'wishmovies'}">Wish Movie</RouterLink> | 
         <RouterLink :to="{name:'mynotelist'}">My Voca Note</RouterLink> |
-        <RouterLink :to="{name:'myreviews'}">My Reviews</RouterLink>
+        <RouterLink :to="{name:'myreviews'}">My Reviews</RouterLink> | 
+        <RouterLink :to="{name:'likedreviews'}">Liked Reviews</RouterLink>
         <hr>
         <RouterView/>
     </div>

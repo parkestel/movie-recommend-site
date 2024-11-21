@@ -3,7 +3,7 @@
     <input type="checkbox" id="is_memorized">
     <span>{{ voca.word }}</span> : 
     <span>{{ voca.word_mean }}</span>
-    <button @click="deleteWord(voca.id)">X</button><br>
+    <button @click="deleteWord(voca.id)" v-if="showDelete">X</button><br>
     <p>{{ voca.example }}</p>
     <p>{{ voca.memo }}</p>
   </div>
@@ -11,9 +11,11 @@
 
 <script setup>
 defineProps({
-  voca:Object
+  voca:Object,
+  showDelete:Boolean
 })
 const emit = defineEmits(['deleteEvent'])
+
 const deleteWord = function (id) {
   emit('deleteEvent', id)
 } 
