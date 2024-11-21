@@ -10,24 +10,33 @@
         @input="updateFilter($event, 'search')">
     </form>
     <!-- filter -->
-    <button  
-    v-for="genre in genresList" 
-    :key="genre.id"
-    :class="{ active: selectedGenres.includes(genre) }"
-    @click="updateFilter($event, 'genre', genre)"
-    >{{ genre.name }}</button>
-    <button  
-    v-for="ott in ottList" 
-    :key="ott.id"
-    :class="{ active: selectedOtts.includes(ott) }"
-    @click="updateFilter($event, 'ott', ott)"
-    >{{ ott.name }}</button>
-    <button  
-    v-for="level in levelList" 
-    :key="level.id"
-    :class="{ active: selectedLevel.includes(level) }"
-    @click="updateFilter($event, 'level', level)"
-    >{{ level }}</button>
+    <button @click="toggleGenreFilter()">Genres</button>
+    <button @click="toggleOttFilter()">Otts</button>
+    <button @click="toggleLevelFilter()">Level</button>
+    <div v-if="genreFilter">
+        <button  
+        v-for="genre in genresList" 
+        :key="genre.id"
+        :class="{ active: selectedGenres.includes(genre) }"
+        @click="updateFilter($event, 'genre', genre)"
+        >{{ genre.name }}</button>
+    </div>
+    <div v-if="ottFilter">
+        <button  
+        v-for="ott in ottList" 
+        :key="ott.id"
+        :class="{ active: selectedOtts.includes(ott) }"
+        @click="updateFilter($event, 'ott', ott)"
+        >{{ ott.name }}</button>
+    </div>
+    <div v-if="levelFilter">
+        <button  
+        v-for="level in levelList" 
+        :key="level.id"
+        :class="{ active: selectedLevel.includes(level) }"
+        @click="updateFilter($event, 'level', level)"
+        >{{ level }}</button>
+    </div>
     <div>
         <div v-if="filteredMovies">
             <MovieCard 
@@ -58,6 +67,22 @@ const filteredMovies = ref([])
 const genresList = ref([])
 const ottList = ref([])
 const levelList = ref(null)
+
+const genreFilter = ref(false)
+const ottFilter = ref(false)
+const levelFilter = ref(false)
+
+const toggleGenreFilter = function () {
+    genreFilter.value = !genreFilter.value
+}
+
+const toggleOttFilter = function () {
+    ottFilter.value = !ottFilter.value
+}
+
+const toggleLevelFilter = function () {
+    levelFilter.value = !levelFilter.value
+}
 
 const updateFilter = function(event, type='search', target=null){
     if (type === 'search') {
