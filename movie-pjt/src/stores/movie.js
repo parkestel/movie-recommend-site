@@ -21,6 +21,7 @@ export const useMovieStore = defineStore('movie', () => {
 
   const movies = ref([])
   const genres = ref(null)
+  const otts = ref(null)
   const wishMovies = ref(null)
 
   const vocaNoteList = ref([
@@ -78,7 +79,7 @@ export const useMovieStore = defineStore('movie', () => {
   }
 
   const getGenres = function () {
-    return axios({
+    axios({
       method:'get',
       url:`${API_BASE_URL}/movies/genres-list/`,
       headers:{
@@ -92,6 +93,23 @@ export const useMovieStore = defineStore('movie', () => {
       console.log(err)
     })
   }
+
+  const getOtts = function () {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/movies/otts-list/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      otts.value=res.data
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
+
   const getUserProfile = function (username) {
     axios({
       method:'get',
@@ -284,5 +302,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, wishMovies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getMovie, getUserProfile, toggleFollowerbutton, getNote, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, wishMovies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, toggleFollowerbutton, getNote, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })
