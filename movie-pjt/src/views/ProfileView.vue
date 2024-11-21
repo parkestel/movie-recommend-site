@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <ProfileComponent/>
+    <div v-if="store.userProfile">
+        <ProfileComponent :profile="store.userProfile"/>
         <hr>
         <RouterLink :to="{name:'profile', params:{username:store.logedinUsername}}">My Level</RouterLink> | 
         <RouterLink :to="{name:'wishmovies', params:{username:store.logedinUsername}}">Wish Movie</RouterLink> | 
@@ -15,7 +15,14 @@
 <script setup>
 import ProfileComponent from '@/components/ProfileView/ProfileComponent.vue';
 import { useMovieStore } from '@/stores/movie';
+import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 const store = useMovieStore()
+const route = useRoute()
+
+onMounted(()=>{
+    store.getUserProfile(route.params.username)
+})
 </script>
 
 <style scoped>
