@@ -38,7 +38,7 @@ class UserListSerializers(serializers.ModelSerializer):
 class WishMovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
-        fields = ['id', 'tmdb_id', 'title']
+        fields = ['id', 'tmdb_id', 'title', 'poster_path']
 
 # 메인페이지 전체 영화 조회
 class MovieListSerializers(serializers.ModelSerializer):
