@@ -5,7 +5,7 @@ from collections import defaultdict
 
 # 파일 경로 설정
 input_file = "movie_data.csv"
-output_file = "filtered_300.csv"
+output_file = "filtered_2_300.csv"
 
 # 데이터 읽기
 with open(input_file, mode='r', encoding='utf-8') as infile:
@@ -21,11 +21,20 @@ for row in sorted_rows:
     grouped_by_level[row['study_level']].append(row)
 
 # 분포 기준 설정 (총 300개 중)
+# target_counts = {
+#     'A1': 15,  # 5%
+#     'A2': 45,  # 15%
+#     'B1': 90,  # 30%
+#     'B2': 60,  # 20%
+#     'C1': 60,  # 20%
+#     'C2': 30   # 10%
+# }
+# A1 없어서 새로 함
 target_counts = {
-    'A1': 15,  # 5%
+    'A1': 0,  # 5%
     'A2': 45,  # 15%
     'B1': 90,  # 30%
-    'B2': 60,  # 20%
+    'B2': 75,  # 20%
     'C1': 60,  # 20%
     'C2': 30   # 10%
 }

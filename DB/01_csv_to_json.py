@@ -15,7 +15,7 @@ model_name = 'movies.movie'
 json_data = []
 
 # CSV 파일 읽기
-with open('movie_data.csv', 'r', encoding='utf-8') as csv_file:
+with open('filtered_300.csv', 'r', encoding='utf-8') as csv_file:
     reader = csv.DictReader(csv_file)
     
     pk = 1
