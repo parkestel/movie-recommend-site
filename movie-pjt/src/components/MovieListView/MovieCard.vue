@@ -1,7 +1,7 @@
 <template>
   <div>
-    <button v-if="!movie.isLiked" @click="store.addWishMovie(movie.id)">🤍</button>
-    <button v-else  @click="store.toggleLikeMovie(movie.id)">💖</button>
+    <button v-if="!movie.isLiked" @click="store.addToggleWishMovie(movie.id)">🤍</button>
+    <button v-else  @click="store.addToggleWishMovie(movie.id)">💖</button>
 
     <div>
       <img :src="store.getImgUrl(movie.poster_path,200)" alt="">
