@@ -263,5 +263,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getMovie, getUserProfile, getNote, getVocas,  signUp, logIn, logOut, getLogedInUserName, addToggleWishMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getMovie, getUserProfile, getNote, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })
