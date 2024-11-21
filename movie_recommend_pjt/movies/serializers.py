@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from django.contrib.auth import get_user_model
-from .models import Movie, Genre, Star, Ott, Director
+from .models import Movie, Genre, Star, Ott, Director, Comment
 
 User = get_user_model()
 
@@ -40,6 +40,11 @@ class WishMovieSerializer(serializers.ModelSerializer):
         model = Movie
         fields = ['id', 'tmdb_id', 'title', 'poster_path']
 
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['id', 'content', 'movies', 'users']
+
 # 메인페이지 전체 영화 조회
 class MovieListSerializers(serializers.ModelSerializer):
 
@@ -61,3 +66,5 @@ class MovieListSerializers(serializers.ModelSerializer):
         if user in obj.wish_users.all():  # wish_users에 로그인한 유저가 포함되어 있는지 확인
             return user.pk
         return None  # 좋아요를 누르지 않았다면 None을 반환
+    
+
