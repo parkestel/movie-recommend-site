@@ -230,6 +230,7 @@ export const useMovieStore = defineStore('movie', () => {
   }
 
   const SignOut = function() {
+    window.confirm('탈퇴하면 되돌릴 수 없습니다. 진행하시겠습니까?')
     axios({
       method:'post',
       url:`${API_BASE_URL}/accounts/delete/`,
