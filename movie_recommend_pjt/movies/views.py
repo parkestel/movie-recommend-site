@@ -11,7 +11,7 @@ from .serializers import MovieListSerializers, WishMovieSerializer, OttListSeria
 @api_view(['GET'])
 def get_movies(request):
     movies = Movie.objects.all()
-    serializer = MovieListSerializers(movies, many=True)
+    serializer = MovieListSerializers(movies, many=True, context={'request': request})
     return Response(serializer.data)
 
 
