@@ -45,6 +45,11 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = ['id', 'content', 'movies', 'users']
 
+class MovieCommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Movie
+        fields = ['id', 'tmdb_id', 'title', 'comments']
+
 # 메인페이지 전체 영화 조회
 class MovieListSerializers(serializers.ModelSerializer):
 
