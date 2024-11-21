@@ -28,9 +28,9 @@ const moveToDetail = function (movieId) {
   router.push({name:'movie-detail', params:{'movieid':movieId}})
 }
 
-const isLikedMovie = function (movieId) {
-  return userProfile.value.wish_movies?.some(movie => movie.id===movieId)
-}
+// const isLikedMovie = function (movieId) {
+//   return userProfile.value.wish_movies?.some(movie => movie.id===movieId)
+// }
 </script>
 
 <style scoped>
