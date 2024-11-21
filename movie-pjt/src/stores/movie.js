@@ -7,7 +7,7 @@ import { useRouter } from 'vue-router'
 export const useMovieStore = defineStore('movie', () => {
   const router = useRouter()
   const token = ref(null)
-  const userPk = ref(null)
+  const logedinUsername = ref(null)
   const API_BASE_URL = 'http://127.0.0.1:8000'
   const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p'
 
@@ -150,8 +150,9 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       token.value = res.data.key
-      getLogedInUserName()
+      getLogedInUserName(token.value)
       localStorage
+      console.log(res)
       router.push({name:'movies'})
     })
     .catch(err=>{
@@ -177,18 +178,21 @@ export const useMovieStore = defineStore('movie', () => {
 
   }
 
-  const getLogedInUserName = function() {
+  const getLogedInUserName = function(key) {
     axios({
       method:'get',
-      url:``
+      url:``,
+      params:{
+        key:key
+      }
     })
     .then(res=>{
-      userPk.value=res.data.pk
+      logedinUsername.value=res.data.username
     })
     .catch(err=>{
       console.log(err)
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getMovie, getNote, getVocas,  signUp, logIn, logOut, getLogedInUserName, addWishMovie, getWishMovies, deleteNote, token, isLogin }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getMovie, getNote, getVocas,  signUp, logIn, logOut, getLogedInUserName, addWishMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })
