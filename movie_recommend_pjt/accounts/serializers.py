@@ -76,7 +76,7 @@ class PersonUserDetailsSerializer(UserDetailsSerializer):
         model = User
         # id == pk 값
         fields = [
-            'id', 'nickname','study_level', 'experience', 
+            'id', 'username', 'nickname','study_level', 'experience', 
             'achievement_level', 'followings', 'followers', 'wish_movies'
         ]
         read_only_fields = ['id', 'followings', 'followers']  # 읽기 전용 필드
