@@ -21,6 +21,8 @@ export const useMovieStore = defineStore('movie', () => {
 
   const movies = ref([])
   const genres = ref(null)
+  const otts = ref(null)
+  const difficulties = ref(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'])
   const wishMovies = ref(null)
 
   const vocaNoteList = ref([
@@ -92,6 +94,23 @@ export const useMovieStore = defineStore('movie', () => {
       console.log(err)
     })
   }
+
+  const getOtts = function () {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/movies/otts-list/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      otts.value=res.data
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
+
   const getUserProfile = function (username) {
     axios({
       method:'get',
@@ -104,6 +123,24 @@ export const useMovieStore = defineStore('movie', () => {
       userProfile.value=res.data
     })
     .catch(err=>{
+      console.log(err)
+    })
+  }
+
+  const toggleFollowerbutton = function (userId, username) {
+    axios({
+      method:'post',
+      url:`${API_BASE_URL}/accounts/${userId}/follow/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      // console.log('팔로잉 완료')
+      getUserProfile(username)
+    })
+    .catch(err=>{
+      console.log('팔로우 실패')
       console.log(err)
     })
   }
@@ -266,5 +303,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, wishMovies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getMovie, getUserProfile, getNote, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, toggleFollowerbutton, getNote, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })

@@ -2,7 +2,7 @@
 <div>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <RouterLink :to="{name:'movies'}" v-if="store.isLogin">Home</RouterLink>
     </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -13,7 +13,6 @@
           <RouterLink :to="{name:'signup'}" v-if="!store.isLogin">Sign Up</RouterLink>
         </li>
         <li class="nav-item mx-2">
-          <RouterLink :to="{name:'movies'}" v-if="store.isLogin">영화 추천 목록</RouterLink>
         </li>
         <li class="nav-item dropdown" v-if="store.isLogin">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
