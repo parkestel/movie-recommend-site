@@ -32,7 +32,7 @@ def create_voca_note(request, movie_pk, user_pk):
         if existing_note:
             return Response({'error': '이미 해당 영화에 대한 단어장이 존재합니다.'}, status=400)
 
-        voca_note = VocaNote.objects.create(is_public=True)  # 기본 공개 상태로 생성
+        voca_note = VocaNote.objects.create() 
         voca_note.users.add(me)
         voca_note.movies.add(movie)
         voca_note.save()
@@ -42,6 +42,9 @@ def create_voca_note(request, movie_pk, user_pk):
 
     elif request.method == 'DELETE':
         # 삭제 - 로그인한 사용자만 가능
+        if me != person:
+            return Response({'error': '자신의 단어장만 삭제할 수 있습니다.'}, status=403)
+
         voca_note = VocaNote.objects.filter(users=me, movies=movie).first()
         if not voca_note:
             return Response({'error': '삭제할 단어장이 존재하지 않습니다.'}, status=404)
