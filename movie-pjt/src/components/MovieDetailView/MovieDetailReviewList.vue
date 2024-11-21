@@ -4,7 +4,8 @@
     v-for="review in reviews" 
     :key="review.id" 
     :review="review"
-    @delete-event="deleteReview"/>
+    @delete-event="deleteReview"
+    @update-event="updateReview"/>
   </div>
 </template>
 
@@ -22,6 +23,11 @@ const deleteReview = function (id) {
   console.log(id)
   const targetid = reviews.value.findIndex((review)=>review.id === id)
   reviews.value.splice(targetid, 1)
+}
+
+const updateReview = function (id) {
+  console.log(id)
+  // update가 발생하면 수정 post 보내는 함수를 사용해서 수정 내용 저장 할 것
 }
 </script>
 
