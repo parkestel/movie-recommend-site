@@ -32,13 +32,16 @@
 import MovieCard from "@/components/MovieListView/MovieCard.vue"
 import { useMovieStore } from "@/stores/movie"
 import { onMounted, ref, watch } from "vue";
+import { storeToRefs } from "pinia";
 
 const store = useMovieStore()
 
 const searchQuery = ref(""); // 검색어 상태
 const selectedGenres = ref([]) // 선택된 장르 목록
-const filteredMovies = ref(null); // 필터링된 영화 목록
-const genresList = ref(null)
+
+const { movies, genres } = storeToRefs(store)
+const filteredMovies = ref([])
+const genresList = ref([])
 
 const updateFilter = function(event, type='search', genre=null){
     if (type === 'search') {
@@ -79,6 +82,10 @@ const applyFilters = () => {
     });
 };
 
+watch([movies, genres], () => {
+    filteredMovies.value = movies.value
+    genresList.value = genres.value
+})
 
 onMounted(()=>{
     store.getMovies()
