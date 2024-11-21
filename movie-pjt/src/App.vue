@@ -23,7 +23,7 @@
             <li><RouterLink :to="{name:'wishmovies'}" class="dropdown-item">Wish Movie</RouterLink></li>
             <li><RouterLink :to="{name:'mynotelist'}" class="dropdown-item">Voca Note</RouterLink></li>
             <li><hr class="dropdown-divider"></li>
-            <li><RouterLink :to="{name:'profile', params:{username:store.logedinUsername}}" class="dropdown-item">My Page</RouterLink></li>
+            <!-- <li><RouterLink :to="{name:'profile', params:{username:store.logedinUsername}}" class="dropdown-item">My Page</RouterLink></li> -->
             <li><hr class="dropdown-divider"></li>
             <li><button @click="store.logOut">Log out</button></li>
           </ul>

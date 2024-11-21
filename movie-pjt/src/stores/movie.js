@@ -181,12 +181,10 @@ export const useMovieStore = defineStore('movie', () => {
   const getLogedInUserName = function(key) {
     axios({
       method:'get',
-      url:``,
-      params:{
-        key:key
-      }
+      url:`${API_BASE_URL}/accounts/dj-rest-auth/user/`,
     })
     .then(res=>{
+      console.log(res.data)
       logedinUsername.value=res.data.username
     })
     .catch(err=>{
