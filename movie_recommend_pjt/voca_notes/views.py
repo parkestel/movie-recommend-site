@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 
 from .serializers import VocaNoteSerializers,VocaSerializers
 from .models import VocaNote, Voca
@@ -14,7 +14,7 @@ User = get_user_model()
 # create(내 단어장 로그인한 사용자랑 pk확인), read(다른 사람들 단어장 읽는), update(내 단어장 로그인한 사용자랑 pk확인), delete(내 단어장 로그인한 사용자랑 pk확인)
 
 # Vocanote 생성 : 보는 사람이랑 로그인한 사용자랑 같아야 단어장 생성 가능.
-@api_view('GET','POST', 'DELETE') 
+@api_view(['GET','POST', 'DELETE']) 
 @permission_classes([IsAuthenticated])  # 로그인된 사용자만 접근 가능
 def create_voca_note(request, movie_pk, user_pk):
 
