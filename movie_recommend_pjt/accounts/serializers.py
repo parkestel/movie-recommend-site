@@ -62,9 +62,9 @@ class CustomUserDetailsSerializer(UserDetailsSerializer):
         model = User
         # id == pk 값
         fields = [
-            'id', 'nickname'
+            'id', 'nickname', 'username'
         ]
-        read_only_fields = ['id', 'nickname']  # 읽기 전용 필드
+        read_only_fields = ['id', 'username','nickname']  # 읽기 전용 필드
 
 
 # 특정 사용자 조회
