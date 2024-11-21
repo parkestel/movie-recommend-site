@@ -1,7 +1,7 @@
 <template>
   <div>
     <span>{{ review.content }}</span>
-    <button>추천</button>
+    <button @click="likeReview(review.id, store.logedinUsername)">추천</button>
     <p>{{ review.nickname }}</p> 
     <!-- 작성자 === 로그인한 사람 일 때만 삭제 버튼 보이게 -->
     <button v-if="review.username===store.logedinUsername" @click="deleteReview(review.id)">삭제</button>
@@ -23,7 +23,11 @@ defineProps({
 })
 const store = useMovieStore()
 const isVisable = ref(false) 
-const emit = defineEmits(['deleteEvent', 'updateReview'])
+const emit = defineEmits(['deleteEvent', 'updateReview', 'likeEvent'])
+
+const likeReview = function (id, user) {
+  emit('likeEvent', id, user)
+}
 const deleteReview = function (id) {
   emit('deleteEvent', id)
 }
