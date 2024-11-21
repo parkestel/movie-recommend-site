@@ -5,7 +5,7 @@ import csv
 import json
 
 # CSV 파일 경로
-csv_file_path = 'filtered_300.csv'
+csv_file_path = 'filtered_2_300.csv'
 json_file_path = 'movies.json'
 
 # JSON 변환에 필요한 모델 이름 지정
@@ -15,7 +15,7 @@ model_name = 'movies.movie'
 json_data = []
 
 # CSV 파일 읽기
-with open('filtered_300.csv', 'r', encoding='utf-8') as csv_file:
+with open('filtered_2_300.csv', 'r', encoding='utf-8') as csv_file:
     reader = csv.DictReader(csv_file)
     
     pk = 1
