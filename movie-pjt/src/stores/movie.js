@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref, computed, reactive } from 'vue'
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
@@ -163,6 +163,7 @@ export const useMovieStore = defineStore('movie', () => {
       router.push({name:'movies'})
     })
     .catch(err=>{
+      console.log(err)
       window.alert('회원가입에 실패했습니다! 다시 시도 해주십시오.')
       router.push({name:'signup'})
     })
@@ -190,6 +191,7 @@ export const useMovieStore = defineStore('movie', () => {
     .then(res=>{
       token.value = res.data.key
       getLogedInUserName()
+      getUserProfile(username)
       router.push({name:'movies'})
     })
     .catch(err=>{
@@ -206,6 +208,7 @@ export const useMovieStore = defineStore('movie', () => {
     .then(res=>{
       token.value=null
       logedinUsername.value=null
+      userProfile.value=null
       window.alert('Bye! See you soon')
       router.push({name:'login'})
     })
