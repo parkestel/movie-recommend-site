@@ -16,6 +16,18 @@
     :class="{ active: selectedGenres.includes(genre) }"
     @click="updateFilter($event, 'genre', genre)"
     >{{ genre.name }}</button>
+    <button  
+    v-for="ott in ottList" 
+    :key="ott.id"
+    :class="{ active: selectedOtts.includes(ott) }"
+    @click="updateFilter($event, 'ott', ott)"
+    >{{ ott.name }}</button>
+    <button  
+    v-for="level in levelList" 
+    :key="level.id"
+    :class="{ active: selectedLevel.includes(level) }"
+    @click="updateFilter($event, 'level', level)"
+    >{{ level }}</button>
     <div>
         <div v-if="filteredMovies">
             <MovieCard 
@@ -38,20 +50,43 @@ const store = useMovieStore()
 
 const searchQuery = ref(""); // 검색어 상태
 const selectedGenres = ref([]) // 선택된 장르 목록
+const selectedOtts = ref([]) //선택된 ott
+const selectedLevel = ref([]) //선택된 난이도
 
-const { movies, genres } = storeToRefs(store)
+const { movies, genres, otts, difficulties } = storeToRefs(store)
 const filteredMovies = ref([])
 const genresList = ref([])
+const ottList = ref([])
+const levelList = ref(null)
 
-const updateFilter = function(event, type='search', genre=null){
+const updateFilter = function(event, type='search', target=null){
     if (type === 'search') {
         searchQuery.value = event.target.value.toLowerCase()
     } else if (type === 'genre') {
-        if (genre) {
-            if (selectedGenres.value.includes(genre)) {
-                selectedGenres.value = selectedGenres.value.filter(g => g.id !== genre.id) // 선택 해제
+        const index = selectedGenres.value.indexOf(target)
+        if (target) {
+            if (index===-1) {
+                selectedGenres.value.push(target) // 선택 추가
             } else {
-                selectedGenres.value.push(genre) // 선택 추가
+                selectedGenres.value.splice(index,1) // 선택 해제
+            }
+        }
+    } else if (type === 'ott') {
+        const index = selectedOtts.value.indexOf(target)
+        if (target) {
+            if (index===-1) {
+                selectedOtts.value.push(target) // 선택 추가
+            } else {
+                selectedOtts.value.splice(index,1) // 선택 해제
+            }
+        }
+    } else if (type === 'level') {
+        const index = selectedLevel.value.indexOf(target)
+        if (target) {
+            if (index===-1) {
+                selectedLevel.value.push(target) // 선택 추가
+            } else {
+                selectedLevel.value.splice(index,1) // 선택 해제
             }
         }
     }
@@ -78,20 +113,37 @@ const applyFilters = () => {
             movie.genres?.some((genre) => genre.tmdb_id === selectedGenre.tmdb_id)
         );
 
-        return matchesSearch && matchesGenres;
+        // ott 필터 조건 (모든 선택된 장르 중 하나라도 존재하면 true)
+        const matchesOtts =
+        selectedOtts.value.length === 0 || // 선택된 ott가 없으면 true
+        selectedOtts.value.every((selectedOtt) =>
+            movie.otts?.some((ott) => ott.tmdb_id === selectedOtt.tmdb_id)
+        );
+
+        // ott 필터 조건 (모든 선택된 장르 중 하나라도 존재하면 true)
+        const matcheslevels =
+        selectedLevel.value.length === 0 || // 선택된 ott가 없으면 true
+        selectedLevel.value.every((level) =>movie.difficulty === level)
+
+        return matchesSearch && matchesGenres && matchesOtts && matcheslevels;
     });
 };
 
-watch([movies, genres], () => {
+watch([movies, genres, otts, difficulties], () => {
     filteredMovies.value = movies.value
     genresList.value = genres.value
+    ottList.value = otts.value
+    levelList.value = difficulties.value
 })
 
 onMounted(()=>{
     store.getMovies()
     store.getGenres()
+    store.getOtts()
     filteredMovies.value = store.movies
     genresList.value = store.genres 
+    ottList.value = store.otts
+    levelList.value = store.difficulties
 })
 </script>
 
