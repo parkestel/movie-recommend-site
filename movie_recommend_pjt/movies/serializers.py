@@ -33,8 +33,12 @@ class DirectorListSerializers(serializers.ModelSerializer):
 class UserListSerializers(serializers.ModelSerializer):
     class Meta:
         model = User  
-        fields = ['id', 'username']  # 필요한 필드만 포함
+        fields = ['id', 'nickname']  # 필요한 필드만 포함
 
+class WishMovieSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Movie
+        fields = ['id', 'tmdb_id', 'title']
 
 # 한번에 넘길 무비 관련 모든 정보
 class MovieListSerializers(serializers.ModelSerializer):
@@ -47,8 +51,3 @@ class MovieListSerializers(serializers.ModelSerializer):
     class Meta:
         model = Movie
         fields = '__all__'
-
-class WishMovieSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Movie
-        fields = ['id', 'tmdb_id', 'title']
