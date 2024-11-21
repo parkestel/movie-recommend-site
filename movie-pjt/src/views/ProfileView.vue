@@ -14,9 +14,6 @@
 
 <script setup>
 import ProfileComponent from '@/components/ProfileView/ProfileComponent.vue';
-import { useMovieStore } from '@/stores/movie';
-
-const store = useMovieStore()
 </script>
 
 <style scoped>
