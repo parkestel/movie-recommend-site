@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import logout
 
 from rest_framework.response import Response
@@ -9,32 +9,19 @@ from rest_framework.authentication import TokenAuthentication, BasicAuthenticati
 from rest_framework.permissions import IsAuthenticated
 
 from django.contrib.auth import get_user_model
-from .serializers import CustomUserDetailsSerializer
+from .serializers import PersonUserDetailsSerializer
 
 User = get_user_model()
 
 @api_view(['GET'])
 @authentication_classes([TokenAuthentication, BasicAuthentication])
 @permission_classes([IsAuthenticated])
-#  로그인 인증된 사용자만 접근 가능
-def profile(request):
-    try:
-        user = request.user
-        if not user.is_authenticated:
-                raise AuthenticationFailed("인증되지 않은 사용자입니다.")
-        serializer = CustomUserDetailsSerializer(user)
-        return Response(serializer.data)
-    except AuthenticationFailed as e:
-        return Response(
-            {"detail": str(e), "status": "failed"},
-            status=status.HTTP_401_UNAUTHORIZED
-        )
-    except Exception as e:
-        # 기타 예외 처리
-        return Response(
-            {"detail": "서버 오류가 발생했습니다.", "error": str(e)},
-            status=status.HTTP_500_INTERNAL_SERVER_ERROR
-        )
+#  특정 사용자의 프로필 정보 조회 API (로그인 인증된 사용자만 접근 가능)
+def profile(request, user_nickname):
+    person = get_object_or_404(User, nickname=user_nickname)
+    serializer = PersonUserDetailsSerializer(person)
+    return Response(serializer.data)
+ 
 
 # 회원 탈퇴 기능 & 로그아웃까지 연동
 @api_view(['POST'])
