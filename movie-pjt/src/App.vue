@@ -17,7 +17,7 @@
         </li>
         <li class="nav-item dropdown" v-if="store.isLogin">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            My Menu
+            안녕하세요! {{ store.logedinUsername }} 님!
           </a>
           <ul class="dropdown-menu" v-if="store.logedinUsername">
             <li><RouterLink :to="{name:'wishmovies', params:{username:store.logedinUsername}}" class="dropdown-item">Wish Movie</RouterLink></li>

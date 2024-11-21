@@ -21,6 +21,7 @@ export const useMovieStore = defineStore('movie', () => {
 
   const movies = ref([])
   const genres = ref(null)
+  const wishMovies = ref(null)
 
   const vocaNoteList = ref([
     {id:1, movieId: 1, movie: 'Toy Story', is_public: true},
@@ -61,8 +62,6 @@ export const useMovieStore = defineStore('movie', () => {
   }
 
   const getWishMovies = function () {
-    // return movies.value.filter((movie)=>movie.isLiked===true)
-    const wishMovies = ref([])
     axios({
       method:'get',
       url:`${API_BASE_URL}/movies/wish-movie/`,
@@ -103,7 +102,6 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       userProfile.value=res.data
-      console.log(res.data)
     })
     .catch(err=>{
       console.log(err)
@@ -127,8 +125,8 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      // console.log('좋아요 성공')
-      getUserProfile(logedinUsername.value)
+      console.log('좋아요 성공')
+      getWishMovies()
     })
     .catch(err=>{
       console.log(err)
@@ -136,7 +134,7 @@ export const useMovieStore = defineStore('movie', () => {
   }
 
   const isLikedMovie = function (movieId) {
-    return userProfile.value.wish_movies?.some(movie => movie.id===movieId)
+    return wishMovies.value?.some(movie => movie.id===movieId)
   }
 
   const deleteNote = function (id) {
@@ -206,7 +204,7 @@ export const useMovieStore = defineStore('movie', () => {
     .then(res=>{
       token.value = res.data.key
       getLogedInUserName()
-      getUserProfile(username)
+      getWishMovies()
       router.push({name:'movies'})
     })
     .catch(err=>{
@@ -268,5 +266,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getMovie, getUserProfile, getNote, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, wishMovies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getMovie, getUserProfile, getNote, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })
