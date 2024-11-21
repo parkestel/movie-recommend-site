@@ -59,7 +59,7 @@ const router = createRouter({
       component:VocaNotePopUpView
     },
     {
-      path:'/profile',
+      path:'/profile/:username',
       component: ProfileView,
       children:[
         {
