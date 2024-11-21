@@ -45,8 +45,8 @@ def genres_list(request):
     serializer = GenreListSerializers(genres, many=True)
     return Response(serializer.data)
 
-# @api_view(['GET'])
-# def otts_list(request):
-#     otts = Ott.objects.all()
-#     serializer = OttListSerializers(otts, many=True)
-#     return Response(serializer.data)
+@api_view(['GET'])
+def otts_list(request):
+    otts = Ott.objects.all()
+    serializer = OttListSerializers(otts, many=True)
+    return Response(serializer.data)
