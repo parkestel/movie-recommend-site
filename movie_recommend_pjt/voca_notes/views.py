@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework import status
 
 from .serializers import VocaNoteSerializers,VocaSerializers
 from .models import VocaNote, Voca
@@ -104,20 +105,36 @@ def voca_note_list(request, user_pk):
     serializer = VocaNoteSerializers(voca_notes, many=True)
     return Response(serializer.data, status=200)
 
+# 단어 생성
 @api_view(['POST'])
+@permission_classes([])
 def create_voca(request, vocanote_pk):
+
+    voca_note = get_object_or_404(VocaNote, pk=vocanote_pk)
+
     voca_data = request.data.get('voca')
+    print(f"현재 유저 ID: {request.user.pk}")
+    print(f"단어장 유저 IDs: {[user.pk for user in voca_note.users.all()]}")
+    print(f"Authorization 헤더: {request.headers.get('Authorization')}")
+    if not voca_data:
+        return Response({'error': 'voca 키 또는 값이 비어 있습니다.'}, status=status.HTTP_400_BAD_REQUEST)
 
+    if voca_note.users.filter(pk=request.user.pk).exists():
+        return Response({'error': '해당 단어장에 대해 권한이 없습니다.'}, status=status.HTTP_403_FORBIDDEN)
+
+    # Voca 생성
     voca = Voca.objects.create(
-        word = voca_data.get('word'),
-        word_mean = voca_data.get('word_mean'),
-        examples = voca_data.get('examples'),
-        memo = voca_data.get('memo'),
+        word=voca_data.get('word'),
+        word_mean=voca_data.get('word_mean'),
+        examples=voca_data.get('examples'),
+        memo=voca_data.get('memo'),
     )
-    voca.save()
 
-    voca_note = VocaNote.objects.get(pk=vocanote_pk)
     voca_note.vocas.add(voca)
     voca_note.save()
-    serializer = VocaNoteSerializers(voca_note, many=True)
-    return Response(serializer.data)
+
+    return Response({'message': '단어가 성공적으로 추가되었습니다.'}, status=status.HTTP_201_CREATED)
+
+
+def delete_voca(request):
+    pass
