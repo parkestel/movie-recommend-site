@@ -36,6 +36,8 @@ export const useMovieStore = defineStore('movie', () => {
     {id:1, word: 'toy', word_mean: '장난감', note_id: 1, examples:'I buy a toy', memo:'', is_memorized:true},
     {id:2, word: 'play', word_mean: '놀다', note_id: 1, examples:'I play with my sister', memo:'play-played-played', is_memorized:false},
   ])
+
+  const userProfile = ref(null)
   
   const getMovies = function () {
     axios({
@@ -63,9 +65,39 @@ export const useMovieStore = defineStore('movie', () => {
   }
 
   const getWishMovies = function () {
-    return movies.value.filter((movie)=>movie.isLiked===true)
+    // return movies.value.filter((movie)=>movie.isLiked===true)
+    const wishMovies = ref([])
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/movies/wish-movie/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      wishMovies.value=res.data
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+    return wishMovies
   }
-
+  const getUserProfile = function (username) {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/accounts/dj-rest-auth/user/${username}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      userProfile.value=res.data
+      console.log(res.data)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
   const getNote = function (noteId) {
     const targetNote = vocaNoteList.value.find((note)=>note.id===Number(noteId))
     return targetNote
@@ -192,5 +224,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getMovie, getNote, getVocas,  signUp, logIn, logOut, getLogedInUserName, addToggleWishMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getMovie, getUserProfile, getNote, getVocas,  signUp, logIn, logOut, getLogedInUserName, addToggleWishMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })

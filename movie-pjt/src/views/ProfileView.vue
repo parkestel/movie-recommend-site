@@ -15,9 +15,17 @@
 <script setup>
 import ProfileComponent from '@/components/ProfileView/ProfileComponent.vue';
 import { useMovieStore } from '@/stores/movie';
+import { onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 
 const store = useMovieStore()
 const user = store.logedinUsername
+const route = useRoute()
+
+onMounted(()=>{
+    store.getUserProfile(route.params.username)
+    console.log(store.userProflie)
+})
 </script>
 
 <style scoped>

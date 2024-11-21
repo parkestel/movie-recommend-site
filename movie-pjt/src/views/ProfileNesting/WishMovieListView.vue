@@ -20,6 +20,7 @@ const wishMovies = ref(null)
 
 onMounted(()=>{
     wishMovies.value = store.getWishMovies()
+    console.log(wishMovies)
 })
 </script>
 
