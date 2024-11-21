@@ -170,8 +170,15 @@ export const useMovieStore = defineStore('movie', () => {
 
 
   const logIn = function(payload) {
-    const username = payload.username
-    const password = payload.password
+
+    if (!payload || !payload.username || !payload.password) {
+      console.error("로그인 정보가 누락되었습니다.", payload);
+      window.alert("아이디와 비밀번호를 입력해주세요.");
+      return;
+    }
+    const username = payload.username;
+    const password = payload.password;
+  
     // axios 요청...! then -> token 값 받아오기
     axios({
       method:'post',
