@@ -46,7 +46,7 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log(res.data)
+      // console.log(res.data)
       movies.value = res.data
     })
     .catch(err=>{
@@ -150,9 +150,7 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       token.value = res.data.key
-      getLogedInUserName(token.value)
-      localStorage
-      console.log(res)
+      getLogedInUserName()
       router.push({name:'movies'})
     })
     .catch(err=>{
@@ -168,7 +166,7 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       token.value=null
-      userPk.value=null
+      logedinUsername.value=null
       window.alert('Bye! See you soon')
       router.push({name:'login'})
     })
@@ -178,10 +176,13 @@ export const useMovieStore = defineStore('movie', () => {
 
   }
 
-  const getLogedInUserName = function(key) {
+  const getLogedInUserName = function() {
     axios({
       method:'get',
       url:`${API_BASE_URL}/accounts/dj-rest-auth/user/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
     })
     .then(res=>{
       console.log(res.data)
