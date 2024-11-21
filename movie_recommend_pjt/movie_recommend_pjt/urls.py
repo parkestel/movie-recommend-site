@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('movies.urls')),
     path('accounts/', include('accounts.urls')),
-    path('voca-notes/', include('voca_notes.urls')),
+    path('voca/', include('voca_notes.urls')),
 ]
