@@ -4,9 +4,9 @@ import csv
 import json
 
 # 파일 경로 설정
-csv_file_path = "movie_data.csv"  # CSV 파일 경로
+csv_file_path = "filtered_300.csv"  # CSV 파일 경로
 json_file_path = "movies.json"  # 기존 JSON 파일 경로
-output_json_path = "movies_add_genres.json"  # 결과 JSON 파일 경로
+output_json_path = "movies_added_genres.json"  # 결과 JSON 파일 경로
 
 # match 데이터
 match = [
