@@ -7,7 +7,7 @@ urlpatterns = [
     path('delete/', views.delete_user),
     path('<int:user_pk>/follow/', views.followings),
     path('dj-rest-auth/user/', views.login_user_data),
-    path('dj-rest-auth/user/<str:user_nickname>/', views.profile),
+    path('dj-rest-auth/user/<str:username>/', views.profile),
 ]
 
 # 회원가입
