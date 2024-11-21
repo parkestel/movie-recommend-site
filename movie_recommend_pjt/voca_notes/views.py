@@ -22,19 +22,7 @@ def create_voca_note(request, movie_pk, user_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     me = request.user
 
-    if request.method == 'GET':
-
-        voca_notes = VocaNote.objects.filter(users=person, movies=movie)
-        if not voca_notes.exists():
-            return Response({'error': '해당 영화에 대한 단어장이 없습니다.'}, status=404)
-        
-        if person != me and not any(note.is_public for note in voca_notes):
-            return Response({'error': '해당 단어장은 비공개 상태입니다.'}, status=403)
-        
-        serializer = VocaNoteSerializers(voca_notes, many=True)
-        return Response(serializer.data, status=200)
-
-    elif request.method == 'POST':
+    if request.method == 'POST':
 
         if me != person:
             return Response({'error': '자신의 단어장만 생성할 수 있습니다.'}, status=403)
@@ -63,7 +51,24 @@ def create_voca_note(request, movie_pk, user_pk):
 
 
 
-# 단어장 보여주기만
+# 단어장 전체 리스트 조회
 @api_view(['GET'])
-def voca_note_list(request):
-    pass
+def voca_note_list(request, movie_pk, user_pk):
+    
+    person = get_object_or_404(User, pk=user_pk)
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    login_user = request.user
+    # 로그인한 유저랑 user_pk 다르면 is_public = True인 단어장만 조회
+    if login_user != person:
+        voca_notes = VocaNote.objects.filter(users=person, movies=movie)
+        if not voca_notes.exists():
+            return Response({'error': '해당 영화에 대한 단어장이 없습니다.'}, status=404)
+        
+        if person != login_user and not any(note.is_public for note in voca_notes):
+            return Response({'error': '해당 단어장은 비공개 상태입니다.'}, status=403)
+    # 로그인한 유저랑 user_pk 같으며 내꺼니까
+    else:
+        # 전체 voca_notes 리스트 조회
+        pass
+    serializer = VocaNoteSerializers(voca_notes, many=True)
+    return Response(serializer.data, status=200)
