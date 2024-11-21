@@ -2,7 +2,7 @@
     <div v-if="userProfile">
         <h1>{{ userProfile.nickname }} 님의 페이지 입니다.</h1>
         <ProfileComponent :profile="userProfile" v-if="userProfile.username===store.logedinUsername"/>
-        <ProfileFollow :follow-info="{followers:userProfile.followers, followings:userProfile.followings}"/>
+        <ProfileFollow/>
         <hr>
         <RouterLink :to="{name:'profile', params:{username:userProfile.username}}" :profile="store.userProfile">User Level</RouterLink> | 
         <RouterLink :to="{name:'wishmovies', params:{username:userProfile.username}}" :profile="store.userProfile">Wish Movie</RouterLink> | 
