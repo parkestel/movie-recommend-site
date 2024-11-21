@@ -30,7 +30,7 @@ class CustomRegisterSerializer(RegisterSerializer):
             'email': self.validated_data.get('email', ''),
             'birth': self.validated_data.get('birth', ''),
             'nickname': self.validated_data.get('nickname', ''),
-            'study_level': self.validated_data.get('study_level', ''),
+            'study_level': self.validated_data.get('study_level', 'A1'),
         }
 
     def save(self, request):
@@ -56,7 +56,7 @@ class FollowSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'username', 'nickname']  # 필요한 필드만 포함
 
-# 사용자 조회
+# 정보 변경할때 사용자 조회
 class CustomUserDetailsSerializer(UserDetailsSerializer):
     followings = FollowSerializer(many=True, read_only=True)
     followers = FollowSerializer(many=True, read_only=True)
@@ -64,50 +64,24 @@ class CustomUserDetailsSerializer(UserDetailsSerializer):
     class Meta:
         model = User
         # id == pk 값
-        # fields = '__all__'
         fields = [
-            'id', 'username', 'email', 'first_name', 'last_name', 'nickname',
-            'birth', 'study_level', 'experience', 'achievement_level', 'followings', 'followers', 'wish_movies'
+            'id', 'last_name', 'first_name', 'birth','email','nickname','study_level', 'experience', 
+            'achievement_level', 'followings', 'followers', 'wish_movies'
         ]
-        read_only_fields = ['email', 'id', 'followings', 'followers']  # 읽기 전용 필드
+        read_only_fields = ['id', 'followings', 'followers']  # 읽기 전용 필드
 
-# class CustomAccountAdapter(DefaultAccountAdapter):
-#     def save_user(self, request, user, form, commit=True):
-#         """
-#         사용자 데이터를 저장할 때 커스텀 처리
-#         """
-#         data = form.cleaned_data
-#         first_name = data.get("first_name")
-#         last_name = data.get("last_name")
-#         email = data.get("email")
-#         username = data.get("username")
-#         nickname = data.get("nickname")
-#         birth = data.get("birth")
-#         study_level = data.get("study_level")
-#         experience = data.get("experience", 0)
-#         achievement_level = data.get("achievement_level", 0)
 
-#         user_email(user, email)
-#         user_username(user, username)
-#         if first_name:
-#             user_field(user, "first_name", first_name)
-#         if last_name:
-#             user_field(user, "last_name", last_name)
-#         if nickname:
-#             user_field(user, "nickname", nickname)
-#         if birth:
-#             user_field(user, "birth", birth)
-#         if study_level:
-#             user_field(user, "study_level", study_level)
-#         if experience:
-#             user_field(user, "experience", experience)
-#         if achievement_level:
-#             user_field(user, "achievement_level", achievement_level)
-#         if "password1" in data:
-#             user.set_password(data["password1"])
-#         else:
-#             user.set_unusable_password()
-#         self.populate_username(request, user)
-#         if commit:
-#             user.save()
-#         return user
+# 특정 사용자 조회
+class PersonUserDetailsSerializer(UserDetailsSerializer):
+    followings = FollowSerializer(many=True, read_only=True)
+    followers = FollowSerializer(many=True, read_only=True)
+    wish_movies = WishMovieSerializer(many=True, read_only=True)
+    class Meta:
+        model = User
+        # id == pk 값
+        fields = [
+            'id', 'nickname','study_level', 'experience', 
+            'achievement_level', 'followings', 'followers', 'wish_movies'
+        ]
+        read_only_fields = ['id', 'followings', 'followers']  # 읽기 전용 필드
+
