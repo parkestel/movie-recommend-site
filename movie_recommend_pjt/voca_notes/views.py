@@ -13,27 +13,27 @@ User = get_user_model()
 
 # create(내 단어장 로그인한 사용자랑 pk확인), read(다른 사람들 단어장 읽는), update(내 단어장 로그인한 사용자랑 pk확인), delete(내 단어장 로그인한 사용자랑 pk확인)
 
-# Vocanote 생성 : 보는 사람이랑 로그인한 사용자랑 같아야 단어장 생성 가능.
-@api_view(['GET','POST', 'DELETE']) 
+
+@api_view(['POST', 'DELETE']) 
 @permission_classes([IsAuthenticated])  # 로그인된 사용자만 접근 가능
 def create_voca_note(request, movie_pk, user_pk):
 
     person = get_object_or_404(User, pk=user_pk)
     movie = get_object_or_404(Movie, pk=movie_pk)
-    me = request.user
+    login_user = request.user
 
     if request.method == 'POST':
 
-        if me != person:
+        if login_user != person:
             return Response({'error': '자신의 단어장만 생성할 수 있습니다.'}, status=403)
         
 
-        existing_note = VocaNote.objects.filter(users=me, movies=movie).first()
+        existing_note = VocaNote.objects.filter(users=login_user, movies=movie).first()
         if existing_note:
             return Response({'error': '이미 해당 영화에 대한 단어장이 존재합니다.'}, status=400)
 
         voca_note = VocaNote.objects.create() 
-        voca_note.users.add(me)
+        voca_note.users.add(login_user)
         voca_note.movies.add(movie)
         voca_note.save()
 
@@ -42,16 +42,36 @@ def create_voca_note(request, movie_pk, user_pk):
 
     elif request.method == 'DELETE':
         # 삭제 - 로그인한 사용자만 가능
-        if me != person:
+        if login_user != person:
             return Response({'error': '자신의 단어장만 삭제할 수 있습니다.'}, status=403)
 
-        voca_note = VocaNote.objects.filter(users=me, movies=movie).first()
+        voca_note = VocaNote.objects.filter(users=login_user, movies=movie).first()
         if not voca_note:
             return Response({'error': '삭제할 단어장이 존재하지 않습니다.'}, status=404)
         
         voca_note.delete()
         return Response({'message': '단어장이 삭제되었습니다.'}, status=200)
 
+
+# 사용자가 is_public 버튼 누르면 그 전값과 반대로 바꿔서 저장해줘야함.
+@api_view(['PUT'])
+def change_is_public(request, movie_pk, user_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    person = get_object_or_404(User, pk=user_pk)
+    login_user = request.user
+
+    if login_user != person:
+        return Response({'error': '자신의 단어장만 수정할 수 있습니다.'}, status=403)
+        
+    voca_note = VocaNote.objects.filter(users=login_user, movies=movie).first()
+    if not voca_note:
+        return Response({'error': '수정할 단어장이 존재하지 않습니다.'}, status=404)
+    
+    voca_note.is_public = not voca_note.is_public
+    serializer = VocaNoteSerializers(voca_note, data={'is_public': voca_note.is_public}, partial=True)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save()
+        return Response(serializer.data)        
 
 
 # 단어장 전체 리스트 조회
