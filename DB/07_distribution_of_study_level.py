@@ -2,7 +2,7 @@ import csv
 from collections import Counter
 
 # CSV 파일 경로 설정
-input_file = "filtered_300.csv"
+input_file = "filtered_2_300.csv"
 
 # study_level 값을 저장할 리스트
 study_levels = []
