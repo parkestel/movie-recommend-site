@@ -8,7 +8,7 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username']
+        fields = ['id', 'username', 'nickname']
 
 # 장르
 class GenreListSerializers(serializers.ModelSerializer):
@@ -91,7 +91,7 @@ class CommentListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment 
-        fields = ['id', 'users','content', 'liked_user_count', 'liked_users']
+        fields = ['id', 'users','content', 'liked_user_count']
         # 코멘트 총 개수, 코멘트 pk, 어떤 유저가 쓴 comment인지, 내용, 코멘트 좋아한 유저들
     
     def get_liked_user_count(self, obj):
@@ -107,8 +107,8 @@ class CommentUserListSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Comment
-        fields = ['id', 'content', 'movies', 'liked_user_count', 'liked_users']
-        read_only_fields = ('liked_users',)
+        fields = ['id', 'content', 'movies', 'liked_user_count']
+ 
     def get_liked_user_count(self, obj):
         # 각 코멘트의 liked_users 수 반환 (없으면 0)
         return obj.liked_users.count()
