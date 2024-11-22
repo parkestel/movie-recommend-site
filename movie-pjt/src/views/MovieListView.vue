@@ -12,6 +12,7 @@
     <!-- sort -->
     <form>
         <select id="sorting" v-model="selectedSortOption">
+            <option selected>---정렬 기준 선택하세요---</option>
             <option> 평점 높은 순 </option>
             <option> 평점 낮은 순 </option>
             <option> 알파벳 오름차순 (A~Z) </option>
@@ -75,7 +76,7 @@ const selectedGenres = ref([]) // 선택된 장르 목록
 const selectedOtts = ref([]) //선택된 ott
 const selectedLevel = ref([]) //선택된 난이도
 
-const selectedSortOption = ref('---정렬 기준 선택하세요---') // 정렬 디폴트
+const selectedSortOption = ref('') // 정렬 디폴트
 
 const { movies, genres, otts, difficulties } = storeToRefs(store)
 const filteredMovies = ref([])
@@ -107,10 +108,10 @@ const sortedMovies = computed(() => {
         return [...moviesToSort].sort((a, b) => a.title.localeCompare(b.title));
         case '알파벳 내림차순 (Z~A)':
         return [...moviesToSort].sort((a, b) => b.title.localeCompare(a.title));
-        // case '제목 한글 오름차순 (ㄱ~ㅎ)':
-        // return [...moviesToSort].sort((a, b) => a.title.localeCompare(b.title, 'ko-KR'));
-        // case '제목 한글 내림차순 (ㅎ~ㄱ)':
-        // return [...moviesToSort].sort((a, b) => b.title.localeCompare(a.title, 'ko-KR'));
+        case '제목 한글 오름차순 (ㄱ~ㅎ)':
+        return [...moviesToSort].sort((a, b) => a.title_kr.localeCompare(b.title, 'ko-KR'));
+        case '제목 한글 내림차순 (ㅎ~ㄱ)':
+        return [...moviesToSort].sort((a, b) => b.title_kr.localeCompare(a.title, 'ko-KR'));
         case '개봉 날짜 오름차순 (과거순)':
         return [...moviesToSort].sort((a, b) => new Date(a.release_date) - new Date(b.release_date));
         case '개봉 날짜 내림차순 (최신순)':
@@ -178,17 +179,17 @@ const applyFilters = () => {
             movie.genres?.some((genre) => genre.tmdb_id === selectedGenre.tmdb_id)
         );
 
-        // ott 필터 조건 (모든 선택된 장르 중 하나라도 존재하면 true)
+        // ott 필터 조건 (모든 선택된 ott 중 하나라도 존재하면 true)
         const matchesOtts =
         selectedOtts.value.length === 0 || // 선택된 ott가 없으면 true
         selectedOtts.value.every((selectedOtt) =>
             movie.otts?.some((ott) => ott.tmdb_id === selectedOtt.tmdb_id)
         );
 
-        // ott 필터 조건 (모든 선택된 장르 중 하나라도 존재하면 true)
+        // level 필터 조건 (모든 선택된 level 중 하나라도 존재하면 true)
         const matcheslevels =
-        selectedLevel.value.length === 0 || // 선택된 ott가 없으면 true
-        selectedLevel.value.every((level) =>movie.difficulty === level)
+        selectedLevel.value.length === 0 || // 선택된 level가 없으면 true
+        selectedLevel.value.some((level) =>movie.difficulty === level)
 
         return matchesSearch && matchesGenres && matchesOtts && matcheslevels;
     });

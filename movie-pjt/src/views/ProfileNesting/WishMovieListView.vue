@@ -1,7 +1,20 @@
 <template>
     <div>
         <h1>Movie WishList</h1>
-        <div>
+        <div v-if="userProfile.username===store.logedinUsername">
+            <select v-model="filter" >
+                <option value="all">전체보기</option>
+                <option value="withoutNote">단어장 없는 영화</option>
+                <option value="withNote">단어장 있는 영화</option>
+            </select>
+        </div>
+        <div v-if="userProfile.username===store.logedinUsername">
+            <WishMovieCard  
+            v-for="wishMovie in filteredMovies"
+            :key="wishMovie.id"
+            :wish-movie="wishMovie"/>
+        </div>
+        <div v-else>
             <WishMovieCard  
             v-for="wishMovie in userProfile.wish_movies"
             :key="wishMovie.id"
@@ -11,12 +24,28 @@
 </template>
 
 <script setup>
+import { computed, onMounted, ref } from 'vue';
 import { useMovieStore } from '@/stores/movie'
 import WishMovieCard from '@/components/WishMovieListView/WishMovieCard.vue'
 import { storeToRefs } from 'pinia'
 const store = useMovieStore()
-// storeToRefs로 userProfile을 리액티브한 참조로 가져오기
-const { userProfile } = storeToRefs(store)
+const { userProfile, wishMovies, wishMoviesWithOutNote, vocaNoteList } = storeToRefs(store)
+const withNoteMovie = ref(null)
+
+const filter = ref('all')
+const filteredMovies = computed(()=>{
+    if (filter.value==='withoutNote') {
+        return wishMoviesWithOutNote.value
+    } else if (filter.value==="withNote") {
+        // vocaNoteList에서 영화 id가 일치하는 영화들만 필터링
+        withNoteMovie.value = wishMovies.value.filter(movie => 
+            vocaNoteList.value.some(note => note.movies[0].id === movie.id)
+        )
+        return withNoteMovie.value
+    } else {
+        return wishMovies.value
+    }
+})
 </script>
 
 <style scoped>

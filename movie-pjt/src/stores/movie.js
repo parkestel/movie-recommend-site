@@ -24,9 +24,10 @@ export const useMovieStore = defineStore('movie', () => {
   const otts = ref(null)
   const difficulties = ref(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'])
   const wishMovies = ref(null)
+  const wishMoviesWithOutNote = ref(null)
   const vocaNoteList = ref(null)
   const vocaList = ref(null)
-
+  const vocaNote = ref(null)
   const userProfile = ref(null)
   
   const getMovies = function () {
@@ -82,6 +83,29 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
 
+  const getWishMovieWithOutNote = function () {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/movies/wish-movies-without-vocanote/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      wishMoviesWithOutNote.value=res.data
+    })
+    .catch(err=>{
+      if (err.response && err.response.status === 401) {
+        token.value=null
+        logedinUsername.value=null
+        userProfile.value=null 
+        window.alert('로그인이 필요합니다.')
+        router.push({name:'login'})
+      }
+    })
+    
+  }
+
   const getGenres = function () {
     axios({
       method:'get',
@@ -124,6 +148,8 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       userProfile.value=res.data
+      getVocaNote(userProfile.value.id)
+      // getWishMovieWithOutNote()
     })
     .catch(err=>{
       if (err.response && err.response.status === 401) {
@@ -187,7 +213,7 @@ export const useMovieStore = defineStore('movie', () => {
       window.open(`/note/${res.data.id}`, '__blank', 'width=400,height=650')
       // router.push({name:'vocanote', params:{note_id:res.data.id}})
       getVocaNote(userId)
-      console.log('단어장 생성 성공!')
+      getWishMovieWithOutNote()
     })
     .catch(err=>{
       console.log(err)
@@ -204,10 +230,12 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       getVocaNote(userId)
-      console.log(res)
+      getWishMovieWithOutNote()
+      return res
     })
     .catch(err=>{
       console.log(err)
+      throw err
     })
   }
 
@@ -221,7 +249,7 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       getVocaNote(userId)
-      console.log(res)
+      getVocas(res.data.id)
     })
     .catch(err=>{
       console.log(err)
@@ -229,7 +257,78 @@ export const useMovieStore = defineStore('movie', () => {
   }
 
   const getVocas = function (noteId) {
-    return vocaList.value.filter((voca)=>voca.note_id===Number(noteId))
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/voca/vocanote-detail/${noteId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      vocaList.value = res.data
+      console.log(res.data)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+    // return vocaList.value.filter((voca)=>voca.note_id===Number(noteId))
+  }
+
+  const createVoca = function(noteId, payload){
+    axios({
+      method:'post',
+      url: `${API_BASE_URL}/voca/create-voca/${noteId}/`,
+      data:{
+        word: payload.word,
+        word_mean: payload.word_mean,
+        examples: payload.examples,
+        memo: payload.memo,
+        is_memorized: false
+      },
+      headers:{
+          Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      console.log(res)
+      getVocas(noteId)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
+
+  const deleteVoca = function(vocaId,noteId) {
+    axios({
+      method:'delete',
+      url:`${API_BASE_URL}/voca/delete-voca/${noteId}/${vocaId}`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      console.log(res)
+      getVocas(noteId)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
+
+  const memorizedVoca = function(vocaId, noteId) {
+    axios({
+      method:'post',
+      url:`${API_BASE_URL}/voca/${noteId}/is_memorized/${vocaId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      getVocas(noteId)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
   }
 
   const addToggleWishMovie = function (movieId){
@@ -385,5 +484,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, memorizedVoca, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })
