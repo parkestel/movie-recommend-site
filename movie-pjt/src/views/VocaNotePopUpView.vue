@@ -72,11 +72,16 @@ const togglePublic = function (movieId, userId = userProfile.value.id) {
 }
 
 const deleteWord = function (id) {
+    console.log(noteId.value)
     store.deleteVoca(id, noteId.value)
 }
 
 const updateWord = function (id) {
-    // axios post 
+    // axios put
+}
+
+const toggleMemorized = function(id) {
+    // axios post
 }
 
 const toggleDeleteButtons = function () {
@@ -89,7 +94,7 @@ const toggleUpdateButtons = function () {
 
 onMounted(()=>{
     noteId.value = route.params.note_id
-    store.getVocas(noteId)
+    store.getVocas(noteId.value)
     isDeleted.value=false
 })
 
