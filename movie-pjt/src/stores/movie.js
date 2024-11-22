@@ -363,6 +363,25 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       moviecomments.value=res.data
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
+
+  const createComment = function (movieId, payload) {
+    axios({
+      method:'post',
+      url:`${API_BASE_URL}/movies/${movieId}/create-comment/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+      data:{
+        content: payload.content
+      }
+    })
+    .then(res=>{
+      getMovieComments(movieId)
       console.log(res)
     })
     .catch(err=>{
@@ -501,5 +520,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, memorizedVoca, getMovieComments, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, memorizedVoca, getMovieComments, createComment, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })

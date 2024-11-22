@@ -1,7 +1,8 @@
 <template>
   <div>
+    <p>작성된 댓글 수: {{ reviews.number_of_count }}</p>
     <MovieDetailReviewListItem
-    v-for="review in reviews" 
+    v-for="review in reviews.comments" 
     :key="review.id" 
     :review="review"
     @delete-event="deleteReview"
@@ -11,11 +12,10 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import MovieDetailReviewListItem from './MovieDetailReviewListItem.vue';
 
 defineProps({
-  reviews:Array
+  reviews:Object
 })
 
 const deleteReview = function (id) {

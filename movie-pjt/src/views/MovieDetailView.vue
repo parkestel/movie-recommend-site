@@ -2,7 +2,7 @@
     <div v-if="movie">
         <MovieDetailBaner :movie-info="movie"/>
         <MovieDetailBestReviewList/>
-        <MovieDetailReviewCreate/>
+        <MovieDetailReviewCreate @comment-create-event="createComment"/>
         <MovieDetailReviewList :reviews="moviecomments"/>
     </div>
 </template>
@@ -23,6 +23,10 @@ const store = useMovieStore()
 const movieId = route.params.movieid
 const movie = ref(null)
 const { moviecomments } = storeToRefs(store)
+
+const createComment = function(payload) {
+    store.createComment(movieId, payload)
+}
 
 onMounted(()=>{
     movie.value = store.getMovie(movieId);
