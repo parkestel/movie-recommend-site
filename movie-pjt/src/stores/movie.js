@@ -213,7 +213,6 @@ export const useMovieStore = defineStore('movie', () => {
       // router.push({name:'vocanote', params:{note_id:res.data.id}})
       getVocaNote(userId)
       getWishMovieWithOutNote()
-      console.log('단어장 생성 성공!')
     })
     .catch(err=>{
       console.log(err)
@@ -230,7 +229,7 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       getVocaNote(userId)
-      console.log(res)
+      getWishMovieWithOutNote()
     })
     .catch(err=>{
       console.log(err)

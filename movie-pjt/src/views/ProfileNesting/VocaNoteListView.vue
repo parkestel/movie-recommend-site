@@ -39,6 +39,7 @@ const togglecreateNewNote = function () {
 }
 const createNewNote = function (movieId, userId = userProfile.value.id) {
   store.createVocaNote(movieId,userId)
+  showSelectMovie.value = !showSelectMovie.value
 }
 
 onMounted(()=>{
