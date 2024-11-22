@@ -25,12 +25,7 @@ export const useMovieStore = defineStore('movie', () => {
   const difficulties = ref(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'])
   const wishMovies = ref(null)
   const vocaNoteList = ref(null)
-
-
-  const vocaList = ref([
-    {id:1, word: 'toy', word_mean: '장난감', note_id: 1, examples:'I buy a toy', memo:'', is_memorized:true},
-    {id:2, word: 'play', word_mean: '놀다', note_id: 1, examples:'I play with my sister', memo:'play-played-played', is_memorized:false},
-  ])
+  const vocaList = ref(null)
 
   const userProfile = ref(null)
   
@@ -149,10 +144,10 @@ export const useMovieStore = defineStore('movie', () => {
       console.log(err)
     })
   }
-  const getNote = function (noteId) {
-    const targetNote = vocaNoteList.value.find((note)=>note.id===Number(noteId))
-    return targetNote
-  }
+  // const getNote = function (noteId) {
+  //   const targetNote = vocaNoteList.value.find((note)=>note.id===Number(noteId))
+  //   return targetNote
+  // }
 
   const getVocaNote = function (profileuserId) {
     axios({
@@ -163,11 +158,30 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log(res.data)
+      vocaNoteList.value = res.data
     })
     .catch(err=>{
-
+      console.log(err)
     })
+  }
+
+  const createVocaNote = function (movieId, userId) {
+    axios({
+      method:'post',
+      url:`${API_BASE_URL}/voca/${movieId}/vocanote/create/${userId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      window.open(`/note/${res.data.id}`, '__blank', 'width=400,height=650')
+      // router.push({name:'vocanote', params:{note_id:res.data.id}})
+      getVocaNote(userId)
+      console.log('단어장 생성 성공!')
+    })
+    .catch(err=>{
+      console.log(err)
+    }) 
   }
 
   const getVocas = function (noteId) {
@@ -331,5 +345,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, toggleFollowerbutton, getNote, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, createVocaNote, toggleFollowerbutton, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })
