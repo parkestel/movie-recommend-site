@@ -20,6 +20,7 @@ def get_movies(request):
     return Response(serializer.data)
 
 
+
 # 영화 좋아요 눌렀을 때 내 프로필 페이지에서 wish_movies 볼 수 있게 vue에서 버튼 누르면 저장시키는 로직
 @api_view(['POST'])
 def wish_movie(request, movie_pk):
@@ -36,6 +37,7 @@ def wish_movie(request, movie_pk):
         return Response({'status': 'added', 'movie_pk': movie_pk}, status=status.HTTP_200_OK)
 
 
+
 # 로그인 한 유저가 좋아요 한 영화 목록
 @api_view(['GET'])
 def logined_wish_movie_list(request):
@@ -44,6 +46,8 @@ def logined_wish_movie_list(request):
 
     serializer = WishMovieSerializer(wished_movies, many=True, context={'request': request})
     return Response(serializer.data)
+
+
 
 # 로그인 한 유저의 wish movies중 vocanote 없는 리스트 목록
 @api_view(['GET'])
@@ -59,11 +63,14 @@ def wish_movie_without_vocanote(request):
     return Response(serializer.data)
 
 
+
 @api_view(['GET'])
 def genres_list(request):
     genres = Genre.objects.all()
     serializer = GenreListSerializers(genres, many=True)
     return Response(serializer.data)
+
+
 
 @api_view(['GET'])
 def otts_list(request):
@@ -71,8 +78,10 @@ def otts_list(request):
     serializer = OttListSerializers(otts, many=True)
     return Response(serializer.data)
 
+
+
 # 코멘트 생성
-@api_view(['POST', 'PUT'])
+@api_view(['POST'])
 def comment_create(request, movie_pk):
     movie = Movie.objects.get(pk=movie_pk)
     if request.method == 'POST':
@@ -83,6 +92,7 @@ def comment_create(request, movie_pk):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 # 유저가 작성한 comment 조회
@@ -112,6 +122,8 @@ def comment_list_user(request, comment_pk):
                 }, status=status.HTTP_200_OK)
         else:
             return Response({'detail': '삭제할 코멘트가 없습니다.'}, status=status.HTTP_404_NOT_FOUND)
+
+
 
 # 영화별 코멘트 조회
 @api_view(['GET', 'DELETE'])
@@ -155,12 +167,22 @@ def comment_list_movie(request, movie_pk):
                 }, status=status.HTTP_200_OK)
         else:
             return Response({'detail': '다른 사람의 코멘트는 삭제할 수 없습니다.'}, status=status.HTTP_401_UNAUTHORIZED)
-        
 
-# @api_view(['DELETE'])
-# def comment_delete(request, comment_pk):
-#     login_user = request.user
-#     comment = Comment.objects.get(pk=comment_pk)
-#     if comment.users == login_user.pk:
-#         comment.delete()
-#         return Response()
+
+
+# 코멘트 수정 => 현재 로그인한 유저만 수정 권한 있음.
+@api_view(['PUT'])
+def update_comment(request, movie_pk, comment_pk):
+    login_user = request.user
+    try:
+        comment = Comment.objects.get(pk=comment_pk, movies=movie_pk)
+    except Comment.DoesNotExist:
+        return Response({'detail': '수정할 댓글이 없습니다.'}, status=status.HTTP_404_NOT_FOUND)
+    
+    if comment.users.first() != login_user:
+        return Response({'detail': '다른 사람의 댓글은 수정할 수 없습니다.'}, status=status.HTTP_403_FORBIDDEN)
+
+    serializer = CommentSerializer(comment, data=request.data, partial=True)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
