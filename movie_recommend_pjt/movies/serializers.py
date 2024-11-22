@@ -43,7 +43,7 @@ class WishMovieSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ['id', 'content', 'movies', 'users']
+        fields = '__all__'
 
 class MovieCommentSerializer(serializers.ModelSerializer):
     class Meta:
