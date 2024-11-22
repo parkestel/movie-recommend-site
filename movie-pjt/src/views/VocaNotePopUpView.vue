@@ -28,14 +28,13 @@
 <script setup>
 import { useMovieStore } from "@/stores/movie";
 import { ref, onMounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import VocaCreate from "@/components/VocaNotePopUpView/VocaCreate.vue";
 import VocaListRead from "@/components/VocaNotePopUpView/VocaListRead.vue";
 import { storeToRefs } from "pinia";
 
 const store = useMovieStore()
 const route = useRoute()
-const router = useRouter()
 
 // const note = ref(null)
 const showDeleteButton = ref(false)
@@ -87,10 +86,7 @@ const toggleUpdateButtons = function () {
 
 onMounted(()=>{
     const noteId = route.params.note_id
-    console.log(noteId)
-    // store.getNote(noteId)
     store.getVocas(noteId)
-    // console.log(vocaList)
     isDeleted.value=false
 })
 

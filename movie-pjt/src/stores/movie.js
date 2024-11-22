@@ -249,6 +249,7 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       getVocaNote(userId)
+      getVocas(res.data.id)
     })
     .catch(err=>{
       console.log(err)
