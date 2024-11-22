@@ -5,6 +5,7 @@
     <div>
       <img :src="store.getImgUrl(wishMovie.poster_path,200)" alt="">
     </div>
+    <h4>{{ wishMovie.title_kr }}</h4>
     <h5>{{ wishMovie.title }}</h5>
     <button @click="moveToDetail(wishMovie.id)">Detail</button>
     <div v-if="userProfile.username === store.logedinUsername">
@@ -36,9 +37,7 @@ const moveToDetail = function (movieId) {
 }
 
 const isHavingNote = function (movieId) {
-  if (vocaNoteList.value.some((note)=>note.movies.id===movieId)) {
-    return true
-  }
+  return vocaNoteList.value.some((note)=>note.movies[0].id===movieId)
 }
 const popUp = function (noteId) {
   window.open(`/note/${noteId}`, '__blank', 'width=400,height=650')
