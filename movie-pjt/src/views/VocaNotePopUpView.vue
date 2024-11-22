@@ -6,7 +6,7 @@
         </div>
         <button v-if="userProfile.username===store.logedinUsername" @click="deleteNote(vocaList.movies[0].id)">삭제</button>
         <h1>{{ vocaList.movies[0].title }}'s vocanote</h1>
-        <VocaCreate/>
+        <VocaCreate :note="vocaList"/>
         <button @click="toggleDeleteButtons">{{ showDeleteButton ? '취소' : '삭제' }}</button>
         <button @click="toggleUpdateButtons">{{ showUpdateButton ? '취소' : '수정' }}</button>
         <VocaListRead

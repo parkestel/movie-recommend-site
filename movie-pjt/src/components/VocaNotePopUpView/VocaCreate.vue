@@ -1,11 +1,11 @@
 <template>
   <div>
-    <form>
+    <form @submit.prevent="submitVoca(note.id)">
       <label for="word">word:</label>
       <input type="text" id="word" v-model.trim="word">
       <br>
       <label for="word_mean">mean:</label>
-      <input type="text" id="word_mean" v-model.trim="mean">
+      <input type="text" id="word_mean" v-model.trim="word_mean">
       <br>
       <label for="examples">examples:</label>
       <input type="text" id="examples" v-model.trim="examples">
@@ -20,14 +20,28 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useMovieStore } from '@/stores/movie';
+
+const store = useMovieStore()
 
 const word = ref(null)
-const mean = ref(null)
+const word_mean = ref(null)
 const examples = ref(null)
 const memo = ref(null)
 
-const submitVoca = function () {
+defineProps({
+  note:Object
+})
+
+const submitVoca = function (noteId = note.id) {
   //axios data 넘겨주기
+  const payload = {
+    word: word.value,
+    word_mean: word_mean.value,
+    examples: examples.value,
+    memo: memo.value
+  }
+  store.createVoca(noteId, payload)
 }
 </script>
 
