@@ -156,14 +156,17 @@ def comment_list_movie(request, movie_pk):
         else:
             return Response({'detail': '다른 사람의 코멘트는 삭제할 수 없습니다.'}, status=status.HTTP_401_UNAUTHORIZED)
         
-# 코멘트 수정
+# 코멘트 수정 => 현재 로그인한 유저만 수정 권한 있음.
 @api_view(['PUT'])
 def update_comment(request, movie_pk, comment_pk):
     login_user = request.user
     try:
-        comment = Comment.objects.get(pk=comment_pk, users=login_user, movies=movie_pk)
+        comment = Comment.objects.get(pk=comment_pk, movies=movie_pk)
     except Comment.DoesNotExist:
         return Response({'detail': '수정할 댓글이 없습니다.'}, status=status.HTTP_404_NOT_FOUND)
+    
+    if comment.users.first() != login_user:
+        return Response({'detail': '다른 사람의 댓글은 수정할 수 없습니다.'}, status=status.HTTP_403_FORBIDDEN)
 
     serializer = CommentSerializer(comment, data=request.data, partial=True)
     if serializer.is_valid(raise_exception=True):
