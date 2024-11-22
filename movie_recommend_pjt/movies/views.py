@@ -1,11 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
+from django.contrib.auth import get_user_model
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 from .models import Movie, Genre, Ott
 from .serializers import MovieListSerializers, WishMovieSerializer, OttListSerializers, GenreListSerializers
+from .serializers import CommentSerializer, MovieCommentSerializer
 
+User = get_user_model()
 
 # 영화 전체 조회
 @api_view(['GET'])
@@ -50,3 +53,13 @@ def otts_list(request):
     otts = Ott.objects.all()
     serializer = OttListSerializers(otts, many=True)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def comment_create(request, movie_pk):
+    movie = Movie.objects.get(pk=movie_pk)
+    serializer = CommentSerializer(data=request.dat)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(movies=movie, users=request.user)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
