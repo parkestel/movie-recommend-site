@@ -228,7 +228,20 @@ def delete_voca(request, vocanote_pk, voca_pk):
 
 @api_view(['POST'])
 def change_is_memorized(request, vocanote_pk, voca_pk):
-    # 로그인 사용자만 바꿀 수 있게
-
     
-    pass
+    voca_note = get_object_or_404(VocaNote, pk=vocanote_pk)
+    voca = get_object_or_404(Voca, pk=voca_pk)
+    login_user = request.user
+
+    if not voca_note.users.filter(pk=request.user.pk).exists():
+        return Response({'error': '자신의 단어장 단어들만 수정할 수 있습니다.'}, status=403)
+        
+    # voca_note = VocaNote.objects.filter(users=login_user, movies=movie).first()
+    # if not voca_note:
+    #     return Response({'error': '수정할 단어장이 존재하지 않습니다.'}, status=404)
+    
+    # voca_note.is_public = not voca_note.is_public
+    # serializer = VocaNoteSerializers(voca_note, data={'is_public': voca_note.is_public}, partial=True)
+    # if serializer.is_valid(raise_exception=True):
+    #     serializer.save()
+    #     return Response(serializer.data)  
