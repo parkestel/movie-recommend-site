@@ -6,8 +6,8 @@ from django.conf import settings
 class Voca(models.Model):
     word = models.TextField()
     word_mean = models.TextField()
-    examples = models.TextField()
-    memo = models.TextField()
+    examples = models.TextField(null=True, blank=True)
+    memo = models.TextField(null=True, blank=True)
     is_memorized = models.BooleanField(default=False)
 
 
