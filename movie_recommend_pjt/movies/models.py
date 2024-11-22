@@ -48,3 +48,4 @@ class Comment(models.Model):
     content = models.TextField()
     movies = models.ManyToManyField(Movie, related_name='comments')
     users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='user_comments')
+    liked_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='liked_comments')
