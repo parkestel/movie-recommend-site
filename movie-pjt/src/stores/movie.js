@@ -43,6 +43,9 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .catch(err=>{
       if (err.response && err.response.status === 401) {
+        token.value=null
+        logedinUsername.value=null
+        userProfile.value=null
         window.alert('로그인이 필요합니다.')
         router.push({name:'login'})
       }
@@ -70,6 +73,9 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .catch(err=>{
       if (err.response && err.response.status === 401) {
+        token.value=null
+        logedinUsername.value=null
+        userProfile.value=null 
         window.alert('로그인이 필요합니다.')
         router.push({name:'login'})
       }
@@ -121,6 +127,9 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .catch(err=>{
       if (err.response && err.response.status === 401) {
+        token.value=null
+        logedinUsername.value=null
+        userProfile.value=null
         window.alert('로그인이 필요합니다.')
         router.push({name:'login'})
       }
