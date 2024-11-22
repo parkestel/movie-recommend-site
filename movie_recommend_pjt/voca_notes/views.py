@@ -150,5 +150,19 @@ def create_voca(request, vocanote_pk):
                      status=status.HTTP_201_CREATED)
 
 
-def delete_voca(request):
-    pass
+@api_view(['GET'])
+def voca_note_detail(request, vocanote_pk):
+    login_user = request.user
+    voca_note = get_object_or_404(VocaNote, pk=vocanote_pk)
+    
+    if voca_note.users.filter(pk=login_user.pk).exists():
+        serializer = VocaNoteAllSerializers(voca_note)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    if not voca_note.is_public:
+        return Response({'detail': '해당 단어장의 사용자가 비공개 처리 해놨습니다.'}, status=status.HTTP_403_FORBIDDEN)
+
+    # is_public이 True일 경우 정보 제공
+    serializer = VocaNoteAllSerializers(voca_note)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+

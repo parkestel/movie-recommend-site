@@ -27,7 +27,7 @@ class VocaNoteAllSerializers(serializers.ModelSerializer):
     class MovieVocaNoteSerializers(serializers.ModelSerializer):
         class Meta:
             model = Movie
-            fields = ['id', 'title']
+            fields = ['id', 'title',]
     movies = MovieVocaNoteSerializers(read_only=True, many=True)
     vocas = VocaSerializers(read_only=True, many=True)
 
