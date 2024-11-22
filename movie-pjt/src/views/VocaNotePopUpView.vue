@@ -17,6 +17,7 @@
         :show-update="showUpdateButton"
         @delete-event="deleteWord"
         @update-event="updateWord"
+        @check-event="toggleMemorized"
         />
     </div>
     <div v-if="isDeleted">
@@ -81,6 +82,7 @@ const updateWord = function (id) {
 
 const toggleMemorized = function(id) {
     // axios post
+    store.memorizedVoca(id,noteId.value)
 }
 
 const toggleDeleteButtons = function () {

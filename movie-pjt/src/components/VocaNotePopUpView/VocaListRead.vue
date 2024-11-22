@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="checkbox" id="is_memorized">
+    <input type="checkbox" id="is_memorized" @input="memorizedWord(voca.id)" v-model="voca.is_memorized">
       <span @click="toggleMemoShow">
         <span>{{ voca.word }}</span> : 
         <span>{{ voca.word_mean }}</span>
@@ -37,7 +37,7 @@ defineProps({
   showDelete:Boolean,
   showUpdate:Boolean
 })
-const emit = defineEmits(['deleteEvent', 'updateEvent'])
+const emit = defineEmits(['deleteEvent', 'updateEvent', 'checkEvent'])
 const isVisiable = ref(false)
 const isMemoVisiable = ref(false)
 
@@ -52,6 +52,10 @@ const deleteWord = function (id) {
 
 const updateWord = function (id) {
   emit('updateEvent', id)
+}
+
+const memorizedWord = function (id) {
+  emit('checkEvent', id)
 }
 
 const toggleFormShow = function () {
