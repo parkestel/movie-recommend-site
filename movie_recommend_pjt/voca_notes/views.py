@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import get_user_model
 
+
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view
+from rest_framework import status
 
-from .serializers import VocaNoteSerializers,VocaSerializers
+from .serializers import VocaNoteSerializers,VocaNoteAllSerializers
 from .models import VocaNote, Voca
 from movies.models import Movie
 
@@ -14,8 +16,7 @@ User = get_user_model()
 # create(내 단어장 로그인한 사용자랑 pk확인), read(다른 사람들 단어장 읽는), update(내 단어장 로그인한 사용자랑 pk확인), delete(내 단어장 로그인한 사용자랑 pk확인)
 
 # Vocanote 생성 : 보는 사람이랑 로그인한 사용자랑 같아야 단어장 생성 가능.
-@api_view(['GET','POST', 'DELETE']) 
-@permission_classes([IsAuthenticated])  # 로그인된 사용자만 접근 가능
+@api_view(['GET','POST', 'DELETE'])   # 로그인된 사용자만 접근 가능
 def create_voca_note(request, movie_pk, user_pk):
 
     person = get_object_or_404(User, pk=user_pk)
@@ -115,19 +116,19 @@ def voca_note_list(request, user_pk):
 
 # 단어 생성
 @api_view(['POST'])
-@permission_classes([])
 def create_voca(request, vocanote_pk):
 
     voca_note = get_object_or_404(VocaNote, pk=vocanote_pk)
-
-    voca_data = request.data.get('voca')
+    
+    voca_data = request.data
     print(f"현재 유저 ID: {request.user.pk}")
     print(f"단어장 유저 IDs: {[user.pk for user in voca_note.users.all()]}")
     print(f"Authorization 헤더: {request.headers.get('Authorization')}")
+
     if not voca_data:
         return Response({'error': 'voca 키 또는 값이 비어 있습니다.'}, status=status.HTTP_400_BAD_REQUEST)
 
-    if voca_note.users.filter(pk=request.user.pk).exists():
+    if not voca_note.users.filter(pk=request.user.pk).exists():
         return Response({'error': '해당 단어장에 대해 권한이 없습니다.'}, status=status.HTTP_403_FORBIDDEN)
 
     # Voca 생성
@@ -138,10 +139,15 @@ def create_voca(request, vocanote_pk):
         memo=voca_data.get('memo'),
     )
 
+    # 해당 단어장에 voca 저장
     voca_note.vocas.add(voca)
     voca_note.save()
+    
+    serializer = VocaNoteAllSerializers(voca_note)
 
-    return Response({'message': '단어가 성공적으로 추가되었습니다.'}, status=status.HTTP_201_CREATED)
+    return Response({'message': '단어가 성공적으로 추가되었습니다.', 
+                     'voca_note': serializer.data}, 
+                     status=status.HTTP_201_CREATED)
 
 
 def delete_voca(request):
