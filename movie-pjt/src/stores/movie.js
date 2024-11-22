@@ -29,6 +29,7 @@ export const useMovieStore = defineStore('movie', () => {
   const vocaList = ref(null)
   const vocaNote = ref(null)
   const userProfile = ref(null)
+  const moviecomments = ref(null)
   
   const getMovies = function () {
     axios({
@@ -352,6 +353,22 @@ export const useMovieStore = defineStore('movie', () => {
     return wishMovies.value?.some(movie => movie.id===movieId)
   }
 
+  const getMovieComments = function (movieId) {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/movies/comment-list/${movieId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      moviecomments.value=res.data
+      console.log(res)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
 
   const signUp = function (payload) {
     const username = payload.username
@@ -484,5 +501,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, memorizedVoca, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, memorizedVoca, getMovieComments, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })
