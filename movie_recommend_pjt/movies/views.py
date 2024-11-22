@@ -220,5 +220,5 @@ def login_user_like_comment(request):
 @api_view(['GET'])
 def top_5_comment(request):
     top_5_comments = Comment.objects.annotate(like_count=Count('liked_users')).order_by('-like_count')[:5]
-    serializer = CommentListSerializer(top_5_comments)
+    serializer = CommentListSerializer(top_5_comments, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
