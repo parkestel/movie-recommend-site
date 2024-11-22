@@ -27,7 +27,7 @@ export const useMovieStore = defineStore('movie', () => {
   const wishMoviesWithOutNote = ref(null)
   const vocaNoteList = ref(null)
   const vocaList = ref(null)
-
+  const vocaNote = ref(null)
   const userProfile = ref(null)
   
   const getMovies = function () {
@@ -231,9 +231,11 @@ export const useMovieStore = defineStore('movie', () => {
     .then(res=>{
       getVocaNote(userId)
       getWishMovieWithOutNote()
+      return res
     })
     .catch(err=>{
       console.log(err)
+      throw err
     })
   }
 
@@ -254,7 +256,21 @@ export const useMovieStore = defineStore('movie', () => {
   }
 
   const getVocas = function (noteId) {
-    return vocaList.value.filter((voca)=>voca.note_id===Number(noteId))
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/voca/vocanote-detail/${noteId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      vocaList.value = res.data
+      console.log(res.data)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+    // return vocaList.value.filter((voca)=>voca.note_id===Number(noteId))
   }
 
   const addToggleWishMovie = function (movieId){
@@ -410,5 +426,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })
