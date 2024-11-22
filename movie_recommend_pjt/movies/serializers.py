@@ -62,8 +62,10 @@ class CommentSerializer(serializers.ModelSerializer):
 class CommentListSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Comment # 코멘트 pk, 어떤 유저가 쓴 comment인지, 내용, 코멘트 좋아한 유저들
-        fields = ['id', 'users','content', 'liked_users']
+        model = Comment 
+        fields = ['id', 'users','content', 'liked_users',]
+        # 코멘트 총 개수, 코멘트 pk, 어떤 유저가 쓴 comment인지, 내용, 코멘트 좋아한 유저들
+
 
 # 코멘트 로그인유저별 조회
 class CommentUserListSerializer(serializers.ModelSerializer):

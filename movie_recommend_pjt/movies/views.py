@@ -66,8 +66,8 @@ def comment_create(request, movie_pk):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    # elif request.method == 'PUT':
-    #     serializer = 
+    # elif request.method == 'DELETE':
+        
 
 
 # 유저가 작성한 comment 조회
@@ -79,10 +79,17 @@ def comment_list_user(request):
     serializer = CommentUserListSerializer(comments, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-
+# 영화별 코멘트 조회
 @api_view(['GET'])
 def comment_list_movie(request, movie_pk):
     movie = Movie.objects.get(pk=movie_pk)
     comments = Comment.objects.filter(movies=movie)
     serializer = CommentListSerializer(comments, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+
+    # 해당 영화에 대한 총 코멘트 수
+    total_comments = comments.count()
+
+    return Response({
+        'number_of_count': total_comments,  # 총 코멘트 개수
+        'comments': serializer.data  # 코멘트 목록
+    }, status=status.HTTP_200_OK)
