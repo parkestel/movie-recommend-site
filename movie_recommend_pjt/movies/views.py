@@ -9,6 +9,7 @@ from .models import Movie, Genre, Ott, Comment
 from voca_notes.models import VocaNote
 from .serializers import MovieListSerializers, WishMovieSerializer, OttListSerializers, GenreListSerializers
 from .serializers import CommentSerializer, CommentListSerializer, CommentUserListSerializer, WishMovieVocaSerializer
+from .serializers import CommentUserLikedSerializer
 
 User = get_user_model()
 
@@ -203,3 +204,23 @@ def like_comment(request, comment_pk):
     else:    
         comment.liked_users.add(login_user)
         return Response({'status': 'added', 'comment_pk': comment.pk}, status=status.HTTP_200_OK)
+
+
+
+# 로그인한 유저가 좋아요한 comment 들만
+@api_view(['GET'])
+def login_user_like_comment(request):
+    login_user = request.user
+    comments = Comment.objects.filter(liked_users=login_user)
+    serializer =  CommentUserLikedSerializer(comments, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+
+# top_5 코멘트
+@api_view(['GET'])
+def top_5_comment(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    top_5_comments = movie.comments.annotate(like_count=Count('liked_users')).order_by('-like_count')[:5]
+    serializer = CommentListSerializer(top_5_comments, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)

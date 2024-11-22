@@ -1,0 +1,34 @@
+[
+{
+    "model": "voca_notes.vocanote",
+    "pk": 1,
+    "fields": {
+        "is_public": true,
+        "movies": [
+            5
+        ],
+        "users": [
+            1
+        ],
+        "vocas": [
+            1,
+            2,
+            3
+        ]
+    }
+},
+{
+    "model": "voca_notes.vocanote",
+    "pk": 2,
+    "fields": {
+        "is_public": true,
+        "movies": [
+            3
+        ],
+        "users": [
+            1
+        ],
+        "vocas": []
+    }
+}
+]
