@@ -41,7 +41,13 @@ const submitVoca = function (noteId = note.id) {
     examples: examples.value,
     memo: memo.value
   }
+
   store.createVoca(noteId, payload)
+  
+  word.value=""
+  word_mean.value=""
+  examples.value=""
+  memo.value=""
 }
 </script>
 
