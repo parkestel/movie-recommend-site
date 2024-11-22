@@ -148,6 +148,7 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       userProfile.value=res.data
+      getVocaNote(userProfile.value.id)
       // getWishMovieWithOutNote()
     })
     .catch(err=>{
@@ -246,7 +247,6 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       getVocaNote(userId)
-      console.log(res)
     })
     .catch(err=>{
       console.log(err)

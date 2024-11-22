@@ -8,9 +8,15 @@
                 <option value="withNote">단어장 있는 영화</option>
             </select>
         </div>
-        <div>
+        <div v-if="userProfile.username===store.logedinUsername">
             <WishMovieCard  
             v-for="wishMovie in filteredMovies"
+            :key="wishMovie.id"
+            :wish-movie="wishMovie"/>
+        </div>
+        <div v-else>
+            <WishMovieCard  
+            v-for="wishMovie in userProfile.wish_movies"
             :key="wishMovie.id"
             :wish-movie="wishMovie"/>
         </div>
