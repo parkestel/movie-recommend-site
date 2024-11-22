@@ -25,12 +25,7 @@ export const useMovieStore = defineStore('movie', () => {
   const difficulties = ref(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'])
   const wishMovies = ref(null)
   const vocaNoteList = ref(null)
-
-
-  const vocaList = ref([
-    {id:1, word: 'toy', word_mean: '장난감', note_id: 1, examples:'I buy a toy', memo:'', is_memorized:true},
-    {id:2, word: 'play', word_mean: '놀다', note_id: 1, examples:'I play with my sister', memo:'play-played-played', is_memorized:false},
-  ])
+  const vocaList = ref(null)
 
   const userProfile = ref(null)
   
@@ -47,7 +42,10 @@ export const useMovieStore = defineStore('movie', () => {
       movies.value = res.data
     })
     .catch(err=>{
-      console.log(err)
+      if (err.response && err.response.status === 401) {
+        window.alert('로그인이 필요합니다.')
+        router.push({name:'login'})
+      }
     })
   }
   const getImgUrl = function(poster_path,width) {
@@ -71,7 +69,10 @@ export const useMovieStore = defineStore('movie', () => {
       wishMovies.value=res.data
     })
     .catch(err=>{
-      console.log(err)
+      if (err.response && err.response.status === 401) {
+        window.alert('로그인이 필요합니다.')
+        router.push({name:'login'})
+      }
     })
   }
 
@@ -119,7 +120,10 @@ export const useMovieStore = defineStore('movie', () => {
       userProfile.value=res.data
     })
     .catch(err=>{
-      console.log(err)
+      if (err.response && err.response.status === 401) {
+        window.alert('로그인이 필요합니다.')
+        router.push({name:'login'})
+      }
     })
   }
 
@@ -140,10 +144,10 @@ export const useMovieStore = defineStore('movie', () => {
       console.log(err)
     })
   }
-  const getNote = function (noteId) {
-    const targetNote = vocaNoteList.value.find((note)=>note.id===Number(noteId))
-    return targetNote
-  }
+  // const getNote = function (noteId) {
+  //   const targetNote = vocaNoteList.value.find((note)=>note.id===Number(noteId))
+  //   return targetNote
+  // }
 
   const getVocaNote = function (profileuserId) {
     axios({
@@ -154,10 +158,63 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log(res.data)
+      vocaNoteList.value = res.data
     })
     .catch(err=>{
+      console.log(err)
+    })
+  }
 
+  const createVocaNote = function (movieId, userId) {
+    axios({
+      method:'post',
+      url:`${API_BASE_URL}/voca/${movieId}/vocanote/create/${userId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      window.open(`/note/${res.data.id}`, '__blank', 'width=400,height=650')
+      // router.push({name:'vocanote', params:{note_id:res.data.id}})
+      getVocaNote(userId)
+      console.log('단어장 생성 성공!')
+    })
+    .catch(err=>{
+      console.log(err)
+    }) 
+  }
+
+  const deleteNote = function (movieId, userId) {
+    axios({
+      method:'delete',
+      url:`${API_BASE_URL}/voca/${movieId}/vocanote/create/${userId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      getVocaNote(userId)
+      console.log(res)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
+
+  const togglePublicVocaNote = function (movieId, userId) {
+    axios({
+      method:'put',
+      url:`${API_BASE_URL}/voca/${movieId}/vocanote/ispublic/${userId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      getVocaNote(userId)
+      console.log(res)
+    })
+    .catch(err=>{
+      console.log(err)
     })
   }
 
@@ -186,10 +243,6 @@ export const useMovieStore = defineStore('movie', () => {
     return wishMovies.value?.some(movie => movie.id===movieId)
   }
 
-  const deleteNote = function (id) {
-    const targetId = vocaNoteList.value.findIndex(note => note.id===id)
-    vocaNoteList.value.splice(targetId, 1)
-  }
 
   const signUp = function (payload) {
     const username = payload.username
@@ -217,12 +270,11 @@ export const useMovieStore = defineStore('movie', () => {
         study_level,
       }
     })
-    .then(res=>{
+    .then((res)=>{
       // console.log('회원가입 완료')
       // 자동 로그인 구현
       const password = password1
       logIn({username, password})
-      router.push({name:'movies'})
     })
     .catch(err=>{
       console.log(err)
@@ -275,7 +327,9 @@ export const useMovieStore = defineStore('movie', () => {
       router.push({name:'login'})
     })
     .catch(err=>{
-      window.alert('로그아웃에 실패했습니다.')
+      if (err) {
+        window.alert('로그아웃에 실패했습니다.')
+      }
     })
 
   }
@@ -297,7 +351,10 @@ export const useMovieStore = defineStore('movie', () => {
       router.push({name:'login'})
     })
     .catch(err=>{
-      window.alert('탈퇴에 실패하셨습니다.')
+      if (err) {
+
+        window.alert('탈퇴에 실패하셨습니다.')
+      }
     })
   }
 
@@ -318,5 +375,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, toggleFollowerbutton, getNote, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })
