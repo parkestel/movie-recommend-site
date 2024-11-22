@@ -3,7 +3,7 @@
         <h1>Movie WishList</h1>
         <div>
             <WishMovieCard  
-            v-for="wishMovie in userProfile.wish_movies"
+            v-for="wishMovie in wishMovies"
             :key="wishMovie.id"
             :wish-movie="wishMovie"/>
         </div>
@@ -16,7 +16,7 @@ import WishMovieCard from '@/components/WishMovieListView/WishMovieCard.vue'
 import { storeToRefs } from 'pinia'
 const store = useMovieStore()
 // storeToRefs로 userProfile을 리액티브한 참조로 가져오기
-const { userProfile } = storeToRefs(store)
+const { wishMovies } = storeToRefs(store)
 </script>
 
 <style scoped>
