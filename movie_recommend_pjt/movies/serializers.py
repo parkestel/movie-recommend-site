@@ -64,6 +64,7 @@ class MovieCommentSerializer(serializers.ModelSerializer):
         fields = ['id', 'title',]
 
 
+
 # 코멘트 생성
 class CommentSerializer(serializers.ModelSerializer):
     movies = MovieCommentSerializer(read_only=True, many=True)
@@ -72,6 +73,7 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = '__all__'
         read_only_fields = ('users', 'liked_users',)
+
 
 
 # 코멘트 영화별 조회 
@@ -87,14 +89,21 @@ class CommentListSerializer(serializers.ModelSerializer):
     # 각 댓글의 liked_users 수를 반환 (없으면 0)
         return obj.liked_users.count()
 
+
+
 # 코멘트 로그인유저별 조회
 class CommentUserListSerializer(serializers.ModelSerializer):
     movies = MovieCommentSerializer(read_only=True, many=True)
-
+    liked_user_count = serializers.SerializerMethodField()
+    
     class Meta:
         model = Comment
-        fields = ['id', 'content', 'movies', 'liked_users']
+        fields = ['id', 'content', 'movies', 'liked_user_count', 'liked_users']
         read_only_fields = ('liked_users',)
+    def get_liked_user_count(self, obj):
+        # 각 코멘트의 liked_users 수 반환 (없으면 0)
+        return obj.liked_users.count()
+
 
 
 # 로그인 유저의 좋아요한 코멘트 조회
@@ -105,6 +114,8 @@ class CommentUserLikedSerializer(serializers.ModelSerializer):
         model = Comment
         fields = ['id', 'content', 'movies', 'liked_users']
         read_only_fields = ('liked_users',)
+
+
 
 
 # 메인페이지 전체 영화 조회
