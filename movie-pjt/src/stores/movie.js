@@ -184,6 +184,23 @@ export const useMovieStore = defineStore('movie', () => {
     }) 
   }
 
+  const deleteNote = function (movieId, userId) {
+    axios({
+      method:'delete',
+      url:`${API_BASE_URL}/voca/${movieId}/vocanote/create/${userId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      getVocaNote(userId)
+      console.log(res)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
+
   const getVocas = function (noteId) {
     return vocaList.value.filter((voca)=>voca.note_id===Number(noteId))
   }
@@ -209,10 +226,6 @@ export const useMovieStore = defineStore('movie', () => {
     return wishMovies.value?.some(movie => movie.id===movieId)
   }
 
-  const deleteNote = function (id) {
-    const targetId = vocaNoteList.value.findIndex(note => note.id===id)
-    vocaNoteList.value.splice(targetId, 1)
-  }
 
   const signUp = function (payload) {
     const username = payload.username

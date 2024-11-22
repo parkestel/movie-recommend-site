@@ -2,7 +2,7 @@
   <div>
     <h5>My Voca Note Page</h5>
     <button @click="togglecreateNewNote" v-if="store.logedinUsername===userProfile.username">{{ showSelectMovie ? '취소' : '단어장 생성' }}</button>
-    <button @click="toggleDeleteButtons">{{ showDeleteButton ? '취소' : '삭제' }}</button>
+    <button @click="toggleDeleteButtons" v-if="store.logedinUsername===userProfile.username">{{ showDeleteButton ? '취소' : '삭제' }}</button>
     <br>
     <form>
       <select id="movieForVocaNote" v-if="showSelectMovie" @change="createNewNote($event.target.value)">
@@ -21,7 +21,6 @@
 <script setup>
 import VocaNoteItem from '@/components/VocaNoteListView/VocaNoteItem.vue'
 import { useMovieStore } from "@/stores/movie";
-import axios from 'axios';
 import { storeToRefs } from 'pinia'
 import { onMounted, ref } from 'vue';
 
