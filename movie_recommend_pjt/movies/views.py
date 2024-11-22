@@ -8,7 +8,7 @@ from rest_framework.decorators import api_view
 from .models import Movie, Genre, Ott, Comment
 from voca_notes.models import VocaNote
 from .serializers import MovieListSerializers, WishMovieSerializer, OttListSerializers, GenreListSerializers
-from .serializers import CommentSerializer, CommentListSerializer, CommentUserListSerializer
+from .serializers import CommentSerializer, CommentListSerializer, CommentUserListSerializer, WishMovieVocaSerializer
 
 User = get_user_model()
 
@@ -42,7 +42,7 @@ def logined_wish_movie_list(request):
     login_user = request.user
     wished_movies = Movie.objects.filter(wish_users=login_user)
 
-    serializer = WishMovieSerializer(wished_movies, many=True)
+    serializer = WishMovieSerializer(wished_movies, many=True, context={'request': request})
     return Response(serializer.data)
 
 # 로그인 한 유저의 wish movies중 vocanote 없는 리스트 목록
@@ -54,7 +54,7 @@ def wish_movie_without_vocanote(request):
 
     # voca_notes가 없는 영화만 필터링 (빈 리스트나 연결된 voca_note가 없으면 Count가 0)
     without_vocanote_movies = wished_movies.annotate(voca_note_count=Count('voca_notes')).filter(voca_note_count=0)
-    serializer = WishMovieSerializer(without_vocanote_movies, many=True)
+    serializer = WishMovieVocaSerializer(without_vocanote_movies, many=True)
     
     return Response(serializer.data)
 
