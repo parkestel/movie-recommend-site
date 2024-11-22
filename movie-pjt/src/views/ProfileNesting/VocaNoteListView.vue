@@ -6,6 +6,7 @@
     <br>
     <form>
       <select id="movieForVocaNote" v-if="showSelectMovie" @change="createNewNote($event.target.value)">
+        <option selected>--영화를 선택하세요--</option>
         <option v-for="movie in wishMoviesWithOutNote" :key="movie.id" :value="movie.id">{{ movie.title }}</option>
       </select>
     </form>
