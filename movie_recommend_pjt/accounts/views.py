@@ -19,6 +19,8 @@ def login_user_data(request):
     serializer = CustomUserDetailsSerializer(user)
     return Response(serializer.data)
 
+
+
 @api_view(['GET'])
 @authentication_classes([TokenAuthentication, BasicAuthentication])
 @permission_classes([IsAuthenticated])
@@ -28,6 +30,7 @@ def profile(request, username):
     serializer = PersonUserDetailsSerializer(person)
     return Response(serializer.data)
  
+
 
 # 회원 탈퇴 기능 & 로그아웃까지 연동
 @api_view(['POST'])
@@ -50,7 +53,9 @@ def delete_user(request):
             "status": "failure"
         }
         return Response(data=message, status=status.HTTP_401_UNAUTHORIZED)
-    
+
+
+
 # 팔로잉 기능
 @api_view(['POST'])
 def followings(request, user_pk):

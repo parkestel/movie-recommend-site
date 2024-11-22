@@ -85,6 +85,7 @@ def change_is_public(request, movie_pk, user_pk):
         return Response(serializer.data)        
 
 
+
 # 사용자 별 VocaNote 전체 리스트 조회
 # 만약 로그인 
 @api_view(['GET'])
@@ -113,6 +114,8 @@ def voca_note_list(request, user_pk):
 
     serializer = VocaNoteSerializers(voca_notes, many=True)
     return Response(serializer.data, status=200)
+
+
 
 # 단어 생성
 @api_view(['POST'])
@@ -149,6 +152,8 @@ def create_voca(request, vocanote_pk):
                      'voca_note': serializer.data}, 
                      status=status.HTTP_201_CREATED)
 
+
+
 # 단어장 별 전체 정보 조회
 @api_view(['GET'])
 def voca_note_detail(request, vocanote_pk):
@@ -165,6 +170,7 @@ def voca_note_detail(request, vocanote_pk):
     # is_public이 True일 경우 정보 제공
     serializer = VocaNoteAllSerializers(voca_note)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 
 # 단어 수정 후 해당 단어장 전체 데이터 반환
@@ -217,3 +223,12 @@ def delete_voca(request, vocanote_pk, voca_pk):
         'message': '단어가 성공적으로 삭제되었습니다.',
         'voca_note': serializer.data  # 삭제 후 갱신된 단어장 정보
     }, status=status.HTTP_200_OK)
+
+
+
+@api_view(['POST'])
+def change_is_memorized(request, vocanote_pk, voca_pk):
+    # 로그인 사용자만 바꿀 수 있게
+
+    
+    pass
