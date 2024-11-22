@@ -64,6 +64,9 @@ const returnToMyNote = function(username=userProfile.value.username) {
 
 const togglePublic = function (movieId, userId = userProfile.value.id) {
     store.togglePublicVocaNote(movieId,userId)
+    if (window.opener) {
+        window.opener.location.reload(); // 부모 창 새로고침
+    }
     // emit('toggleEvent', movieId, userId)
 }
 
