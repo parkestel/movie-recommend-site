@@ -7,7 +7,9 @@
     </div>
     <h5>{{ wishMovie.title }}</h5>
     <button @click="moveToDetail(wishMovie.id)">Detail</button>
-    <button @click="popUp(noteId)">VocaNote</button>
+    <div v-if="userProfile.username === store.logedinUsername">
+      <button v-if="isHavingNote(wishMovie.id)" @click="popUp(noteId)">See VocaNote</button>
+    </div>
   </div>
 </template>
 
@@ -19,9 +21,11 @@ defineProps({
 import { useMovieStore } from "@/stores/movie"
 import { useRouter } from "vue-router"
 import { ref } from 'vue';
+import { storeToRefs } from "pinia";
 
 const store = useMovieStore()
 const router = useRouter()
+const { userProfile, vocaNoteList } = storeToRefs(store)
 
 const noteId = ref(1)
 // noteId는 현재 로그인된 유저, movieId를 가지고 해당 noteId를 반환하고,,, ref에 넣어줌
@@ -31,6 +35,11 @@ const moveToDetail = function (movieId) {
   router.push({name:'movie-detail', params:{'movieid':movieId}})
 }
 
+const isHavingNote = function (movieId) {
+  if (vocaNoteList.value.some((note)=>note.movies.id===movieId)) {
+    return true
+  }
+}
 const popUp = function (noteId) {
   window.open(`/note/${noteId}`, '__blank', 'width=400,height=650')
 }

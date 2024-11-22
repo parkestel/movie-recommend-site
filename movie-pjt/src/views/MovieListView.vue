@@ -107,10 +107,10 @@ const sortedMovies = computed(() => {
         return [...moviesToSort].sort((a, b) => a.title.localeCompare(b.title));
         case '알파벳 내림차순 (Z~A)':
         return [...moviesToSort].sort((a, b) => b.title.localeCompare(a.title));
-        // case '제목 한글 오름차순 (ㄱ~ㅎ)':
-        // return [...moviesToSort].sort((a, b) => a.title.localeCompare(b.title, 'ko-KR'));
-        // case '제목 한글 내림차순 (ㅎ~ㄱ)':
-        // return [...moviesToSort].sort((a, b) => b.title.localeCompare(a.title, 'ko-KR'));
+        case '제목 한글 오름차순 (ㄱ~ㅎ)':
+        return [...moviesToSort].sort((a, b) => a.title_kr.localeCompare(b.title, 'ko-KR'));
+        case '제목 한글 내림차순 (ㅎ~ㄱ)':
+        return [...moviesToSort].sort((a, b) => b.title_kr.localeCompare(a.title, 'ko-KR'));
         case '개봉 날짜 오름차순 (과거순)':
         return [...moviesToSort].sort((a, b) => new Date(a.release_date) - new Date(b.release_date));
         case '개봉 날짜 내림차순 (최신순)':
