@@ -1,11 +1,11 @@
 <template>
   <div class="card">
     <div v-if="userProfile.username===store.logedinUsername">
-      <button v-if="note.is_public" @click="togglePublic(note.movies)">public</button>
-      <button v-else @click="togglePublic(note.movies)">private</button>
+      <button v-if="note.is_public" @click="togglePublic(note.movies[0].id)">public</button>
+      <button v-else @click="togglePublic(note.movies[0].id)">private</button>
     </div>
-    <button v-if="showDelete" @click="deleteNote(note.movies)">X</button>
-    <h5>{{ note.movies }}</h5>
+    <button v-if="showDelete" @click="deleteNote(note.movies[0].id)">X</button>
+    <h5>{{ note.movies[0].title }}</h5>
     <button @click="popUp(note.id)">show my note</button>
   </div>
 </template>
