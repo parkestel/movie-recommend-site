@@ -233,15 +233,26 @@ def change_is_memorized(request, vocanote_pk, voca_pk):
     voca = get_object_or_404(Voca, pk=voca_pk)
     login_user = request.user
 
-    if not voca_note.users.filter(pk=request.user.pk).exists():
+    if not voca_note.users.filter(pk=login_user.pk).exists():
         return Response({'error': '자신의 단어장 단어들만 수정할 수 있습니다.'}, status=403)
-        
-    # voca_note = VocaNote.objects.filter(users=login_user, movies=movie).first()
-    # if not voca_note:
-    #     return Response({'error': '수정할 단어장이 존재하지 않습니다.'}, status=404)
     
-    # voca_note.is_public = not voca_note.is_public
-    # serializer = VocaNoteSerializers(voca_note, data={'is_public': voca_note.is_public}, partial=True)
-    # if serializer.is_valid(raise_exception=True):
-    #     serializer.save()
-    #     return Response(serializer.data)  
+    if not voca_note:
+        return Response({'error': '수정할 단어가 존재하지 않습니다.'}, status=404)
+    
+    memorized_status = voca.is_memorized
+
+    voca.is_memorized = not voca.is_memorized
+    voca.save()
+
+    if memorized_status:
+        message = f"아직 voca{voca.pk}:{voca.word}를 덜 외웠어요."
+    else:
+        message = f"voca{voca.pk}:{voca.word} 단어를 외웠어요!"
+
+    voca_note.refresh_from_db() 
+    serializer = VocaNoteAllSerializers(voca_note)
+
+    return Response({
+        'message': message,
+        'voca_note': serializer.data 
+    }, status=status.HTTP_200_OK)
