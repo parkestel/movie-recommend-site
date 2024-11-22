@@ -75,7 +75,7 @@ const selectedGenres = ref([]) // 선택된 장르 목록
 const selectedOtts = ref([]) //선택된 ott
 const selectedLevel = ref([]) //선택된 난이도
 
-const selectedSortOption = ref('평점 높은 순') // 정렬 디폴트
+const selectedSortOption = ref('---정렬 기준 선택하세요---') // 정렬 디폴트
 
 const { movies, genres, otts, difficulties } = storeToRefs(store)
 const filteredMovies = ref([])
