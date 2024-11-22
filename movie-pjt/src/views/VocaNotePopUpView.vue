@@ -77,6 +77,7 @@ onMounted(()=>{
     vocaList.value = store.getVocas(noteId)
     console.log(vocaList)
 })
+
 </script>
 
 <style scoped>

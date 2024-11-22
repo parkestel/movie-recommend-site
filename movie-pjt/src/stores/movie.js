@@ -24,6 +24,7 @@ export const useMovieStore = defineStore('movie', () => {
   const otts = ref(null)
   const difficulties = ref(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'])
   const wishMovies = ref(null)
+  const wishMoviesWithOutNote = ref(null)
   const vocaNoteList = ref(null)
   const vocaList = ref(null)
 
@@ -82,6 +83,29 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
 
+  const getWishMovieWithOutNote = function () {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/movies/wish-movies-without-vocanote/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      wishMoviesWithOutNote.value=res.data
+    })
+    .catch(err=>{
+      if (err.response && err.response.status === 401) {
+        token.value=null
+        logedinUsername.value=null
+        userProfile.value=null 
+        window.alert('로그인이 필요합니다.')
+        router.push({name:'login'})
+      }
+    })
+    
+  }
+
   const getGenres = function () {
     axios({
       method:'get',
@@ -124,6 +148,8 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       userProfile.value=res.data
+      getVocaNote(userProfile.value.id)
+      // getWishMovieWithOutNote()
     })
     .catch(err=>{
       if (err.response && err.response.status === 401) {
@@ -187,7 +213,7 @@ export const useMovieStore = defineStore('movie', () => {
       window.open(`/note/${res.data.id}`, '__blank', 'width=400,height=650')
       // router.push({name:'vocanote', params:{note_id:res.data.id}})
       getVocaNote(userId)
-      console.log('단어장 생성 성공!')
+      getWishMovieWithOutNote()
     })
     .catch(err=>{
       console.log(err)
@@ -204,7 +230,7 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       getVocaNote(userId)
-      console.log(res)
+      getWishMovieWithOutNote()
     })
     .catch(err=>{
       console.log(err)
@@ -221,7 +247,6 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       getVocaNote(userId)
-      console.log(res)
     })
     .catch(err=>{
       console.log(err)
@@ -385,5 +410,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })
