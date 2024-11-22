@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 
-from .serializers import VocaNoteSerializers,VocaNoteAllSerializers
+from .serializers import VocaNoteSerializers,VocaNoteAllSerializers, VocaSerializers
 from .models import VocaNote, Voca
 from movies.models import Movie
 
@@ -149,12 +149,12 @@ def create_voca(request, vocanote_pk):
                      'voca_note': serializer.data}, 
                      status=status.HTTP_201_CREATED)
 
-
+# 단어장 별 전체 정보 조회
 @api_view(['GET'])
 def voca_note_detail(request, vocanote_pk):
     login_user = request.user
     voca_note = get_object_or_404(VocaNote, pk=vocanote_pk)
-    
+
     if voca_note.users.filter(pk=login_user.pk).exists():
         serializer = VocaNoteAllSerializers(voca_note)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -166,3 +166,54 @@ def voca_note_detail(request, vocanote_pk):
     serializer = VocaNoteAllSerializers(voca_note)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
+
+# 단어 수정 후 해당 단어장 전체 데이터 반환
+@api_view(['PUT'])
+def update_voca(request, vocanote_pk, voca_pk):
+
+    login_user = request.user
+
+    voca_note = get_object_or_404(VocaNote, pk=vocanote_pk)
+    voca = get_object_or_404(Voca, pk=voca_pk)
+
+    if not voca_note.users.filter(pk=login_user.pk).exists():
+        return Response({'error': '해당 단어장에 대해 권한이 없습니다.'}, status=status.HTTP_403_FORBIDDEN)
+
+    # Voca 수정
+    serializer = VocaSerializers(voca, data=request.data, partial=True)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save()
+
+    # 수정 후 전체 단어장 정보 반환
+    voca_note.refresh_from_db()  # 단어장 데이터를 새로 고침
+    voca_note_serializer = VocaNoteAllSerializers(voca_note)
+
+    return Response({
+        'message': '단어가 성공적으로 수정되었습니다.',
+        'voca_note': voca_note_serializer.data
+    }, status=status.HTTP_200_OK)
+
+
+
+@api_view(['DELETE'])
+def delete_voca(request, vocanote_pk, voca_pk):
+    
+    voca_note = get_object_or_404(VocaNote, pk=vocanote_pk)
+    voca = get_object_or_404(Voca, pk=voca_pk)
+
+    if not voca_note.users.filter(pk=request.user.pk).exists():
+        return Response({'error': '해당 단어장에 대한 권한이 없습니다.'}, status=status.HTTP_403_FORBIDDEN)
+
+    # 단어 삭제
+    voca_note.vocas.remove(voca)  
+    voca.delete()  # 단어 자체 삭제
+
+    # 삭제 후 단어장 정보 갱신
+    voca_note.refresh_from_db() 
+    serializer = VocaNoteAllSerializers(voca_note)
+
+    # 전체 단어장 정보 반환
+    return Response({
+        'message': '단어가 성공적으로 삭제되었습니다.',
+        'voca_note': serializer.data  # 삭제 후 갱신된 단어장 정보
+    }, status=status.HTTP_200_OK)
