@@ -40,6 +40,8 @@ class UserListSerializers(serializers.ModelSerializer):
         model = User  
         fields = ['id', 'nickname']  # 필요한 필드만 포함
 
+
+
 # 로그인한 유저의 좋아요한 영화 목록
 class WishMovieSerializer(serializers.ModelSerializer):
     # has_voca_note = serializers.SerializerMethodField()
@@ -53,6 +55,7 @@ class WishMovieSerializer(serializers.ModelSerializer):
     #     # 해당 영화에 연결된 voca_notes에서 로그인한 유저가 있는지 확인
     #     return obj.voca_notes.filter(users=login_user).exists()
     
+
 
 # 로그인한 유저의 좋아요한 영화 목록 중 vocanote 없는
 class WishMovieVocaSerializer(serializers.ModelSerializer):
@@ -84,6 +87,7 @@ class CommentSerializer(serializers.ModelSerializer):
 # 코멘트 영화별 조회 
 class CommentListSerializer(serializers.ModelSerializer):
     liked_user_count = serializers.SerializerMethodField()
+    users = UserSerializer(many=True, read_only=True)
 
     class Meta:
         model = Comment 
