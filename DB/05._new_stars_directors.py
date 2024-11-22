@@ -6,7 +6,7 @@ import time
 
 API_KEY = ''
 API_URL = 'https://api.themoviedb.org/3/'
-json_file = 'movies_add_otts.json'
+json_file = 'movies_added_otts.json'
 
 
 def update_movies_and_create_stars_directors(json_data, max_stars=5):
