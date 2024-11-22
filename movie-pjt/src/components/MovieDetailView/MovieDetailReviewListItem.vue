@@ -1,8 +1,9 @@
 <template>
   <div>
     <span>{{ review.content }}</span>
-    <button @click="likeReview(review.id, store.logedinUsername)">추천</button>
-    <p>{{ review.nickname }}</p> 
+    <button v-if="review.username!==store.logedinUsername" @click="likeReview(review.id)">추천</button>
+    <p>작성자: {{ review.nickname }}</p>
+    <p>추천 수: {{ review.liked_users_count }}</p>
     <!-- 작성자 === 로그인한 사람 일 때만 삭제 버튼 보이게 -->
     <button v-if="review.username===store.logedinUsername" @click="deleteReview(review.id)">삭제</button>
     <button v-if="review.username===store.logedinUsername" @click="openUpdateForm">{{ isVisable ? '취소' : '수정' }}</button>
@@ -17,16 +18,20 @@
 <script setup>
 import { useMovieStore } from '@/stores/movie';
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 
 defineProps({
   review:Object
 })
 const store = useMovieStore()
+const route = useRoute()
+const movieId = route.params.movieid
 const isVisable = ref(false) 
 const emit = defineEmits(['deleteEvent', 'updateReview', 'likeEvent'])
 
-const likeReview = function (id, user) {
-  emit('likeEvent', id, user)
+const likeReview = function (id) {
+  store.likeComments(id)
+  store.getMovieComments(movieId)
 }
 const deleteReview = function (id) {
   emit('deleteEvent', id)
