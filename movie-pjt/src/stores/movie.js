@@ -246,19 +246,19 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .catch(err=>{
       window.alert('로그인에 실패 했습니다!')
-      router.push({name:'login'})
+      // router.push({name:'login'})
     })
   }
 
   const logOut = function () {
+    token.value=null
+    logedinUsername.value=null
+    userProfile.value=null
     axios({
       method:'post',
       url: `${API_BASE_URL}/accounts/dj-rest-auth/logout/`
     })
     .then(res=>{
-      token.value=null
-      logedinUsername.value=null
-      userProfile.value=null
       window.alert('Bye! See you soon')
       router.push({name:'login'})
     })
@@ -270,6 +270,9 @@ export const useMovieStore = defineStore('movie', () => {
 
   const SignOut = function() {
     window.confirm('탈퇴하면 되돌릴 수 없습니다. 진행하시겠습니까?')
+    logedinUsername.value = null
+    token.value = null
+    userProfile.value=null
     axios({
       method:'post',
       url:`${API_BASE_URL}/accounts/delete/`,
@@ -278,7 +281,7 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log('탈퇴 완료')
+      window.alert('탈퇴 완료')
       router.push({name:'login'})
     })
     .catch(err=>{
