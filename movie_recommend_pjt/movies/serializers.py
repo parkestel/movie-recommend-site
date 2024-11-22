@@ -35,20 +35,62 @@ class UserListSerializers(serializers.ModelSerializer):
         model = User  
         fields = ['id', 'nickname']  # 필요한 필드만 포함
 
+# 로그인한 유저의 좋아요한 영화 목록
 class WishMovieSerializer(serializers.ModelSerializer):
+    has_voca_note = serializers.SerializerMethodField()
+    class Meta:
+        model = Movie
+        fields = ['id', 'tmdb_id', 'title', 'poster_path', 'has_voca_note']
+    
+    def get_has_voca_note(self, obj):
+        # 로그인한 유저와 해당 영화가 연결된 voca_note가 있는지 확인
+        login_user = self.context['request'].user
+        # 해당 영화에 연결된 voca_notes에서 로그인한 유저가 있는지 확인
+        return obj.voca_notes.filter(users=login_user).exists()
+
+# 로그인한 유저의 좋아요한 영화 목록 중 vocanote 없는
+class WishMovieVocaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
         fields = ['id', 'tmdb_id', 'title', 'poster_path']
+    
 
-class CommentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Comment
-        fields = ['id', 'content', 'movies', 'users']
 
+## 코멘트 관련 serializer 시작
 class MovieCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
-        fields = ['id', 'tmdb_id', 'title', 'comments']
+        fields = ['id', 'title',]
+
+
+# 코멘트 생성
+class CommentSerializer(serializers.ModelSerializer):
+    movies = MovieCommentSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Comment
+        fields = '__all__'
+        read_only_fields = ('users', 'liked_users',)
+
+
+# 코멘트 영화별 조회 
+class CommentListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Comment 
+        fields = ['id', 'users','content', 'liked_users',]
+        # 코멘트 총 개수, 코멘트 pk, 어떤 유저가 쓴 comment인지, 내용, 코멘트 좋아한 유저들
+
+
+# 코멘트 로그인유저별 조회
+class CommentUserListSerializer(serializers.ModelSerializer):
+    movies = MovieCommentSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Comment
+        fields = ['id', 'content', 'movies', 'liked_users']
+        read_only_fields = ('liked_users',)
+
 
 # 메인페이지 전체 영화 조회
 class MovieListSerializers(serializers.ModelSerializer):
