@@ -72,7 +72,6 @@ const togglePublic = function (movieId, userId = userProfile.value.id) {
 }
 
 const deleteWord = function (id) {
-    console.log(noteId.value)
     store.deleteVoca(id, noteId.value)
 }
 
