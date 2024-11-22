@@ -24,12 +24,8 @@ export const useMovieStore = defineStore('movie', () => {
   const otts = ref(null)
   const difficulties = ref(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'])
   const wishMovies = ref(null)
+  const vocaNoteList = ref(null)
 
-  const vocaNoteList = ref([
-    {id:1, movieId: 1, movie: 'Toy Story', is_public: true},
-    {id:2, movieId: 1, movie: 'Toy Story', is_public: false},
-    {id:3, movieId: 2, movie: 'Toy Story 2', is_public: true},
-  ])
 
   const vocaList = ref([
     {id:1, word: 'toy', word_mean: '장난감', note_id: 1, examples:'I buy a toy', memo:'', is_memorized:true},
@@ -149,6 +145,22 @@ export const useMovieStore = defineStore('movie', () => {
     return targetNote
   }
 
+  const getVocaNote = function (profileuserId) {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/voca/vocanote/list/${profileuserId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      console.log(res.data)
+    })
+    .catch(err=>{
+
+    })
+  }
+
   const getVocas = function (noteId) {
     return vocaList.value.filter((voca)=>voca.note_id===Number(noteId))
   }
@@ -246,19 +258,19 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .catch(err=>{
       window.alert('로그인에 실패 했습니다!')
-      router.push({name:'login'})
+      // router.push({name:'login'})
     })
   }
 
   const logOut = function () {
+    token.value=null
+    logedinUsername.value=null
+    userProfile.value=null
     axios({
       method:'post',
       url: `${API_BASE_URL}/accounts/dj-rest-auth/logout/`
     })
     .then(res=>{
-      token.value=null
-      logedinUsername.value=null
-      userProfile.value=null
       window.alert('Bye! See you soon')
       router.push({name:'login'})
     })
@@ -270,6 +282,9 @@ export const useMovieStore = defineStore('movie', () => {
 
   const SignOut = function() {
     window.confirm('탈퇴하면 되돌릴 수 없습니다. 진행하시겠습니까?')
+    logedinUsername.value = null
+    token.value = null
+    userProfile.value=null
     axios({
       method:'post',
       url:`${API_BASE_URL}/accounts/delete/`,
@@ -278,7 +293,7 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log('탈퇴 완료')
+      window.alert('탈퇴 완료')
       router.push({name:'login'})
     })
     .catch(err=>{
@@ -303,5 +318,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, toggleFollowerbutton, getNote, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, toggleFollowerbutton, getNote, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })
