@@ -14,7 +14,8 @@
     :key="note.id"
     :note="note"
     :show-delete="showDeleteButton"
-    @delete-event="store.deleteNote"/>
+    @delete-event="store.deleteNote"
+    @toggle-event="store.togglePublicVocaNote"/>
   </div>
 </template>
 
