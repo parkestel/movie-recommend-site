@@ -43,6 +43,9 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .catch(err=>{
       if (err.response && err.response.status === 401) {
+        token.value=null
+        logedinUsername.value=null
+        userProfile.value=null
         window.alert('로그인이 필요합니다.')
         router.push({name:'login'})
       }
@@ -70,6 +73,9 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .catch(err=>{
       if (err.response && err.response.status === 401) {
+        token.value=null
+        logedinUsername.value=null
+        userProfile.value=null 
         window.alert('로그인이 필요합니다.')
         router.push({name:'login'})
       }
@@ -121,6 +127,9 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .catch(err=>{
       if (err.response && err.response.status === 401) {
+        token.value=null
+        logedinUsername.value=null
+        userProfile.value=null
         window.alert('로그인이 필요합니다.')
         router.push({name:'login'})
       }
@@ -144,10 +153,11 @@ export const useMovieStore = defineStore('movie', () => {
       console.log(err)
     })
   }
-  // const getNote = function (noteId) {
-  //   const targetNote = vocaNoteList.value.find((note)=>note.id===Number(noteId))
-  //   return targetNote
-  // }
+
+  const getNote = function (noteId) {
+    const targetNote = vocaNoteList.value.find((note)=>note.id===Number(noteId))
+    return targetNote
+  }
 
   const getVocaNote = function (profileuserId) {
     axios({
@@ -375,5 +385,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })

@@ -43,6 +43,7 @@ const createNewNote = function (movieId, userId = userProfile.value.id) {
 
 onMounted(()=>{
   store.getVocaNote(userProfile.value.id)
+  store.getWishMovies()
 })
 </script>
 
