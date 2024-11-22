@@ -178,17 +178,17 @@ const applyFilters = () => {
             movie.genres?.some((genre) => genre.tmdb_id === selectedGenre.tmdb_id)
         );
 
-        // ott 필터 조건 (모든 선택된 장르 중 하나라도 존재하면 true)
+        // ott 필터 조건 (모든 선택된 ott 중 하나라도 존재하면 true)
         const matchesOtts =
         selectedOtts.value.length === 0 || // 선택된 ott가 없으면 true
         selectedOtts.value.every((selectedOtt) =>
             movie.otts?.some((ott) => ott.tmdb_id === selectedOtt.tmdb_id)
         );
 
-        // ott 필터 조건 (모든 선택된 장르 중 하나라도 존재하면 true)
+        // level 필터 조건 (모든 선택된 level 중 하나라도 존재하면 true)
         const matcheslevels =
-        selectedLevel.value.length === 0 || // 선택된 ott가 없으면 true
-        selectedLevel.value.every((level) =>movie.difficulty === level)
+        selectedLevel.value.length === 0 || // 선택된 level가 없으면 true
+        selectedLevel.value.some((level) =>movie.difficulty === level)
 
         return matchesSearch && matchesGenres && matchesOtts && matcheslevels;
     });
