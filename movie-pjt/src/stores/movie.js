@@ -24,12 +24,8 @@ export const useMovieStore = defineStore('movie', () => {
   const otts = ref(null)
   const difficulties = ref(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'])
   const wishMovies = ref(null)
+  const vocaNoteList = ref(null)
 
-  const vocaNoteList = ref([
-    {id:1, movieId: 1, movie: 'Toy Story', is_public: true},
-    {id:2, movieId: 1, movie: 'Toy Story', is_public: false},
-    {id:3, movieId: 2, movie: 'Toy Story 2', is_public: true},
-  ])
 
   const vocaList = ref([
     {id:1, word: 'toy', word_mean: '장난감', note_id: 1, examples:'I buy a toy', memo:'', is_memorized:true},
@@ -147,6 +143,22 @@ export const useMovieStore = defineStore('movie', () => {
   const getNote = function (noteId) {
     const targetNote = vocaNoteList.value.find((note)=>note.id===Number(noteId))
     return targetNote
+  }
+
+  const getVocaNote = function (profileuserId) {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/voca/vocanote/list/${profileuserId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      console.log(res.data)
+    })
+    .catch(err=>{
+
+    })
   }
 
   const getVocas = function (noteId) {
@@ -306,5 +318,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, toggleFollowerbutton, getNote, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, toggleFollowerbutton, getNote, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })
