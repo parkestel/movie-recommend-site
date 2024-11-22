@@ -47,7 +47,10 @@ export const useMovieStore = defineStore('movie', () => {
       movies.value = res.data
     })
     .catch(err=>{
-      console.log(err)
+      if (err.response && err.response.status === 401) {
+        window.alert('로그인이 필요합니다.')
+        router.push({name:'login'})
+      }
     })
   }
   const getImgUrl = function(poster_path,width) {
@@ -71,7 +74,10 @@ export const useMovieStore = defineStore('movie', () => {
       wishMovies.value=res.data
     })
     .catch(err=>{
-      console.log(err)
+      if (err.response && err.response.status === 401) {
+        window.alert('로그인이 필요합니다.')
+        router.push({name:'login'})
+      }
     })
   }
 
@@ -119,7 +125,10 @@ export const useMovieStore = defineStore('movie', () => {
       userProfile.value=res.data
     })
     .catch(err=>{
-      console.log(err)
+      if (err.response && err.response.status === 401) {
+        window.alert('로그인이 필요합니다.')
+        router.push({name:'login'})
+      }
     })
   }
 
@@ -217,12 +226,11 @@ export const useMovieStore = defineStore('movie', () => {
         study_level,
       }
     })
-    .then(res=>{
+    .then((res)=>{
       // console.log('회원가입 완료')
       // 자동 로그인 구현
       const password = password1
       logIn({username, password})
-      router.push({name:'movies'})
     })
     .catch(err=>{
       console.log(err)
@@ -275,7 +283,9 @@ export const useMovieStore = defineStore('movie', () => {
       router.push({name:'login'})
     })
     .catch(err=>{
-      window.alert('로그아웃에 실패했습니다.')
+      if (err) {
+        window.alert('로그아웃에 실패했습니다.')
+      }
     })
 
   }
@@ -297,7 +307,10 @@ export const useMovieStore = defineStore('movie', () => {
       router.push({name:'login'})
     })
     .catch(err=>{
-      window.alert('탈퇴에 실패하셨습니다.')
+      if (err) {
+
+        window.alert('탈퇴에 실패하셨습니다.')
+      }
     })
   }
 
