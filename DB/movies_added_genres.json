@@ -14,7 +14,13 @@
             "country": "United States of America",
             "poster_path": "/gGEsBPAijhVUFoiNpgZXqRVWJt2.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                10751,
+                16,
+                10402,
+                12
+            ]
         }
     },
     {
@@ -32,7 +38,11 @@
             "country": "United States of America",
             "poster_path": "/w03EiJVHP8Un77boQeE7hg9DVdU.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35,
+                10749
+            ]
         }
     },
     {
@@ -50,7 +60,13 @@
             "country": "United States of America",
             "poster_path": "/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                16,
+                12,
+                10751,
+                35
+            ]
         }
     },
     {
@@ -68,7 +84,13 @@
             "country": "United States of America",
             "poster_path": "/mFvoEwSfLqbcWwFsDjQebn9bzFe.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                16,
+                35,
+                10751,
+                12
+            ]
         }
     },
     {
@@ -86,7 +108,12 @@
             "country": "United States of America",
             "poster_path": "/4jeFXQYytChdZYE9JYO7Un87IlW.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                16,
+                10751,
+                14
+            ]
         }
     },
     {
@@ -104,7 +131,10 @@
             "country": "United States of America",
             "poster_path": "/tQJAWbIjvvqVKLLbIZHtwGw2HTf.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35
+            ]
         }
     },
     {
@@ -122,7 +152,12 @@
             "country": "United States of America",
             "poster_path": "/wFSpyMsp7H0ttERbxY7Trlv8xry.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                16,
+                35,
+                10751
+            ]
         }
     },
     {
@@ -140,7 +175,12 @@
             "country": "United States of America",
             "poster_path": "/oQffRNjK8e19rF7xVYEN8ew0j7b.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                14,
+                16,
+                10751
+            ]
         }
     },
     {
@@ -158,7 +198,12 @@
             "country": "United States of America",
             "poster_path": "/AbbXspMOwdvwWZgVN0nabZq03Ec.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                16,
+                10751,
+                35
+            ]
         }
     },
     {
@@ -176,7 +221,13 @@
             "country": "United States of America",
             "poster_path": "/t5v2Zsb5sa6PSP9jMUWY4GdIb3c.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                12,
+                16,
+                35,
+                10751
+            ]
         }
     },
     {
@@ -194,7 +245,13 @@
             "country": "United States of America",
             "poster_path": "/hlK0e0wAQ3VLuJcsfIYPvb4JVud.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                16,
+                12,
+                10751,
+                35
+            ]
         }
     },
     {
@@ -212,7 +269,12 @@
             "country": "United States of America",
             "poster_path": "/la6QA9tk4Foq8OBH2Dyh5dTcw6H.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                16,
+                12,
+                10751
+            ]
         }
     },
     {
@@ -230,7 +292,12 @@
             "country": "United States of America",
             "poster_path": "/2MFIhZAW0CVlEQrFyqwa4U6zqJP.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                16,
+                35,
+                10751
+            ]
         }
     },
     {
@@ -248,7 +315,10 @@
             "country": "United States of America",
             "poster_path": "/9LTQNCvoLsKXP0LtaKAaYVtRaQL.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35
+            ]
         }
     },
     {
@@ -266,7 +336,12 @@
             "country": "United States of America",
             "poster_path": "/eBU7gCjTCj9n2LTxvCSIXXOvHkD.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                12,
+                35,
+                10751
+            ]
         }
     },
     {
@@ -284,7 +359,11 @@
             "country": "United States of America",
             "poster_path": "/7PYqz0viEuW8qTvuGinUMjDWMnj.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                10751,
+                35
+            ]
         }
     },
     {
@@ -302,7 +381,10 @@
             "country": "United States of America",
             "poster_path": "/iwSURa8nS2ujwrU3s1lfxxX7voH.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35
+            ]
         }
     },
     {
@@ -320,7 +402,11 @@
             "country": "United States of America",
             "poster_path": "/vTNNOtemaYmtx3k2NpsLMRJKEwZ.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35,
+                10749
+            ]
         }
     },
     {
@@ -338,7 +424,11 @@
             "country": "United States of America",
             "poster_path": "/v4MkgNqZyodYwBDNbZ64MF9tVEL.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35,
+                10749
+            ]
         }
     },
     {
@@ -356,7 +446,11 @@
             "country": "United States of America",
             "poster_path": "/hVHUfT801LQATGd26VPzhorIYza.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                10749,
+                35
+            ]
         }
     },
     {
@@ -374,7 +468,12 @@
             "country": "United States of America",
             "poster_path": "/8qddUnMT7CgIISEpZi7VCAwDiei.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                16,
+                10751,
+                14
+            ]
         }
     },
     {
@@ -392,7 +491,11 @@
             "country": "United States of America",
             "poster_path": "/lu86Y9zTPH3neCiUzLzHCEFHf7f.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35,
+                10749
+            ]
         }
     },
     {
@@ -410,7 +513,11 @@
             "country": "United Kingdom",
             "poster_path": "/6Ulsccp2VkaVU5qbya3bxm9JG4x.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35,
+                10402
+            ]
         }
     },
     {
@@ -428,7 +535,10 @@
             "country": "United States of America",
             "poster_path": "/uluhlXubGu1VxU63X9VHCLWDAYP.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35
+            ]
         }
     },
     {
@@ -446,7 +556,11 @@
             "country": "United Kingdom",
             "poster_path": "/hHRIf2XHeQMbyRb3HUx19SF5Ujw.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                10749,
+                35
+            ]
         }
     },
     {
@@ -464,7 +578,11 @@
             "country": "United States of America",
             "poster_path": "/tS0PedvA2mFO9VCHYwQpaU1K36U.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                16,
+                35
+            ]
         }
     },
     {
@@ -482,7 +600,10 @@
             "country": "United States of America",
             "poster_path": "/ek8e8txUyUwd2BNqj6lFEerJfbq.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35
+            ]
         }
     },
     {
@@ -500,7 +621,12 @@
             "country": "United States of America",
             "poster_path": "/gsFoJk9g8W3zgaipRrrURk7LbiF.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35,
+                10402,
+                10749
+            ]
         }
     },
     {
@@ -518,7 +644,10 @@
             "country": "United States of America",
             "poster_path": "/izk24KmpGGES1mb435RyBzQ2BdE.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35
+            ]
         }
     },
     {
@@ -536,7 +665,11 @@
             "country": "United States of America",
             "poster_path": "/f3VITMLSmP3Ai65AvXT54RcF5Sw.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35,
+                10751
+            ]
         }
     },
     {
@@ -554,7 +687,12 @@
             "country": "United States of America",
             "poster_path": "/a3XOGrrAjl1wwiumtACWBufg6AL.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35,
+                10751,
+                10749
+            ]
         }
     },
     {
@@ -572,7 +710,12 @@
             "country": "United States of America",
             "poster_path": "/A5kBQsHKbIptxJyELEpHQJROCRj.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35,
+                10402,
+                10749
+            ]
         }
     },
     {
@@ -590,7 +733,10 @@
             "country": "United States of America",
             "poster_path": "/bIPDxGAuoIFeLTOsAsKkawxWIvq.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35
+            ]
         }
     },
     {
@@ -608,7 +754,11 @@
             "country": "United States of America",
             "poster_path": "/fy0ICYlfwc0c2FMs3Q1ZHNaorOq.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                10751,
+                35
+            ]
         }
     },
     {
@@ -626,7 +776,11 @@
             "country": "United States of America",
             "poster_path": "/x9cBsqf64j8e5a8PwThT3I6sHFK.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35,
+                10749
+            ]
         }
     },
     {
@@ -644,7 +798,10 @@
             "country": "United States of America",
             "poster_path": "/b54xDk98oWtEtAso9sj1wjaZDDH.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35
+            ]
         }
     },
     {
@@ -662,7 +819,10 @@
             "country": "United States of America",
             "poster_path": "/2lReF53F8trkC68piGSfk0JVwWU.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35
+            ]
         }
     },
     {
@@ -680,7 +840,10 @@
             "country": "United States of America",
             "poster_path": "/1bb7MTHCIPhpKZFysDpxNaNrdMk.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35
+            ]
         }
     },
     {
@@ -698,7 +861,11 @@
             "country": "United States of America",
             "poster_path": "/6fbqG49Q7IWBWdyJ7asNTcNbnG6.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35,
+                10749
+            ]
         }
     },
     {
@@ -716,7 +883,11 @@
             "country": "United States of America",
             "poster_path": "/1XxL4LJ5WHdrcYcihEZUCgNCpAW.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35,
+                10749
+            ]
         }
     },
     {
@@ -734,7 +905,10 @@
             "country": "United Kingdom",
             "poster_path": "/yWKm4yzRU4hokkbYCJ34vwVwb9R.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35
+            ]
         }
     },
     {
@@ -752,7 +926,11 @@
             "country": "United States of America",
             "poster_path": "/5TYUsAygWKtufAC78ep2AiohEiR.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                35,
+                10402
+            ]
         }
     },
     {
@@ -770,7 +948,11 @@
             "country": "United States of America",
             "poster_path": "/y7thwJ7z5Bplv6vwl6RI0yteaDD.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                16,
+                10751
+            ]
         }
     },
     {
@@ -788,7 +970,12 @@
             "country": "United States of America",
             "poster_path": "/by4D4Q9NlUjFSEUA1yrxq6ksXmk.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                14,
+                35,
+                10751
+            ]
         }
     },
     {
@@ -806,7 +993,13 @@
             "country": "United States of America",
             "poster_path": "/9DZPtuYTKYxt6vzHvZ5FLThG4fl.jpg",
             "is_adult": false,
-            "difficulty": "A2"
+            "difficulty": "A2",
+            "genres": [
+                10751,
+                16,
+                12,
+                35
+            ]
         }
     },
     {
@@ -824,7 +1017,12 @@
             "country": "United States of America",
             "poster_path": "/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18,
+                10749
+            ]
         }
     },
     {
@@ -842,7 +1040,12 @@
             "country": "United States of America",
             "poster_path": "/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                10751,
+                16,
+                18
+            ]
         }
     },
     {
@@ -860,7 +1063,12 @@
             "country": "United States of America",
             "poster_path": "/bSqt9rhDZx1Q7UZ86dBPKdNomp2.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                18,
+                10751,
+                14
+            ]
         }
     },
     {
@@ -878,7 +1086,12 @@
             "country": "United States of America",
             "poster_path": "/mQFw91P5t4cT199BGQDzjVJcSUl.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18,
+                10749
+            ]
         }
     },
     {
@@ -896,7 +1109,11 @@
             "country": "United States of America",
             "poster_path": "/vuza0WqY239yBXOadKlGwJsZJFE.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18
+            ]
         }
     },
     {
@@ -914,7 +1131,11 @@
             "country": "United Kingdom",
             "poster_path": "/wt2TRBmFmBn5M5MBcPTwovlREaB.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                80
+            ]
         }
     },
     {
@@ -932,7 +1153,12 @@
             "country": "United States of America",
             "poster_path": "/hVIKyTK13AvOGv7ICmJjK44DTzp.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                10749,
+                80
+            ]
         }
     },
     {
@@ -950,7 +1176,11 @@
             "country": "Germany",
             "poster_path": "/eWdyYQreja6JGCzqHWXpWHDrrPo.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18
+            ]
         }
     },
     {
@@ -968,7 +1198,14 @@
             "country": "United States of America",
             "poster_path": "/2H1TmgdfNtsKlU9jKdeNyYL5y8T.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                16,
+                10751,
+                12,
+                18,
+                35
+            ]
         }
     },
     {
@@ -986,7 +1223,13 @@
             "country": "Hong Kong",
             "poster_path": "/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18,
+                10749,
+                10402
+            ]
         }
     },
     {
@@ -1004,7 +1247,13 @@
             "country": "United States of America",
             "poster_path": "/ct04FCFLPImNG5thcPLRnVsZlmS.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                10751,
+                16,
+                878,
+                12
+            ]
         }
     },
     {
@@ -1022,7 +1271,12 @@
             "country": "Ireland",
             "poster_path": "/sUWpVlrvzU2SJbnVZqIeKulPKwk.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                10749,
+                18,
+                10402
+            ]
         }
     },
     {
@@ -1040,7 +1294,13 @@
             "country": "United States of America",
             "poster_path": "/92olhXYaIX6lvB8jwFz4OSfPaKq.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                14,
+                12,
+                16,
+                10751
+            ]
         }
     },
     {
@@ -1058,7 +1318,11 @@
             "country": "United Kingdom",
             "poster_path": "/8KSDI7ijEv7QVZdIyrLw5Gnhhr8.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                80,
+                35
+            ]
         }
     },
     {
@@ -1076,7 +1340,11 @@
             "country": "United Kingdom",
             "poster_path": "/9mprbw31MGdd66LR0AQKoDMoFRv.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                80
+            ]
         }
     },
     {
@@ -1094,7 +1362,11 @@
             "country": "United States of America",
             "poster_path": "/f75Fsfx8nA8JfSdJ61jhC8JwHps.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                18,
+                35
+            ]
         }
     },
     {
@@ -1112,7 +1384,12 @@
             "country": "United Kingdom",
             "poster_path": "/xZ0rC0kuIsjk6RncpNK73kwstEP.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                12,
+                35,
+                14
+            ]
         }
     },
     {
@@ -1130,7 +1407,11 @@
             "country": "United States of America",
             "poster_path": "/3BM78deUfeZfShqPTblZuamgC8a.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                18,
+                35
+            ]
         }
     },
     {
@@ -1148,7 +1429,12 @@
             "country": "United States of America",
             "poster_path": "/jj46Biz1WYQZoVZfXxeT9u4XRrS.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18,
+                10749
+            ]
         }
     },
     {
@@ -1166,7 +1452,11 @@
             "country": "United States of America",
             "poster_path": "/g71l1vbJwyAAYk8zKCkIQQ58qcb.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                18,
+                35
+            ]
         }
     },
     {
@@ -1184,7 +1474,13 @@
             "country": "United States of America",
             "poster_path": "/2LqaLgk4Z226KkgPJuiOQ58wvrm.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                28,
+                12,
+                16,
+                10751
+            ]
         }
     },
     {
@@ -1202,7 +1498,15 @@
             "country": "United States of America",
             "poster_path": "/d13Uj86LdbDLrfDoHR5aDOFYyJC.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                14,
+                28,
+                12,
+                16,
+                35,
+                10751
+            ]
         }
     },
     {
@@ -1220,7 +1524,11 @@
             "country": "United States of America",
             "poster_path": "/vSqk5BeQ1HvP9wq0rWZyWqiwXeF.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18
+            ]
         }
     },
     {
@@ -1238,7 +1546,13 @@
             "country": "United States of America",
             "poster_path": "/5qQTu2iGTiQ2UvyGp0beQAZ2rKx.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                18,
+                10751,
+                10402,
+                10749
+            ]
         }
     },
     {
@@ -1256,7 +1570,12 @@
             "country": "United States of America",
             "poster_path": "/xrziXRHRQ7c7YLIehgSJY8GQBsx.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18,
+                10749
+            ]
         }
     },
     {
@@ -1274,7 +1593,11 @@
             "country": "United States of America",
             "poster_path": "/dgd82hYmpiXDM1G867HqNaWe8wj.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                14
+            ]
         }
     },
     {
@@ -1292,7 +1615,11 @@
             "country": "United States of America",
             "poster_path": "/wKn7AJw730emlmzLSmJtzquwaeW.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18
+            ]
         }
     },
     {
@@ -1310,7 +1637,12 @@
             "country": "United States of America",
             "poster_path": "/ijJ73UgR6nOqjSP8MO0Z7hawCdm.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                9648,
+                10749
+            ]
         }
     },
     {
@@ -1328,7 +1660,12 @@
             "country": "United States of America",
             "poster_path": "/79xm4gXw4l7A5D0XukUOJRocFYQ.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                10749,
+                18
+            ]
         }
     },
     {
@@ -1346,7 +1683,12 @@
             "country": "United States of America",
             "poster_path": "/qtVvdSsm2hvau6ItLe4gWdFKe2M.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                18,
+                10749,
+                35
+            ]
         }
     },
     {
@@ -1364,7 +1706,12 @@
             "country": "United States of America",
             "poster_path": "/3E53WEZJqP6aM84D8CckXx4pIHw.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                28,
+                12,
+                35
+            ]
         }
     },
     {
@@ -1382,7 +1729,13 @@
             "country": "United States of America",
             "poster_path": "/8LDVAMImGuMrNvyUWctvF4qkHwQ.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                16,
+                10751,
+                14,
+                12
+            ]
         }
     },
     {
@@ -1400,7 +1753,13 @@
             "country": "United States of America",
             "poster_path": "/h1ZEBoi0waPwtAPU1cnSZifdqZh.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                10749,
+                14,
+                18,
+                35
+            ]
         }
     },
     {
@@ -1418,7 +1777,11 @@
             "country": "Germany",
             "poster_path": "/3RO3jbCKEey2T9bYFkYt9xpwen9.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18
+            ]
         }
     },
     {
@@ -1436,7 +1799,12 @@
             "country": "United States of America",
             "poster_path": "/4zqCKJVHUolGs6C5AZwAZqLWixW.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                27,
+                35,
+                14
+            ]
         }
     },
     {
@@ -1454,7 +1822,12 @@
             "country": "United States of America",
             "poster_path": "/t7qEuGwDjcYu8ajaKZ68DeDnOxw.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18,
+                10749
+            ]
         }
     },
     {
@@ -1472,7 +1845,12 @@
             "country": "Australia",
             "poster_path": "/2kjM5CUZRIU5yOANUowrbJcRL9L.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                18,
+                10749,
+                10402
+            ]
         }
     },
     {
@@ -1490,7 +1868,12 @@
             "country": "United States of America",
             "poster_path": "/ujERk3aKABXU3NDXOAxEQYTHe9A.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                10749,
+                18
+            ]
         }
     },
     {
@@ -1508,7 +1891,11 @@
             "country": "United Kingdom",
             "poster_path": "/oDkp5iClJ9WKJGtKHz8BydodHC3.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18
+            ]
         }
     },
     {
@@ -1526,7 +1913,11 @@
             "country": "United Kingdom",
             "poster_path": "/dgXPhzNJH8HFTBjXPB177yNx6RI.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                27,
+                35
+            ]
         }
     },
     {
@@ -1544,7 +1935,13 @@
             "country": "United States of America",
             "poster_path": "/62ANPHW3Md8civs7cbmfeiQLfxW.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                14,
+                16,
+                35,
+                80
+            ]
         }
     },
     {
@@ -1562,7 +1959,11 @@
             "country": "United States of America",
             "poster_path": "/rHUg2AuIuLSIYMYFgavVwqt1jtc.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                18,
+                35
+            ]
         }
     },
     {
@@ -1580,7 +1981,11 @@
             "country": "United States of America",
             "poster_path": "/eLjS2bLMjln2n2I73Xu6TaANPDZ.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                18,
+                35
+            ]
         }
     },
     {
@@ -1598,7 +2003,11 @@
             "country": "United States of America",
             "poster_path": "/9Tw0Y3DK5kGIU9X1yw3Q9gCkOlb.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                18,
+                35
+            ]
         }
     },
     {
@@ -1616,7 +2025,11 @@
             "country": "United States of America",
             "poster_path": "/rYfUcEV88Z3gENrfYTE6i8yBkDr.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18
+            ]
         }
     },
     {
@@ -1634,7 +2047,12 @@
             "country": "France",
             "poster_path": "/4wBG5kbfagTQclETblPRRGihk0I.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                14,
+                35,
+                10749
+            ]
         }
     },
     {
@@ -1652,7 +2070,11 @@
             "country": "United States of America",
             "poster_path": "/6gNXwSHxaksR1PjVZRqNapmkgj3.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                18,
+                35
+            ]
         }
     },
     {
@@ -1670,7 +2092,11 @@
             "country": "United States of America",
             "poster_path": "/gARgIRb2QFRFVrsziwWE389u1pK.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18
+            ]
         }
     },
     {
@@ -1688,7 +2114,11 @@
             "country": "United States of America",
             "poster_path": "/syaECBy6irxSgeF0m5ltGPNTWXL.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18
+            ]
         }
     },
     {
@@ -1706,7 +2136,12 @@
             "country": "United States of America",
             "poster_path": "/8vvgKw3DbEPNlJAdHe7xXzhb2gN.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                10749,
+                18
+            ]
         }
     },
     {
@@ -1724,7 +2159,12 @@
             "country": "Japan",
             "poster_path": "/g5IoYeudx9XBEfwNL0fHvSckLBz.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                28,
+                35,
+                10749
+            ]
         }
     },
     {
@@ -1742,7 +2182,12 @@
             "country": "United States of America",
             "poster_path": "/xVSvIwRNzwXSs0CLefiiG6A96m4.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18,
+                14
+            ]
         }
     },
     {
@@ -1760,7 +2205,12 @@
             "country": "United States of America",
             "poster_path": "/3wkbKeowUp1Zpkw1KkBqMWbt0P9.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                10749,
+                18
+            ]
         }
     },
     {
@@ -1778,7 +2228,14 @@
             "country": "Australia",
             "poster_path": "/lbctonEnewCYZ4FYoTZhs8cidAl.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                16,
+                10751,
+                12,
+                35,
+                14
+            ]
         }
     },
     {
@@ -1796,7 +2253,11 @@
             "country": "United Kingdom",
             "poster_path": "/hVEqUASJmCQaolkKFEySCHZ8uKG.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                27
+            ]
         }
     },
     {
@@ -1814,7 +2275,12 @@
             "country": "Germany",
             "poster_path": "/fMhOeJ2TvuY46iYGmsowhgRXfnr.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                10402,
+                18,
+                10749
+            ]
         }
     },
     {
@@ -1832,7 +2298,12 @@
             "country": "United States of America",
             "poster_path": "/xXxuJPNUDZ0vjsAXca0O5p3leVB.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                18,
+                35,
+                10749
+            ]
         }
     },
     {
@@ -1850,7 +2321,11 @@
             "country": "United States of America",
             "poster_path": "/scVEaJEwP8zUix8vgmMoJJ9Nq0w.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18
+            ]
         }
     },
     {
@@ -1868,7 +2343,11 @@
             "country": "Brazil",
             "poster_path": "/jrq1NoKvsxWCcffVOjegiYwloFN.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18
+            ]
         }
     },
     {
@@ -1886,7 +2365,11 @@
             "country": "United States of America",
             "poster_path": "/hSJ6swahAuZ8wM96lHDTwQPXUvZ.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18
+            ]
         }
     },
     {
@@ -1904,7 +2387,11 @@
             "country": "China",
             "poster_path": "/7ht2IMGynDSVQGvAXhAb83DLET8.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18
+            ]
         }
     },
     {
@@ -1922,7 +2409,12 @@
             "country": "United Kingdom",
             "poster_path": "/nbzXX3CYtKUBrPeMcG7PVoLQHXB.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                18,
+                35,
+                10749
+            ]
         }
     },
     {
@@ -1940,7 +2432,12 @@
             "country": "United States of America",
             "poster_path": "/FBxuoLRD3Biyul14unT5m3PYNS.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                80,
+                10749
+            ]
         }
     },
     {
@@ -1958,7 +2455,12 @@
             "country": "United States of America",
             "poster_path": "/zNZWNX19FZ5QyedprVM0ldsXFiP.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18,
+                10749
+            ]
         }
     },
     {
@@ -1976,7 +2478,11 @@
             "country": "United States of America",
             "poster_path": "/1LwW0W0Zyik00OmQPTnCUjmCh1C.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                18,
+                35
+            ]
         }
     },
     {
@@ -1994,7 +2500,11 @@
             "country": "United States of America",
             "poster_path": "/nnl6OWkyPpuMm595hmAxNW3rZFn.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                14,
+                35
+            ]
         }
     },
     {
@@ -2012,7 +2522,12 @@
             "country": "United States of America",
             "poster_path": "/f9mbM0YMLpYemcWx6o2WeiYQLDP.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18,
+                10749
+            ]
         }
     },
     {
@@ -2030,7 +2545,12 @@
             "country": "United States of America",
             "poster_path": "/p4RafgAPk558muOjnBMHhMArjS2.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18,
+                10749
+            ]
         }
     },
     {
@@ -2048,7 +2568,11 @@
             "country": "United States of America",
             "poster_path": "/cPB3ZMM4UdsSAhNdS4c7ps5nypY.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18
+            ]
         }
     },
     {
@@ -2066,7 +2590,11 @@
             "country": "United States of America",
             "poster_path": "/gl66K7zRdtNYGrxyS2YDUP5ASZd.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                18,
+                35
+            ]
         }
     },
     {
@@ -2084,7 +2612,12 @@
             "country": "United States of America",
             "poster_path": "/xsgTuAtR2zSH8Umg3jWZcZjlDpe.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                14,
+                27,
+                35
+            ]
         }
     },
     {
@@ -2102,7 +2635,11 @@
             "country": "United States of America",
             "poster_path": "/qojEzGpvbrYrhZV9arCZhkYQT3d.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                80
+            ]
         }
     },
     {
@@ -2120,7 +2657,11 @@
             "country": "United States of America",
             "poster_path": "/msG9awbLhVZwv1Eh9Ge7SofMexW.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18
+            ]
         }
     },
     {
@@ -2138,7 +2679,11 @@
             "country": "United Kingdom",
             "poster_path": "/2Ypg0KhQfFYWILelvHGtSHHR0dk.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                10749,
+                12
+            ]
         }
     },
     {
@@ -2156,7 +2701,12 @@
             "country": "United States of America",
             "poster_path": "/qquEFkFbQX1i8Bal260EgGCnZ0f.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18,
+                10749
+            ]
         }
     },
     {
@@ -2174,7 +2724,13 @@
             "country": "United Kingdom",
             "poster_path": "/nCzcepubwShvZ4vbCsygQNgF2Z1.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18,
+                14,
+                10749
+            ]
         }
     },
     {
@@ -2192,7 +2748,12 @@
             "country": "United States of America",
             "poster_path": "/m1hhYP6OScjKU5Z9iZaWirSn4I6.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                14,
+                35,
+                18
+            ]
         }
     },
     {
@@ -2210,7 +2771,14 @@
             "country": "United States of America",
             "poster_path": "/wWt4JYXTg5Wr3xBW2phBrMKgp3x.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                28,
+                12,
+                16,
+                10751,
+                35
+            ]
         }
     },
     {
@@ -2228,7 +2796,11 @@
             "country": "United States of America",
             "poster_path": "/hwIYw22HmAUMobV4zsX69MgfVUz.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18
+            ]
         }
     },
     {
@@ -2246,7 +2818,11 @@
             "country": "Germany",
             "poster_path": "/msOZS07xRIFnapwp3fprGbKEAfT.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                18
+            ]
         }
     },
     {
@@ -2264,7 +2840,12 @@
             "country": "United States of America",
             "poster_path": "/v2XHtmVqpERPy0HA1y9wltoeEgW.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                12,
+                14,
+                10751
+            ]
         }
     },
     {
@@ -2282,7 +2863,12 @@
             "country": "United States of America",
             "poster_path": "/gI2Qs1yTTj3NcESJyttCkbmJ4k9.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                28,
+                35,
+                14
+            ]
         }
     },
     {
@@ -2300,7 +2886,11 @@
             "country": "United States of America",
             "poster_path": "/fXm3YKXAEjx7d2tIWDg9TfRZtsU.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                18,
+                35
+            ]
         }
     },
     {
@@ -2318,7 +2908,11 @@
             "country": "United States of America",
             "poster_path": "/vNw1gOEDdYTDeNMuuq8OmiEHrfH.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                37,
+                35
+            ]
         }
     },
     {
@@ -2336,7 +2930,12 @@
             "country": "United States of America",
             "poster_path": "/6stnAm1wSek8ZrislwK4xGTyCnt.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                10749,
+                18
+            ]
         }
     },
     {
@@ -2354,7 +2953,12 @@
             "country": "United States of America",
             "poster_path": "/1mp4ViklKvA0WXXsNvNx0RBuiit.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                28,
+                18,
+                10751
+            ]
         }
     },
     {
@@ -2372,7 +2976,12 @@
             "country": "United States of America",
             "poster_path": "/eBJEvKkhQ0tUt1dBAcTEYW6kCle.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                80,
+                28
+            ]
         }
     },
     {
@@ -2390,7 +2999,11 @@
             "country": "United States of America",
             "poster_path": "/idbNSe8zsYKQL97dJApfOrDSdya.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                18,
+                35
+            ]
         }
     },
     {
@@ -2408,7 +3021,11 @@
             "country": "United Kingdom",
             "poster_path": "/hkSGFNVfEEUXFCxRZDITFHVhUlu.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                35,
+                80
+            ]
         }
     },
     {
@@ -2426,7 +3043,12 @@
             "country": "United States of America",
             "poster_path": "/oSW5OVXTulaIXcoNwJAp5YEKpbP.jpg",
             "is_adult": false,
-            "difficulty": "B1"
+            "difficulty": "B1",
+            "genres": [
+                12,
+                18,
+                35
+            ]
         }
     },
     {
@@ -2444,7 +3066,13 @@
             "country": "United Kingdom",
             "poster_path": "/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                28,
+                80,
+                53
+            ]
         }
     },
     {
@@ -2462,7 +3090,12 @@
             "country": "New Zealand",
             "poster_path": "/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                12,
+                14,
+                28
+            ]
         }
     },
     {
@@ -2480,7 +3113,12 @@
             "country": "United States of America",
             "poster_path": "/8VG8fDNiy50H4FedGwdSVUPoaJe.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                14,
+                18,
+                80
+            ]
         }
     },
     {
@@ -2498,7 +3136,11 @@
             "country": "United States of America",
             "poster_path": "/7fn624j5lj3xTme2SgiLCeuedmO.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                10402
+            ]
         }
     },
     {
@@ -2516,7 +3158,13 @@
             "country": "United States of America",
             "poster_path": "/iiZZdoQBEYBv6id8su7ImL0oCbD.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                16,
+                28,
+                12,
+                878
+            ]
         }
     },
     {
@@ -2534,7 +3182,12 @@
             "country": "United States of America",
             "poster_path": "/fNOH9f1aA7XRTzl1sAOx9iF553Q.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                12,
+                35,
+                878
+            ]
         }
     },
     {
@@ -2552,7 +3205,12 @@
             "country": "United Kingdom",
             "poster_path": "/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                28,
+                18,
+                12
+            ]
         }
     },
     {
@@ -2570,7 +3228,12 @@
             "country": "United States of America",
             "poster_path": "/iQ5ztdjvteGeboxtmRdXEChJOHh.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                28,
+                80,
+                18
+            ]
         }
     },
     {
@@ -2588,7 +3251,12 @@
             "country": "United States of America",
             "poster_path": "/15uOEfqBNTVtDUT7hGBVCka0rZz.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                9648,
+                10749,
+                53
+            ]
         }
     },
     {
@@ -2606,7 +3274,11 @@
             "country": "United States of America",
             "poster_path": "/5K7cOHoay2mZusSLezBOY0Qxh8a.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                10749
+            ]
         }
     },
     {
@@ -2624,7 +3296,12 @@
             "country": "United States of America",
             "poster_path": "/hbhFnRzzg6ZDmm8YAmxBnQpQIPh.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                16,
+                10751,
+                878
+            ]
         }
     },
     {
@@ -2642,7 +3319,11 @@
             "country": "Brazil",
             "poster_path": "/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                10749,
+                18
+            ]
         }
     },
     {
@@ -2660,7 +3341,11 @@
             "country": "United Kingdom",
             "poster_path": "/sGjIvtVvTlWnia2zfJfHz81pZ9Q.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                10749
+            ]
         }
     },
     {
@@ -2678,7 +3363,12 @@
             "country": "United States of America",
             "poster_path": "/34m2tygAYBGqA9MXKhRDtzYd4MR.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                80,
+                18,
+                35
+            ]
         }
     },
     {
@@ -2696,7 +3386,11 @@
             "country": "United States of America",
             "poster_path": "/6zDYFigohwncqFL00MKbFV01dWb.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                10749,
+                18
+            ]
         }
     },
     {
@@ -2714,7 +3408,11 @@
             "country": "United Kingdom",
             "poster_path": "/aWxwnYoe8p2d2fcxOqtvAtJ72Rw.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                12,
+                14
+            ]
         }
     },
     {
@@ -2732,7 +3430,11 @@
             "country": "United States of America",
             "poster_path": "/v7TaX8kXMXs5yFFGR41guUDNcnB.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                28,
+                80
+            ]
         }
     },
     {
@@ -2750,7 +3452,12 @@
             "country": "New Zealand",
             "poster_path": "/7GsM4mtM0worCtIVeiQt28HieeN.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                35,
+                10752,
+                18
+            ]
         }
     },
     {
@@ -2768,7 +3475,11 @@
             "country": "Austria",
             "poster_path": "/kf1Jb1c2JAOqjuzA3H4oDM263uB.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                10749
+            ]
         }
     },
     {
@@ -2786,7 +3497,12 @@
             "country": "United States of America",
             "poster_path": "/4VdQopZb0lx13Me3yxE5rUXMGCI.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                35,
+                80,
+                18
+            ]
         }
     },
     {
@@ -2804,7 +3520,12 @@
             "country": "United States of America",
             "poster_path": "/pWcst7zVbi8Z8W6GFrdNE7HHRxL.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                12,
+                18,
+                37
+            ]
         }
     },
     {
@@ -2822,7 +3543,11 @@
             "country": "United States of America",
             "poster_path": "/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                10749
+            ]
         }
     },
     {
@@ -2840,7 +3565,11 @@
             "country": "United Kingdom",
             "poster_path": "/wuMc08IPKEatf9rnMNXvIDxqP4W.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                12,
+                14
+            ]
         }
     },
     {
@@ -2858,7 +3587,12 @@
             "country": "United Kingdom",
             "poster_path": "/iR1bVfURbN7r1C46WHFbwCkVve.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                10749,
+                14
+            ]
         }
     },
     {
@@ -2876,7 +3610,11 @@
             "country": "United States of America",
             "poster_path": "/ceG9VzoRAVGwivFU403Wc3AHRys.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                12,
+                28
+            ]
         }
     },
     {
@@ -2894,7 +3632,11 @@
             "country": "United States of America",
             "poster_path": "/zwzWCmH72OSC9NA0ipoqw5Zjya8.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                10749
+            ]
         }
     },
     {
@@ -2912,7 +3654,11 @@
             "country": "United States of America",
             "poster_path": "/sizg1AU8f8JDZX4QIgE4pjUMBvx.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                12,
+                28
+            ]
         }
     },
     {
@@ -2930,7 +3676,12 @@
             "country": "United States of America",
             "poster_path": "/fKjLZy9W8VxMOp5OoyWojmLVCQw.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                80,
+                18,
+                10749
+            ]
         }
     },
     {
@@ -2948,7 +3699,12 @@
             "country": "United States of America",
             "poster_path": "/3GHG0kTcBWHKdXjj3RdK8GjBCd6.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                35,
+                80,
+                18
+            ]
         }
     },
     {
@@ -2966,7 +3722,12 @@
             "country": "United States of America",
             "poster_path": "/2yhg0mZQMhDyvUQ4rG1IZ4oIA8L.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                28,
+                80,
+                53
+            ]
         }
     },
     {
@@ -2984,7 +3745,11 @@
             "country": "United Kingdom",
             "poster_path": "/wucOQrqihOtHToP7UAPKMFRJ9LL.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                10749
+            ]
         }
     },
     {
@@ -3002,7 +3767,13 @@
             "country": "United States of America",
             "poster_path": "/oGXtT5UW8lDWt8uxlww2zw9GmBs.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                53,
+                10770,
+                18,
+                9648
+            ]
         }
     },
     {
@@ -3020,7 +3791,12 @@
             "country": "United States of America",
             "poster_path": "/poHwCZeWzJCShH7tOjg8RIoyjcw.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                12,
+                14,
+                28
+            ]
         }
     },
     {
@@ -3038,7 +3814,11 @@
             "country": "United Kingdom",
             "poster_path": "/iGoXIpQb7Pot00EEdwpwPajheZ5.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                12,
+                14
+            ]
         }
     },
     {
@@ -3056,7 +3836,11 @@
             "country": "United Kingdom",
             "poster_path": "/fECBtHlr0RB3foNHDiCBXeg9Bv9.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                12,
+                14
+            ]
         }
     },
     {
@@ -3074,7 +3858,12 @@
             "country": "United States of America",
             "poster_path": "/pThyQovXQrw2m0s9x82twj48Jq4.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                35,
+                80,
+                9648
+            ]
         }
     },
     {
@@ -3092,7 +3881,12 @@
             "country": "United States of America",
             "poster_path": "/fhQoQfejY1hUcwyuLgpBrYs6uFt.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                14,
+                18,
+                9648
+            ]
         }
     },
     {
@@ -3110,7 +3904,11 @@
             "country": "United States of America",
             "poster_path": "/iM8n4nZJPR2abpnyZ36FUgHiRjr.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                28
+            ]
         }
     },
     {
@@ -3128,7 +3926,12 @@
             "country": "United States of America",
             "poster_path": "/hQq8xZe5uLjFzSBt4LanNP7SQjl.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                12,
+                35,
+                878
+            ]
         }
     },
     {
@@ -3146,7 +3949,11 @@
             "country": "United States of America",
             "poster_path": "/7Bjd8kfmDSOzpmhySpEhkUyK2oH.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                28,
+                53
+            ]
         }
     },
     {
@@ -3164,7 +3971,12 @@
             "country": "United Kingdom",
             "poster_path": "/cvaBVpS0GzKqBd63pFT8f1E8OKv.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                12,
+                18,
+                37
+            ]
         }
     },
     {
@@ -3182,7 +3994,11 @@
             "country": "United States of America",
             "poster_path": "/gycdE1ARByGQcK4fYR2mgpU6OO.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                10749
+            ]
         }
     },
     {
@@ -3200,7 +4016,11 @@
             "country": "Ireland",
             "poster_path": "/wu9RPdV0uEemFEewJQ6fWwJ9ZcU.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                10749
+            ]
         }
     },
     {
@@ -3218,7 +4038,13 @@
             "country": "United Kingdom",
             "poster_path": "/hr0L2aueqlP2BYUblTTjmtn0hw4.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                28,
+                80,
+                18,
+                53
+            ]
         }
     },
     {
@@ -3236,7 +4062,12 @@
             "country": "United States of America",
             "poster_path": "/tjK063yCgaBAluVU72rZ6PKPH2l.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                12,
+                14,
+                18
+            ]
         }
     },
     {
@@ -3254,7 +4085,11 @@
             "country": "United Kingdom",
             "poster_path": "/sdEOH0992YZ0QSxgXNIGLq1ToUi.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                12,
+                14
+            ]
         }
     },
     {
@@ -3272,7 +4107,11 @@
             "country": "United Kingdom",
             "poster_path": "/z7uo9zmQdQwU5ZJHFpv2Upl30i1.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                12,
+                14
+            ]
         }
     },
     {
@@ -3290,7 +4129,11 @@
             "country": "United Kingdom",
             "poster_path": "/5aOyriWkPec0zUDxmHFP9qMmBaj.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                12,
+                14
+            ]
         }
     },
     {
@@ -3308,7 +4151,12 @@
             "country": "United Kingdom",
             "poster_path": "/4MpN4kIEqUjW8OPtOQJXlTdHiJV.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                28,
+                80,
+                18
+            ]
         }
     },
     {
@@ -3326,7 +4174,11 @@
             "country": "United States of America",
             "poster_path": "/fCDXAJcPvpsMd5CL1kBKkkNGW3X.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                28,
+                53
+            ]
         }
     },
     {
@@ -3344,7 +4196,11 @@
             "country": "United States of America",
             "poster_path": "/7lLJgKnAicAcR5UEuo8xhSMj18w.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                12,
+                18
+            ]
         }
     },
     {
@@ -3362,7 +4218,11 @@
             "country": "United Kingdom",
             "poster_path": "/5akKFgS7eeXUw9rKTEujryKrH17.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                28
+            ]
         }
     },
     {
@@ -3380,7 +4240,11 @@
             "country": "France",
             "poster_path": "/hMRIyBjPzxaSXWM06se3OcNjIQa.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                10749
+            ]
         }
     },
     {
@@ -3398,7 +4262,11 @@
             "country": "United States of America",
             "poster_path": "/teGMLWvCnJqvtPYCSuUKRM9MvFe.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                10749
+            ]
         }
     },
     {
@@ -3416,7 +4284,11 @@
             "country": "United Kingdom",
             "poster_path": "/li6ABwitsBHg0Ah88HbFfPq1hxM.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                35,
+                878
+            ]
         }
     },
     {
@@ -3434,7 +4306,12 @@
             "country": "United States of America",
             "poster_path": "/4ykzTiHKLamh3eZJ8orVICtU2Jp.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                28,
+                18,
+                80
+            ]
         }
     },
     {
@@ -3452,7 +4329,11 @@
             "country": "United States of America",
             "poster_path": "/snItsSViawjaadW9mlWUmGwR41R.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                10749
+            ]
         }
     },
     {
@@ -3470,7 +4351,12 @@
             "country": "United States of America",
             "poster_path": "/lxM6kqilAdpdhqUl2biYp5frUxE.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                27,
+                53,
+                12
+            ]
         }
     },
     {
@@ -3488,7 +4374,11 @@
             "country": "United States of America",
             "poster_path": "/whDdYx3lh1LHTN0VlPFt51fX29g.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                10770
+            ]
         }
     },
     {
@@ -3506,7 +4396,12 @@
             "country": "United States of America",
             "poster_path": "/26wEWZYt6yJkwRVkjcbwJEFh9IS.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                14,
+                10749
+            ]
         }
     },
     {
@@ -3524,7 +4419,13 @@
             "country": "United Kingdom",
             "poster_path": "/r6q9wZK5a2K51KFj4LWVID6Ja1r.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                80,
+                35,
+                28,
+                12
+            ]
         }
     },
     {
@@ -3542,7 +4443,11 @@
             "country": "United States of America",
             "poster_path": "/ep7dF4QR4Mm39LI958V0XbwE0hK.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                10749,
+                18
+            ]
         }
     },
     {
@@ -3560,7 +4465,12 @@
             "country": "United States of America",
             "poster_path": "/lHlnxKL5GbgRibyRFI7n1Ey850i.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                12,
+                14,
+                27
+            ]
         }
     },
     {
@@ -3578,7 +4488,13 @@
             "country": "United Kingdom",
             "poster_path": "/gQSUVGR80RVHxJywtwXm2qa1ebi.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                53,
+                80,
+                12
+            ]
         }
     },
     {
@@ -3596,7 +4512,12 @@
             "country": "France",
             "poster_path": "/zPib4ukTSdXvHP9pxGkFCe34f3y.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                80,
+                28,
+                35
+            ]
         }
     },
     {
@@ -3614,7 +4535,13 @@
             "country": "United States of America",
             "poster_path": "/7hlgzJXLgyECS1mk3LSN3E72l5N.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                9648,
+                53,
+                80,
+                10749
+            ]
         }
     },
     {
@@ -3632,7 +4559,11 @@
             "country": "United States of America",
             "poster_path": "/gFmmykF1Ym3OGzENo50nZQaD1dx.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                37,
+                12
+            ]
         }
     },
     {
@@ -3650,7 +4581,13 @@
             "country": "United States of America",
             "poster_path": "/kyeqWdyUXW608qlYkRqosgbbJyK.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                28,
+                12,
+                14,
+                878
+            ]
         }
     },
     {
@@ -3668,7 +4605,12 @@
             "country": "United Kingdom",
             "poster_path": "/lMrxYKKhd4lqRzwUHAy5gcx9PSO.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                12,
+                28,
+                53
+            ]
         }
     },
     {
@@ -3686,7 +4628,12 @@
             "country": "United States of America",
             "poster_path": "/9Vfet4K59I5Jmia6QzHX6XgSfcI.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                28,
+                80,
+                53
+            ]
         }
     },
     {
@@ -3704,7 +4651,13 @@
             "country": "United States of America",
             "poster_path": "/an0nD6uq6byfxXCfk6lQBzdL2J1.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                878,
+                12,
+                10751,
+                14
+            ]
         }
     },
     {
@@ -3722,7 +4675,12 @@
             "country": "United States of America",
             "poster_path": "/8jxqAvSDoneSKRczaK8v9X5gqBp.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                80,
+                35,
+                18
+            ]
         }
     },
     {
@@ -3740,7 +4698,11 @@
             "country": "United States of America",
             "poster_path": "/3rrkyLYbgLj84AYvjhdcJot4JPx.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                18,
+                10402
+            ]
         }
     },
     {
@@ -3758,7 +4720,12 @@
             "country": "United States of America",
             "poster_path": "/bUeiwBQdupBLQthMCHKV7zv56uv.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                28,
+                80,
+                18
+            ]
         }
     },
     {
@@ -3776,7 +4743,12 @@
             "country": "United Kingdom",
             "poster_path": "/rMMB3v6jYHjsvXRNJYESacoTD7j.jpg",
             "is_adult": false,
-            "difficulty": "B2"
+            "difficulty": "B2",
+            "genres": [
+                14,
+                28,
+                53
+            ]
         }
     },
     {
@@ -3794,7 +4766,11 @@
             "country": "United States of America",
             "poster_path": "/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18,
+                80
+            ]
         }
     },
     {
@@ -3812,7 +4788,11 @@
             "country": "United States of America",
             "poster_path": "/hek3koDUyRQk7FIhPXsa6mT2Zc3.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18,
+                80
+            ]
         }
     },
     {
@@ -3830,7 +4810,11 @@
             "country": "United States of America",
             "poster_path": "/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                53,
+                80
+            ]
         }
     },
     {
@@ -3848,7 +4832,11 @@
             "country": "United States of America",
             "poster_path": "/aKuFiU82s5ISJpGZp7YkIr3kCUd.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18,
+                80
+            ]
         }
     },
     {
@@ -3866,7 +4854,12 @@
             "country": "United Kingdom",
             "poster_path": "/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                12,
+                18,
+                878
+            ]
         }
     },
     {
@@ -3884,7 +4877,10 @@
             "country": "Germany",
             "poster_path": "/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18
+            ]
         }
     },
     {
@@ -3902,7 +4898,12 @@
             "country": "United Kingdom",
             "poster_path": "/ljsZTbVsrQSqZgWeep2B1QiDKuh.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                28,
+                878,
+                12
+            ]
         }
     },
     {
@@ -3920,7 +4921,10 @@
             "country": "United States of America",
             "poster_path": "/kjWsMh72V6d8KRLV4EOoSJLT1H7.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18
+            ]
         }
     },
     {
@@ -3938,7 +4942,12 @@
             "country": "United States of America",
             "poster_path": "/yz4QVqPx3h1hD1DfqqQkCq3rmxW.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                27,
+                53,
+                9648
+            ]
         }
     },
     {
@@ -3956,7 +4965,12 @@
             "country": "United States of America",
             "poster_path": "/nNAeTmF4CtdSgMDplXTDPOpYzsX.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                12,
+                28,
+                878
+            ]
         }
     },
     {
@@ -3974,7 +4988,12 @@
             "country": "United States of America",
             "poster_path": "/191nKfP0ehp3uIvWqgPbFmI4lv9.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                80,
+                9648,
+                53
+            ]
         }
     },
     {
@@ -3992,7 +5011,11 @@
             "country": "United States of America",
             "poster_path": "/ILVF0eJxHMddjxeQhswFtpMtqx.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                53,
+                9648
+            ]
         }
     },
     {
@@ -4010,7 +5033,10 @@
             "country": "United States of America",
             "poster_path": "/euypWkaYFOLW3e5rLIcTAjWnhhT.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18
+            ]
         }
     },
     {
@@ -4028,7 +5054,10 @@
             "country": "United States of America",
             "poster_path": "/hmGAF5NDoYB6S39UONevjHCESOI.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18
+            ]
         }
     },
     {
@@ -4046,7 +5075,10 @@
             "country": "United States of America",
             "poster_path": "/sC4Dpmn87oz9AuxZ15Lmip0Ftgr.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18
+            ]
         }
     },
     {
@@ -4064,7 +5096,12 @@
             "country": "United States of America",
             "poster_path": "/uS9m8OBk1A8eM9I042bx8XXpqAq.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                80,
+                18,
+                53
+            ]
         }
     },
     {
@@ -4082,7 +5119,10 @@
             "country": "India",
             "poster_path": "/7XLSwxpfpPoJyTdJVot6a42TS2V.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18
+            ]
         }
     },
     {
@@ -4100,7 +5140,12 @@
             "country": "United States of America",
             "poster_path": "/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                12,
+                28,
+                878
+            ]
         }
     },
     {
@@ -4118,7 +5163,12 @@
             "country": "United States of America",
             "poster_path": "/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                12,
+                878,
+                28
+            ]
         }
     },
     {
@@ -4136,7 +5186,11 @@
             "country": "United States of America",
             "poster_path": "/p96dm7sCMn4VYAStA6siNz30G1r.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                28,
+                878
+            ]
         }
     },
     {
@@ -4154,7 +5208,12 @@
             "country": "United Kingdom",
             "poster_path": "/tRNlZbgNCNOpLpbPEz5L8G8A0JN.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18,
+                9648,
+                878
+            ]
         }
     },
     {
@@ -4172,7 +5231,10 @@
             "country": "United States of America",
             "poster_path": "/bABCBKYBK7A5G1x0FzoeoNfuj2.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18
+            ]
         }
     },
     {
@@ -4190,7 +5252,11 @@
             "country": "United Kingdom",
             "poster_path": "/nRj5511mZdTl4saWEPoj9QroTIu.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                27,
+                53
+            ]
         }
     },
     {
@@ -4208,7 +5274,12 @@
             "country": "Hong Kong",
             "poster_path": "/nT97ifVT2J1yMQmeq20Qblg61T.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18,
+                53,
+                80
+            ]
         }
     },
     {
@@ -4226,7 +5297,12 @@
             "country": "United States of America",
             "poster_path": "/rWbsxdwF9qQzpTPCLmDfVnVqTK1.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18,
+                80,
+                53
+            ]
         }
     },
     {
@@ -4244,7 +5320,12 @@
             "country": "United States of America",
             "poster_path": "/mM5Cad2ESBprh6ucPnMzMfI34Cu.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18,
+                9648,
+                80
+            ]
         }
     },
     {
@@ -4262,7 +5343,12 @@
             "country": "Canada",
             "poster_path": "/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                80,
+                53,
+                18
+            ]
         }
     },
     {
@@ -4280,7 +5366,12 @@
             "country": "France",
             "poster_path": "/5M0j0B18abtBI5gi2RhfjjurTqb.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                28,
+                53,
+                878
+            ]
         }
     },
     {
@@ -4298,7 +5389,12 @@
             "country": "United States of America",
             "poster_path": "/uhviyknTT5cEQXbn6vWIqfM4vGm.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18,
+                53,
+                80
+            ]
         }
     },
     {
@@ -4316,7 +5412,12 @@
             "country": "United States of America",
             "poster_path": "/tzGY49kseSE9QAKk47uuDGwnSCu.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                27,
+                9648,
+                878
+            ]
         }
     },
     {
@@ -4334,7 +5435,11 @@
             "country": "United States of America",
             "poster_path": "/ekstpH614fwDX8DUln1a2Opz0N8.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                80,
+                18
+            ]
         }
     },
     {
@@ -4352,7 +5457,10 @@
             "country": "France",
             "poster_path": "/tgw3TJTWgNUYCgL5Pa546VVVvSU.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18
+            ]
         }
     },
     {
@@ -4370,7 +5478,11 @@
             "country": "United Kingdom",
             "poster_path": "/pZRhqJj0DBy4ghB7g6pU7MGHsWJ.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                80,
+                18
+            ]
         }
     },
     {
@@ -4388,7 +5500,11 @@
             "country": "United States of America",
             "poster_path": "/bNCTRXJjPvVsh71nwo6kcFzUZvh.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                80,
+                53
+            ]
         }
     },
     {
@@ -4406,7 +5522,12 @@
             "country": "United States of America",
             "poster_path": "/5MwkWH9tYHv3mV9OdYTMR5qreIz.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                878,
+                18,
+                10749
+            ]
         }
     },
     {
@@ -4424,7 +5545,10 @@
             "country": "United States of America",
             "poster_path": "/6numIZH6uR3NlJgY9m7nGH0jhs.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18
+            ]
         }
     },
     {
@@ -4442,7 +5566,10 @@
             "country": "United States of America",
             "poster_path": "/fa0RDkAlCec0STeMNAhPaF89q6U.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18
+            ]
         }
     },
     {
@@ -4460,7 +5587,10 @@
             "country": "Australia",
             "poster_path": "/iBGRbLvg6kVc7wbS8wDdVHq6otm.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18
+            ]
         }
     },
     {
@@ -4478,7 +5608,10 @@
             "country": "United States of America",
             "poster_path": "/wby9315QzVKdW9BonAefg8jGTTb.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18
+            ]
         }
     },
     {
@@ -4496,7 +5629,11 @@
             "country": "United States of America",
             "poster_path": "/sav0jxhqiH0bPr2vZFU0Kjt2nZL.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                9648,
+                18
+            ]
         }
     },
     {
@@ -4514,7 +5651,11 @@
             "country": "France",
             "poster_path": "/4TS5O1IP42bY2BvgMxL156EENy.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                80,
+                18
+            ]
         }
     },
     {
@@ -4532,7 +5673,12 @@
             "country": "United States of America",
             "poster_path": "/4AfSDjjCy6T5LA1TMz0Lh2HlpRh.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                9648,
+                53,
+                18
+            ]
         }
     },
     {
@@ -4550,7 +5696,11 @@
             "country": "United States of America",
             "poster_path": "/8gvfRlVpcKaTVqipXpYOGWBN1aO.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                53,
+                12
+            ]
         }
     },
     {
@@ -4568,7 +5718,12 @@
             "country": "United States of America",
             "poster_path": "/gBH4H8UMFxl139HaLz6lRuvsel8.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                12,
+                18,
+                10752
+            ]
         }
     },
     {
@@ -4586,7 +5741,12 @@
             "country": "United States of America",
             "poster_path": "/1n5VUlCqgmVax1adxGZm8oCFaKc.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                36,
+                10402,
+                18
+            ]
         }
     },
     {
@@ -4604,7 +5764,10 @@
             "country": "United States of America",
             "poster_path": "/gZycFUMLx2110dzK3nBNai7gfpM.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18
+            ]
         }
     },
     {
@@ -4622,7 +5785,11 @@
             "country": "Canada",
             "poster_path": "/dIxoYFcj6EqD5KScuU8lWCftnvH.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18,
+                53
+            ]
         }
     },
     {
@@ -4640,7 +5807,11 @@
             "country": "United States of America",
             "poster_path": "/nOd6vjEmzCT0k4VYqsA2hwyi87C.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                80,
+                18
+            ]
         }
     },
     {
@@ -4658,7 +5829,11 @@
             "country": "United Kingdom",
             "poster_path": "/yKmmT0q35R4AfW9Rbq2IPVAPwk3.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18,
+                80
+            ]
         }
     },
     {
@@ -4676,7 +5851,10 @@
             "country": "Switzerland",
             "poster_path": "/jcfEqKdWF1zeyvECPqp3mkWLct2.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18
+            ]
         }
     },
     {
@@ -4694,7 +5872,12 @@
             "country": "United States of America",
             "poster_path": "/lNz2Ow0wGCAvzckW7EOjE03KcYv.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18,
+                10752,
+                10749
+            ]
         }
     },
     {
@@ -4712,7 +5895,12 @@
             "country": "United States of America",
             "poster_path": "/umSVjVdbVwtx5ryCA2QXL44Durm.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                28,
+                80,
+                18
+            ]
         }
     },
     {
@@ -4730,7 +5918,12 @@
             "country": "Germany",
             "poster_path": "/1avD1JeaRiJX5M4ahPdZPypGoGN.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                28,
+                53,
+                878
+            ]
         }
     },
     {
@@ -4748,7 +5941,12 @@
             "country": "United States of America",
             "poster_path": "/r1x5JGpyqZU8PYhbs4UcrO1Xb6x.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                28,
+                53,
+                878
+            ]
         }
     },
     {
@@ -4766,7 +5964,12 @@
             "country": "United States of America",
             "poster_path": "/ts996lKsxvjkO2yiYG0ht4qAicO.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                9648,
+                53,
+                18
+            ]
         }
     },
     {
@@ -4784,7 +5987,12 @@
             "country": "United States of America",
             "poster_path": "/yn5ihODtZ7ofn8pDYfxCmxh8AXI.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18,
+                10749,
+                36
+            ]
         }
     },
     {
@@ -4802,7 +6010,12 @@
             "country": "United States of America",
             "poster_path": "/lEIaL12hSkqqe83kgADkbUqEnvk.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                10749,
+                878,
+                18
+            ]
         }
     },
     {
@@ -4820,7 +6033,10 @@
             "country": "United States of America",
             "poster_path": "/lBYOKAMcxIvuk9s9hMuecB9dPBV.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18
+            ]
         }
     },
     {
@@ -4838,7 +6054,10 @@
             "country": "United States of America",
             "poster_path": "/b9CeobiihCx1uG1tpw8hXmpi7nm.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                18
+            ]
         }
     },
     {
@@ -4856,7 +6075,13 @@
             "country": "United States of America",
             "poster_path": "/or1gBugydmjToAEq7OZY0owwFk.jpg",
             "is_adult": false,
-            "difficulty": "C1"
+            "difficulty": "C1",
+            "genres": [
+                28,
+                18,
+                36,
+                10752
+            ]
         }
     },
     {
@@ -4874,7 +6099,12 @@
             "country": "United States of America",
             "poster_path": "/sF1U4EUQS8YHUYjNl3pMGNIQyr0.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                36,
+                10752
+            ]
         }
     },
     {
@@ -4892,7 +6122,11 @@
             "country": "France",
             "poster_path": "/2hFvxCCWrTmCYwfy7yum0GKRi3Y.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                10752
+            ]
         }
     },
     {
@@ -4910,7 +6144,11 @@
             "country": "United States of America",
             "poster_path": "/gQB8Y5RCMkv2zwzFHbUJX3kAhvA.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                10752
+            ]
         }
     },
     {
@@ -4928,7 +6166,11 @@
             "country": "United States of America",
             "poster_path": "/7BsvSuDQuoqhWmU2fL7W2GOcZHU.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                36
+            ]
         }
     },
     {
@@ -4946,7 +6188,11 @@
             "country": "United States of America",
             "poster_path": "/vfrQk5IPloGg1v9Rzbh2Eg3VGyM.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                27,
+                878
+            ]
         }
     },
     {
@@ -4964,7 +6210,12 @@
             "country": "Germany",
             "poster_path": "/7sfbEnaARXDDhKm0CZ7D7uc2sbo.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                53,
+                10752
+            ]
         }
     },
     {
@@ -4982,7 +6233,12 @@
             "country": "United States of America",
             "poster_path": "/AdpcyHDrwxUuBi6OCSvNbAmRLKK.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                36,
+                10752
+            ]
         }
     },
     {
@@ -5000,7 +6256,11 @@
             "country": "United Kingdom",
             "poster_path": "/4sHeTAp65WrSSuc05nRBKddhBxO.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                878,
+                80
+            ]
         }
     },
     {
@@ -5018,7 +6278,12 @@
             "country": "Australia",
             "poster_path": "/wuz8TjCIWR2EVVMuEfBnQ1vuGS3.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                36,
+                10752
+            ]
         }
     },
     {
@@ -5036,7 +6301,11 @@
             "country": "United Kingdom",
             "poster_path": "/kMKyx1k8hWWscYFnPbnxxN4Eqo4.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                10752
+            ]
         }
     },
     {
@@ -5054,7 +6323,11 @@
             "country": "United States of America",
             "poster_path": "/9lfz2W2uGjyow3am00rsPJ8iOyq.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                36
+            ]
         }
     },
     {
@@ -5072,7 +6345,13 @@
             "country": "United States of America",
             "poster_path": "/zSqJ1qFq8NXFfi7JeIYMlzyR0dx.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                36,
+                18,
+                53,
+                10752
+            ]
         }
     },
     {
@@ -5090,7 +6369,12 @@
             "country": "United Kingdom",
             "poster_path": "/AiAm0EtDvyGqNpVoieRw4u65vD1.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                12,
+                36,
+                10752
+            ]
         }
     },
     {
@@ -5108,7 +6392,11 @@
             "country": "United Kingdom",
             "poster_path": "/bbGtogDZOg09bm42KIpCXUXICkh.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                10752
+            ]
         }
     },
     {
@@ -5126,7 +6414,13 @@
             "country": "United Kingdom",
             "poster_path": "/dOJtBSyI30wWc08UmyEKLsu4Rfk.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                10749,
+                10752,
+                36
+            ]
         }
     },
     {
@@ -5144,7 +6438,13 @@
             "country": "India",
             "poster_path": "/iZf0KyrE25z1sage4SYFLCCrMi9.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                10752,
+                36,
+                53,
+                18
+            ]
         }
     },
     {
@@ -5162,7 +6462,11 @@
             "country": "United States of America",
             "poster_path": "/7Fdh7gUq3plvQqxRbNYhWvDABXA.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                36
+            ]
         }
     },
     {
@@ -5180,7 +6484,12 @@
             "country": "United States of America",
             "poster_path": "/63N9uy8nd9j7Eog2axPQ8lbr3Wj.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                878,
+                18,
+                53
+            ]
         }
     },
     {
@@ -5198,7 +6507,11 @@
             "country": "United States of America",
             "poster_path": "/xdANQijuNrJaw1HA61rDccME4Tm.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                36
+            ]
         }
     },
     {
@@ -5216,7 +6529,12 @@
             "country": "United States of America",
             "poster_path": "/4YJNp1cquIkX8JxFwkKNEFQ9tgr.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                80,
+                36
+            ]
         }
     },
     {
@@ -5234,7 +6552,11 @@
             "country": "United States of America",
             "poster_path": "/gWkgMnIsd8Od7iyhEEKL5G4Qq6J.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                36
+            ]
         }
     },
     {
@@ -5252,7 +6574,11 @@
             "country": "United Kingdom",
             "poster_path": "/uQ538BfYLDJh3GXlzRZLo0j7PFj.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                36
+            ]
         }
     },
     {
@@ -5270,7 +6596,11 @@
             "country": "Brazil",
             "poster_path": "/tQuKfCWtOHm8NmLIdqs9aOnpIr1.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                10752
+            ]
         }
     },
     {
@@ -5288,7 +6618,12 @@
             "country": "United States of America",
             "poster_path": "/pEzNVQfdzYDzVK0XqxERIw2x2se.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                878,
+                9648
+            ]
         }
     },
     {
@@ -5306,7 +6641,11 @@
             "country": "Canada",
             "poster_path": "/ea5iv7TWMh18fOKoRGgmtcg85Gx.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                878,
+                53
+            ]
         }
     },
     {
@@ -5324,7 +6663,12 @@
             "country": "United States of America",
             "poster_path": "/mbm8k3GFhXS0ROd9AD1gqYbIFbM.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                80,
+                18,
+                36
+            ]
         }
     },
     {
@@ -5342,7 +6686,11 @@
             "country": "India",
             "poster_path": "/rOXftt7SluxskrFrvU7qFJa5zeN.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                36
+            ]
         }
     },
     {
@@ -5360,7 +6708,11 @@
             "country": "United Kingdom",
             "poster_path": "/cJ6JnuLwCNbiAAOBuHDjRTP7bQJ.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                878,
+                18
+            ]
         }
     },
     {
@@ -5378,7 +6730,12 @@
             "country": "United States of America",
             "poster_path": "/8IRufbzhMJSdlmD0cnTWERCtTN2.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                10752,
+                18,
+                36
+            ]
         }
     },
     {
@@ -5396,7 +6753,12 @@
             "country": "United States of America",
             "poster_path": "/seMydAaoxQP6F0xbE1jOcTmn5Jr.jpg",
             "is_adult": false,
-            "difficulty": "C2"
+            "difficulty": "C2",
+            "genres": [
+                18,
+                36,
+                10752
+            ]
         }
     }
 ]

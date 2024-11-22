@@ -7,8 +7,8 @@ API_KEY = ''
 API_URL = 'https://api.themoviedb.org/3/'
 
 
-json_file_path = "movies_add_genres.json"  # 기존 JSON 파일 경로
-output_json_path = "movies_add_otts.json"  # 결과 JSON 파일 경로
+json_file_path = "movies_added_genres.json"  # 기존 JSON 파일 경로
+output_json_path = "movies_added_otts.json"  # 결과 JSON 파일 경로
 
 # 기존 JSON 데이터 로드
 with open(json_file_path, "r", encoding="utf-8") as json_file:
