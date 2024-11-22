@@ -1,8 +1,10 @@
 <template>
   <div>
     <input type="checkbox" id="is_memorized">
-    <span>{{ voca.word }}</span> : 
-    <span>{{ voca.word_mean }}</span>
+      <span @click="toggleMemoShow">
+        <span>{{ voca.word }}</span> : 
+        <span>{{ voca.word_mean }}</span>
+      </span>
     <button @click="deleteWord(voca.id)" v-if="showDelete">X</button>
     <button @click="toggleFormShow" v-if="showUpdate">{{ isVisiable ? '취소' : '수정' }}</button>
     <br>
@@ -11,7 +13,7 @@
       <input type="text" id="word" v-model.trim="word">
       <br>
       <label for="word_mean">mean:</label>
-      <input type="text" id="word_mean" v-model.trim="mean">
+      <input type="text" id="word_mean" v-model.trim="word_mean">
       <br>
       <label for="examples">examples:</label>
       <input type="text" id="examples" v-model.trim="examples">
@@ -21,8 +23,10 @@
       <br>
       <input type="submit" id="submit" value="update">
     </form>
-    <p>{{ voca.example }}</p>
-    <p>{{ voca.memo }}</p>
+    <div v-if="isMemoVisiable">
+      <p>예문: {{ voca.examples }}</p>
+      <p>메모: {{ voca.memo }}</p>
+    </div>
   </div>
 </template>
 
@@ -35,6 +39,12 @@ defineProps({
 })
 const emit = defineEmits(['deleteEvent', 'updateEvent'])
 const isVisiable = ref(false)
+const isMemoVisiable = ref(false)
+
+const word = ref(null)
+const word_mean = ref(null)
+const examples = ref(null)
+const memo = ref(null)
 
 const deleteWord = function (id) {
   emit('deleteEvent', id)
@@ -46,6 +56,10 @@ const updateWord = function (id) {
 
 const toggleFormShow = function () {
   isVisiable.value = !isVisiable.value
+}
+
+const toggleMemoShow = function () {
+  isMemoVisiable.value = !isMemoVisiable.value
 }
 </script>
 
