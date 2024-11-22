@@ -6,7 +6,7 @@
     <br>
     <form>
       <select id="movieForVocaNote" v-if="showSelectMovie" @change="createNewNote($event.target.value)">
-        <option v-for="movie in wishMovies" :key="movie.id" :value="movie.id">{{ movie.title }}</option>
+        <option v-for="movie in wishMoviesWithOutNote" :key="movie.id" :value="movie.id">{{ movie.title }}</option>
       </select>
     </form>
     <VocaNoteItem
@@ -28,7 +28,7 @@ import { onMounted, ref } from 'vue';
 const store = useMovieStore()
 const showDeleteButton = ref(false)
 const showSelectMovie = ref(false)
-const { userProfile, vocaNoteList, wishMovies } = storeToRefs(store)
+const { userProfile, vocaNoteList, wishMoviesWithOutNote } = storeToRefs(store)
 
 const toggleDeleteButtons = function () {
   showDeleteButton.value = !showDeleteButton.value
@@ -43,7 +43,7 @@ const createNewNote = function (movieId, userId = userProfile.value.id) {
 
 onMounted(()=>{
   store.getVocaNote(userProfile.value.id)
-  store.getWishMovies()
+  store.getWishMovieWithOutNote()
 })
 </script>
 
