@@ -40,15 +40,30 @@ class WishMovieSerializer(serializers.ModelSerializer):
         model = Movie
         fields = ['id', 'tmdb_id', 'title', 'poster_path']
 
-class CommentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Comment
-        fields = '__all__'
 
+## 코멘트 관련 serializer 시작
 class MovieCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
-        fields = ['id', 'tmdb_id', 'title', 'comments']
+        fields = ['id', 'title',]
+
+
+# 코멘트 생성
+class CommentSerializer(serializers.ModelSerializer):
+    movies = MovieCommentSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Comment
+        fields = '__all__'
+        read_only_fields = ('users', 'liked_users')
+
+# 코멘트 조회 
+class CommentListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Comment # 코멘트 pk, 어떤 유저가 쓴 comment인지, 내용, 코멘트 좋아한 유저들
+        fields = ['id', 'users','content', 'liked_users']
+        
 
 # 메인페이지 전체 영화 조회
 class MovieListSerializers(serializers.ModelSerializer):

@@ -8,4 +8,6 @@ urlpatterns = [
     path('movies/genres-list/', views.genres_list),
     path('movies/otts-list/', views.otts_list),
     path('movies/<int:movie_pk>/comments/', views.comment_create),
+    path('movies/list/', views.comment_list_user),
+    path('movies/list/<int:movie_pk>/', views.comment_list_movie),
 ]
