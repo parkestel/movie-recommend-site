@@ -5,6 +5,11 @@ from .models import Movie, Genre, Star, Ott, Director, Comment
 
 User = get_user_model()
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'nickname']
+
 # 장르
 class GenreListSerializers(serializers.ModelSerializer):
     class Meta:
@@ -35,6 +40,8 @@ class UserListSerializers(serializers.ModelSerializer):
         model = User  
         fields = ['id', 'nickname']  # 필요한 필드만 포함
 
+
+
 # 로그인한 유저의 좋아요한 영화 목록
 class WishMovieSerializer(serializers.ModelSerializer):
     # has_voca_note = serializers.SerializerMethodField()
@@ -48,6 +55,7 @@ class WishMovieSerializer(serializers.ModelSerializer):
     #     # 해당 영화에 연결된 voca_notes에서 로그인한 유저가 있는지 확인
     #     return obj.voca_notes.filter(users=login_user).exists()
     
+
 
 # 로그인한 유저의 좋아요한 영화 목록 중 vocanote 없는
 class WishMovieVocaSerializer(serializers.ModelSerializer):
@@ -64,6 +72,7 @@ class MovieCommentSerializer(serializers.ModelSerializer):
         fields = ['id', 'title',]
 
 
+
 # 코멘트 생성
 class CommentSerializer(serializers.ModelSerializer):
     movies = MovieCommentSerializer(read_only=True, many=True)
@@ -74,23 +83,48 @@ class CommentSerializer(serializers.ModelSerializer):
         read_only_fields = ('users', 'liked_users',)
 
 
+
 # 코멘트 영화별 조회 
 class CommentListSerializer(serializers.ModelSerializer):
+    liked_user_count = serializers.SerializerMethodField()
+    users = UserSerializer(many=True, read_only=True)
 
     class Meta:
         model = Comment 
-        fields = ['id', 'users','content', 'liked_users',]
+        fields = ['id', 'users','content', 'liked_user_count']
         # 코멘트 총 개수, 코멘트 pk, 어떤 유저가 쓴 comment인지, 내용, 코멘트 좋아한 유저들
+    
+    def get_liked_user_count(self, obj):
+    # 각 댓글의 liked_users 수를 반환 (없으면 0)
+        return obj.liked_users.count()
+
 
 
 # 코멘트 로그인유저별 조회
 class CommentUserListSerializer(serializers.ModelSerializer):
+    movies = MovieCommentSerializer(read_only=True, many=True)
+    liked_user_count = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = Comment
+        fields = ['id', 'content', 'movies', 'liked_user_count']
+ 
+    def get_liked_user_count(self, obj):
+        # 각 코멘트의 liked_users 수 반환 (없으면 0)
+        return obj.liked_users.count()
+
+
+
+# 로그인 유저의 좋아요한 코멘트 조회
+class CommentUserLikedSerializer(serializers.ModelSerializer):
     movies = MovieCommentSerializer(read_only=True, many=True)
 
     class Meta:
         model = Comment
         fields = ['id', 'content', 'movies', 'liked_users']
         read_only_fields = ('liked_users',)
+
+
 
 
 # 메인페이지 전체 영화 조회
