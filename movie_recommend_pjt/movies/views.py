@@ -126,7 +126,7 @@ def comment_list_user(request, comment_pk):
 
 
 # 영화별 코멘트 조회
-@api_view(['GET', 'DELETE'])
+@api_view(['GET', 'DELETE', 'POST'])
 def comment_list_movie(request, movie_pk):
     login_user = request.user
     movie = Movie.objects.get(pk=movie_pk)
@@ -186,3 +186,20 @@ def update_comment(request, movie_pk, comment_pk):
     if serializer.is_valid(raise_exception=True):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+
+
+@api_view(['POST'])
+def like_comment(request, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    login_user = request.user
+
+    if comment.users.filter(pk=login_user.pk).exists():
+        return Response({'detail': '자기자신의 코멘트는 좋아요 할 수 없습니다.'}, status=status.HTTP_406_NOT_ACCEPTABLE)
+    
+    if comment.liked_users.filter(pk=login_user.pk).exists():
+        comment.liked_users.remove(login_user)
+        return Response({'status': 'removed', 'comment_pk': comment.pk}, status=status.HTTP_200_OK)
+    else:    
+        comment.liked_users.add(login_user)
+        return Response({'status': 'added', 'comment_pk': comment.pk}, status=status.HTTP_200_OK)
