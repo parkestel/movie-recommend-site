@@ -72,7 +72,7 @@ def otts_list(request):
     return Response(serializer.data)
 
 # 코멘트 생성
-@api_view(['POST', 'PUT'])
+@api_view(['POST'])
 def comment_create(request, movie_pk):
     movie = Movie.objects.get(pk=movie_pk)
     if request.method == 'POST':
@@ -156,11 +156,16 @@ def comment_list_movie(request, movie_pk):
         else:
             return Response({'detail': '다른 사람의 코멘트는 삭제할 수 없습니다.'}, status=status.HTTP_401_UNAUTHORIZED)
         
+# 코멘트 수정
+@api_view(['PUT'])
+def update_comment(request, movie_pk, comment_pk):
+    login_user = request.user
+    try:
+        comment = Comment.objects.get(pk=comment_pk, users=login_user, movies=movie_pk)
+    except Comment.DoesNotExist:
+        return Response({'detail': '수정할 댓글이 없습니다.'}, status=status.HTTP_404_NOT_FOUND)
 
-# @api_view(['DELETE'])
-# def comment_delete(request, comment_pk):
-#     login_user = request.user
-#     comment = Comment.objects.get(pk=comment_pk)
-#     if comment.users == login_user.pk:
-#         comment.delete()
-#         return Response()
+    serializer = CommentSerializer(comment, data=request.data, partial=True)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)

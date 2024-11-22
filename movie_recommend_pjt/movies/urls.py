@@ -11,5 +11,5 @@ urlpatterns = [
     path('movies/<int:movie_pk>/create-comment/', views.comment_create),
     path('movies/comment-list/user/<int:comment_pk>/', views.comment_list_user),
     path('movies/comment-list/<int:movie_pk>/', views.comment_list_movie),
-    # path('movies/comment-delete/<int:comment_pk>/', views.comment_delete),
+    path('movies/<int:movie_pk>/comment-update/<int:comment_pk>/', views.update_comment),
 ]
