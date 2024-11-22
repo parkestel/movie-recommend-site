@@ -37,16 +37,17 @@ class UserListSerializers(serializers.ModelSerializer):
 
 # 로그인한 유저의 좋아요한 영화 목록
 class WishMovieSerializer(serializers.ModelSerializer):
-    has_voca_note = serializers.SerializerMethodField()
+    # has_voca_note = serializers.SerializerMethodField()
     class Meta:
         model = Movie
-        fields = ['id', 'tmdb_id', 'title', 'poster_path', 'has_voca_note']
+        fields = ['id', 'tmdb_id', 'title', 'poster_path',]
     
-    def get_has_voca_note(self, obj):
-        # 로그인한 유저와 해당 영화가 연결된 voca_note가 있는지 확인
-        login_user = self.context['request'].user
-        # 해당 영화에 연결된 voca_notes에서 로그인한 유저가 있는지 확인
-        return obj.voca_notes.filter(users=login_user).exists()
+    # def get_has_voca_note(self, obj):
+    #     # 로그인한 유저와 해당 영화가 연결된 voca_note가 있는지 확인
+    #     login_user = self.context.get('request').user
+    #     # 해당 영화에 연결된 voca_notes에서 로그인한 유저가 있는지 확인
+    #     return obj.voca_notes.filter(users=login_user).exists()
+    
 
 # 로그인한 유저의 좋아요한 영화 목록 중 vocanote 없는
 class WishMovieVocaSerializer(serializers.ModelSerializer):
