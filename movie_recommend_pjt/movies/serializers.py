@@ -55,15 +55,25 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = '__all__'
-        read_only_fields = ('users', 'liked_users')
+        read_only_fields = ('users', 'liked_users',)
 
-# 코멘트 조회 
+
+# 코멘트 영화별 조회 
 class CommentListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment # 코멘트 pk, 어떤 유저가 쓴 comment인지, 내용, 코멘트 좋아한 유저들
         fields = ['id', 'users','content', 'liked_users']
-        
+
+# 코멘트 로그인유저별 조회
+class CommentUserListSerializer(serializers.ModelSerializer):
+    movies = MovieCommentSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Comment
+        fields = ['id', 'content', 'movies', 'liked_users']
+        read_only_fields = ('liked_users',)
+
 
 # 메인페이지 전체 영화 조회
 class MovieListSerializers(serializers.ModelSerializer):

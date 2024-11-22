@@ -6,7 +6,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from .models import Movie, Genre, Ott, Comment
 from .serializers import MovieListSerializers, WishMovieSerializer, OttListSerializers, GenreListSerializers
-from .serializers import CommentSerializer, MovieCommentSerializer, CommentListSerializer
+from .serializers import CommentSerializer, CommentListSerializer, CommentUserListSerializer
 
 User = get_user_model()
 
@@ -74,26 +74,11 @@ def comment_create(request, movie_pk):
 @api_view(['GET'])
 def comment_list_user(request):
     login_user = request.user
-    pass
-    # # 로그인한 유저랑 user_pk 다르면 is_public = True인 단어장 담아서 조회
-    # if login_user != person:
-    #     voca_notes = VocaNote.objects.filter(users=person)
-    #     if not voca_notes.exists():
-    #         return Response({'error': f'{person.username}의 단어장이 없습니다.'}, status=404)
-        
-    #     voca_notes = VocaNote.objects.filter(users=person, is_public=True)
-    #     if person != login_user and not any(note.is_public for note in voca_notes):
-    #         return Response({'error': '해당 단어장은 비공개 상태입니다.'}, status=403)
-       
-    # # 로그인한 유저랑 user_pk 같으며 내꺼니까
-    # else:
-    #     # 전체 voca_notes 리스트 조회
-    #     voca_notes = VocaNote.objects.filter(users=login_user).all()
-    # if voca_notes is None:
-    #     return Response({'error': '단어장 데이터를 불러올 수 없습니다.'}, status=500)
+    # 유저가 작성한 모든 영화에 따른 코멘트 내용들 
+    comments = Comment.objects.filter(users=login_user)
+    serializer = CommentUserListSerializer(comments, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
-    # serializer = VocaNoteSerializers(voca_notes, many=True)
-    # return Response(serializer.data, status=200)
 
 @api_view(['GET'])
 def comment_list_movie(request, movie_pk):
