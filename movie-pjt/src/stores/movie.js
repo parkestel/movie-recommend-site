@@ -29,6 +29,7 @@ export const useMovieStore = defineStore('movie', () => {
   const vocaList = ref(null)
   const vocaNote = ref(null)
   const userProfile = ref(null)
+  const moviecomments = ref(null)
   
   const getMovies = function () {
     axios({
@@ -301,9 +302,32 @@ export const useMovieStore = defineStore('movie', () => {
   const deleteVoca = function(vocaId,noteId) {
     axios({
       method:'delete',
-      url:`${API_BASE_URL}/voca/delete-voca/${noteId}/${vocaId}`,
+      url:`${API_BASE_URL}/voca/delete-voca/${noteId}/${vocaId}/`,
       headers:{
         Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      console.log(res)
+      getVocas(noteId)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
+
+  const updateVoca = function (vocaId,noteId,payload) {
+    axios({
+      method:'put',
+      url:`${API_BASE_URL}/voca/update-voca/${noteId}/${vocaId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+      data:{
+        word: payload.word,
+        word_mean: payload.word_mean,
+        examples: payload.examples,
+        memo: payload.memo,
       }
     })
     .then(res=>{
@@ -352,6 +376,57 @@ export const useMovieStore = defineStore('movie', () => {
     return wishMovies.value?.some(movie => movie.id===movieId)
   }
 
+  const getMovieComments = function (movieId) {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/movies/comment-list/${movieId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      moviecomments.value=res.data
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
+
+  const createComment = function (movieId, payload) {
+    axios({
+      method:'post',
+      url:`${API_BASE_URL}/movies/${movieId}/create-comment/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+      data:{
+        content: payload.content
+      }
+    })
+    .then(res=>{
+      getMovieComments(movieId)
+      console.log(res)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
+
+  const likeComments = function (reviewId) {
+    axios({
+      method: 'post',
+      url:`${API_BASE_URL}/movies/like-comment/${reviewId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+    })
+    .then(res=>{
+      console.log("댓글 추천 토글")
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
 
   const signUp = function (payload) {
     const username = payload.username
@@ -484,5 +559,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, memorizedVoca, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, updateVoca, memorizedVoca, getMovieComments, createComment, likeComments, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })

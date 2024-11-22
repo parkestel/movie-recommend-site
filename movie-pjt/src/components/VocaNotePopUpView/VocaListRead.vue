@@ -32,7 +32,7 @@
 
 <script setup>
 import { ref } from 'vue';
-defineProps({
+const props = defineProps({
   voca:Object,
   showDelete:Boolean,
   showUpdate:Boolean
@@ -41,17 +41,23 @@ const emit = defineEmits(['deleteEvent', 'updateEvent', 'checkEvent'])
 const isVisiable = ref(false)
 const isMemoVisiable = ref(false)
 
-const word = ref(null)
-const word_mean = ref(null)
-const examples = ref(null)
-const memo = ref(null)
+const word = ref(props.voca.word)
+const word_mean = ref(props.voca.word_mean)
+const examples = ref(props.voca.examples)
+const memo = ref(props.voca.memo)
 
 const deleteWord = function (id) {
   emit('deleteEvent', id)
 }
 
 const updateWord = function (id) {
-  emit('updateEvent', id)
+  const payload = {
+    word: word.value,
+    word_mean: word_mean.value,
+    examples: examples.value,
+    memo: memo.value
+  }
+  emit('updateEvent', id, payload)
 }
 
 const memorizedWord = function (id) {
