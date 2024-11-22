@@ -93,6 +93,16 @@ class CommentUserListSerializer(serializers.ModelSerializer):
         read_only_fields = ('liked_users',)
 
 
+# 로그인 유저의 좋아요한 코멘트 조회
+class CommentUserLikedSerializer(serializers.ModelSerializer):
+    movies = MovieCommentSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Comment
+        fields = ['id', 'content', 'movies', 'liked_users']
+        read_only_fields = ('liked_users',)
+
+
 # 메인페이지 전체 영화 조회
 class MovieListSerializers(serializers.ModelSerializer):
 
