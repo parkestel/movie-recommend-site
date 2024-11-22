@@ -55,7 +55,7 @@ def otts_list(request):
     return Response(serializer.data)
 
 # 코멘트 생성
-@api_view(['POST', 'PUT', 'DELETE'])
+@api_view(['POST', 'PUT'])
 def comment_create(request, movie_pk):
     movie = Movie.objects.get(pk=movie_pk)
     if request.method == 'POST':
@@ -66,21 +66,38 @@ def comment_create(request, movie_pk):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    # elif request.method == 'DELETE':
-        
 
 
 # 유저가 작성한 comment 조회
-@api_view(['GET'])
-def comment_list_user(request):
+@api_view(['GET','DELETE'])
+def comment_list_user(request, comment_pk):
     login_user = request.user
-    # 유저가 작성한 모든 영화에 따른 코멘트 내용들 
-    comments = Comment.objects.filter(users=login_user)
-    serializer = CommentUserListSerializer(comments, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+
+    if request.method == 'GET':
+        # 유저가 작성한 모든 영화에 따른 코멘트 내용들 
+        comments = Comment.objects.filter(users=login_user)
+        serializer = CommentUserListSerializer(comments, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    elif request.method == 'DELETE':
+        comment = Comment.objects.filter(pk=comment_pk, users=login_user).first()
+        if comment:
+            comment.delete()
+
+            print(f"Deleting comment with ID: {comment.pk}, Content: {comment.content}")
+
+            # 삭제 후 유저가 작성한 모든 영화 다시 조회
+            comments = Comment.objects.filter(users=login_user)
+            serializer = CommentUserListSerializer(comments, many=True)
+            return Response({
+                    'message': f"Comment with ID {comment.pk} has been deleted.",
+                    'remaining_comments': serializer.data
+                }, status=status.HTTP_200_OK)
+        else:
+            return Response({'detail': '삭제할 코멘트가 없습니다.'}, status=status.HTTP_404_NOT_FOUND)
 
 # 영화별 코멘트 조회
-@api_view(['GET'])
+@api_view(['GET', 'DELETE'])
 def comment_list_movie(request, movie_pk):
     movie = Movie.objects.get(pk=movie_pk)
     comments = Comment.objects.filter(movies=movie)
@@ -93,3 +110,11 @@ def comment_list_movie(request, movie_pk):
         'number_of_count': total_comments,  # 총 코멘트 개수
         'comments': serializer.data  # 코멘트 목록
     }, status=status.HTTP_200_OK)
+
+# @api_view(['DELETE'])
+# def comment_delete(request, comment_pk):
+#     login_user = request.user
+#     comment = Comment.objects.get(pk=comment_pk)
+#     if comment.users == login_user.pk:
+#         comment.delete()
+#         return Response()
