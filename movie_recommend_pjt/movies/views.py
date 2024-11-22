@@ -216,9 +216,11 @@ def login_user_like_comment(request):
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+
 # top_5 코멘트
 @api_view(['GET'])
-def top_5_comment(request):
-    top_5_comments = Comment.objects.annotate(like_count=Count('liked_users')).order_by('-like_count')[:5]
+def top_5_comment(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    top_5_comments = movie.comments.annotate(like_count=Count('liked_users')).order_by('-like_count')[:5]
     serializer = CommentListSerializer(top_5_comments, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
