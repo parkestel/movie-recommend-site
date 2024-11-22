@@ -40,6 +40,7 @@ const route = useRoute()
 const showDeleteButton = ref(false)
 const showUpdateButton = ref(false)
 const { userProfile, vocaList } = storeToRefs(store)
+const noteId = ref(null)
 
 const emit = defineEmits(['deleteEvent', 'toggleEvent'])
 const isDeleted = ref(false)
@@ -71,8 +72,7 @@ const togglePublic = function (movieId, userId = userProfile.value.id) {
 }
 
 const deleteWord = function (id) {
-    const targetId = vocaList.value.findIndex((voca)=>voca.id===id)
-    vocaList.value.splice(targetId, 1)
+    store.deleteVoca(id, noteId.value)
 }
 
 const updateWord = function (id) {
@@ -88,7 +88,7 @@ const toggleUpdateButtons = function () {
 }
 
 onMounted(()=>{
-    const noteId = route.params.note_id
+    noteId.value = route.params.note_id
     store.getVocas(noteId)
     isDeleted.value=false
 })

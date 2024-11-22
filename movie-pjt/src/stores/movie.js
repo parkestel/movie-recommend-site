@@ -287,7 +287,24 @@ export const useMovieStore = defineStore('movie', () => {
       },
       headers:{
           Authorization: `Token ${token.value}`
-        }
+      }
+    })
+    .then(res=>{
+      console.log(res)
+      getVocas(noteId)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
+
+  const deleteVoca = function(vocaId,noteId) {
+    axios({
+      method:'delete',
+      url:`${API_BASE_URL}/voca/delete-voca/${noteId}/${vocaId}`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
     })
     .then(res=>{
       console.log(res)
@@ -451,5 +468,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })
