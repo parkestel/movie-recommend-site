@@ -1,12 +1,12 @@
 <template>
   <div>
     <span>{{ review.content }}</span>
-    <button v-if="review.username!==store.logedinUsername" @click="likeReview(review.id)">추천</button>
-    <p>작성자: {{ review.nickname }}</p>
-    <p>추천 수: {{ review.liked_users_count }}</p>
+    <button v-if="review.users[0].username!==store.logedinUsername" @click="likeReview(review.id)">추천</button>
+    <p>작성자: {{ review.users[0].nickname }}</p>
+    <p>추천 수: {{ review.liked_user_count }}</p>
     <!-- 작성자 === 로그인한 사람 일 때만 삭제 버튼 보이게 -->
-    <button v-if="review.username===store.logedinUsername" @click="deleteReview(review.id)">삭제</button>
-    <button v-if="review.username===store.logedinUsername" @click="openUpdateForm">{{ isVisable ? '취소' : '수정' }}</button>
+    <button v-if="review.users[0].username===store.logedinUsername" @click="deleteReview(review.id)">삭제</button>
+    <button v-if="review.users[0].username===store.logedinUsername" @click="openUpdateForm">{{ isVisable ? '취소' : '수정' }}</button>
     <form v-if="isVisable" @submit.prevent="updateReview(review.id)">
       <textarea id="update"></textarea>
       <input type="submit">
