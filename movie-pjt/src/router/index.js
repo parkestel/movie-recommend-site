@@ -39,7 +39,7 @@ const router = createRouter({
       component: SignUpView
     },
     {
-      path:'/userinfoupdate',
+      path:'/userinfoupdate/:username',
       name:'userinfoupdate',
       component:UserInfoUpdateView
     },
@@ -121,6 +121,14 @@ router.beforeEach((to, from) => {
     window.alert('로그인이 필요합니다.')
     return { name:'login'}
   } 
+
+  if (to.name === 'myreviews' && (store.logedinUsername !== to.params.username)) {
+    return {name:'movies'}
+  }
+
+  if (to.name === 'likedreviews' && (store.logedinUsername !== to.params.username)) {
+    return {name:'movies'}
+  }
 
   if ((to.name === 'signup' || to.name === 'login') && (store.isLogin)) {
     window.alert('이미 로그인 되어 있습니다.')
