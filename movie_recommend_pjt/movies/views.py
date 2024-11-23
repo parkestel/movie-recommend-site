@@ -56,6 +56,7 @@ def wish_movie(request, movie_pk):
 
 
 # 로그인 유저 난이도별 추천 영화 랜덤 5개
+@api_view(["GET"])
 def random_recommend_movie(request):
     login_user = request.user
     user_study_level = login_user.study_level
