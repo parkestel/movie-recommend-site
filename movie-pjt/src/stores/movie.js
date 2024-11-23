@@ -429,7 +429,7 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
 
-  const deleteComment = function (reviewId) {
+  const deleteCommentinMovie = function (reviewId, movieId) {
     axios({
       method:'delete',
       url:`${API_BASE_URL}/movies/comment-list/delete/${reviewId}/`,
@@ -439,8 +439,15 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       console.log('댓글 삭제 완료')
-      get
+      getMovieComments(movieId)
     })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
+
+  const updateCommentinMovie = function(reviewId, movieId) {
+    
   }
 
   const signUp = function (payload) {
@@ -574,5 +581,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, updateVoca, memorizedVoca, getMovieComments, createComment, likeCommentsinMovie, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, updateVoca, memorizedVoca, getMovieComments, createComment, likeCommentsinMovie, deleteCommentinMovie, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })

@@ -27,23 +27,22 @@ const store = useMovieStore()
 const route = useRoute()
 const movieId = route.params.movieid
 const isVisable = ref(false) 
-const emit = defineEmits(['deleteEvent', 'updateReview', 'likeEvent'])
 
 const likeReview = function (id) {
   store.likeCommentsinMovie(id, movieId)
   store.getMovieComments(movieId)
 }
 const deleteReview = function (id) {
-  emit('deleteEvent', id)
+  store.deleteCommentinMovie(id,movieId)
 }
 
+const updateReview = function (id,movieId) {
+  //store.updateCommentinMovie(id,movieId)
+}
 const openUpdateForm = function () {
   isVisable.value = !isVisable.value
 }
 
-const updateReview = function (id) {
-  emit('updateReview', id)
-}
 </script>
 
 <style scoped>
