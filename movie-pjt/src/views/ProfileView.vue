@@ -1,6 +1,13 @@
 <template>
     <div v-if="userProfile">
         <h1>{{ userProfile.nickname }} 님의 페이지 입니다.</h1>
+        <hr>
+        <h5>학습 레벨 변경하기</h5>
+        <form>
+            <select name="학습 레벨" id="studylevel" v-model="store.userProfile.study_level" @change.prevent="updateLevel($event.target.value)">
+                <option v-for="level in store.difficulties" :key="level" :value="level">{{ level }}</option>
+            </select>
+        </form>
         <ProfileComponent :profile="userProfile" v-if="userProfile.username===store.logedinUsername"/>
         <ProfileFollow/>
         <hr>
@@ -24,6 +31,13 @@ import { storeToRefs } from 'pinia';
 const store = useMovieStore()
 const route = useRoute()
 const { userProfile } = storeToRefs(store)
+
+const updateLevel = function (level, username=route.params.username) {
+    const payload = {
+        study_level: level
+    }
+    store.updateUserStudyLevel(payload, username)
+}
 
 onMounted(()=>{
     store.getUserProfile(route.params.username)
