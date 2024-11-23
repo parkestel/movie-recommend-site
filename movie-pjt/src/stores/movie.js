@@ -406,7 +406,7 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       getMovieComments(movieId)
-      console.log(res)
+      getBestComments(movieId)
     })
     .catch(err=>{
       console.log(err)
@@ -424,6 +424,7 @@ export const useMovieStore = defineStore('movie', () => {
     .then(res=>{
       console.log("댓글 추천 토글")
       getMovieComments(movieId)
+      getBestComments(movieId)
     })
     .catch(err=>{
       console.log(err)
@@ -441,6 +442,7 @@ export const useMovieStore = defineStore('movie', () => {
     .then(res=>{
       console.log('댓글 삭제 완료')
       getMovieComments(movieId)
+      getBestComments(movieId)
     })
     .catch(err=>{
       console.log(err)
@@ -461,6 +463,7 @@ export const useMovieStore = defineStore('movie', () => {
     .then(res=>{
       console.log('댓글 수정 완료')
       getMovieComments(movieId)
+      getBestComments(movieId)
     })
     .catch(err=>{
       console.log(err)
