@@ -53,7 +53,10 @@
         >{{ level }}</button>
     </div>
     <div>
-        <div v-if="sortedMovies">
+        <div v-if="store.isLoading">
+            <p>loading...</p>
+        </div>
+        <div v-else-if="sortedMovies && !store.isLoading">
             <MovieCard 
             v-for="movie in sortedMovies" 
             :key="movie.id" 
@@ -89,6 +92,7 @@ const levelList = ref(null)
 const genreFilter = ref(false)
 const ottFilter = ref(false)
 const levelFilter = ref(false)
+
 
 const toggleGenreFilter = function () {
     genreFilter.value = !genreFilter.value

@@ -1,4 +1,4 @@
-import { ref, computed, reactive } from 'vue'
+import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
@@ -34,8 +34,10 @@ export const useMovieStore = defineStore('movie', () => {
   const movieBestComments = ref(null)
   const myReviews = ref(null)
   const myLikedReviews = ref(null)
+  const isLoading = ref(null)
   
   const getMovies = function () {
+    isLoading.value=true
     axios({
       method:'get',
       url:`${API_BASE_URL}/movies/`,
@@ -46,6 +48,7 @@ export const useMovieStore = defineStore('movie', () => {
     .then(res=>{
       // console.log(res.data)
       movies.value = res.data
+      isLoading.value=false
     })
     .catch(err=>{
       if (err.response && err.response.status === 401) {
@@ -54,6 +57,10 @@ export const useMovieStore = defineStore('movie', () => {
         userProfile.value=null
         window.alert('로그인이 필요합니다.')
         router.push({name:'login'})
+      } else {
+        let values = Object.values(err.response.data);
+        let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+        window.alert(formattedData);
       }
     })
   }
@@ -84,6 +91,10 @@ export const useMovieStore = defineStore('movie', () => {
         userProfile.value=null 
         window.alert('로그인이 필요합니다.')
         router.push({name:'login'})
+      } else {
+        let values = Object.values(err.response.data);
+        let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+        window.alert(formattedData);
       }
     })
   }
@@ -97,7 +108,6 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log(res.data)
       todayRandomMovie.value=res.data
     })
     .catch(err=>{
@@ -107,6 +117,10 @@ export const useMovieStore = defineStore('movie', () => {
         userProfile.value=null 
         window.alert('로그인이 필요합니다.')
         router.push({name:'login'})
+      } else {
+        let values = Object.values(err.response.data);
+        let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+        window.alert(formattedData);
       }
     })
   }
@@ -129,6 +143,10 @@ export const useMovieStore = defineStore('movie', () => {
         userProfile.value=null 
         window.alert('로그인이 필요합니다.')
         router.push({name:'login'})
+      } else {
+        let values = Object.values(err.response.data);
+        let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+        window.alert(formattedData);
       }
     })
     
@@ -146,7 +164,9 @@ export const useMovieStore = defineStore('movie', () => {
       genres.value=res.data
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -162,7 +182,9 @@ export const useMovieStore = defineStore('movie', () => {
       otts.value=res.data
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -186,6 +208,10 @@ export const useMovieStore = defineStore('movie', () => {
         userProfile.value=null
         window.alert('로그인이 필요합니다.')
         router.push({name:'login'})
+      } else {
+        let values = Object.values(err.response.data);
+        let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+        window.alert(formattedData);
       }
     })
   }
@@ -203,8 +229,10 @@ export const useMovieStore = defineStore('movie', () => {
       getUserProfile(username)
     })
     .catch(err=>{
-      console.log('팔로우 실패')
-      console.log(err)
+      // console.log('팔로우 실패')
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -225,7 +253,9 @@ export const useMovieStore = defineStore('movie', () => {
       vocaNoteList.value = res.data
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -244,7 +274,9 @@ export const useMovieStore = defineStore('movie', () => {
       getWishMovieWithOutNote()
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     }) 
   }
 
@@ -262,7 +294,9 @@ export const useMovieStore = defineStore('movie', () => {
       return res
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
       throw err
     })
   }
@@ -280,7 +314,9 @@ export const useMovieStore = defineStore('movie', () => {
       getVocas(res.data.id)
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -294,10 +330,12 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       vocaList.value = res.data
-      console.log(res.data)
+      // console.log(res.data)
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
     // return vocaList.value.filter((voca)=>voca.note_id===Number(noteId))
   }
@@ -318,11 +356,12 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log(res)
       getVocas(noteId)
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -335,11 +374,12 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log(res)
       getVocas(noteId)
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -358,11 +398,12 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log(res)
       getVocas(noteId)
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -378,7 +419,9 @@ export const useMovieStore = defineStore('movie', () => {
       getVocas(noteId)
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -391,11 +434,13 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log('좋아요 성공')
+      // console.log('좋아요 성공')
       getWishMovies()
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -415,7 +460,9 @@ export const useMovieStore = defineStore('movie', () => {
       moviecomments.value=res.data
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -435,7 +482,9 @@ export const useMovieStore = defineStore('movie', () => {
       getBestComments(movieId)
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -448,12 +497,14 @@ export const useMovieStore = defineStore('movie', () => {
       },
     })
     .then(res=>{
-      console.log("댓글 추천 토글")
+      // console.log("댓글 추천 토글")
       getMovieComments(movieId)
       getBestComments(movieId)
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -466,12 +517,14 @@ export const useMovieStore = defineStore('movie', () => {
       },
     })
     .then(res=>{
-      console.log('댓글 삭제 완료')
+      // console.log('댓글 삭제 완료')
       getMovieComments(movieId)
       getBestComments(movieId)
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -487,12 +540,14 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log('댓글 수정 완료')
+      // console.log('댓글 수정 완료')
       getMovieComments(movieId)
       getBestComments(movieId)
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -508,7 +563,9 @@ export const useMovieStore = defineStore('movie', () => {
       movieBestComments.value = res.data
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -524,7 +581,9 @@ export const useMovieStore = defineStore('movie', () => {
       myReviews.value=res.data
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -540,7 +599,9 @@ export const useMovieStore = defineStore('movie', () => {
       myLikedReviews.value=res.data
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -553,11 +614,13 @@ export const useMovieStore = defineStore('movie', () => {
       },
     })
     .then(res=>{
-      console.log('댓글 삭제 완료')
+      // console.log('댓글 삭제 완료')
       getMyReviews()
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -594,7 +657,7 @@ export const useMovieStore = defineStore('movie', () => {
       logIn({username, password})
     })
     .catch(err=>{
-      console.log(err)
+      // console.log(err)
       window.alert('회원가입에 실패했습니다! 다시 시도 해주십시오.')
       router.push({name:'signup'})
     })
@@ -684,11 +747,14 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log(res.data)
+      // console.log(res.data)
       logedinUsername.value=res.data.username
     })
     .catch(err=>{
-      console.log(err)
+      // console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -708,10 +774,12 @@ export const useMovieStore = defineStore('movie', () => {
     .then(res=>{
       getLogedInUserName()
       getUserProfile(username)
-      router.push({name:'profile', params})
+      router.push({name:'profile', params:{username:username}})
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -725,13 +793,38 @@ export const useMovieStore = defineStore('movie', () => {
       },
     })
     .then(res=>{
-      console.log(res.data)
+      // console.log(res.data)
       userInfo.value = res.data
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, todayRandomMovie, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, movieBestComments, myReviews, myLikedReviews, getImgUrl, getMovies, getRandomMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, updateVoca, memorizedVoca, getMovieComments, createComment, likeCommentsinMovie, deleteCommentinMovie, updateCommentinMovie, getBestComments, getMyReviews, deleteCommentinMyPage, getLikedReviewInMyPage, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, updateUserInfo, getUserInfoForUpdate, token, isLogin, logedinUsername, userInfo }
+  const changePassword = function (payload) {
+    axios({
+      method:'post',
+      url:`${API_BASE_URL}/accounts/dj-rest-auth/password/change/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+      data: {
+        new_password1:payload.new_password1,
+        new_password2:payload.new_password2,
+      }
+    })
+    .then(res=>{
+      window.alert('비밀번호 변경이 완료 되었습니다.')
+      router.push({name:'movies'})
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
+  }
+      isLoading.value=false
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, todayRandomMovie, otts, difficulties, wishMovies, userProfile, genres, isLoading, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, movieBestComments, myReviews, myLikedReviews, getImgUrl, getMovies, getRandomMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, updateVoca, memorizedVoca, getMovieComments, createComment, likeCommentsinMovie, deleteCommentinMovie, updateCommentinMovie, getBestComments, getMyReviews, deleteCommentinMyPage, getLikedReviewInMyPage, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, updateUserInfo, getUserInfoForUpdate, changePassword, token, isLogin, logedinUsername, userInfo }
 }, { persist: true })
