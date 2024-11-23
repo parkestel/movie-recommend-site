@@ -62,6 +62,7 @@ class Comment(models.Model):
     )
 
 
+# 좋아요 경험치 로직 떄문에 추가한 모델
 class CommentLike(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
@@ -69,3 +70,10 @@ class CommentLike(models.Model):
 
     class Meta:
         unique_together = ("user", "comment")
+
+
+# 위시무비 담을 때 경험치 로직
+class WishMovieHistory(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
