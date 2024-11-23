@@ -105,7 +105,6 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log(res.data)
       todayRandomMovie.value=res.data
     })
     .catch(err=>{
@@ -227,7 +226,7 @@ export const useMovieStore = defineStore('movie', () => {
       getUserProfile(username)
     })
     .catch(err=>{
-      console.log('팔로우 실패')
+      // console.log('팔로우 실패')
       let values = Object.values(err.response.data);
       let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
       window.alert(formattedData);
@@ -328,7 +327,7 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       vocaList.value = res.data
-      console.log(res.data)
+      // console.log(res.data)
     })
     .catch(err=>{
       let values = Object.values(err.response.data);
@@ -354,7 +353,6 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log(res)
       getVocas(noteId)
     })
     .catch(err=>{
@@ -373,7 +371,6 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log(res)
       getVocas(noteId)
     })
     .catch(err=>{
@@ -398,7 +395,6 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log(res)
       getVocas(noteId)
     })
     .catch(err=>{
@@ -435,7 +431,7 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log('좋아요 성공')
+      // console.log('좋아요 성공')
       getWishMovies()
     })
     .catch(err=>{
@@ -615,7 +611,7 @@ export const useMovieStore = defineStore('movie', () => {
       },
     })
     .then(res=>{
-      console.log('댓글 삭제 완료')
+      // console.log('댓글 삭제 완료')
       getMyReviews()
     })
     .catch(err=>{
@@ -658,7 +654,7 @@ export const useMovieStore = defineStore('movie', () => {
       logIn({username, password})
     })
     .catch(err=>{
-      console.log(err)
+      // console.log(err)
       window.alert('회원가입에 실패했습니다! 다시 시도 해주십시오.')
       router.push({name:'signup'})
     })
@@ -748,11 +744,14 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log(res.data)
+      // console.log(res.data)
       logedinUsername.value=res.data.username
     })
     .catch(err=>{
-      console.log(err)
+      // console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -791,7 +790,7 @@ export const useMovieStore = defineStore('movie', () => {
       },
     })
     .then(res=>{
-      console.log(res.data)
+      // console.log(res.data)
       userInfo.value = res.data
     })
     .catch(err=>{
