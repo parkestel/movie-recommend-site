@@ -35,6 +35,7 @@ export const useMovieStore = defineStore('movie', () => {
   const myReviews = ref(null)
   const myLikedReviews = ref(null)
   const isLoading = ref(null)
+  const logedinUserPoint = ref(0)
   
   const getMovies = function () {
     isLoading.value=true
@@ -682,15 +683,57 @@ export const useMovieStore = defineStore('movie', () => {
         username, password
       }
     })
-    .then(res=>{
+    .then((res)=>{
       token.value = res.data.key
       getLogedInUserName()
+      // getlogedInUserPoints()
       getWishMovies()
+      if (logedinUserPoint.value!==null) {
+        addExPointLogIn()
+      }
       router.push({name:'movies'})
     })
     .catch(err=>{
       window.alert('로그인에 실패 했습니다!')
       // router.push({name:'login'})
+    })
+  }
+
+  const getlogedInUserPoints = function () {
+    axios({
+      method:'get',
+      url: `${API_BASE_URL}`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+    })
+    .then(res=>{
+      logedinUserPoint.value=res.data
+    })
+    .catch(err=>{
+
+    })
+  }
+
+  const addExPointLogIn = function() {
+    // logedinUserPoint.value += 200
+    // console.log(logedinUserPoint.value)
+    const newPoint = logedinUserPoint.value.experience + 200
+    axios({
+      method:'post',
+      url: `${API_BASE_URL}`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+      data:{
+        experience: newPoint,
+      }
+    })
+    .then(res=>{
+      getlogedInUserPoints()
+    })
+    .catch(err=>{
+
     })
   }
 
