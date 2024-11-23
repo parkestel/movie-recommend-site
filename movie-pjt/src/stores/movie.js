@@ -809,9 +809,11 @@ export const useMovieStore = defineStore('movie', () => {
         Authorization: `Token ${token.value}`
       },
       data:{
+        last_name:payload.last_name,
+        first_name:payload.first_name,
         nickname:payload.nickname,
         email:payload.email,
-        study_level:payload.study_level
+        birth:payload.birth
       }
     })
     .then(res=>{
@@ -845,6 +847,29 @@ export const useMovieStore = defineStore('movie', () => {
       window.alert(formattedData);
     })
   }
+
+  const updateUserStudyLevel = function(payload, username){
+    axios({
+      method:'put',
+      url:`${API_BASE_URL}/accounts/user/update/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+      data:{
+        study_level:payload.study_level
+      }
+    })
+    .then(res=>{
+      getUserProfile(username)
+      router.push({name:'profile', params:{username:username}})
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
+  }
+  
   
   const changePassword = function (payload) {
     axios({
@@ -869,5 +894,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
       isLoading.value=false
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, todayRandomMovie, otts, difficulties, wishMovies, userProfile, genres, isLoading, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, movieBestComments, myReviews, myLikedReviews, getImgUrl, getMovies, getRandomMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, updateVoca, memorizedVoca, getMovieComments, createComment, likeCommentsinMovie, deleteCommentinMovie, updateCommentinMovie, getBestComments, getMyReviews, deleteCommentinMyPage, getLikedReviewInMyPage, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, updateUserInfo, getUserInfoForUpdate, changePassword, token, isLogin, logedinUsername, userInfo }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, todayRandomMovie, otts, difficulties, wishMovies, userProfile, genres, isLoading, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, movieBestComments, myReviews, myLikedReviews, getImgUrl, getMovies, getRandomMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, updateVoca, memorizedVoca, getMovieComments, createComment, likeCommentsinMovie, deleteCommentinMovie, updateCommentinMovie, getBestComments, getMyReviews, deleteCommentinMyPage, getLikedReviewInMyPage, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, updateUserInfo, getUserInfoForUpdate, updateUserStudyLevel, changePassword, token, isLogin, logedinUsername, userInfo }
 }, { persist: true })
