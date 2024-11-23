@@ -110,7 +110,7 @@ def comment_create(request, movie_pk):
 
 # 유저가 작성한 comment 조회
 @api_view(["GET"])
-def comment_list_user(request, comment_pk):
+def comment_list_user(request):
     login_user = request.user
 
     if request.method == "GET":
@@ -123,7 +123,7 @@ def comment_list_user(request, comment_pk):
 # 영화별 코멘트 조회
 @api_view(["GET"])
 def comment_list_movie(request, movie_pk):
-    login_user = request.user
+
     movie = Movie.objects.get(pk=movie_pk)
 
     if request.method == "GET":
