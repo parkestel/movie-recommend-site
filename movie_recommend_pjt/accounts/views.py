@@ -25,8 +25,6 @@ def login_user_data(request):
     serializer = CustomUserDetailsSerializer(user)
     return Response(serializer.data)
 
-
-@api_view()
 @api_view(["GET"])
 @authentication_classes([TokenAuthentication, BasicAuthentication])
 @permission_classes([IsAuthenticated])
