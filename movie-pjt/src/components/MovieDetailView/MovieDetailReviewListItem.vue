@@ -30,7 +30,7 @@ const isVisable = ref(false)
 const emit = defineEmits(['deleteEvent', 'updateReview', 'likeEvent'])
 
 const likeReview = function (id) {
-  store.likeComments(id)
+  store.likeCommentsinMovie(id, movieId)
   store.getMovieComments(movieId)
 }
 const deleteReview = function (id) {

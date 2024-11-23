@@ -412,7 +412,7 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
 
-  const likeComments = function (reviewId) {
+  const likeCommentsinMovie = function (reviewId, movieId) {
     axios({
       method: 'post',
       url:`${API_BASE_URL}/movies/like-comment/${reviewId}/`,
@@ -422,9 +422,24 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       console.log("댓글 추천 토글")
+      getMovieComments(movieId)
     })
     .catch(err=>{
       console.log(err)
+    })
+  }
+
+  const deleteComment = function (reviewId) {
+    axios({
+      method:'delete',
+      url:`${API_BASE_URL}/movies/comment-list/delete/${reviewId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+    })
+    .then(res=>{
+      console.log('댓글 삭제 완료')
+      get
     })
   }
 
@@ -559,5 +574,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, updateVoca, memorizedVoca, getMovieComments, createComment, likeComments, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, updateVoca, memorizedVoca, getMovieComments, createComment, likeCommentsinMovie, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })
