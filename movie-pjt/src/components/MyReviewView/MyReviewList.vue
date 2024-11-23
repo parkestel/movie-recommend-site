@@ -11,7 +11,6 @@
 <script setup>
 import { ref } from 'vue';
 import MyReviewListItem from '@/components/MyReviewView/MyReviewListItem.vue'
-import MyReview from '@/views/ProfileNesting/MyReview.vue';
 
 const props = defineProps({
   myReviews:Array
