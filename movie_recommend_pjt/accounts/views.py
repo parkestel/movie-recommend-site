@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import logout
-from dj_rest_auth.views import LoginView
+from django.db import transaction
 
 from rest_framework.response import Response
 from rest_framework import status
@@ -24,22 +24,6 @@ def login_user_data(request):
     user = request.user
     serializer = CustomUserDetailsSerializer(user)
     return Response(serializer.data)
-
-
-class CustomLoginView(LoginView):
-    def post(self, request, *args, **kwargs):
-        # 로그인 요청 처리
-        response = super().post(request, *args, **kwargs)
-
-        # 현재 로그인된 사용자 정보 가져오기
-        user = self.request.user
-
-        if user.is_authenticated:  # 사용자가 인증된 경우에만
-            # experience 필드 업데이트
-            user.experience += 100
-            user.save()
-
-        return response
 
 
 @api_view()

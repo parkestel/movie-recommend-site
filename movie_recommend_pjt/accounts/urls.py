@@ -1,11 +1,9 @@
 from django.urls import path, include
 from . import views
-from .views import CustomLoginView
 
 urlpatterns = [
     path("dj-rest-auth/", include("dj_rest_auth.urls")),
     path("dj-rest-auth/registration/", include("dj_rest_auth.registration.urls")),
-    path("dj-rest-auth/login/", CustomLoginView.as_view()),
     path("delete/", views.delete_user),
     path("<int:user_pk>/follow/", views.followings),
     path("dj-rest-auth/user/", views.login_user_data),
