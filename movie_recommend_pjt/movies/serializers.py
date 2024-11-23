@@ -70,7 +70,7 @@ class WishMovieSerializer(serializers.ModelSerializer):
 class RandomMovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
-        fields = ["id", "title", "poster_path"]
+        fields = ["id", "title", "poster_path", "title_kr"]
 
 
 # 로그인한 유저의 좋아요한 영화 목록 중 vocanote 없는
