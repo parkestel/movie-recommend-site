@@ -67,11 +67,12 @@
         </div>
         <span>Loading</span>
         </div>
-        <div v-else-if="sortedMovies && !store.isLoading">
+        <div v-else-if="sortedMovies && !store.isLoading" class="card-container">
             <MovieCard 
             v-for="movie in sortedMovies" 
             :key="movie.id" 
             :movie="movie"
+            class="movie-card"
             />
         </div>
     </div>

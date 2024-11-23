@@ -16,7 +16,60 @@ body {
     padding: 1.5rem;
 }
 
-/* 모든 버튼에 공통 스타일 적용 */
+/* 카드 컨테이너 */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 4개의 열 */
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    padding: 2rem;
+    background: transparent; /* 메인 배경색 */
+  }
+  
+  /* 영화 카드 */
+  .movie-card {
+    width: 200px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: transparent; /* 배경색 투명하게 설정 */
+    box-shadow: none; /* 그림자 제거 */
+  }
+  
+  /* 카드 이미지 */
+  .card-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 20px; /* 이미지 둥글게 */
+  }
+  
+  /* 호버 효과 */
+  .card-img:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 1200px) {
+    .card-container {
+      grid-template-columns: repeat(3, 1fr); /* 가로 3개 */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .card-container {
+      grid-template-columns: repeat(2, 1fr); /* 가로 2개 */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .card-container {
+      grid-template-columns: 1fr; /* 가로 1개 */
+      justify-items: center; /* 카드의 수평 중앙 정렬 */
+    }
+  }
+
+/* 버튼에 공통 스타일 적용 - btn 덮어쓰기 */
 .btn {
     background-color: white; /* 기본 흰 바탕 */
     color: #ff6b6b; /* 기본 컬러 글씨 */

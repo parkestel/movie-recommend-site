@@ -1,14 +1,11 @@
 <template>
   <div>
-    <button v-if="!store.isLikedMovie(movie.id)" @click="store.addToggleWishMovie(movie.id)">🤍</button>
-    <button v-else  @click="store.addToggleWishMovie(movie.id)">💖</button>
-
-    <div>
-      <img :src="store.getImgUrl(movie.poster_path,200)" alt="">
-    </div>
+    <img :src="store.getImgUrl(movie.poster_path,200)" alt="" class="card-img">
     <h4>{{ movie.title_kr }}</h4>
     <h5>{{ movie.title }}</h5>
     <button @click="moveToDetail(movie.id)">Detail</button>
+    <button v-if="!store.isLikedMovie(movie.id)" @click="store.addToggleWishMovie(movie.id)">🤍</button>
+    <button v-else  @click="store.addToggleWishMovie(movie.id)">💖</button>
   </div>
 </template>
 
