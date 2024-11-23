@@ -104,6 +104,10 @@ def comment_create(request, movie_pk):
             # movies, users iterable이기 때문에 단일 객체 리스트 형태로[]로 감싸줘야함
             serializer.save(movies=[movie], users=[request.user])
             serializer.save()
+
+            request.user.experience += 20
+            request.user.save()
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

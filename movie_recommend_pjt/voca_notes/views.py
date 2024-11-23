@@ -56,6 +56,9 @@ def create_voca_note(request, movie_pk, user_pk):
         voca_note.movies.add(movie)
         voca_note.save()
 
+        request.user.experience += 200
+        request.user.save()
+
         serializer = VocaNoteSerializers(voca_note)
         return Response(serializer.data, status=201)
 
@@ -150,6 +153,9 @@ def create_voca(request, vocanote_pk):
     # 해당 단어장에 voca 저장
     voca_note.vocas.add(voca)
     voca_note.save()
+
+    request.user.experience += 10
+    request.user.save()
 
     serializer = VocaNoteAllSerializers(voca_note)
 
