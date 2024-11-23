@@ -122,6 +122,14 @@ router.beforeEach((to, from) => {
     return { name:'login'}
   } 
 
+  if (to.name === 'myreviews' && (store.logedinUsername !== to.params.username)) {
+    return {name:'movies'}
+  }
+
+  if (to.name === 'likedreviews' && (store.logedinUsername !== to.params.username)) {
+    return {name:'movies'}
+  }
+
   if ((to.name === 'signup' || to.name === 'login') && (store.isLogin)) {
     window.alert('이미 로그인 되어 있습니다.')
     return {name:'movies'}
