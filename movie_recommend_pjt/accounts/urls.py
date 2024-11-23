@@ -1,5 +1,6 @@
 from django.urls import path, include
 from . import views
+from .views import CustomUserUpdateView
 
 urlpatterns = [
     path("dj-rest-auth/", include("dj_rest_auth.urls")),
@@ -8,6 +9,7 @@ urlpatterns = [
     path("<int:user_pk>/follow/", views.followings),
     path("dj-rest-auth/user/", views.login_user_data),
     path("dj-rest-auth/user/<str:username>/", views.profile),
+    path("user/update/", CustomUserUpdateView.as_view()),
 ]
 
 # 회원가입

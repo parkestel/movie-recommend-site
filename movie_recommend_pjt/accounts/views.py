@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import logout
-from django.db import transaction
+
 
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework import status, permissions
 from rest_framework.exceptions import AuthenticationFailed, NotAuthenticated
 from rest_framework.decorators import (
     authentication_classes,
@@ -15,6 +16,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from django.contrib.auth import get_user_model
 from .serializers import PersonUserDetailsSerializer, CustomUserDetailsSerializer
+from .serializers import CustomUserUpdateSerializer
 
 User = get_user_model()
 
@@ -26,7 +28,6 @@ def login_user_data(request):
     return Response(serializer.data)
 
 
-@api_view()
 @api_view(["GET"])
 @authentication_classes([TokenAuthentication, BasicAuthentication])
 @permission_classes([IsAuthenticated])
@@ -58,6 +59,54 @@ def delete_user(request):
             "status": "failure",
         }
         return Response(data=message, status=status.HTTP_401_UNAUTHORIZED)
+
+
+# 회원정보 변경 (GET으로 보내면 기존 회원정보 조회, PUT으로 보내면 변경된 정보 조회)
+class CustomUserUpdateView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        """현재 사용자의 모든 정보를 반환"""
+        user = request.user
+        data = {
+            "id": user.id,
+            "username": user.username,
+            "nickname": user.nickname,
+            "email": user.email,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "study_level": user.study_level,
+            "birth": user.birth,
+            "experience": user.experience,
+            "achievement_level": user.achievement_level,
+        }
+        return Response(data)
+
+    def put(self, request):
+        """사용자가 수정 가능한 필드만 업데이트하고 모든 정보를 반환"""
+        user = request.user
+
+        # 수정 가능한 필드만 처리
+        serializer = CustomUserUpdateSerializer(user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+
+            # 모든 사용자 정보를 포함하는 응답 생성
+            data = {
+                "id": user.id,
+                "username": user.username,
+                "nickname": user.nickname,
+                "email": user.email,
+                "first_name": user.first_name,
+                "last_name": user.last_name,
+                "study_level": user.study_level,
+                "birth": user.birth,
+                "experience": user.experience,
+                "achievement_level": user.achievement_level,
+            }
+            return Response(data, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # 팔로잉 기능
