@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
-from .models import Movie, Genre, Ott, Comment
+from .models import Movie, Genre, Ott, Comment, CommentLike
 from voca_notes.models import VocaNote
 from .serializers import (
     MovieListSerializers,
@@ -221,7 +221,14 @@ def like_comment(request, comment_pk):
             {"status": "removed", "comment_pk": comment.pk}, status=status.HTTP_200_OK
         )
     else:
+        # 좋아요 추가
+        if not CommentLike.objects.filter(user=login_user, comment=comment).exists():
+            # 경험치 추가
+            login_user.experience += 10
+            login_user.save()
+
         comment.liked_users.add(login_user)
+        CommentLike.objects.get_or_create(user=login_user, comment=comment)
         return Response(
             {"status": "added", "comment_pk": comment.pk}, status=status.HTTP_200_OK
         )
