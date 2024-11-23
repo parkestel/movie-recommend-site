@@ -31,6 +31,7 @@
     </div>
   </nav>
   <RouterView/>
+  <chatBot/>
   <footer>
     <div>
       <p>ⓒ 2024. </p>
@@ -41,6 +42,7 @@
 
 <script setup>
 import { useMovieStore } from './stores/movie';
+import chatBot from './components/chatBot.vue';
 
 const store = useMovieStore()
 </script>
