@@ -8,7 +8,9 @@ from dj_rest_auth.registration.serializers import RegisterSerializer
 from dj_rest_auth.serializers import LoginSerializer, UserDetailsSerializer
 from django.contrib.auth import get_user_model
 from movies.serializers import WishMovieSerializer
+import logging
 
+logger = logging.getLogger(__name__)
 User = get_user_model()
 
 
@@ -49,14 +51,14 @@ class CustomLoginSerializer(LoginSerializer):
     username = serializers.CharField(required=True)
     email = None
 
-    def save(self, **kwargs):
-        # 로그인 성공 후 user 업데이트
-        user = self.user
-        if user and isinstance(user, User):  # AnonymousUser 방지
-            user.experience += 100  # 경험치 추가
-            user.save(update_fields=["experience"])  # 데이터베이스에 저장
-
-        return super().save(**kwargs)
+    # def save(self, **kwargs):
+    #     # 로그인 성공 후 user 업데이트
+    #     user = self.user
+    #     if user and isinstance(user, User):  # AnonymousUser 방지
+    #         user.experience += 100  # 경험치 추가
+    #         user.save()  # 데이터베이스에 저장
+    #         logger.info(f"Updated experience: {user.experience}")
+    #     return super().save(**kwargs)
 
 
 class FollowSerializer(serializers.ModelSerializer):
