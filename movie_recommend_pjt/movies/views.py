@@ -121,7 +121,7 @@ def comment_list_user(request, comment_pk):
 
 
 # 영화별 코멘트 조회
-@api_view(["GET", "POST"])
+@api_view(["GET"])
 def comment_list_movie(request, movie_pk):
     login_user = request.user
     movie = Movie.objects.get(pk=movie_pk)
@@ -141,41 +141,24 @@ def comment_list_movie(request, movie_pk):
             status=status.HTTP_200_OK,
         )
 
-    elif request.method == "DELETE":
-        comment_pk = request.data.get("comment_pk")  # 삭제할 코멘트의 pk를 받아옵니다.
-        comment = Comment.objects.filter(
-            pk=comment_pk, movies=movie, users=login_user
-        ).first()
 
-        if comment is None:
-            # 코멘트가 존재하지 않는 경우
-            return Response(
-                {"detail": "Comment not found for the specified movie."},
-                status=status.HTTP_404_NOT_FOUND,
-            )
+@api_view(["DELETE"])
+def comment_delete(request, comment_pk):
+    login_user = request.user
+    comment = get_object_or_404(Comment, pk=comment_pk, users=login_user)
 
-        if comment.users.filter(pk=login_user.pk).exists():
+    # 삭제 전에 필요한 정보 저장
+    comment_id = comment.pk
+    comment_content = comment.content
+    comment.delete()
 
-            print(f"Deleting comment with ID: {comment.pk}, Content: {comment.content}")
-            comment.delete()
-
-            # 삭제 후 해당 영화 코멘트 다 조회
-            comments = Comment.objects.filter(movies=movie)
-            serializer = CommentListSerializer(comments, many=True)
-            total_comments = comments.count()
-
-            return Response(
-                {
-                    "message": f"Comment with ID {comment.pk} has been deleted.",
-                    "remaining_comments": serializer.data,
-                },
-                status=status.HTTP_200_OK,
-            )
-        else:
-            return Response(
-                {"detail": "다른 사람의 코멘트는 삭제할 수 없습니다."},
-                status=status.HTTP_401_UNAUTHORIZED,
-            )
+    return Response(
+        {
+            "message": f"Comment with ID {comment_id} has been deleted.",
+            "deleted_content": comment_content,
+        },
+        status=status.HTTP_200_OK,
+    )
 
 
 # 코멘트 수정 => 현재 로그인한 유저만 수정 권한 있음.
