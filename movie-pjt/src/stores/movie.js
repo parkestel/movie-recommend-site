@@ -691,6 +691,47 @@ export const useMovieStore = defineStore('movie', () => {
       console.log(err)
     })
   }
+
+  const updateUserInfo = function(payload, username){
+    axios({
+      method:'put',
+      url:`${API_BASE_URL}/accounts/user/update/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+      data:{
+        nickname:payload.nickname,
+        email:payload.email,
+        study_level:payload.study_level
+      }
+    })
+    .then(res=>{
+      getLogedInUserName()
+      getUserProfile(username)
+      router.push({name:'profile', params})
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
+
+  const userInfo = ref(null)
+  const getUserInfoForUpdate = function () {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/accounts/user/update/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+    })
+    .then(res=>{
+      console.log(res.data)
+      userInfo.value = res.data
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, todayRandomMovie, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, movieBestComments, myReviews, myLikedReviews, getImgUrl, getMovies, getRandomMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, updateVoca, memorizedVoca, getMovieComments, createComment, likeCommentsinMovie, deleteCommentinMovie, updateCommentinMovie, getBestComments, getMyReviews, deleteCommentinMyPage, getLikedReviewInMyPage, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, todayRandomMovie, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, movieBestComments, myReviews, myLikedReviews, getImgUrl, getMovies, getRandomMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, updateVoca, memorizedVoca, getMovieComments, createComment, likeCommentsinMovie, deleteCommentinMovie, updateCommentinMovie, getBestComments, getMyReviews, deleteCommentinMyPage, getLikedReviewInMyPage, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, updateUserInfo, getUserInfoForUpdate, token, isLogin, logedinUsername, userInfo }
 }, { persist: true })

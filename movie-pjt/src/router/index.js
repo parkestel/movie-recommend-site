@@ -39,7 +39,7 @@ const router = createRouter({
       component: SignUpView
     },
     {
-      path:'/userinfoupdate',
+      path:'/userinfoupdate/:username',
       name:'userinfoupdate',
       component:UserInfoUpdateView
     },
