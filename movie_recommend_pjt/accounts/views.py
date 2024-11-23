@@ -16,7 +16,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from django.contrib.auth import get_user_model
 from .serializers import PersonUserDetailsSerializer, CustomUserDetailsSerializer
-from .serializers import CustomUserUpdateSerializer
+from .serializers import CustomUserUpdateSerializer, CustomUserLevelUpdateSerializer
 
 User = get_user_model()
 
@@ -103,6 +103,44 @@ class CustomUserUpdateView(APIView):
                 "birth": user.birth,
                 "experience": user.experience,
                 "achievement_level": user.achievement_level,
+            }
+            return Response(data, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# 유저 study_level
+class CustomUserLevelUpdateView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        """현재 사용자 특정 정보 반환"""
+        user = request.user
+        data = {
+            "id": user.id,
+            "username": user.username,
+            "nickname": user.nickname,
+            "study_level": user.study_level,
+        }
+        return Response(data)
+
+    def put(self, request):
+
+        user = request.user
+
+        # 수정 가능한 필드만 처리
+        serializer = CustomUserLevelUpdateSerializer(
+            user, data=request.data, partial=True
+        )
+        if serializer.is_valid():
+            serializer.save()
+
+            # 모든 사용자 정보를 특정 정보 응답 생성
+            data = {
+                "id": user.id,
+                "username": user.username,
+                "nickname": user.nickname,
+                "study_level": user.study_level,
             }
             return Response(data, status=status.HTTP_200_OK)
 
