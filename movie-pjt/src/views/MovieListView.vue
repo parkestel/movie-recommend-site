@@ -109,9 +109,9 @@ const sortedMovies = computed(() => {
         case '알파벳 내림차순 (Z~A)':
         return [...moviesToSort].sort((a, b) => b.title.localeCompare(a.title));
         case '제목 한글 오름차순 (ㄱ~ㅎ)':
-        return [...moviesToSort].sort((a, b) => a.title_kr.localeCompare(b.title, 'ko-KR'));
+        return [...moviesToSort].sort((a, b) => a.title_kr.localeCompare(b.title_kr));
         case '제목 한글 내림차순 (ㅎ~ㄱ)':
-        return [...moviesToSort].sort((a, b) => b.title_kr.localeCompare(a.title, 'ko-KR'));
+        return [...moviesToSort].sort((a, b) => b.title_kr.localeCompare(a.title_kr));
         case '개봉 날짜 오름차순 (과거순)':
         return [...moviesToSort].sort((a, b) => new Date(a.release_date) - new Date(b.release_date));
         case '개봉 날짜 내림차순 (최신순)':
@@ -168,9 +168,11 @@ const applyFilters = () => {
         movie.title?.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
         movie.director?.some(director => director.name.toLowerCase().includes(searchQuery.value.toLowerCase())) ||
         movie.stars?.some(star => star.name.toLowerCase().includes(searchQuery.value.toLowerCase()))||
+        movie.stars?.some(star => star.name_kr.toLowerCase().includes(searchQuery.value.toLowerCase()))||
         movie.production?.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
         movie.country?.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-        movie.release_date?.includes(searchQuery.value);
+        movie.release_date?.includes(searchQuery.value) ||
+        movie.title_kr?.includes(searchQuery.value);
 
         // 장르 필터 조건 (모든 선택된 장르 중 하나라도 존재하면 true)
         const matchesGenres =
