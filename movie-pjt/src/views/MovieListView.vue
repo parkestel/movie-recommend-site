@@ -61,8 +61,11 @@
         </div>
     </div>
     <div>
-        <div v-if="store.isLoading">
-            <p>loading...</p>
+        <div v-if="store.isLoading" class="d-flex justify-content-center mt-5">
+            <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <span>Loading</span>
         </div>
         <div v-else-if="sortedMovies && !store.isLoading">
             <MovieCard 
