@@ -11,6 +11,7 @@
         loop
       >
         <SwiperSlide v-for="movie in randomMovies" :key="movie.id">
+            <img :src="store.getImgUrl(movie.poster_path,90)" alt="" class="banner-img">
           <MovieRecommendBanerPosterCard :movie="movie" />
         </SwiperSlide>
       </Swiper>
@@ -22,7 +23,9 @@
   import "swiper/swiper-bundle.css"; // Swiper 스타일
   import { Navigation, Pagination, Autoplay } from "swiper/modules"; // Swiper 모듈
   import MovieRecommendBanerPosterCard from "./MovieRecommendBanerPosterCard.vue";
-  
+  import { useMovieStore } from "@/stores/movie";
+
+  const store= useMovieStore()
   const props = defineProps({
     randomMovies: Array, // 랜덤 영화 배열
   });
