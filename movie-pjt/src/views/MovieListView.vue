@@ -1,56 +1,64 @@
 <template>
 <div>
     <MovieRecommendBaner :random-movies="todayRandomMovie"/>
-    <form class="d-flex" role="search">
-        <input 
-        class="form-control me-2" 
-        type="search" 
-        placeholder="movie title, actor, director, release year..." 
-        aria-label="Search"
-        v-model="searchQuery"
-        @input="updateFilter($event, 'search')">
-    </form>
-    <!-- sort -->
-    <form>
-        <select id="sorting" v-model="selectedSortOption">
-            <option selected>---정렬 기준 선택하세요---</option>
-            <option> 평점 높은 순 </option>
-            <option> 평점 낮은 순 </option>
-            <option> 알파벳 오름차순 (A~Z) </option>
-            <option> 알파벳 내림차순 (Z~A) </option>
-            <option> 제목 한글 오름차순 (ㄱ~ㅎ) </option>
-            <option> 제목 한글 내림차순 (ㅎ~ㄱ) </option>
-            <option> 개봉 날짜 오름차순 (과거순) </option>
-            <option> 개봉 날짜 내림차순 (최신순) </option>
-        </select>
-    </form>
     <!-- filter -->
-    <button @click="toggleGenreFilter()" :class="{ active: genreFilter }">Genres</button>
-    <button @click="toggleOttFilter()" :class="{ active: ottFilter }">Otts</button>
-    <button @click="toggleLevelFilter()" :class="{ active: levelFilter }">Level</button>
-    <div v-if="genreFilter">
-        <button  
-        v-for="genre in genresList" 
-        :key="genre.id"
-        :class="{ active: selectedGenres.includes(genre) }"
-        @click="updateFilter($event, 'genre', genre)"
-        >{{ genre.name }}</button>
+    <div class="d-flex justify-content-center align-items-center mt-2">
+        <div class="btn-group d-flex" role="group" aria-label="Basic outlined example">
+            <button @click="clearAllFilters" class="btn btn-outline-primary w-100">Clear</button>
+            <button @click="toggleGenreFilter()" class="btn btn-outline-primary w-100">Genres</button>
+            <button @click="toggleOttFilter()" class="btn btn-outline-primary w-100">Otts</button>
+            <button @click="toggleLevelFilter()" class="btn btn-outline-primary w-100">Level</button>
+        </div>
     </div>
-    <div v-if="ottFilter">
-        <button  
-        v-for="ott in ottList" 
-        :key="ott.id"
-        :class="{ active: selectedOtts.includes(ott) }"
-        @click="updateFilter($event, 'ott', ott)"
-        >{{ ott.name }}</button>
+    <div>
+        <div v-if="genreFilter"  class="d-flex flex-wrap justify-content-center align-items-center mt-2">
+            <button  
+            v-for="genre in genresList" 
+            :key="genre.id"
+            class="btn btn-outline-primary"
+            @click="updateFilter($event, 'genre', genre)"
+            >{{ genre.name }}</button>
+        </div>
+        <div v-if="ottFilter"  class="d-flex flex-wrap justify-content-center align-items-center mt-2">
+            <button  
+            v-for="ott in ottList" 
+            :key="ott.id"
+            class="btn btn-outline-primary"
+            @click="updateFilter($event, 'ott', ott)"
+            >{{ ott.name }}</button>
+        </div>
+        <div v-if="levelFilter"  class="d-flex justify-content-center align-items-center mt-2">
+            <button  
+            v-for="level in levelList" 
+            :key="level.id"
+            class="btn btn-outline-primary"
+            @click="updateFilter($event, 'level', level)"
+            >{{ level }}</button>
+        </div>
     </div>
-    <div v-if="levelFilter">
-        <button  
-        v-for="level in levelList" 
-        :key="level.id"
-        :class="{ active: selectedLevel.includes(level) }"
-        @click="updateFilter($event, 'level', level)"
-        >{{ level }}</button>
+    <div class="container mt-3">
+        <div class="d-flex justify-content-center">
+            <form class="d-flex" style="width: 800px;" role="search">
+                <input 
+                class="form-control" 
+                type="search" 
+                placeholder="movie title, actor, director, release year..." 
+                aria-label="Search"
+                v-model="searchQuery"
+                @input="updateFilter($event, 'search')">
+            </form>            
+            <select id="sorting" class="form-select" style="width: 200px;" v-model="selectedSortOption">
+                <option value="" selected disabled>정렬 기준</option>
+                <option value="highRating"> 평점 높은 순 </option>
+                <option value="lowRating"> 평점 낮은 순 </option>
+                <option value="alphabetAsc">알파벳 오름차순 (A~Z)</option>
+                <option value="alphabetDesc">알파벳 내림차순 (Z~A)</option>
+                <option value="koreanAsc">제목 한글 오름차순 (ㄱ~ㅎ)</option>
+                <option value="koreanDesc">제목 한글 내림차순 (ㅎ~ㄱ)</option>
+                <option value="dateAsc">개봉 날짜 오름차순 (과거순)</option>
+                <option value="dateDesc">개봉 날짜 내림차순 (최신순)</option>
+            </select>
+        </div>
     </div>
     <div>
         <div v-if="store.isLoading">
@@ -96,14 +104,30 @@ const levelFilter = ref(false)
 
 const toggleGenreFilter = function () {
     genreFilter.value = !genreFilter.value
+    ottFilter.value=false
+    levelFilter.value=false
 }
 
 const toggleOttFilter = function () {
     ottFilter.value = !ottFilter.value
+    genreFilter.value=false
+    levelFilter.value=false
 }
 
 const toggleLevelFilter = function () {
     levelFilter.value = !levelFilter.value
+    genreFilter.value=false
+    ottFilter.value=false
+}
+
+const clearAllFilters = function () {
+    selectedGenres.value = []
+    selectedLevel.value = []
+    selectedOtts.value = []
+    genreFilter.value=false
+    levelFilter.value=false
+    ottFilter.value=false
+    applyFilters()
 }
 
 // 정렬된 영화 목록 계산 속성
