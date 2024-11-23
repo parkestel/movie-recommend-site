@@ -31,6 +31,7 @@ const createComment = function(payload) {
 onMounted(()=>{
     movie.value = store.getMovie(movieId);
     store.getMovieComments(movieId)
+    store.getBestComments(movieId)
 })
 </script>
 

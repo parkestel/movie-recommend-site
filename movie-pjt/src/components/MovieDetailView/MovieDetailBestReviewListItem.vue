@@ -2,8 +2,8 @@
   <div class="card">
     <h6>User Review</h6>
     <p>{{ comment.content }}</p>
-    <p>{{ comment.nickname }}</p>
-    <p>이 리뷰를 좋아요한 유저: {{ comment.liked_user }}</p>
+    <p>{{ comment.users[0].nickname }}</p>
+    <p>이 리뷰를 좋아요한 유저 수: {{ comment.liked_user_count }}</p>
   </div>
 </template>
 

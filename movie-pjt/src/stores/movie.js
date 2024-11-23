@@ -30,6 +30,7 @@ export const useMovieStore = defineStore('movie', () => {
   const vocaNote = ref(null)
   const userProfile = ref(null)
   const moviecomments = ref(null)
+  const movieBestComments = ref(null)
   
   const getMovies = function () {
     axios({
@@ -466,6 +467,22 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
 
+  const getBestComments = function(movieId) {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/movies/top-5-comment/${movieId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+    })
+    .then(res=>{
+      movieBestComments.value = res.data
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
+
   const signUp = function (payload) {
     const username = payload.username
     const password1 = payload.password1
@@ -597,5 +614,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, updateVoca, memorizedVoca, getMovieComments, createComment, likeCommentsinMovie, deleteCommentinMovie, updateCommentinMovie, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, movieBestComments, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, updateVoca, memorizedVoca, getMovieComments, createComment, likeCommentsinMovie, deleteCommentinMovie, updateCommentinMovie, getBestComments, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })
