@@ -101,3 +101,31 @@ class PersonUserDetailsSerializer(UserDetailsSerializer):
             "wish_movies",
         ]
         read_only_fields = ["id", "followings", "followers"]  # 읽기 전용 필드
+
+
+# 커스텀 회원정보변경
+class CustomUserUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            "email",
+            "study_level",
+            "nickname",
+            "first_name",
+            "last_name",
+            "birth",
+        ]
+
+    def validate_email(self, value):
+        if User.objects.filter(email=value).exclude(pk=self.instance.pk).exists():
+            raise serializers.ValidationError("이미 사용 중인 이메일입니다.")
+        return value
+
+
+# 유저 study_level만 바꾸는
+class CustomUserLevelUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            "study_level",
+        ]
