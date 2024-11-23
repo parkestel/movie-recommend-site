@@ -18,8 +18,11 @@ from .serializers import (
     CommentListSerializer,
     CommentUserListSerializer,
     WishMovieVocaSerializer,
+    RandomMovieSerializer,
 )
 from .serializers import CommentUserLikedSerializer
+import random
+
 
 User = get_user_model()
 
@@ -50,6 +53,18 @@ def wish_movie(request, movie_pk):
         return Response(
             {"status": "added", "movie_pk": movie_pk}, status=status.HTTP_200_OK
         )
+
+
+# 로그인 유저 난이도별 추천 영화 랜덤 5개
+def random_recommend_movie(request):
+    login_user = request.user
+    user_study_level = login_user.study_level
+    movies = Movie.objects.filter(difficulty=user_study_level)
+
+    recommended_movies = random.sample(list(movies), min(5, len(movies)))
+
+    serializer = RandomMovieSerializer(recommended_movies, many=True)
+    return Response(serializer.data, status=200)
 
 
 # 로그인 한 유저가 좋아요 한 영화 목록

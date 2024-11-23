@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path("movies/", views.get_movies),
+    path("movies/random-movies/", views.random_recommend_movie),
     path("movies/<int:movie_pk>/wish-movie/", views.wish_movie),
     path("movies/wish-movie/", views.logined_wish_movie_list),
     path("movies/wish-movies-without-vocanote/", views.wish_movie_without_vocanote),
