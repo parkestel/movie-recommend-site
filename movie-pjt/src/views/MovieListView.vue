@@ -1,5 +1,6 @@
 <template>
 <div>
+    <MovieRecommendBaner :random-movies="todayRandomMovie"/>
     <form class="d-flex" role="search">
         <input 
         class="form-control me-2" 
@@ -65,6 +66,7 @@
 
 <script setup>
 import MovieCard from "@/components/MovieListView/MovieCard.vue"
+import MovieRecommendBaner from "@/components/MovieListView/MovieRecommendBaner.vue";
 import { useMovieStore } from "@/stores/movie"
 import { onMounted, ref, watch, computed } from "vue";
 import { storeToRefs } from "pinia";
@@ -78,7 +80,7 @@ const selectedLevel = ref([]) //선택된 난이도
 
 const selectedSortOption = ref('') // 정렬 디폴트
 
-const { movies, genres, otts, difficulties } = storeToRefs(store)
+const { movies, genres, otts, difficulties, todayRandomMovie } = storeToRefs(store)
 const filteredMovies = ref([])
 const genresList = ref([])
 const ottList = ref([])
@@ -208,6 +210,7 @@ onMounted(()=>{
     store.getMovies()
     store.getGenres()
     store.getOtts()
+    store.getRandomMovies()
     filteredMovies.value = store.movies
     genresList.value = store.genres 
     ottList.value = store.otts
