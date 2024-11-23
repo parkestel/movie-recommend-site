@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="userInfo">
       <h1>회원 정보 변경</h1>
       <form @submit.prevent="updateInfo(userInfo)">
           <input type="text" id="lastname" v-model="userInfo.last_name" placeholder="Last Name">
