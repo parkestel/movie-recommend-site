@@ -446,8 +446,24 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
 
-  const updateCommentinMovie = function(reviewId, movieId) {
-    
+  const updateCommentinMovie = function(reviewId, movieId, payload) {
+    axios({
+      method:'put',
+      url:`${API_BASE_URL}/movies/${movieId}/comment-update/${reviewId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+      data:{
+        content: payload.content
+      }
+    })
+    .then(res=>{
+      console.log('댓글 수정 완료')
+      getMovieComments(movieId)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
   }
 
   const signUp = function (payload) {
@@ -581,5 +597,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, updateVoca, memorizedVoca, getMovieComments, createComment, likeCommentsinMovie, deleteCommentinMovie, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, updateVoca, memorizedVoca, getMovieComments, createComment, likeCommentsinMovie, deleteCommentinMovie, updateCommentinMovie, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
 }, { persist: true })
