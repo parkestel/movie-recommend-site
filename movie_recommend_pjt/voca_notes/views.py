@@ -265,8 +265,13 @@ def change_is_memorized(request, vocanote_pk, voca_pk):
         return Response({"error": "수정할 단어가 존재하지 않습니다."}, status=404)
 
     memorized_status = voca.is_memorized
-
     voca.is_memorized = not voca.is_memorized
+
+    if voca.is_memorized and not voca.was_memorized:
+        # 처음 외운 경우 경험치 추가 및 상태 업데이트
+        login_user.experience += 50
+        login_user.save()
+        voca.was_memorized = True
     voca.save()
 
     if memorized_status:
