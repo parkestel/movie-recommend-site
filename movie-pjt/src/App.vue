@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="main-container">
   <nav class="navbar navbar-expand-lg bg-body-tertiary rounded-custom">
     <div class="container-fluid">
       <RouterLink :to="{name:'movies'}" v-if="store.isLogin" class="navbar-brand">MoviENg</RouterLink>
@@ -34,7 +34,7 @@
     </div>
   </nav>
   <RouterView/>
-  <chatBot/>
+  <chatBot />
   <footer>
     <div>
       <p>ⓒ 2024. </p>
@@ -96,5 +96,37 @@ const store = useMovieStore()
 .logout-btn:focus {
   outline: none; /* 기본 포커스 제거 */
   box-shadow: 0 0 5px 2px rgba(255, 107, 107, 0.5); /* 포커스 시 강조 그림자 */
+}
+
+@media (max-width: 992px) {
+  .dropdown-menu {
+    background-color:transparent; /* 배경색 흰색 */
+    width: 100%; /* 메뉴 너비를 전체로 확장 */
+    position: static; /* 고정 위치 해제 */
+    border: none; /* 테두리 제거 */
+    box-shadow: none; /* 그림자 제거 */
+    padding: 0; /* 패딩 제거 */
+  }
+
+  .dropdown-menu .dropdown-item {
+    display: block; /* 아이템을 블록 요소로 설정 */
+    width: 100%; /* 아이템 너비 전체 확장 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    color: #363636; /* 텍스트 기본 색상 */
+    padding: 10px 0; /* 내부 여백 조정 */
+    background-color: transparent; /* 배경 투명 */
+  }
+
+  .dropdown-menu .dropdown-item:hover {
+    background-color: #cfcece; /* Hover 시 배경 변경 */
+    color: rgb(0, 0, 0); /* 텍스트 반전 */
+  }
+  .navbar-nav {
+    width: 100%; /* navbar 전체 너비 사용 */
+  }
+
+  .nav-item {
+    width: 100%; /* 각 항목이 전체 너비 차지 */
+  }
 }
 </style>
