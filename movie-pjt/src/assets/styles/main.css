@@ -124,8 +124,8 @@ border: 1px solid rgba(0, 0, 0, 0.05); /* 아주 얇은 외곽선 추가 */
   /* 버튼 기본 스타일 */
 .toggle-btn {
   position: relative;
-  width: 50px;
-  height: 25px;
+  width: 30px;
+  height: 10px;
   background-color: #f0f0f0; /* 기본 배경색 */
   border: none;
   border-radius: 25px; /* 둥근 모양 */
@@ -140,14 +140,14 @@ border: 1px solid rgba(0, 0, 0, 0.05); /* 아주 얇은 외곽선 추가 */
 
 /* 버튼 활성화 상태 */
 .toggle-btn[aria-pressed="true"] {
-  background-color: #34c759; /* 활성화 시 초록색 */
+  background-color: #4da6f0;
   justify-content: flex-end;
 }
 
 /* 내부 원(circle) 스타일 */
 .toggle-circle {
-  width: 19px;
-  height: 19px;
+  width: 13px;
+  height: 13px;
   background-color: #ffffff; /* 원 기본 색상 */
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 살짝 입체감 */

@@ -10,7 +10,7 @@
     <br>
     <form>
       <select id="movieForVocaNote" @change="createNewNote($event.target.value)">
-        <option selected>--영화를 선택하세요--</option>
+        <option selected>단어장 만들 영화를 선택하세요</option>
         <option v-for="movie in wishMoviesWithOutNote" :key="movie.id" :value="movie.id">{{ movie.title }}</option>
       </select>
     </form>
@@ -65,7 +65,24 @@ onMounted(()=>{
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     text-align: center;
+    position: relative;
   }
+
+.select-wrapper {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* 버튼과 텍스트 간격 */
+}
+
+.select-wrapper span {
+  font-size: 12px;
+  font-weight: bold;
+  color: #6d6d6d;
+}
+
 .note-card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -89,10 +106,33 @@ onMounted(()=>{
   }
 }
 
-/* 전체 래퍼 스타일 */
-.select-wrapper {
-  display: inline-block;
-  position: relative;
+
+#toggle-button .toggle-circle {
+  position: absolute;
+  transition: transform 0.3s ease;
+}
+
+form {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+form select {
+  width: 100%;
+  max-width: 400px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+form select:focus {
+  border-color: #007bff;
+  outline: none;
 }
 
 </style>
