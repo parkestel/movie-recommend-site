@@ -1,11 +1,9 @@
 <template>
-    <div>
-    <div>
-      <img :src="store.getImgUrl(movie.poster_path,200)" alt="">
-    </div>
-    <h4>{{ movie.title_kr }}</h4>
-    <h5>{{ movie.title }}</h5>
-    </div>
+  <img :src="store.getImgUrl(movie.poster_path,780)" alt="" class="banner-img">
+  <div class="carousel-caption d-none d-md-block">
+    <h5>{{ movie.title_kr }}</h5>
+    <p>{{ movie.title }}</p>
+  </div>
 </template>
 
 <script setup>
@@ -18,5 +16,10 @@ defineProps({
 </script>
 
 <style scoped>
-
+.banner-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  opacity: 20%;
+}
 </style>
