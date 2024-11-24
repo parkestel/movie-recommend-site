@@ -68,6 +68,13 @@ const store = useMovieStore()
   border-radius: 5px;
 }
 
+.custom-toggler .navbar-toggler-icon {
+    background-color: transparent;
+    border: none; /* 커스터마이징된 스타일 */
+    width: 30px;
+    height: 30px;
+  }
+
 .logout-btn {
   background-color: white; /* 흰 바탕 */
   color: #ff6b6b; /* 컬러 글씨 */
