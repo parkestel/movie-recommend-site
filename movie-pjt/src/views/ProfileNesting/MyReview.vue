@@ -1,7 +1,9 @@
 <template>
     <div>
         <h1>내가 쓴 리뷰들</h1>
-        <MyReviewList :my-reviews="myReviews"/>
+        <div class="review-container">
+            <MyReviewList :my-reviews="myReviews" class="review-box"/>
+        </div>
     </div>
 </template>
 

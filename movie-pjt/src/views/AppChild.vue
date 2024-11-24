@@ -14,20 +14,19 @@
               <li class="nav-item mx-2">
                 <RouterLink :to="{name:'signup'}" v-if="!store.isLogin" class="nav-link active" aria-current="page">Sign Up</RouterLink>
               </li>
-              <li class="nav-item mx-2">
+              <li class="nav-item mx-2" v-if="store.isLogin">
+                <RouterLink :to="{name:'wishmovies', params:{username:store.logedinUsername}}" class="nav-link active" aria-current="page">Wish Movie</RouterLink>
               </li>
-              <li class="nav-item dropdown ms-auto" v-if="store.isLogin">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <li class="nav-item mx-2" v-if="store.isLogin">
+                <RouterLink :to="{name:'mynotelist', params:{username:store.logedinUsername}}" class="nav-link active" aria-current="page">Voca Note</RouterLink>
+              </li>
+              <li class="nav-item mx-2" v-if="store.isLogin">
+                <RouterLink :to="{name:'profile', params:{username:store.logedinUsername}}">
                   안녕하세요! {{ store.logedinUsername }} 님!
-                </a>
-                <ul class="dropdown-menu" v-if="store.logedinUsername">
-                  <li><RouterLink :to="{name:'wishmovies', params:{username:store.logedinUsername}}" class="dropdown-item">Wish Movie</RouterLink></li>
-                  <li><RouterLink :to="{name:'mynotelist', params:{username:store.logedinUsername}}" class="dropdown-item">Voca Note</RouterLink></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><RouterLink :to="{name:'profile', params:{username:store.logedinUsername}}" class="dropdown-item">My Page</RouterLink></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><button @click="store.logOut" class="logout-btn">Log out</button></li>
-                </ul>
+                </RouterLink>
+              </li>
+              <li class="nav-item mx-2" v-if="store.isLogin">
+                <button @click="store.logOut" class="logout-btn">Log out</button>
               </li>
             </ul>
           </div>

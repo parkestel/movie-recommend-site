@@ -28,7 +28,6 @@
 </template>
 
 <script setup>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import VocaNoteItem from '@/components/VocaNoteListView/VocaNoteItem.vue'
 import { useMovieStore } from "@/stores/movie";
 import { storeToRefs } from 'pinia'
