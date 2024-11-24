@@ -686,11 +686,7 @@ export const useMovieStore = defineStore('movie', () => {
     .then((res)=>{
       token.value = res.data.key
       getLogedInUserName()
-      // getlogedInUserPoints()
       getWishMovies()
-      if (logedinUserPoint.value!==null) {
-        addExPointLogIn()
-      }
       router.push({name:'movies'})
     })
     .catch(err=>{
