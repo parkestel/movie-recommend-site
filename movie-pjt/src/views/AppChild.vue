@@ -14,13 +14,13 @@
               <li class="nav-item mx-2">
                 <RouterLink :to="{name:'signup'}" v-if="!store.isLogin" class="nav-link active" aria-current="page">Sign Up</RouterLink>
               </li>
-              <li class="nav-item mx-2" v-if="store.isLogin">
-                <RouterLink :to="{name:'wishmovies', params:{username:store.logedinUsername}}" class="nav-link active" aria-current="page">Wish Movie</RouterLink>
+              <li class="nav-item mx-2" v-if="store.isLogin && store.logedinUsername">
+                <RouterLink :to="{name:'wishmovies', params:{username:store.logedinUsername}}">Wish Movie</RouterLink>
               </li>
-              <li class="nav-item mx-2" v-if="store.isLogin">
-                <RouterLink :to="{name:'mynotelist', params:{username:store.logedinUsername}}" class="nav-link active" aria-current="page">Voca Note</RouterLink>
+              <li class="nav-item mx-2" v-if="store.isLogin && store.logedinUsername">
+                <RouterLink :to="{name:'mynotelist', params:{username:store.logedinUsername}}">Voca Note</RouterLink>
               </li>
-              <li class="nav-item mx-2" v-if="store.isLogin">
+              <li class="nav-item mx-2" v-if="store.isLogin && store.logedinUsername">
                 <RouterLink :to="{name:'profile', params:{username:store.logedinUsername}}">
                   안녕하세요! {{ store.logedinUsername }} 님!
                 </RouterLink>

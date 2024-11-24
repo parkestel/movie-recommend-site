@@ -22,5 +22,17 @@ onMounted(()=>{
 </script>
 
 <style scoped>
+.review-container {
+    max-width: 800px; /* 적당한 너비 */
+    margin: 0 auto; /* 중앙 정렬 */
+    padding: 20px;
+    background-color: transparent /* 부드러운 배경색 */
+
+}
+.review-box {
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    gap: 15px; /* 아이템 간격 */
+}
 
 </style>

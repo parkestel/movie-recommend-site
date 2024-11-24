@@ -60,7 +60,7 @@ onMounted(()=>{
 .note-card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 3rem; /* 카드 간의 간격 */
+  gap: 1rem; /* 카드 간의 간격 */
   margin-top: 1rem;
 }
 
