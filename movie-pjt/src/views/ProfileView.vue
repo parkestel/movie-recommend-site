@@ -40,10 +40,7 @@
       <div class="links-container">
         <RouterLink
         :to="{ name: 'userlevel', params: { username: userProfile.username } }"
-        :class="{
-            // active: $route.name === 'profile' && $route.matched.length === 1,
-            deactive: isDeactive('userlevel'),
-        }"
+        :class="{ active: isActive('userlevel') }"
         >
         User Level
         </RouterLink>
@@ -246,6 +243,11 @@ hr.divider {
   select {
     font-size: 0.9rem; /* 선택 박스 폰트 크기 조정 */
   }
+
+  .links-container a {
+    font-size: 14px; /* 글씨 크기를 줄임 */
+    text-align: center; /* 중앙 정렬 */
+  }
 }
 
 select {
@@ -305,9 +307,8 @@ hr {
 
 .links-container a {
   text-decoration: none;
-  color: rgb(44, 44, 44);
+  color: rgb(85, 85, 85);
   padding: 5px 10px;
-  border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -316,16 +317,10 @@ hr {
 }
 
 .router-link-active {
-  background-color: #007bff;
-  color: white;
+  background-color: transparent;
+  color: rgb(32, 32, 32);
+  border-bottom: #007bff 3px solid;
   font-weight: bold;
 }
 
-.router-link-deactive {
-text-decoration: none;
-  color: rgb(44, 44, 44);
-  padding: 5px 10px;
-  border-radius: 5px;
-  transition: background-color 0.3s, color 0.3s;
-}
 </style>
