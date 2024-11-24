@@ -5,7 +5,6 @@
         <h1>{{ userProfile.nickname }}</h1>
         <ProfileFollow class="profile-follow" />
       </div>
-      <hr class="divider" />
       <div
         v-if="userProfile.username === store.logedinUsername"
         class="study-level-section"
@@ -28,7 +27,6 @@
           </select>
         </form>
       </div>
-      <hr class="divider" />
       <div class="profile-component-section">
         <ProfileComponent
           :profile="userProfile"
@@ -102,6 +100,16 @@ const store = useMovieStore();
 const route = useRoute();
 const { userProfile } = storeToRefs(store);
 
+// 드롭다운 상태 관리
+const isDropdownOpen = ref(false);
+
+const chosenLevel = ref('A1')
+
+// 드롭다운 열기/닫기
+const toggleDropdown = () => {
+    isDropdownOpen.value = !isDropdownOpen.value;
+};
+
 const updateLevel = function (level, username = route.params.username) {
   const payload = {
     study_level: level,
@@ -145,7 +153,7 @@ watch(
 }
 
 .user-container {
-  background: #f9f9f9;
+  background: rgba(255, 255, 255, 0.6);
   border-radius: 2rem;
   flex: 1; /* 왼쪽 영역 */
   max-width: 30%; /* 너비 제한 */
@@ -156,7 +164,7 @@ watch(
 .user-router-container {
     display: flex;
     flex-direction: column;
-    background: #f9f9f9;
+    background:rgba(255, 255, 255, 0.6);
     border-radius: 2rem;
     flex: 1;
     max-width: 70%;
@@ -190,12 +198,6 @@ watch(
 .profile-follow {
   align-self: stretch; /* 버튼이 부모의 너비에 맞게 확장되도록 설정 */
   text-align: center; /* 버튼 안의 텍스트 가운데 정렬 */
-}
-
-hr.divider {
-  border: none;
-  border-top: 1px solid #e0e0e0;
-  margin: 20px 0;
 }
 
 /* 학습 레벨 섹션 */
@@ -233,12 +235,13 @@ hr.divider {
   }
 
   .user-header h1 {
+    margin-top: 20px;
     font-size: clamp(1rem, 4vw, 1.5rem); /* 작은 화면에 맞게 폰트 크기 축소 */
   }
 
   .user-header {
     flex-direction: column; /* 세로 방향 정렬 */
-    align-items: flex-start; /* 왼쪽 정렬 */
+    align-items: center; /* 왼쪽 정렬 */
     gap: 10px; /* 제목과 Follow 버튼 사이 간격 */
   }
 
@@ -259,42 +262,6 @@ hr.divider {
     font-size: 14px; /* 글씨 크기를 줄임 */
     text-align: center; /* 중앙 정렬 */
   }
-}
-
-select {
-  width: 100%; /* 선택 박스가 부모의 너비를 채우도록 설정 */
-  padding: 10px; /* 내부 여백 */
-  font-size: 1rem; /* 글자 크기 */
-  border: 1px solid #ccc; /* 테두리 */
-  border-radius: 10px; /* 둥근 모서리 */
-  background-color: #f9f9f9; /* 밝은 배경색 */
-  color: #333; /* 글자 색상 */
-  appearance: none; /* 기본 화살표 스타일 제거 */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z' fill='%23333'/%3E%3C/svg%3E"); /* 화살표 아이콘 추가 */
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 15px;
-  cursor: pointer; /* 포인터 모양 변경 */
-}
-/* select 박스 포커스 스타일 */
-select:focus {
-  outline: none; /* 기본 포커스 테두리 제거 */
-  border-color: #007bff; /* 포커스 시 테두리 색상 변경 */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* 포커스 시 그림자 효과 */
-}
-
-/* option 스타일 */
-option {
-  padding: 10px; /* 선택 항목 내부 여백 */
-  background-color: #ffffff; /* 옵션 배경색 */
-  color: #333; /* 글자 색상 */
-  font-size: 1rem; /* 글자 크기 */
-}
-
-/* option 선택 시 스타일 */
-option:checked {
-  background-color: #007bff; /* 선택된 항목 배경색 */
-  color: #fff; /* 선택된 항목 글자 색상 */
 }
 
 hr {
