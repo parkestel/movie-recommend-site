@@ -57,7 +57,8 @@ const router = createRouter({
     {
       path:'/note/:note_id',
       name:'vocanote',
-      component:VocaNotePopUpView
+      component:VocaNotePopUpView,
+      meta: { isPopup: true }, 
     },
     {
       path:'/profile/:username',

@@ -1,6 +1,6 @@
 <template>
     <div class="main-container">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary rounded-custom">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary rounded-custom" v-if="!isPopup">
         <div class="container-fluid">
           <RouterLink :to="{name:'movies'}" v-if="store.isLogin" class="navbar-brand">MoviENg</RouterLink>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
         </div>
       </nav>
       <RouterView/>
-      <chatBot />
+      <chatBot v-if="!route.meta.isPopup"/>
       <footer>
         <div>
           <p>ⓒ 2024. </p>
@@ -43,12 +43,19 @@
     </div>
 </template>
     
-    <script setup>
+<script setup>
     import { useMovieStore } from '@/stores/movie';
     import chatBot from '@/components/chatBot.vue';
-    
-    const store = useMovieStore()
-    </script>
+    import { computed } from 'vue';
+    import { useRoute } from 'vue-router';
+        
+  const store = useMovieStore()
+
+  const route = useRoute();
+
+  // 팝업 여부를 라우트의 meta 정보로 확인
+  const isPopup = computed(()=>route.meta.isPopup || false)
+</script>
     
     <style scoped>
     /* 전체 navbar에 둥근 모서리 적용 */
