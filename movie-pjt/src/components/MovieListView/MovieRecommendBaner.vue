@@ -1,6 +1,6 @@
 <template>
     <div class="banner-container">
-      <h4 class="banner-title">오늘 이런 영화 어떠세요?</h4>
+      <!-- <h5 class="banner-title">Today's Movie</h5> -->
       <Swiper
         :modules="[Navigation, Pagination, Autoplay]"
         :spaceBetween="30"
@@ -11,7 +11,6 @@
         loop
       >
         <SwiperSlide v-for="movie in randomMovies" :key="movie.id">
-            <img :src="store.getImgUrl(movie.poster_path,90)" alt="" class="banner-img">
           <MovieRecommendBanerPosterCard :movie="movie" />
         </SwiperSlide>
       </Swiper>

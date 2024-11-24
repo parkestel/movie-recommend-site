@@ -103,10 +103,10 @@ const store = useMovieStore()
   transition: all 0.3s ease;
 }
 
-.genre-button:hover {
+/* .genre-button:hover {
   background-color: rgba(255, 255, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.5);
-}
+} */
 
 .like-button {
   background-color: rgba(255, 100, 100, 0.2); /* 배경색을 조금 더 진하게 */
