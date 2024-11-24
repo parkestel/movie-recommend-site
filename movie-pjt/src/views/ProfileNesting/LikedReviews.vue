@@ -1,7 +1,9 @@
 <template>
   <div>
     <h1>좋아요한 리뷰 목록</h1>
-    <MyLikedReviewList :liked-reviews="myLikedReviews"/>
+    <div class="review-container">
+      <MyLikedReviewList :liked-reviews="myLikedReviews" class="review-box"/>
+    </div>
   </div>
 </template>
 

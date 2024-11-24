@@ -130,6 +130,60 @@ border: 1px solid rgba(0, 0, 0, 0.05); /* 아주 얇은 외곽선 추가 */
   background-color: transparent;
   border: none;
 }
+
+.review-container {
+  max-width: 800px; /* 적당한 너비 */
+  margin: 0 auto; /* 중앙 정렬 */
+  padding: 20px;
+  background-color: transparent /* 부드러운 배경색 */
+
+}
+.review-box {
+  display: flex;
+  flex-direction: column; /* 세로 정렬 */
+  gap: 15px; /* 아이템 간격 */
+}
+
+.review-item {
+  display: flex;
+  flex-direction: column; /* 세로로 나열 */
+  padding: 15px;
+  border: 1px solid #ddd; /* 테두리 */
+  border-radius: 8px;
+  background-color: #fff; /* 배경색 */
+}
+
+.review-item span {
+  font-size: 16px;
+  font-weight: bold; /* 텍스트 강조 */
+  margin-bottom: 10px;
+}
+
+.review-item p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.review-item a {
+  text-decoration: none;
+  color: #3498db; /* 링크 색상 */
+  font-weight: bold;
+}
+
+.review-item a:hover {
+  text-decoration: underline;
+}
+
+.review-item button {
+  align-self: flex-end; /* 오른쪽 정렬 */
+}
+
+.review-item button:hover {
+  background-color: #c0392b; /* 호버 색상 */
+}
+
+
   /* 비활성화된 버튼 스타일 */
   .btn:disabled {
     background-color: #f5f5f5; /* 비활성화 배경색 */
