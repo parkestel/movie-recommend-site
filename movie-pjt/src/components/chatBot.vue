@@ -68,7 +68,10 @@
       messages.value.push({ role: 'assistant', content: response.data.choices[0].message.content });
   
     } catch (err) {
-      console.log(err);
+      console.log(err)
+      let values = Object.values(err.response.data.error);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     }
   }
   
