@@ -1,33 +1,53 @@
 <template>
-    <div class="movie-banner">
-        <h4>오늘 이런 영화 어떠세요?</h4>
-        <MovieRecommendBanerPosterCard
-        v-for="movie in randomMovies"
-        :key="movie.id"
-        :movie="movie"
-        />
+    <div class="banner-container">
+      <h4 class="banner-title">오늘 이런 영화 어떠세요?</h4>
+      <Swiper
+        :modules="[Navigation, Pagination, Autoplay]"
+        :spaceBetween="30"
+        :slidesPerView="1"
+        :autoplay="{ delay: 3000, disableOnInteraction: false }"
+        navigation
+        pagination
+        loop
+      >
+        <SwiperSlide v-for="movie in randomMovies" :key="movie.id">
+            <img :src="store.getImgUrl(movie.poster_path,90)" alt="" class="banner-img">
+          <MovieRecommendBanerPosterCard :movie="movie" />
+        </SwiperSlide>
+      </Swiper>
     </div>
-</template>
+  </template>
+  
+  <script setup>
+  import { Swiper, SwiperSlide } from "swiper/vue"; // Swiper 컴포넌트
+  import "swiper/swiper-bundle.css"; // Swiper 스타일
+  import { Navigation, Pagination, Autoplay } from "swiper/modules"; // Swiper 모듈
+  import MovieRecommendBanerPosterCard from "./MovieRecommendBanerPosterCard.vue";
+  import { useMovieStore } from "@/stores/movie";
 
-<script setup>
-import MovieRecommendBanerPosterCard from './MovieRecommendBanerPosterCard.vue';
-const props = defineProps({
-    randomMovies:Array
-})
-</script>
+  const store= useMovieStore()
+  const props = defineProps({
+    randomMovies: Array, // 랜덤 영화 배열
+  });
+  </script>
+
 
 <style scoped>
-.movie-banner {
-    display: flex; /* 가로로 나열 */
-    gap: 16px; /* 카드 간격 조정 */
-    align-items: center; /* 세로 정렬 */
-    overflow-x: auto; /* 카드가 많을 경우 스크롤 가능하게 */
-    padding: 10px;
+/* 배너 전체 컨테이너 */
+.banner-container {
+  background-color: rgba(0, 0, 0, 0.205); /* 짙은 검정 배경색 */
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  margin-top: 20px;
 }
 
-.movie-banner h4 {
-    flex-shrink: 0; /* 제목이 줄어들지 않도록 고정 */
-    margin-right: 16px; /* 제목과 카드 사이 간격 */
+/* 제목 스타일 */
+.banner-title {
+  color: #fff; /* 흰색 텍스트 */
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 </style>

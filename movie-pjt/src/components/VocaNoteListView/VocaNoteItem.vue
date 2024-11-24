@@ -25,7 +25,7 @@ defineProps({
 const emit = defineEmits(['deleteEvent', 'toggleEvent'])
 
 const popUp = function (noteId) {
-  window.open(`/note/${noteId}`, '__blank', 'width=400,height=650')
+  window.open(`/note/${noteId}?isPopup=true`, '__blank', 'width=400,height=650')
 }
 
 const deleteNote = function (movieId, userId = userProfile.value.id) {

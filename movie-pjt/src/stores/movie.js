@@ -699,44 +699,6 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
 
-  const getlogedInUserPoints = function () {
-    axios({
-      method:'get',
-      url: `${API_BASE_URL}`,
-      headers:{
-        Authorization: `Token ${token.value}`
-      },
-    })
-    .then(res=>{
-      logedinUserPoint.value=res.data
-    })
-    .catch(err=>{
-
-    })
-  }
-
-  const addExPointLogIn = function() {
-    // logedinUserPoint.value += 200
-    // console.log(logedinUserPoint.value)
-    const newPoint = logedinUserPoint.value.experience + 200
-    axios({
-      method:'post',
-      url: `${API_BASE_URL}`,
-      headers:{
-        Authorization: `Token ${token.value}`
-      },
-      data:{
-        experience: newPoint,
-      }
-    })
-    .then(res=>{
-      getlogedInUserPoints()
-    })
-    .catch(err=>{
-
-    })
-  }
-
   const logOut = function () {
     token.value=null
     logedinUsername.value=null

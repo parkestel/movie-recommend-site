@@ -57,15 +57,21 @@ const router = createRouter({
     {
       path:'/note/:note_id',
       name:'vocanote',
-      component:VocaNotePopUpView
+      component:VocaNotePopUpView,
+      meta: { isPopup: true }, 
     },
     {
       path:'/profile/:username',
+      name:'profile',
       component: ProfileView,
+      redirect: to => {
+        // 동적 매개변수 (:username) 사용
+        return `/userlevel/${to.params.username}`;
+      },
       children:[
         {
-          path:'',
-          name:'profile',
+          path:'/userlevel/:username',
+          name:'userlevel',
           component:MyLevel
         },
         {
