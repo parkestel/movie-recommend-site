@@ -45,7 +45,7 @@ body {
   }
   
   /* 호버 효과 */
-  .card-img:hover {
+  .movie-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   }
@@ -92,6 +92,8 @@ body {
   
   /* Focus 효과 */
   .btn:focus {
+    background-color: #ff6b6b; /* 컬러 배경 */
+    color: white; /* 흰색 글씨 */
     outline: none; /* 기본 포커스 제거 */
     box-shadow: 0 0 5px 2px rgba(255, 107, 107, 0.5); /* 포커스 시 강조 그림자 */
   }
@@ -103,4 +105,29 @@ body {
     border: 2px solid #cccccc; /* 비활성화 테두리 */
     cursor: not-allowed; /* 클릭 불가 커서 */
     opacity: 0.7; /* 약간 투명 */
+  }
+  /* 필터에서 계속 버튼의 눌려있는 상태 */
+  .filter-btn-active {
+    border: 2px solid #ff6b6b; /* 기본 컬러 테두리 */
+    border-radius: 15px; /* 둥근 모서리 */
+    padding: 10px 15px; /* 버튼 크기 조정 */
+    font-size: 16px; /* 기본 텍스트 크기 */
+    font-weight: bold; /* 강조된 글꼴 */
+    cursor: pointer; /* 클릭 가능하게 표시 */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease; /* 부드러운 애니메이션 */
+    background-color: #ff6b6b; /* 컬러 배경 */
+    color: white; /* 흰색 글씨 */
+    outline: none; /* 기본 포커스 제거 */
+  }
+
+  /* 필터 버튼 해제 상태 */
+  .filter-btn-inactive {
+    background-color: white; /* 기본 흰 바탕 */
+    color: #ff6b6b; /* 기본 컬러 글씨 */
+    border: 2px solid #ff6b6b; /* 기본 컬러 테두리 */
+    border-radius: 15px; /* 둥근 모서리 */
+    padding: 10px 15px; /* 버튼 크기 조정 */
+    font-size: 16px; /* 기본 텍스트 크기 */
+    font-weight: bold; /* 강조된 글꼴 */
+    cursor: pointer; /* 클릭 가능하게 표시 */
   }
