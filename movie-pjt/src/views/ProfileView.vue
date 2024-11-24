@@ -39,10 +39,10 @@
     <div class="user-router-container">
       <div class="links-container">
         <RouterLink
-        :to="{ name: 'profile', params: { username: userProfile.username } }"
+        :to="{ name: 'userlevel', params: { username: userProfile.username } }"
         :class="{
             // active: $route.name === 'profile' && $route.matched.length === 1,
-            deactive: isDeactive('profile'),
+            deactive: isDeactive('userlevel'),
         }"
         >
         User Level
