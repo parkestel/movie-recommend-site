@@ -4,7 +4,7 @@
     <!-- filter -->
     <div class="d-flex justify-content-center align-items-center mt-2">
         <div class="btn-group d-flex" role="group" aria-label="Basic outlined example">
-            <button @click="clearAllFilters" class="btn btn-outline-primary w-100">Clear</button>
+            <button @click="handelClearFilters" class="btn btn-outline-primary w-100">Clear</button>
             <button @click="toggleGenreFilter()" class="btn btn-outline-primary w-100">Genres</button>
             <button @click="toggleOttFilter()" class="btn btn-outline-primary w-100">Otts</button>
             <button @click="toggleLevelFilter()" class="btn btn-outline-primary w-100">Level</button>
@@ -15,7 +15,7 @@
             <button  
             v-for="genre in genresList" 
             :key="genre.id"
-            class="btn btn-outline-primary"
+            :class="{ 'filter-btn-active' : selectedGenres.includes(genre),'filter-btn-inactive': !selectedGenres.includes(genre) }"
             @click="updateFilter($event, 'genre', genre)"
             >{{ genre.name }}</button>
         </div>
@@ -23,7 +23,7 @@
             <button  
             v-for="ott in ottList" 
             :key="ott.id"
-            class="btn btn-outline-primary"
+            :class="{ 'filter-btn-active' : selectedOtts.includes(ott),'filter-btn-inactive': !selectedOtts.includes(ott) }"
             @click="updateFilter($event, 'ott', ott)"
             >{{ ott.name }}</button>
         </div>
@@ -31,7 +31,7 @@
             <button  
             v-for="level in levelList" 
             :key="level.id"
-            class="btn btn-outline-primary"
+            :class="{ 'filter-btn-active' : selectedLevel.includes(level), 'filter-btn-inactive': !selectedLevel.includes(level) }"
             @click="updateFilter($event, 'level', level)"
             >{{ level }}</button>
         </div>
@@ -132,6 +132,11 @@ const clearAllFilters = function () {
     levelFilter.value=false
     ottFilter.value=false
     applyFilters()
+}
+
+const handelClearFilters = function (event) {
+    clearAllFilters()
+    event.target.blur()
 }
 
 // 정렬된 영화 목록 계산 속성
@@ -251,9 +256,29 @@ onMounted(()=>{
 </script>
 
 <style scoped>
-button.active {
-  background-color: blue; /* 배경색을 파란색으로 변경 */
-  color: white; /* 글자색을 흰색으로 변경 */
-  font-weight: bold; /* 글자 강조 */
-}
+/* 필터에서 계속 버튼의 눌려있는 상태 */
+.filter-btn-active {
+    border: 2px solid #ff6b6b; /* 기본 컬러 테두리 */
+    border-radius: 15px; /* 둥근 모서리 */
+    padding: 10px 15px; /* 버튼 크기 조정 */
+    font-size: 16px; /* 기본 텍스트 크기 */
+    font-weight: bold; /* 강조된 글꼴 */
+    cursor: pointer; /* 클릭 가능하게 표시 */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease; /* 부드러운 애니메이션 */
+    background-color: #ff6b6b; /* 컬러 배경 */
+    color: white; /* 흰색 글씨 */
+    outline: none; /* 기본 포커스 제거 */
+  }
+
+  /* 필터 버튼 해제 상태 */
+  .filter-btn-inactive {
+    background-color: white; /* 기본 흰 바탕 */
+    color: #ff6b6b; /* 기본 컬러 글씨 */
+    border: 2px solid #ff6b6b; /* 기본 컬러 테두리 */
+    border-radius: 15px; /* 둥근 모서리 */
+    padding: 10px 15px; /* 버튼 크기 조정 */
+    font-size: 16px; /* 기본 텍스트 크기 */
+    font-weight: bold; /* 강조된 글꼴 */
+    cursor: pointer; /* 클릭 가능하게 표시 */
+  }
 </style>
