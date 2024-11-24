@@ -8,7 +8,7 @@
     <button v-if="!store.isLikedMovie(wishMovie.id)" @click="store.addToggleWishMovie(wishMovie.id)" class="movie-like-button">🤍</button>
     <button v-else  @click="store.addToggleWishMovie(wishMovie.id)" class="movie-like-button">💖</button>
     <div v-if="userProfile.username === store.logedinUsername">
-      <button v-if="isHavingNote(wishMovie.id)" @click="popUp(noteId)">See VocaNote</button>
+      <button class="btn" v-if="isHavingNote(wishMovie.id)" @click="popUp(noteId)">See VocaNote</button>
     </div>
   </div>
 </template>

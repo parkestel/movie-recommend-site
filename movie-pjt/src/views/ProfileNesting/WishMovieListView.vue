@@ -58,7 +58,6 @@ const filteredMovies = computed(()=>{
     background-color: #ffffff83;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    text-align: center;
   }
 
 .wish-card-container {
@@ -77,6 +76,29 @@ const filteredMovies = computed(()=>{
   padding: 10px;
 }
 
+.container select {
+  width: auto; /* 선택 박스 크기 자동 조절 */
+  padding: 4px 8px; /* 내부 여백 조정 */
+  font-size: 14px; /* 글자 크기 축소 */
+  border: 1px solid #ddd; /* 테두리 추가 */
+  border-radius: 4px; /* 둥근 모서리 */
+  background-color: #f9f9f9; /* 배경색 */
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+  transition: border-color 0.3s ease;
+  cursor: pointer; /* 커서 포인터로 변경 */
+}
+
+.container select:focus {
+  border-color: #007bff; /* 포커스 시 테두리 강조 */
+  outline: none;
+}
+
+.container select option {
+  padding: 4px; /* 옵션 항목의 여백 */
+  font-size: 14px; /* 옵션 글자 크기 */
+}
+
+
 /* 호버 효과 - 이미지에만 확대 적용 */
 .movie-card:hover .card-img {
   transform: scale(1.05); /* 이미지 확대 */
@@ -93,7 +115,6 @@ const filteredMovies = computed(()=>{
   @media (max-width: 700px) {
     .wish-card-container {
       grid-template-columns: repeat(1, 1fr); /* 가로1개 */
-      justify-content: center;
     }
   }
   
