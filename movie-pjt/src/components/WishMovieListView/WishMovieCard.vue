@@ -1,13 +1,12 @@
 <template>
-  <div>
-    <button v-if="!store.isLikedMovie(wishMovie.id)" @click="store.addToggleWishMovie(wishMovie.id)">🤍</button>
-    <button v-else  @click="store.addToggleWishMovie(wishMovie.id)">💖</button>
+  <div @click="moveToDetail(wishMovie.id)">
     <div>
-      <img :src="store.getImgUrl(wishMovie.poster_path,200)" alt="">
+      <img :src="store.getImgUrl(wishMovie.poster_path,200)" alt="" class="card-img">
     </div>
     <h4>{{ wishMovie.title_kr }}</h4>
     <h5>{{ wishMovie.title }}</h5>
-    <button @click="moveToDetail(wishMovie.id)">Detail</button>
+    <button v-if="!store.isLikedMovie(wishMovie.id)" @click="store.addToggleWishMovie(wishMovie.id)" class="movie-like-button">🤍</button>
+    <button v-else  @click="store.addToggleWishMovie(wishMovie.id)" class="movie-like-button">💖</button>
     <div v-if="userProfile.username === store.logedinUsername">
       <button v-if="isHavingNote(wishMovie.id)" @click="popUp(noteId)">See VocaNote</button>
     </div>

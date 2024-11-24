@@ -8,17 +8,19 @@
                 <option value="withNote">단어장 있는 영화</option>
             </select>
         </div>
-        <div v-if="userProfile.username===store.logedinUsername">
+        <div v-if="userProfile.username===store.logedinUsername" class="wish-card-container">
             <WishMovieCard  
             v-for="wishMovie in filteredMovies"
             :key="wishMovie.id"
-            :wish-movie="wishMovie"/>
+            :wish-movie="wishMovie"
+            class="movie-card"/>
         </div>
-        <div v-else>
+        <div v-else class="wish-card-container">
             <WishMovieCard  
             v-for="wishMovie in userProfile.wish_movies"
             :key="wishMovie.id"
-            :wish-movie="wishMovie"/>
+            :wish-movie="wishMovie"
+            class="movie-card"/>
         </div>
     </div>
 </template>
@@ -49,5 +51,40 @@ const filteredMovies = computed(()=>{
 </script>
 
 <style scoped>
+.wish-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem; /* 카드 간의 간격 */
+  margin-top: 1rem;
+}
+/* 영화 카드 */
+.movie-card {
+  width: 250px;
+  overflow: hidden; /* 부모 요소에서 넘치는 부분 숨김 */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: transparent;
+  box-shadow: none;
+  padding: 10px;
 
+}
+
+/* 호버 효과 - 이미지에만 확대 적용 */
+.movie-card:hover .card-img {
+  transform: scale(1.05); /* 이미지 확대 */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+}
+
+
+  @media (max-width:900px) {
+    .wish-card-container {
+      grid-template-columns: repeat(3, 1fr); /* 가로 3개 */
+    }
+  }
+  
+  @media (max-width: 700px) {
+    .wish-card-container {
+      grid-template-columns: repeat(1, 1fr); /* 가로1개 */
+    }
+  }
+  
 </style>

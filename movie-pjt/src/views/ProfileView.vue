@@ -37,55 +37,57 @@
       </div>
     </div>
     <div class="user-router-container">
-      <div class="links-container">
-        <RouterLink
-        :to="{ name: 'userlevel', params: { username: userProfile.username } }"
-        :class="{ active: isActive('userlevel') }"
-        >
-        User Level
-        </RouterLink>
-        <RouterLink
-          :to="{
-            name: 'wishmovies',
-            params: { username: userProfile.username },
-          }"
-          :profile="userProfile"
-          :class="{ active: isActive('wishmovies') }"
-          >Wish Movie</RouterLink
-        >
-        <RouterLink
-          :to="{
-            name: 'mynotelist',
-            params: { username: userProfile.username },
-          }"
-          :profile="userProfile"
-          :class="{ active: isActive('mynotelist') }"
-          >Voca Note</RouterLink
-        >
-        <RouterLink
-          :to="{
-            name: 'myreviews',
-            params: { username: userProfile.username },
-          }"
-          :profile="userProfile"
-          v-if="userProfile.username === store.logedinUsername"
-          :class="{ active: isActive('myreviews') }"
-          >My Reviews</RouterLink
-        >
-        <RouterLink
-          :to="{
-            name: 'likedreviews',
-            params: { username: userProfile.username },
-          }"
-          :profile="userProfile"
-          v-if="userProfile.username === store.logedinUsername"
-          :class="{ active: isActive('likedreviews') }"
-          >Liked Reviews</RouterLink
-        >
-      </div>
-      <hr />
-      <RouterView :key="$route.fullpath" />
-    </div>
+  <div class="links-container">
+    <RouterLink
+      :to="{ name: 'userlevel', params: { username: userProfile.username } }"
+      :class="{ active: isActive('userlevel') }"
+    >
+      User Level
+    </RouterLink>
+    <RouterLink
+      :to="{
+        name: 'wishmovies',
+        params: { username: userProfile.username },
+      }"
+      :profile="userProfile"
+      :class="{ active: isActive('wishmovies') }"
+      >Wish Movie</RouterLink
+    >
+    <RouterLink
+      :to="{
+        name: 'mynotelist',
+        params: { username: userProfile.username },
+      }"
+      :profile="userProfile"
+      :class="{ active: isActive('mynotelist') }"
+      >Voca Note</RouterLink
+    >
+    <RouterLink
+      :to="{
+        name: 'myreviews',
+        params: { username: userProfile.username },
+      }"
+      :profile="userProfile"
+      v-if="userProfile.username === store.logedinUsername"
+      :class="{ active: isActive('myreviews') }"
+      >My Reviews</RouterLink
+    >
+    <RouterLink
+      :to="{
+        name: 'likedreviews',
+        params: { username: userProfile.username },
+      }"
+      :profile="userProfile"
+      v-if="userProfile.username === store.logedinUsername"
+      :class="{ active: isActive('likedreviews') }"
+      >Liked Reviews</RouterLink
+    >
+  </div>
+  <div class="view-container">
+    <RouterView :key="$route.fullpath" />
+  </div>
+</div>
+
   </div>
 </template>
 
@@ -152,15 +154,24 @@ watch(
 }
 
 .user-router-container {
-  background: #f9f9f9;
-  border-radius: 2rem;
-  flex: 1; /* 오른쪽 영역 */
-  max-width: 70%; /* 너비 제한 */
-  padding: 1.5rem;
-  min-height: 100vh; /* 최소 높이를 화면 전체로 설정 */
+    display: flex;
+    flex-direction: column;
+    background: #f9f9f9;
+    border-radius: 2rem;
+    flex: 1;
+    max-width: 70%;
+    padding: 1.5rem;
+    min-height: 100vh;
 }
 
 /* 헤더 스타일 */
+.view-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: transparent;
+}
+
 .user-header {
   display: flex;
   flex-direction: column; /* 세로 방향 정렬 */
@@ -292,17 +303,12 @@ hr {
   margin: 1rem 0;
 }
 
-.user-router-container {
-  display: flex;
-  flex-direction: column;
-}
-
 .links-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px; /* 링크 간의 간격 */
-  margin-bottom: 10px; /* RouterView와의 간격 */
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .links-container a {
