@@ -65,7 +65,6 @@ const filteredMovies = computed(()=>{
   background: transparent;
   box-shadow: none;
   padding: 10px;
-
 }
 
 /* 호버 효과 - 이미지에만 확대 적용 */
