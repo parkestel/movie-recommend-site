@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h1>Movie WishList</h1>
+    <div class="container">
+        <h2>Movie WishList</h2>
         <div v-if="userProfile.username===store.logedinUsername">
             <select v-model="filter" >
                 <option value="all">전체보기</option>
@@ -51,6 +51,16 @@ const filteredMovies = computed(()=>{
 </script>
 
 <style scoped>
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff83;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+  }
+
 .wish-card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -74,7 +84,7 @@ const filteredMovies = computed(()=>{
 }
 
 
-  @media (max-width:900px) {
+  @media (max-width:800px) {
     .wish-card-container {
       grid-template-columns: repeat(3, 1fr); /* 가로 3개 */
     }
@@ -83,6 +93,7 @@ const filteredMovies = computed(()=>{
   @media (max-width: 700px) {
     .wish-card-container {
       grid-template-columns: repeat(1, 1fr); /* 가로1개 */
+      justify-content: center;
     }
   }
   

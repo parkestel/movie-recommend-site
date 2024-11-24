@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <h5>My Voca Note Page</h5>
-    <button @click="togglecreateNewNote" v-if="store.logedinUsername===userProfile.username">
-      {{ showSelectMovie ? '취소' : '단어장 생성' }}
-    </button>
-    <button @click="toggleDeleteButtons" v-if="store.logedinUsername===userProfile.username">
-      {{ showDeleteButton ? '취소' : '삭제' }}
-    </button>
+  <div class="container">
+    <h2>My Voca Note Page</h2>
+    <div class="select-wrapper">
+      <span>{{ showDeleteButton ? '취소' : '삭제' }}</span>
+      <button id="toggle-button" class="toggle-btn" :aria-pressed="showDeleteButton" @click="toggleDeleteButtons" v-if="store.logedinUsername===userProfile.username">
+        <span class="toggle-circle"></span>
+      </button>
+    </div>
     <br>
     <form>
-      <select id="movieForVocaNote" v-if="showSelectMovie" @change="createNewNote($event.target.value)">
+      <select id="movieForVocaNote" @change="createNewNote($event.target.value)">
         <option selected>--영화를 선택하세요--</option>
         <option v-for="movie in wishMoviesWithOutNote" :key="movie.id" :value="movie.id">{{ movie.title }}</option>
       </select>
@@ -57,6 +57,15 @@ onMounted(()=>{
 </script>
 
 <style scoped>
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff83;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+  }
 .note-card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -65,12 +74,25 @@ onMounted(()=>{
 }
 
 .note-card {
-  width: 250px;
+  width: 100%;
   overflow: hidden; /* 부모 요소에서 넘치는 부분 숨김 */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background: transparent;
+  background: #fff;
+  border: 1px solid #ddd;
   box-shadow: none;
   padding: 10px;
+}
+
+@media (max-width: 600px) {
+  .note-card-container {
+    grid-template-columns: 1fr; /* 한 줄로 배치 */
+  }
+}
+
+/* 전체 래퍼 스타일 */
+.select-wrapper {
+  display: inline-block;
+  position: relative;
 }
 
 </style>

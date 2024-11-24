@@ -121,6 +121,40 @@ border: 1px solid rgba(0, 0, 0, 0.05); /* 아주 얇은 외곽선 추가 */
     box-shadow: 0 0 5px 2px rgba(255, 107, 107, 0.5); /* 포커스 시 강조 그림자 */
   }
 
+  /* 버튼 기본 스타일 */
+.toggle-btn {
+  position: relative;
+  width: 50px;
+  height: 25px;
+  background-color: #f0f0f0; /* 기본 배경색 */
+  border: none;
+  border-radius: 25px; /* 둥근 모양 */
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+/* 버튼 활성화 상태 */
+.toggle-btn[aria-pressed="true"] {
+  background-color: #34c759; /* 활성화 시 초록색 */
+  justify-content: flex-end;
+}
+
+/* 내부 원(circle) 스타일 */
+.toggle-circle {
+  width: 19px;
+  height: 19px;
+  background-color: #ffffff; /* 원 기본 색상 */
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 살짝 입체감 */
+  transition: transform 0.3s ease-in-out;
+}
+
+
 .movie-like-button {
   background-color: transparent;
   border: none;

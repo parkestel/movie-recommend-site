@@ -183,16 +183,16 @@ watch(
 .user-header {
   display: flex;
   flex-direction: column; /* 세로 방향 정렬 */
-  align-items: flex-start; /* 왼쪽 정렬 */
+  align-items: center; /* 왼쪽 정렬 */
   margin-bottom: 15px;
   gap: 10px; /* h1과 profile-follow 사이의 간격 */
 }
 
 .user-header h1 {
-  margin: 0; /* 불필요한 여백 제거 */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-top: 20px;
 }
 
 .profile-follow {
