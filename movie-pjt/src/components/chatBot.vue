@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 오른쪽 아래에 고정된 Open Chat 버튼 -->
-    <button @click="toggleModal" class="open-chat-btn">Open Chat</button>
+    <button @click="toggleModal" class="open-chat-btn">💬</button>
 
     <!-- 모달 창 -->
     <div v-if="isModalOpen" class="modal-overlay">
@@ -68,7 +68,10 @@
       messages.value.push({ role: 'assistant', content: response.data.choices[0].message.content });
   
     } catch (err) {
-      console.log(err);
+      console.log(err)
+      let values = Object.values(err.response.data.error);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     }
   }
   
@@ -135,12 +138,12 @@
 }
 
 .message.user {
-  background-color: #d1f7d1;
+  background-color: #f2e2ff;
   align-self: flex-end;
 }
 
 .message.assistant {
-  background-color: #e1e1e1;
+  background-color: #e6e6e6;
   align-self: flex-start;
 }
 
@@ -160,14 +163,14 @@ input {
 button {
   padding: 10px;
   border: none;
-  background-color: #007bff;
-  color: white;
+  background-color: #e2d4ee;
+  color: rgb(32, 36, 83);
   border-radius: 5px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #c4aad3;
 }
 
 /* Open Chat 버튼 고정 위치 */
@@ -176,7 +179,7 @@ button:hover {
   bottom: 20px;
   right: 20px;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #ff6767;
   color: white;
   border: none;
   border-radius: 25px;
@@ -187,7 +190,6 @@ button:hover {
 }
 
 .open-chat-btn:hover {
-  background-color: #0056b3;
+  background-color: #db6565;
 }
 </style>
-

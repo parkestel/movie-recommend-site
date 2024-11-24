@@ -34,7 +34,7 @@
         </div>
       </nav>
       <RouterView/>
-      <chatBot v-if="!route.meta.isPopup"/>
+      <chatBot v-if="!route.meta.isPopup && store.isLogin"/>
       <footer>
         <div>
           <p>ⓒ 2024. </p>
@@ -48,7 +48,7 @@
     import chatBot from '@/components/chatBot.vue';
     import { computed } from 'vue';
     import { useRoute } from 'vue-router';
-        
+
   const store = useMovieStore()
 
   const route = useRoute();

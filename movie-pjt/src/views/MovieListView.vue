@@ -49,14 +49,14 @@
             </form>            
             <select id="sorting" class="form-select" style="width: 200px;" v-model="selectedSortOption">
                 <option value="" selected disabled>정렬 기준</option>
-                <option value="highRating"> 평점 높은 순 </option>
-                <option value="lowRating"> 평점 낮은 순 </option>
-                <option value="alphabetAsc">알파벳 오름차순 (A~Z)</option>
-                <option value="alphabetDesc">알파벳 내림차순 (Z~A)</option>
-                <option value="koreanAsc">제목 한글 오름차순 (ㄱ~ㅎ)</option>
-                <option value="koreanDesc">제목 한글 내림차순 (ㅎ~ㄱ)</option>
-                <option value="dateAsc">개봉 날짜 오름차순 (과거순)</option>
-                <option value="dateDesc">개봉 날짜 내림차순 (최신순)</option>
+                <option value="평점 높은 순"> 평점 높은 순 </option>
+                <option value="평점 낮은 순"> 평점 낮은 순 </option>
+                <option value="알파벳 오름차순 (A~Z)">알파벳 오름차순 (A~Z)</option>
+                <option value="알파벳 내림차순 (Z~A)">알파벳 내림차순 (Z~A)</option>
+                <option value="제목 한글 오름차순 (ㄱ~ㅎ)">제목 한글 오름차순 (ㄱ~ㅎ)</option>
+                <option value="제목 한글 내림차순 (ㅎ~ㄱ)">제목 한글 내림차순 (ㅎ~ㄱ)</option>
+                <option value="개봉 날짜 오름차순 (과거순)">개봉 날짜 오름차순 (과거순)</option>
+                <option value="개봉 날짜 내림차순 (최신순)">개봉 날짜 내림차순 (최신순)</option>
             </select>
         </div>
     </div>
