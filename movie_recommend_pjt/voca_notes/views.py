@@ -56,7 +56,7 @@ def create_voca_note(request, movie_pk, user_pk):
         voca_note.movies.add(movie)
         voca_note.save()
 
-        request.user.experience += 200
+        request.user.experience += 500
         request.user.save()
 
         serializer = VocaNoteSerializers(voca_note)
@@ -154,7 +154,7 @@ def create_voca(request, vocanote_pk):
     voca_note.vocas.add(voca)
     voca_note.save()
 
-    request.user.experience += 10
+    request.user.experience += 50
     request.user.save()
 
     serializer = VocaNoteAllSerializers(voca_note)
@@ -269,7 +269,7 @@ def change_is_memorized(request, vocanote_pk, voca_pk):
 
     if voca.is_memorized and not voca.was_memorized:
         # 처음 외운 경우 경험치 추가 및 상태 업데이트
-        login_user.experience += 50
+        login_user.experience += 70
         login_user.save()
         voca.was_memorized = True
     voca.save()
