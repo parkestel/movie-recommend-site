@@ -34,7 +34,7 @@
   import { ref } from 'vue';
   import axios from 'axios';
 
-  // const API_key = import.meta.env.VITE_GPT_API_KEY;
+  const API_key = import.meta.env.VITE_GPT_API_KEY;
   const API_URL = 'https://api.openai.com/v1/chat/completions';
   
   const userMessage = ref('');
