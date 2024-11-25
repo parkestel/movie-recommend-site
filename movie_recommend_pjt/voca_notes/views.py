@@ -7,8 +7,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 
-from .serializers import VocaNoteSerializers, VocaNoteAllSerializers, VocaSerializers
-from .models import VocaNote, Voca
+from .serializers import VocaNoteSerializers, VocaNoteAllSerializers, VocaSerializers, 
+from .models import VocaNote, Voca, VocaNoteHistory
 from movies.models import Movie
 
 User = get_user_model()
@@ -56,8 +56,11 @@ def create_voca_note(request, movie_pk, user_pk):
         voca_note.movies.add(movie)
         voca_note.save()
 
-        request.user.experience += 500
-        request.user.save()
+        VocaNoteHistory.objects.create(user=me, movie=movie)
+
+        if not VocaNoteHistory.objects.filter(user=me, movie=movie).exists():
+            me.experience += 500
+            me.user.save()
 
         serializer = VocaNoteSerializers(voca_note)
         return Response(serializer.data, status=201)
