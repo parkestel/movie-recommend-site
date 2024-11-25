@@ -136,6 +136,9 @@
   margin-bottom: 10px;
   max-width: 80%;
 }
+.message p{
+  color: rgb(41, 41, 41);
+}
 
 .message.user {
   background-color: #f2e2ff;
