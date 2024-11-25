@@ -15,10 +15,16 @@ import PasswordUpdateView from '@/views/PasswordUpdateView.vue'
 import MyReview from '@/views/ProfileNesting/MyReview.vue'
 import LikedReviews from '@/views/ProfileNesting/LikedReviews.vue'
 import ChatBot from '@/components/chatBot.vue'
+import HomeView from '@/views/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path:'/',
+      name:'home',
+      component: HomeView
+    },
     {
       path:'/movies',
       name: 'movies',

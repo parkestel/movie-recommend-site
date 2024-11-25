@@ -35,7 +35,7 @@ export const useMovieStore = defineStore('movie', () => {
   const myReviews = ref(null)
   const myLikedReviews = ref(null)
   const isLoading = ref(null)
-  const logedinUserPoint = ref(null)
+  const logedinUserPoint = ref(0)
   
   const getMovies = function () {
     isLoading.value=true

@@ -8,15 +8,15 @@
                       v-if="store.isLogin && store.logedinUsername">
             안녕하세요! {{ store.logedinUsername }} 님!
           </RouterLink>
-          <hr>
-          <p class="user-level">Lv. {{ store.logedinUserPoint.achievement_level }}</p>
+          <!-- <hr>
+          <p class="user-level" v-if="store.isLogin && store.logedinUserPoint.achievement_level">Lv. {{ store.logedinUserPoint.achievement_level }}</p> -->
         </div>
  <!-- 중앙 로고 -->
           <div class="navbar-center">
           <RouterLink v-if="store.isLogin" :to="{name:'movies'}" class="navbar-brand">
             <img :src="logo" alt="MoviENg Logo" class="logo" />
           </RouterLink>
-          <RouterLink v-if="!store.isLogin" class="navbar-brand">
+          <RouterLink v-if="!store.isLogin" class="navbar-brand" :to="{name:'login'}">
             <img :src="logo" alt="MoviENg Logo" class="logo" />
           </RouterLink>
         </div>
