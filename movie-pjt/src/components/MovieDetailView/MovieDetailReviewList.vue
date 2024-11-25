@@ -26,15 +26,19 @@ defineProps({
 
 <style scoped>
 .reviews-list-container {
+  width: 80%;
+  max-width: 1200px;
+  margin: -2px auto 0;
   background: linear-gradient(
     to bottom,
     rgb(36, 36, 66) 0%,
     rgb(46, 46, 76) 100%
   );
   padding: 40px 20px;
-  margin-top: -1px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  position: relative;
+  z-index: 1;
 }
 
 .reviews-header {

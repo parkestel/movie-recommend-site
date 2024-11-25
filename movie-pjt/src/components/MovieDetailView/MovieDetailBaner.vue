@@ -21,14 +21,16 @@ const store = useMovieStore()
 <style scoped>
 .movie-detail {
   position: relative;
-  width: 100%;
+  width: 80%;
+  max-width: 1200px; /* 가로 폭을 제한합니다. 필요에 따라 값 조정 */
   height: 900px;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  margin: 20px auto; /* 중앙 정렬과 상단 마진 */
 }
 
 .movie-poster {
@@ -59,6 +61,6 @@ const store = useMovieStore()
   height: 100%;
   opacity: 70%;
   object-fit: cover; /* 비율을 유지하면서 영역에 맞게 확대/축소 */
+  object-position: top; /* 이미지를 상단과 맞추기 */
 }
-
 </style>
