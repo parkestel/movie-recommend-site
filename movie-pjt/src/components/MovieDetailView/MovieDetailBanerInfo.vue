@@ -99,7 +99,6 @@ const store = useMovieStore()
   border-radius: 20px;
   padding: 10px 20px;
   font-size: 0.9em;
-  cursor: pointer;
   transition: all 0.3s ease;
 }
 

@@ -13,10 +13,11 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import { faLock, faLockOpen, faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import { faLock, faLockOpen, faTrashCan, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsUp as farThumbsUp  } from '@fortawesome/free-regular-svg-icons'
 
 /* add icons to the library */
-library.add(faLock, faLockOpen, faTrashCan)
+library.add(faLock, faLockOpen, faTrashCan, faThumbsUp, farThumbsUp)
 
 const app = createApp(App)
 const pinia = createPinia()
