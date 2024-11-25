@@ -56,11 +56,12 @@ def create_voca_note(request, movie_pk, user_pk):
         voca_note.movies.add(movie)
         voca_note.save()
 
-        VocaNoteHistory.objects.create(user=me, movie=movie)
 
         if not VocaNoteHistory.objects.filter(user=me, movie=movie).exists():
             me.experience += 500
-            me.user.save()
+            me.save()
+
+        VocaNoteHistory.objects.create(user=me, movie=movie)
 
         serializer = VocaNoteSerializers(voca_note)
         return Response(serializer.data, status=201)
