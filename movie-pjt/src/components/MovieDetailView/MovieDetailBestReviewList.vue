@@ -54,16 +54,16 @@ const slidesPerView = computed(() => {
 
 <style scoped>
 .best-reviews-section {
+  width: 80%;
+  max-width: 1200px;
+  margin: -1px auto 0;
   background: linear-gradient(
     to bottom,
     rgb(0, 0, 0) 0%,
     rgb(26, 26, 46) 100%
   );
   padding: 40px 20px;
-  margin: 0;
-  border-radius: 0;
   position: relative;
-  top: -1px;
 }
 
 .best-reviews h5 {
@@ -86,19 +86,19 @@ const slidesPerView = computed(() => {
 }
 
 .no-reviews {
+  width: 80%;
+  max-width: 1200px;
+  margin: -1px auto 0;
   background: linear-gradient(
     to bottom,
     rgb(0, 0, 0) 0%,
     rgb(26, 26, 46) 100%
   );
   padding: 40px;
-  margin: 0;
   text-align: center;
   color: #fff;
   font-size: 1.2rem;
-  border-radius: 0;
   position: relative;
-  top: -1px;
 }
 
 /* Swiper 스타일 수정 */

@@ -87,7 +87,7 @@ const openUpdateForm = function () {
 .review-item-container {
   background-color: rgba(250, 250, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
+  border-radius: 2rem;
   padding: 25px;
   margin-bottom: 20px;
   backdrop-filter: blur(10px);

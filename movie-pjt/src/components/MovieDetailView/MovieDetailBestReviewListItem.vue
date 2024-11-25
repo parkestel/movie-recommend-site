@@ -20,7 +20,7 @@ defineProps({
 .best-review-card {
   background-color: rgba(245, 245, 255, 0.95);
   border: 1px solid rgba(180, 180, 255, 0.6);
-  border-radius: 15px;
+  border-radius: 2rem;
   padding: 20px;
   margin: 20px 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);

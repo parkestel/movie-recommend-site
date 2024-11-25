@@ -1,35 +1,56 @@
 <template>
   <div class="movie-info">
-    <div class="movie-header">
-      <h3 class="movie-title">{{ movieInfo.title }}</h3>
-      <span class="movie-release-date">({{ movieInfo.release_date }})</span>
-    </div>
-    <p class="movie-summary">{{ movieInfo.summary }}</p>
-    <div class="movie-genres-actions">
-      <div class="movie-genres">
-        <button v-for="genre in movieInfo.genres" :key="genre.id" class="genre-button">
-          {{ genre.name }}
+    <div class="basic-info">
+      <div class="movie-header">
+        <h3 class="movie-title">{{ movieInfo.title }}</h3>
+      </div>
+      <div class="movie-subinfo">
+        <span class="movie-release-date">({{ movieInfo.release_date }})</span>
+        <span class="movie-rating">⭐ {{ movieInfo.rank }}</span>
+      </div>
+      <p class="movie-summary">{{ movieInfo.summary }}</p>
+      <div class="movie-genres-actions">
+        <div class="movie-genres">
+          <button v-for="genre in movieInfo.genres" :key="genre.id" class="genre-button">
+            {{ genre.name }}
+          </button>
+        </div>
+        <button
+          v-if="!store.isLikedMovie(movieInfo.id)"
+          @click="store.addToggleWishMovie(movieInfo.id)"
+          class="like-button"
+        >
+          🤍 Add to Favorites
+        </button>
+        <button
+          v-else
+          @click="store.addToggleWishMovie(movieInfo.id)"
+          class="like-button liked"
+        >
+          💖 Favorited
         </button>
       </div>
-      <button
-        v-if="!store.isLikedMovie(movieInfo.id)"
-        @click="store.addToggleWishMovie(movieInfo.id)"
-        class="like-button"
-      >
-        🤍 Add to Favorites
-      </button>
-      <button
-        v-else
-        @click="store.addToggleWishMovie(movieInfo.id)"
-        class="like-button liked"
-      >
-        💖 Favorited
-      </button>
     </div>
 
-    <!-- 추가 정보 섹션 -->
     <div class="additional-info">
       <div class="info-row">
+        <div class="info-item ott-section">
+          <span class="info-label">시청 가능한 곳</span>
+          <div v-if="movieInfo.otts && movieInfo.otts.length > 0" class="ott-logos">
+            <a v-for="ott in movieInfo.otts" 
+               :key="ott.tmdb_id"
+               :href="ott.site_url"
+               target="_blank"
+               class="ott-link"
+               :title="ott.name">
+              <img :src="store.getImgUrl(ott.logo_path, 45)" :alt="ott.name" class="ott-logo">
+            </a>
+          </div>
+          <div v-else class="no-ott-message">
+            현재 스트리밍 서비스에서 제공되지 않습니다
+          </div>
+        </div>
+
         <div class="info-item directors-item">
           <span class="info-label">감독</span>
           <div class="directors-list">
@@ -43,15 +64,9 @@
             </div>
           </div>
         </div>
-        <div class="info-item">
-          <span class="info-label">평점</span>
-          <span class="info-value">⭐ {{ movieInfo.rank }}</span>
-        </div>
-      </div>
 
-      <div class="info-row">
         <div class="info-item actors-item">
-          <span class="info-label">주연</span>
+          <span class="info-label">CAST</span>
           <div class="actors-list">
             <div v-for="actor in movieInfo.stars" 
                  :key="actor.tmdb_id" 
@@ -68,24 +83,6 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- OTT 섹션 -->
-      <div class="ott-section">
-        <span class="info-label">시청 가능한 곳</span>
-        <div v-if="movieInfo.otts && movieInfo.otts.length > 0" class="ott-logos">
-          <a v-for="ott in movieInfo.otts" 
-             :key="ott.tmdb_id"
-             :href="ott.site_url"
-             target="_blank"
-             class="ott-link"
-             :title="ott.name">
-            <img :src="store.getImgUrl(ott.logo_path, 45)" :alt="ott.name" class="ott-logo">
-          </a>
-        </div>
-        <div v-else class="no-ott-message">
-          현재 스트리밍 서비스에서 제공되지 않습니다
         </div>
       </div>
     </div>
@@ -107,60 +104,81 @@ const store = useMovieStore()
   position: absolute;
   bottom: 0;
   left: 0;
-  min-height: 70%;
-  color: #fff;
-  padding: 20px;
   width: 100%;
+  color: #fff;
+  padding: 20px 0;
   z-index: 2;
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(0, 0, 0, 0.6) 30%,
-    rgba(0, 0, 0, 0.95) 70%,
+    rgba(0, 0, 0, 0.6) 20%,
+    rgba(0, 0, 0, 0.95) 50%,
     rgb(0, 0, 0) 100%
   );
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding-bottom: 40px;
-  padding-left: 40px;
-  padding-right: 40px;
+  transition: max-height 0.5s ease;
+  max-height: 350px;
+  overflow: hidden;
+}
+
+.basic-info {
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 15px;
 }
 
 .movie-header {
-  display: flex;
-  align-items: baseline; /* 제목과 날짜 하단을 수평 정렬 */
-  gap: 10px; /* 제목과 날짜 사이 간격 */
+  margin-bottom: 12px;
 }
 
 .movie-title {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #fff;
+  font-size: 2.5rem;
   margin: 0;
+  color: #fff;
 }
 
-.movie-release-date {
-  font-size: 0.9rem;
-  color: #ccc;
-  font-style: italic;
-  margin-bottom: -3px; /* 하단 정렬 미세 조정 */
+.movie-subinfo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20px;
 }
 
 .movie-summary {
-  margin-top: 10px;
-  font-size: 1rem;
+  margin: 20px 0;
+  font-size: 1.1rem;
   color: #ddd;
-  display: -webkit-box;
-  -webkit-line-clamp: 2; /* 줄 수 제한 */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.6;
+}
+
+.movie-genres-actions {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.additional-info {
+  margin-top: 10px;
+  padding-top: 20px;
+  margin-left: 40px;
+  width: calc(100% - 80px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.movie-info:hover {
+  max-height: 1000px;
+}
+
+.movie-info:hover .additional-info {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .movie-genres-actions {
   display: flex;
-  justify-content: space-between; /* 장르와 버튼 좌우 정렬 */
+  justify-content: space-between;
   align-items: center;
   margin: 10px 0;
 }
@@ -182,15 +200,10 @@ const store = useMovieStore()
   margin-bottom: 10px;
 }
 
-/* .genre-button:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.5);
-} */
-
 .like-button {
-  background-color: rgba(255, 100, 100, 0.2); /* 배경색을 조금 더 진하게 */
+  background-color: rgba(255, 100, 100, 0.2);
   color: #fff;
-  border: 1px solid rgba(255, 100, 100, 0.4); /* 테두리 색도 조금 더 진하게 */
+  border: 1px solid rgba(255, 100, 100, 0.4);
   border-radius: 20px;
   padding: 10px 20px;
   font-size: 0.9rem;
@@ -199,32 +212,29 @@ const store = useMovieStore()
 }
 
 .like-button:hover {
-  background-color: rgba(255, 100, 100, 0.4); /* 호버 시 더 진한 배경 */
-  border-color: rgba(255, 100, 100, 0.6); /* 호버 시 더 진한 테두리 */
+  background-color: rgba(255, 100, 100, 0.4);
+  border-color: rgba(255, 100, 100, 0.6);
 }
 
 .like-button.liked {
-  background-color: rgba(255, 50, 50, 0.6); /* 선택된 상태에서 더 진한 배경 */
-  border-color: rgba(255, 50, 50, 0.6); /* 선택된 상태에서 더 진한 테두리 */
+  background-color: rgba(255, 50, 50, 0.6);
+  border-color: rgba(255, 50, 50, 0.6);
 }
 
-.additional-info {
-  margin-top: 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 30px;
-}
 
 .info-row {
   display: flex;
-  justify-content: flex-start;
-  gap: 60px;
-  margin-bottom: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  width: 100%;
 }
 
 .info-item {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .info-label {
@@ -239,13 +249,13 @@ const store = useMovieStore()
 }
 
 .ott-section {
-  margin-top: 15px;
+  margin-bottom: 20px;
 }
 
 .ott-logos {
   display: flex;
   gap: 15px;
-  margin-top: 10px;
+  justify-content: flex-start;
 }
 
 .ott-link {
@@ -257,21 +267,26 @@ const store = useMovieStore()
 }
 
 .ott-logo {
-  width: 40px;
-  height: 40px;
+  width: 65px;
+  height: 65px;
   border-radius: 8px;
   object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.ott-link:hover .ott-logo {
+  transform: scale(1.1);
 }
 
 .directors-item {
-  flex-direction: column;
-  align-items: flex-start;
+  margin-bottom: 15px;
 }
 
 .directors-list {
   display: flex;
   gap: 15px;
-  margin-top: 5px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .director {
@@ -301,6 +316,7 @@ const store = useMovieStore()
   margin-top: 15px;
   flex-wrap: wrap;
   margin-bottom: 20px;
+  justify-content: flex-start;
 }
 
 .actor {
