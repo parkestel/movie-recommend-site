@@ -3,9 +3,10 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary rounded-custom" v-if="!isPopup">
       <div class="container-fluid">
         <!-- 왼쪽 사용자 정보 영역 -->
-        <div class="nav-item styled-button" id="welcome" v-if="store.isLogin && store.logedinUsername">
-          <RouterLink :to="{name:'profile', params:{username:store.logedinUsername}}" class="navbar-nav ms-auto mb-2 mb-lg-0">
-            안녕하세요! {{ store.logedinUsername }} 님!
+        <div class="nav-item" id="welcome" v-if="store.isLogin && store.logedinUsername">
+          <RouterLink :to="{name:'profile', params:{username:store.logedinUsername}}" class="welcome-link">
+            <span class="welcome-text">안녕하세요!</span>
+            <span class="username">{{ store.logedinUsername }} 님</span>
           </RouterLink>
         </div>
         
@@ -167,6 +168,53 @@ footer {
   height: 40px;  /* 로고 크기 지정 */
   width: auto;   /* 비율 유지 */
   margin: 8px 0; /* 상하 여백 추가 */
+  filter: brightness(0) invert(15%);  /* 진한 차콜 그레이로 변경 */
+}
+
+/* Welcome 버튼 스타일 재정의 */
+#welcome {
+  position: relative;
+  display: inline-block;
+}
+
+.welcome-link {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  border: 1px solid rgba(90, 90, 90, 0.226);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.welcome-link:hover {
+  background: rgba(145, 145, 145, 0.25);
+  transform: translateY(-1px);
+}
+
+.welcome-text {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.username {
+  font-size: 14px;
+  font-weight: 750;
+  color: #292828;
+}
+
+/* RouterLink 스타일 초기화 */
+.welcome-link:hover .welcome-text {
+  color: #434040;
+}
+
+.welcome-link:hover .username {
+  color: #1a1a1a;
 }
 
 </style>

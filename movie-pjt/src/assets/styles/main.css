@@ -358,9 +358,10 @@ body {
   background-color: #f0f0f0;
   border-radius: 25px;
   padding: 0;
-  position: relative;  /* 추가: 원의 위치 기준점 */
+  position: relative;
   cursor: pointer;
-  transition: background-color 0.3s ease;  /* 배경색 전환 효과 */
+  transition: background-color 0.3s ease;
+  border: none;
 }
 
 .toggle-circle {
@@ -369,17 +370,50 @@ body {
   background-color: #ffffff;
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  position: absolute;  /* 추가: 절대 위치 */
-  top: -1.5px;  /* 추가: 수직 중앙 정렬 */
-  left: 2px;  /* 추가: 초기 위치 */
-  transition: transform 0.3s ease;  /* 이동 전환 효과 */
+  position: absolute;
+  top: -1.5px;
+  left: 2px;
+  transition: transform 0.3s ease;
 }
 
 /* 활성화 상태 스타일 */
 .toggle-btn.active {
-  background-color: #67ff67;  /* 활성화 시 배경색 */
+  background-color: rgba(255, 103, 103, 0.7);  /* 코랄 색상으로 변경 */
 }
 
 .toggle-btn.active .toggle-circle {
-  transform: translateX(15px);  /* 활성화 시 원 이동 */
+  transform: translateX(15px);
+}
+
+.movie-link {
+  color: rgba(255, 103, 103, 0.8);  /* 코랄 색상 */
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.movie-link:hover {
+  color: rgba(255, 103, 103, 1);  /* hover 시 더 진한 코랄 색상 */
+  text-decoration: underline;
+}
+
+.related-movie-link {
+  color: rgba(255, 103, 103, 0.8);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.related-movie-link:hover {
+  color: rgba(255, 103, 103, 1);
+  text-decoration: underline;
+}
+
+.review-card a {
+  color: rgba(255, 103, 103, 0.8);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.review-card a:hover {
+  color: rgba(255, 103, 103, 1);
+  text-decoration: underline;
 }

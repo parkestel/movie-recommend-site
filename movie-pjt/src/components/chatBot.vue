@@ -186,22 +186,31 @@ button:hover {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  padding: 10px 20px;
-  background-color: #ff6767;
-  color: white;
-  border: none;
-  border-radius: 25px;
+  padding: 14px 25px;
+  background: rgba(255, 255, 255, 0.9);  /* 메인 코랄 색상에 높은 불투명도 */
+  backdrop-filter: blur(8px);
+  color: #1f1f1f;  /* 텍스트 색상을 흰색으로 */
+  border: 1px solid rgba(114, 113, 113, 0.4);
+  border-radius: 20px;
   cursor: pointer;
-  font-size: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  z-index: 1001; /* 모달보다 위에 있도록 설정 */
+  font-size: 14px;
+  font-weight: 750;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .open-chat-btn:hover {
-  background-color: #db6565;
+  background: rgb(170, 169, 169);  /* hover 시 완전 불투명하게 */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(83, 83, 83, 0.4);
 }
 
-#chatbot-icon{
-  color: #f9f9f9;
+#chatbot-icon {
+  color: #464646;  /* 아이콘도 흰색으로 */
+  font-size: 16px;
 }
 </style>

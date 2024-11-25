@@ -85,7 +85,7 @@ onMounted(() => {
 }
 
 .header h1 {
-  color: #1a365d;
+  color: #222324;
   font-size: 2rem;
   margin-bottom: 1.5rem;
   font-weight: 750;

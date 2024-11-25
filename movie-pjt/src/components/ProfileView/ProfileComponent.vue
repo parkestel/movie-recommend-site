@@ -42,13 +42,13 @@ defineProps({
 
 .category-link:hover {
     color: rgb(32, 32, 32); /* 호버 시 텍스트 색상 */
-    border-bottom: 3px solid #007bff; /* 호버 시 하단 보더 색상 */
+    border-bottom: 3px solid rgba(243, 94, 94, 0.8); /* 호버 시 하단 보더 색상 */
 }
 
 .router-link-active {
     color: rgb(32, 32, 32); /* 활성화된 링크 색상 */
     font-weight: bold; /* 활성화된 링크 굵기 */
-    border-bottom: 3px solid #007bff; /* 활성화된 링크 하단 보더 */
+    border-bottom: 3px solid rgba(243, 94, 94, 0.8); /* 활성화된 링크 하단 보더 */
 }
 
 

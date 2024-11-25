@@ -25,5 +25,18 @@ const deleteReview = function (id) {
 </script>
 
 <style scoped>
+.emoji-button {
+  background: transparent;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  color: rgba(255, 103, 103, 0.7);  /* 코랄 색상 */
+}
 
+.emoji-button:hover {
+  color: rgba(255, 103, 103, 0.9);  /* hover 시 더 진한 코랄 색상 */
+  transform: scale(1.1);  /* hover 시 살짝 커지는 효과 */
+}
 </style>

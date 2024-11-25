@@ -34,7 +34,7 @@ onMounted(()=>{
 
   /* VocaNoteListView.vue, LikedReviews.vue, MyReview.vue에 추가 */
 .container h1 {
-  color: #1a365d;
+  color: #222324;
   font-size: 2rem;
   margin-bottom: 1.5rem;
   font-weight: 750;

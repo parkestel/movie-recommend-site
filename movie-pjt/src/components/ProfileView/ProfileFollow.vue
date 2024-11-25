@@ -47,42 +47,81 @@ const closeFollowersModal = function () {
 </script>
 
 <style scoped>
+.follow-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
 .modal-parent {
-  position: relative; /* 부모의 상대적 위치를 기준으로 자식 위치 설정 */
-  display: inline-block;
-  padding: 10px;
-  border: 1px solid #92bef8;
-  cursor: pointer;
-  font-style: bold;
-  color: #92bef8;
-  background-color: #cee3fd65
-  ;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 750;
+    color: #434040;
+    background: rgba(40, 44, 52, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(40, 44, 52, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-#following{
-    border-top-left-radius: 1.3rem;
-    border-bottom-left-radius: 1.3rem;
-    padding-left: 20px;
-    padding-right: 20px;
+.modal-parent:hover {
+    background: rgba(40, 44, 52, 0.15);
+    transform: translateY(-1px);
+    color: #282c34;
 }
 
-#follower{
-    border-top-right-radius: 1.3rem;
-    border-bottom-right-radius: 1.3rem;
-    padding-right: 25px;
-    padding-left: 25px
+#following {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-right: none;
 }
 
-.follow-container{
-    margin-top: 30px;
+#follower {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-left: none;
+}
+
+/* Follow/Unfollow 버튼 스타일 */
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 25px;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 750;
+    color: #434040;
+    background: rgba(40, 44, 52, 0.1);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    border: 1px solid rgba(40, 44, 52, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background: rgba(40, 44, 52, 0.15);
+    transform: translateY(-1px);
+    color: #282c34;
 }
 
 @media (max-width: 900px) {
-    #following{
-        border-radius: 1.3rem;
+    .follow-container {
+        flex-direction: column;
+        gap: 10px;
     }
-    #follower{
-        border-radius: 1.3rem;
+
+    #following, #follower {
+        border-radius: 20px;
+        border: 1px solid rgba(90, 90, 90, 0.226);
     }
 }
 </style>

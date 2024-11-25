@@ -221,6 +221,19 @@ watch(
   appearance: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  transition: all 0.3s ease;  /* 부드러운 전환 효과 추가 */
+}
+
+/* 포커스 효과 추가 */
+.study-level-section select:focus {
+  outline: none;
+  border-color: rgba(243, 94, 94, 0.8);
+  box-shadow: 0 0 0 3px rgba(243, 94, 94, 0.15);
+}
+
+/* hover 효과도 추가 */
+.study-level-section select:hover {
+  border-color: rgba(243, 94, 94, 0.5);
 }
 
 /* 프로필 컴포넌트 섹션 */
@@ -292,13 +305,13 @@ hr {
 .router-link-active {
   background-color: transparent;
   color: rgb(32, 32, 32);
-  border-bottom: #007bff 3px solid;
+  border-bottom: rgba(243, 94, 94, 0.8) 3px solid;
   font-weight: bold;
 }
 
 /* 모든 h1 태그에 대한 공통 스타일 */
 h1 {
-  color: #1a365d;
+  color: #222324;
   font-size: 2rem;
   font-weight: 750;
   margin-bottom: 1.5rem;

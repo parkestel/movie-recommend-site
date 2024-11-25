@@ -30,40 +30,75 @@ const closeModal = function () {
 
 <style scoped>
 .modal-backdrop {
-    background: white;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    padding: 10px;
+    background: #ffffff;
+    border: 1px solid rgba(90, 90, 90, 0.226);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    padding: 20px;
     position: absolute;
-    margin-left: auto;
     z-index: 10;
     width: 300px;
-    height: 400px;
+    max-height: 400px;
     border-radius: 1.2rem;
-     /* 위치 조정 */
-     top: 20%; /* 화면 상단에서 약간 아래로 */
-    left: 50%; /* 화면의 가운데로 이동 */
-    transform: translateX(-50%); /* 수평 가운데 정렬 */
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow-y: auto;
 }
+
 .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    position: relative; /* 상대적인 위치로 자식 요소 배치 */
+    position: relative;
 }
 
 .modal-content h3 {
-    margin: 0;
-    padding: 0;
-    text-align: left; /* 제목을 왼쪽 정렬 */
+    color: #1a365d;
+    font-size: 1.5rem;
+    font-weight: 750;
+    margin-bottom: 1rem;
+    text-align: center;
 }
 
 .modal-content span {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer; /* 마우스 포인터 표시 */
-    font-weight: bold;
+    top: -10px;
+    right: -10px;
+    cursor: pointer;
+    color: #434040;
     font-size: 1.2rem;
+    padding: 5px 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.modal-content span:hover {
+    color: #1a365d;
+}
+
+.modal-content hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(90, 90, 90, 0.2),
+        rgba(90, 90, 90, 0.3),
+        rgba(90, 90, 90, 0.2),
+        transparent
+    );
+    margin: 10px 0;
+}
+
+.modal-content a {
+    display: block;
+    padding: 10px;
+    color: #434040;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.modal-content a:hover {
+    background: rgba(26, 54, 93, 0.1);
+    color: #1a365d;
 }
 </style>
