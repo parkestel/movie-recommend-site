@@ -7,7 +7,11 @@
                     v-if="store.isLogin && store.logedinUsername">
           안녕하세요! {{ store.logedinUsername }} 님!
         </RouterLink>
-        <RouterLink :to="{name:'movies'}" 
+        <RouterLink v-if="store.isLogin" :to="{name:'movies'}" 
+                    class="navbar-brand mx-auto styled-movie">
+          MoviENg
+        </RouterLink>
+        <RouterLink v-if="!store.isLogin"
                     class="navbar-brand mx-auto styled-movie">
           MoviENg
         </RouterLink>
