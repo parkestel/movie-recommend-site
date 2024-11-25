@@ -190,7 +190,6 @@ export const useMovieStore = defineStore('movie', () => {
   }
 
   const getUserProfile = function (username) {
-    console.log(token.value)
     axios({
       method:'get',
       url:`${API_BASE_URL}/accounts/dj-rest-auth/user/${username}/`,
@@ -201,7 +200,7 @@ export const useMovieStore = defineStore('movie', () => {
     .then(res=>{
       userProfile.value=res.data
       getVocaNote(userProfile.value.id)
-      // getWishMovieWithOutNote()
+      getWishMovieWithOutNote()
     })
     .catch(err=>{
       if (err.response && err.response.status === 401) {

@@ -42,10 +42,8 @@
     <RouterView/>
     <chatBot v-if="!route.meta.isPopup && store.isLogin"/>
     <footer>
-      <div>
-        <p>ⓒ 2024. </p>
-      </div>
-    </footer>
+    <p>&copy; 2024 MoviENg. All rights reserved.</p>
+</footer>
   </div>
   </template>
     
@@ -104,4 +102,13 @@
   transform: translateY(-1px); /* 살짝 올라가는 효과 */
   color: #ff4d4d; /* 텍스트를 더 진하게 */
 }
+
+footer {
+    color: #ffffff; /* 텍스트를 흰색으로 */
+    text-align: center; /* 중앙 정렬 */
+    padding: 10px 0; /* 위아래 패딩 */
+    font-size: 14px; /* 적당한 글씨 크기 */
+    font-family: 'Arial', sans-serif; /* 깔끔한 글꼴 */
+}
+
 </style>
