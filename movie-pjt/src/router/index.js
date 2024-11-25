@@ -21,6 +21,10 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/',
+      redirect: '/movies'
+    },
+    {
       path:'/',
       name:'home',
       component: HomeView
@@ -106,6 +110,10 @@ const router = createRouter({
       path:'/chatbot',
       name:'chatbot',
       component:ChatBot
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/movies'
     }
   ],
 })
