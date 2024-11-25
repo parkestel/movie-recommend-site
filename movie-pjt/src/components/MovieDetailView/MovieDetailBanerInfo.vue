@@ -77,6 +77,11 @@ const store = useMovieStore()
   margin-top: 10px;
   font-size: 1rem;
   color: #ddd;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 줄 수 제한 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .movie-genres-actions {
