@@ -1,6 +1,6 @@
 <template>
-  <div @click="moveToDetail(movie.id)">
-    <img :src="store.getImgUrl(movie.poster_path,200)" alt="" class="card-img" >
+  <div >
+    <img :src="store.getImgUrl(movie.poster_path,200)" alt="" class="card-img" @click="moveToDetail(movie.id)">
     <h4>{{ movie.title_kr }}</h4>
     <h5>{{ movie.title }}</h5>
     <button v-if="!store.isLikedMovie(movie.id)" @click="store.addToggleWishMovie(movie.id)" class="movie-like-button">🤍</button>

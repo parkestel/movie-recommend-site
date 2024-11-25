@@ -35,8 +35,7 @@
 /* 배너 전체 컨테이너 */
 .banner-container {
   background-color: rgba(0, 0, 0, 0.205); /* 짙은 검정 배경색 */
-  padding: 20px;
-  border-radius: 10px;
+  border-radius: 1.5rem;
   position: relative;
   margin-top: 20px;
 }

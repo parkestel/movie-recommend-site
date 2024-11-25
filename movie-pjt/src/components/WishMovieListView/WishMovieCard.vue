@@ -1,7 +1,7 @@
 <template>
-  <div @click="moveToDetail(wishMovie.id)">
+  <div>
     <div>
-      <img :src="store.getImgUrl(wishMovie.poster_path,200)" alt="" class="card-img">
+      <img :src="store.getImgUrl(wishMovie.poster_path,200)" alt="" class="card-img"  @click="moveToDetail(wishMovie.id)">
     </div>
     <h4>{{ wishMovie.title_kr }}</h4>
     <h5>{{ wishMovie.title }}</h5>

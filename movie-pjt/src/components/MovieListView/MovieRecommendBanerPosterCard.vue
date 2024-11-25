@@ -34,6 +34,7 @@ defineProps({
   height: 300px;
   object-fit: cover;
   opacity: 20%;
+  border-radius: 1.5rem;
 }
 
 .carousel-caption {
@@ -52,7 +53,7 @@ defineProps({
 .carousel-poster img {
   max-height: 100%;
   width: auto;
-  border-radius: 8px;
+  border-radius: 10px;
   object-fit: cover;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
