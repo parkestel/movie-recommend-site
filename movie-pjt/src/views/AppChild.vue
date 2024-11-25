@@ -4,10 +4,10 @@
       <div class="container-fluid">
         <!-- 왼쪽 사용자 정보 영역 -->
         <div class="nav-item" id="welcome" v-if="store.isLogin && store.logedinUsername">
-          <RouterLink :to="{name:'profile', params:{username:store.logedinUsername}}" class="welcome-link">
+          <div class="welcome-link">
             <span class="welcome-text">안녕하세요!</span>
             <span class="username">{{ store.logedinUsername }} 님</span>
-          </RouterLink>
+          </div>
         </div>
         
         <!-- 중앙 로고 -->
@@ -42,6 +42,10 @@
             <!-- Voca Note -->
             <li class="nav-item mx-2" v-if="store.isLogin && store.logedinUsername">
               <RouterLink :to="{name:'mynotelist', params:{username:store.logedinUsername}}" class="styled-button">Voca Note</RouterLink>
+            </li>
+            <!-- My Page -->
+            <li class="nav-item mx-2" v-if="store.isLogin && store.logedinUsername">
+              <RouterLink :to="{name:'profile', params:{username:store.logedinUsername}}" class="styled-button">My Page</RouterLink>
             </li>
             <!-- Log out -->
             <li class="nav-item mx-2" v-if="store.isLogin">
@@ -187,13 +191,12 @@ footer {
   border-radius: 20px;
   border: 1px solid rgba(90, 90, 90, 0.226);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  text-decoration: none;
+  cursor: default;
 }
 
 .welcome-link:hover {
-  background: rgba(145, 145, 145, 0.25);
-  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.15);
+  transform: none;
 }
 
 .welcome-text {
@@ -216,5 +219,4 @@ footer {
 .welcome-link:hover .username {
   color: #1a1a1a;
 }
-
 </style>
