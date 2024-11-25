@@ -23,6 +23,7 @@
   import { Navigation, Pagination, Autoplay } from "swiper/modules"; // Swiper 모듈
   import MovieRecommendBanerPosterCard from "./MovieRecommendBanerPosterCard.vue";
   import { useMovieStore } from "@/stores/movie";
+  
 
   const store= useMovieStore()
   const props = defineProps({
@@ -55,4 +56,24 @@
   z-index: 10; /* 다른 콘텐츠보다 위에 표시되도록 설정 */
 }
 
+/* Swiper 네비게이션 버튼 스타일 오버라이드 */
+:deep(.swiper-button-next),
+:deep(.swiper-button-prev) {
+  color: #a8a8a8 !important; /* 버튼 색상 */
+  font-size: 30px; /* 버튼 크기 */
+}
+
+:deep(.swiper-button-next:hover),
+:deep(.swiper-button-prev:hover) {
+  color: #ffffff !important; /* 버튼 호버 시 색상 변경 */
+}
+
+/* 페이지네이션 버튼 스타일 */
+:deep(.swiper-pagination-bullet) {
+  background-color: rgb(172, 172, 172) !important; /* 페이지네이션 버튼 색상 */
+}
+
+:deep(.swiper-pagination-bullet-active) {
+  background-color: #ffffff !important; /* 활성화된 페이지네이션 색상 */
+}
 </style>
