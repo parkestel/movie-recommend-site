@@ -14,7 +14,7 @@ from rest_framework.authentication import TokenAuthentication, BasicAuthenticati
 from rest_framework.permissions import IsAuthenticated
 
 from django.contrib.auth import get_user_model
-from .serializers import PersonUserDetailsSerializer, CustomUserDetailsSerializer
+from .serializers import PersonUserDetailsSerializer, CustomUserDetailsSerializer, CustomUserDetailsLevelSerializer
 from .serializers import CustomUserUpdateSerializer, CustomUserLevelUpdateSerializer
 
 User = get_user_model()
@@ -26,6 +26,12 @@ def login_user_data(request):
     serializer = CustomUserDetailsSerializer(user)
     return Response(serializer.data)
 
+
+@api_view(["GET"])
+def login_user_level_data(request):
+    user = request.user
+    serializer = CustomUserDetailsLevelSerializer(user)
+    return Response(serializer.data)
 
 @api_view(["GET"])
 @authentication_classes([TokenAuthentication, BasicAuthentication])
