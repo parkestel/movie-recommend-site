@@ -2,19 +2,24 @@
   <div class="main-container">
     <nav class="navbar navbar-expand-lg bg-body-tertiary rounded-custom" v-if="!isPopup">
       <div class="container-fluid">
-        <RouterLink :to="{name:'profile', params:{username:store.logedinUsername}}" 
-                    class="navbar-brand styled-hello" 
-                    v-if="store.isLogin && store.logedinUsername">
-          안녕하세요! {{ store.logedinUsername }} 님!
-        </RouterLink>
-        <RouterLink v-if="store.isLogin" :to="{name:'movies'}" 
-                    class="navbar-brand mx-auto styled-movie">
-          MoviENg
-        </RouterLink>
-        <RouterLink v-if="!store.isLogin"
-                    class="navbar-brand mx-auto styled-movie">
-          MoviENg
-        </RouterLink>
+        <div class="nav-item styled-button" id="welcome">
+          <RouterLink :to="{name:'profile', params:{username:store.logedinUsername}}" 
+                      class="navbar-nav ms-auto mb-2 mb-lg-0" 
+                      v-if="store.isLogin && store.logedinUsername">
+            안녕하세요! {{ store.logedinUsername }} 님!
+          </RouterLink>
+          <hr>
+          <p class="user-level">Lv. {{ store.logedinUserPoint.achievement_level }}</p>
+        </div>
+ <!-- 중앙 로고 -->
+          <div class="navbar-center">
+          <RouterLink v-if="store.isLogin" :to="{name:'movies'}" class="navbar-brand">
+            <img :src="logo" alt="MoviENg Logo" class="logo" />
+          </RouterLink>
+          <RouterLink v-if="!store.isLogin" class="navbar-brand">
+            <img :src="logo" alt="MoviENg Logo" class="logo" />
+          </RouterLink>
+        </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,19 +44,21 @@
         </div>
       </div>
     </nav>
-    <RouterView/>
-    <chatBot v-if="!route.meta.isPopup && store.isLogin"/>
+    <RouterView />
+    <chatBot v-if="!route.meta.isPopup && store.isLogin" />
     <footer>
-    <p>&copy; 2024 MoviENg. All rights reserved.</p>
-</footer>
+      <p>&copy; 2024 MoviENg. All rights reserved.</p>
+    </footer>
   </div>
-  </template>
+</template>
+
     
   <script setup>
     import { useMovieStore } from '@/stores/movie';
     import chatBot from '@/components/chatBot.vue';
     import { computed } from 'vue';
     import { useRoute } from 'vue-router';
+    import logo from '@/assets/MoviENg.svg'
   
   const store = useMovieStore()
   
@@ -62,9 +69,26 @@
   </script>
     
   <style scoped>
+  /* navbar의 중앙 정렬을 위한 스타일 */
+.navbar {
+  display: flex;
+  justify-content: center; /* 중앙 정렬 */
+}
+
+.navbar-center {
+  position: absolute;  /* 절대 위치로 변경 */
+  left: 50%;          /* 왼쪽에서 50% 위치 */
+  transform: translateX(-50%);  /* 중앙 정렬을 위한 이동 */
+}
+
+.navbar-brand {
+  flex: 0 1 auto; /* 로고가 중앙에 위치하도록 설정 */
+  margin: 0; /* 여백 없애기 */
+}
+  
   /* 버튼 스타일 */
   .styled-button {
-  display: inline-flex;
+  display: inline-block;
   align-items: center;
   justify-content: center;
   padding: 14px 20px; /* 세로를 더 통통하게 */
@@ -103,12 +127,40 @@
   color: #ff4d4d; /* 텍스트를 더 진하게 */
 }
 
+.styled-button #welcome{
+  display: inline-block; /* 텍스트와 버튼을 인라인으로 */
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #434040;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  border: 1px solid rgba(90, 90, 90, 0.226);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: left; /* 텍스트 왼쪽 정렬 */
+}
+
+.user-level {
+  margin: 5px 0 0 0; /* 상단 여백 추가 */
+  font-size: 12px;
+  color: #555;
+}
+
 footer {
     color: #ffffff; /* 텍스트를 흰색으로 */
     text-align: center; /* 중앙 정렬 */
     padding: 10px 0; /* 위아래 패딩 */
     font-size: 14px; /* 적당한 글씨 크기 */
     font-family: 'Arial', sans-serif; /* 깔끔한 글꼴 */
+}
+
+.logo {
+  height: 40px;  /* 로고 크기 지정 */
+  width: auto;   /* 비율 유지 */
+  margin: 8px 0; /* 상하 여백 추가 */
 }
 
 </style>

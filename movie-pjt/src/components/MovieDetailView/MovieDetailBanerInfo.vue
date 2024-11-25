@@ -44,13 +44,20 @@ const store = useMovieStore()
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 40%;
+  height: 100%;
   color: #fff;
-  background: rgba(0, 0, 0, 0.7);
   padding: 20px;
-  border-radius: 10px;
   width: 100%;
   z-index: 2;
+  background: linear-gradient(
+    to bottom,
+    transparent 30%,
+    rgba(0, 0, 0, 0.5) 60%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .movie-header {

@@ -1,7 +1,7 @@
 <template>
   <div class="movie-detail">
     <div class="movie-poster">
-      <img :src="store.getImgUrl(movieInfo.poster_path, 500)" alt="Poster" />
+      <img :src="store.getImgUrl(movieInfo.poster_path, 780)" alt="Poster" />
     </div>
     <MovieDetailInfo :movie-info="movieInfo"/>
   </div>
@@ -34,6 +34,21 @@ const store = useMovieStore()
   width: 100%;
   height: 100%;
   position: relative;
+}
+
+.movie-poster::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  pointer-events: none;
 }
 
 .movie-poster img {

@@ -252,6 +252,7 @@ onMounted(()=>{
     store.getGenres()
     store.getOtts()
     store.getRandomMovies()
+    store.getMyLevel()
     filteredMovies.value = store.movies
     genresList.value = store.genres 
     ottList.value = store.otts
