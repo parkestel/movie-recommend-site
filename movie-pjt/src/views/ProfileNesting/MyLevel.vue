@@ -23,13 +23,20 @@
 import { useMovieStore } from '@/stores/movie';
 import { onMounted, ref } from 'vue';
 import { storeToRefs } from 'pinia';
+import { useRoute } from 'vue-router';
+
 const store = useMovieStore()
 const { userProfile } = storeToRefs(store)
+const route = useRoute()
   
   // 데이터 추출
   const points = ref(userProfile.value.experience);
   const level = ref(userProfile.value.achievement_level);
-  const progress = ref(90); // 진행도 퍼센트
+  const progress = ref(userProfile.value.percents); // 진행도 퍼센트
+
+onMounted(()=>{
+  store.getUserProfile(route.params.username)
+})
   </script>
   
   <style>
