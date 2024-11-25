@@ -113,6 +113,7 @@ class CommentSerializer(serializers.ModelSerializer):
 class CommentListSerializer(serializers.ModelSerializer):
     liked_user_count = serializers.SerializerMethodField()
     users = UserSerializer(many=True, read_only=True)
+    liked_users = UserSerializer(many=True, read_only=True)
 
     class Meta:
         model = Comment
