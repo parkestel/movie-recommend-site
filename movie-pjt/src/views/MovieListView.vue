@@ -290,7 +290,7 @@ onMounted(()=>{
 }
 
 .filter-btn-active {
-    background-color: #dee2e6;
+    background-color: #d2d2d3;
     color: #333;
     border: 1px solid #adb5bd;
 }
