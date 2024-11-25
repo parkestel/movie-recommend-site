@@ -190,6 +190,7 @@ export const useMovieStore = defineStore('movie', () => {
   }
 
   const getUserProfile = function (username) {
+    console.log(token.value)
     axios({
       method:'get',
       url:`${API_BASE_URL}/accounts/dj-rest-auth/user/${username}/`,
@@ -210,6 +211,7 @@ export const useMovieStore = defineStore('movie', () => {
         window.alert('로그인이 필요합니다.')
         router.push({name:'login'})
       } else {
+        console.log(err.response)
         let values = Object.values(err.response.data);
         let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
         window.alert(formattedData);
