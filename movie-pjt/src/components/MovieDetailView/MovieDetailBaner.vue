@@ -22,12 +22,13 @@ const store = useMovieStore()
 .movie-detail {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 900px;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .movie-poster {
@@ -45,8 +46,10 @@ const store = useMovieStore()
   height: 100%;
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(0, 0, 0, 0.8) 100%
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.8) 70%,
+    rgba(0, 0, 0, 0.95) 100%
   );
   pointer-events: none;
 }
@@ -54,7 +57,7 @@ const store = useMovieStore()
 .movie-poster img {
   width: 100%;
   height: 100%;
-  opacity: 60%;
+  opacity: 70%;
   object-fit: cover; /* 비율을 유지하면서 영역에 맞게 확대/축소 */
 }
 

@@ -1,23 +1,40 @@
 /* body background */
 body {
-  background: linear-gradient(to top, #d4e4d3, #e9f2e8);
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(235, 255, 235, 0.9) 25%,
+    rgba(220, 255, 220, 0.85) 50%,
+    rgba(235, 255, 235, 0.9) 75%,
+    rgba(255, 255, 255, 0.95) 100%
+  );
   margin: 0;
-  /* backdrop-filter: blur(15px);  */
-  /* 블러 효과 추가 -> 챗봇 fixed 불가*/
+  min-height: 100vh;
+  background-attachment: fixed;
 }
 
 .main-container {
-margin: 2rem auto;
-width: 100%; /* 화면의 너비에 맞게 100%로 설정 */
-max-width: 1500px; /* 최대 너비 제한 (필요시 조정 가능) */
-background: linear-gradient(to bottom, #d4e4d3, #e9f2e8);/* 연한 회색 배경 */
-border-radius: 2rem;
-box-shadow:0 4px 10px rgba(0, 0, 0, 0.1);
-padding: 1.5rem;
-display: flex;
-flex-direction: column;
-min-height: 90vh; /* 높이를 약간 줄여 시각적으로 공간 부여 */
-border: 1px solid rgba(0, 0, 0, 0.05); /* 아주 얇은 외곽선 추가 */
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 1500px;
+  background: linear-gradient(to bottom,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(230, 255, 230, 0.3) 20%,
+    rgba(225, 255, 225, 0.25) 50%,
+    rgba(230, 255, 230, 0.3) 80%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
+  border-radius: 2rem;
+  box-shadow: 
+    0 8px 32px rgba(103, 255, 103, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.05),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  z-index: 1;
 }
 
 .navbar {
@@ -279,7 +296,7 @@ border: 1px solid rgba(0, 0, 0, 0.05); /* 아주 얇은 외곽선 추가 */
     cursor: not-allowed; /* 클릭 불가 커서 */
     opacity: 0.7; /* 약간 투명 */
   }
-  /* 필터에서 계속 버튼의 눌려있는 상태 */
+  /* 필터에서 계 버튼의 눌려있는 상태 */
   .filter-btn-active {
     border: 2px solid #ff6b6b; /* 기본 컬러 테두리 */
     border-radius: 15px; /* 둥근 모서리 */
@@ -298,7 +315,7 @@ border: 1px solid rgba(0, 0, 0, 0.05); /* 아주 얇은 외곽선 추가 */
     background-color: white; /* 기본 흰 바탕 */
     color: #ff6b6b; /* 기본 컬러 글씨 */
     border: 2px solid #ff6b6b; /* 기본 컬러 테두리 */
-    border-radius: 15px; /* 둥근 모서리 */
+    border-radius: 15px; /* 둥근 모리 */
     padding: 10px 15px; /* 버튼 크기 조정 */
     font-size: 16px; /* 기본 텍스트 크기 */
     font-weight: bold; /* 강조된 글꼴 */
