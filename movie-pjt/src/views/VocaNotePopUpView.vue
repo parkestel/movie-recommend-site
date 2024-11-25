@@ -79,6 +79,7 @@ const deleteWord = function (id) {
 const updateWord = function (id, payload) {
     // axios put
     store.updateVoca(id, noteId.value, payload)
+    showUpdateButton.value = false
 }
 
 const toggleMemorized = function(id) {

@@ -58,6 +58,7 @@ const updateWord = function (id) {
     memo: memo.value
   }
   emit('updateEvent', id, payload)
+  isVisiable.value = false
 }
 
 const memorizedWord = function (id) {
