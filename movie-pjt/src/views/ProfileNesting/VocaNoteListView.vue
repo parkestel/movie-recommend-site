@@ -1,14 +1,14 @@
 <template>
   <div class="container">
     <h2>My Voca Note Page</h2>
-    <div class="select-wrapper">
+    <div class="select-wrapper" v-if="store.logedinUsername===userProfile.username">
       <span>{{ showDeleteButton ? '취소' : '삭제' }}</span>
-      <button id="toggle-button" class="toggle-btn" :aria-pressed="showDeleteButton" @click="toggleDeleteButtons" v-if="store.logedinUsername===userProfile.username">
+      <button id="toggle-button" class="toggle-btn" :aria-pressed="showDeleteButton" @click="toggleDeleteButtons" >
         <span class="toggle-circle"></span>
       </button>
     </div>
     <br>
-    <form>
+    <form v-if="store.logedinUsername===userProfile.username">
       <select id="movieForVocaNote" @change="createNewNote($event.target.value)">
         <option selected>단어장 만들 영화를 선택하세요</option>
         <option v-for="movie in wishMoviesWithOutNote" :key="movie.id" :value="movie.id">{{ movie.title }}</option>
