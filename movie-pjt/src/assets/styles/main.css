@@ -1,3 +1,18 @@
+:root {
+  /* 메인 컬러 */
+  --main-coral: #ff6767;  /* 로고의 코랄색 */
+  
+  /* 포인트 컬러 */
+  --point-peach: #ffb4b4;    /* 부드러운 피치색 */
+  --point-rose: #ff8989;     /* 메인보다 연한 로즈색 */
+  --point-coral: #ff4545;    /* 메인보다 진한 코랄색 */
+  
+  /* 중립 컬러 */
+  --neutral-warm-gray: #a8a8a8;  /* 따뜻한 톤의 회색 */
+  --neutral-light: #f0f0f0;      /* 밝은 회색 */
+  --neutral-dark: #4a4a4a;       /* 어두운 회색 */
+}
+
 /* body background */
 body {
   background: linear-gradient(135deg, 
@@ -81,153 +96,66 @@ body {
 /* 영화 카드 */
 .movie-card {
   width: 250px;
-  overflow: hidden; /* 부모 요소에서 넘치는 부분 숨김 */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background: transparent;
-  box-shadow: none;
-  padding: 10px;
-  position: relative; /* 버튼 위치 조정을 위해 relative 설정 */
   display: flex;
-  flex-direction: column; /* 요소들을 수직으로 배치 */
-  align-items: center; /* 제목 중앙 정렬 */
-  text-align: center; /* 텍스트 중앙 정렬 */
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
 }
 
-.movie-card h4,
-.movie-card h5 {
-  margin: 4px 0; /* 제목들 간격 최소화 */
-  color: #333;
-}
-
-/* 카드 이미지 */
-.movie-card img {
+/* 카드 이미지 컨테이너 */
+.card-img {
   width: 100%;
   height: 320px;
   object-fit: cover;
-  border-radius: 20px; /* 이미지 둥글게 */
-  transition: transform 0.3s ease; /* 이미지 변환 애니메이션 추가 */
-}
-
-/* 호버 효과 - 이미지에만 확대 적용 */
-.movie-card:hover .card-img {
-  transform: scale(1.05); /* 이미지 확대 */
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
-}
-
-
-  @media (max-width: 1200px) {
-    .card-container {
-      grid-template-columns: repeat(3, 1fr); /* 가로 3개 */
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .card-container {
-      grid-template-columns: repeat(2, 1fr); /* 가로 2개 */
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .card-container {
-      grid-template-columns: 1fr; /* 가로 1개 */
-      justify-items: center; /* 카드의 수평 중앙 정렬 */
-    }
-  }
-
-/* 버튼에 공통 스타일 적용 - btn 덮어쓰기 */
-.btn {
-    background-color: white; /* 기본 흰 바탕 */
-    color: #ff6b6b; /* 기본 컬러 글씨 */
-    border: 2px solid #ff6b6b; /* 기본 컬러 테두리 */
-    border-radius: 15px; /* 둥근 모서리 */
-    padding: 10px 15px; /* 버튼 크기 조정 */
-    font-size: 16px; /* 기본 텍스트 크기 */
-    font-weight: bold; /* 강조된 글꼴 */
-    cursor: pointer; /* 클릭 가능하게 표시 */
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease; /* 부드러운 애니메이션 */
-  }
-  
-  /* Hover 효과 */
-  .btn:hover {
-    background-color: #ff6b6b; /* 컬러 배경 */
-    color: white; /* 흰색 글씨 */
-    transform: scale(1.05); /* 살짝 커지는 효과 */
-    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4); /* 부드러운 그림자 */
-  }
-  
-  /* Focus 효과 */
-  .btn:focus {
-    background-color: #ff6b6b; /* 컬러 배경 */
-    color: white; /* 흰색 글씨 */
-    outline: none; /* 기본 포커스 제거 */
-    box-shadow: 0 0 5px 2px rgba(255, 107, 107, 0.5); /* 포커스 시 강조 그림자 */
-  }
-
-  /* 버튼 스타일 */
-  .styled-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 20px; /* 세로를 더 통통하게 */
-    font-size: 14px;
-    font-weight: 750;
-    color: #434040;
-    background: rgba(255, 255, 255, 0.15); /* 살짝 투명한 배경 */
-    backdrop-filter: blur(8px); /* 유리효과 */
-    border-radius: 20px; /* 둥근 모서리 */
-    border: 1px solid rgba(90, 90, 90, 0.226); /* 연한 테두리 */
-    cursor: pointer;
-    gap: 8px; /* 아이콘과 텍스트 간격 */
-    transition: background 0.3s ease, transform 0.2s ease; /* 부드러운 효과 */
-    text-decoration: none;
-    box-shadow:0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-  
-  .styled-button:hover{
-    background: rgba(145, 145, 145, 0.25); /* 조금 더 진한 빨간 배경 */
-    transform: translateY(-1px); /* 살짝 올라가는 효과 */
-    color: #292828; /* 텍스트를 더 진하게 */
-  }
-
-  /* 버튼 기본 스타일 */
-.toggle-btn {
-  position: relative;
-  width: 30px;
-  height: 10px;
-  background-color: #f0f0f0; /* 기본 배경색 */
-  border: none;
-  border-radius: 25px; /* 둥근 모양 */
+  border-radius: 20px;  /* 다른 요소들과 동일한 radius */
+  border: 1px solid rgba(90, 90, 90, 0.226);  /* 다른 요소들과 동일한 border */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* 다른 요소들과 동일한 shadow */
+  transition: transform 0.3s ease;
   cursor: pointer;
-  outline: none;
-  transition: background-color 0.3s ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0;
 }
 
-/* 버튼 활성화 상태 */
-.toggle-btn[aria-pressed="true"] {
-  background-color: #4da6f0;
-  justify-content: flex-end;
+.card-img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* 내부 원(circle) 스타일 */
-.toggle-circle {
-  width: 13px;
-  height: 13px;
-  background-color: #ffffff; /* 원 기본 색상 */
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 살짝 입체감 */
-  transition: transform 0.3s ease-in-out;
+/* 영화 제목 스타일 */
+.movie-card h4 {
+  margin: 12px 0 4px 0;
+  font-size: 16px;
+  font-weight: 800;  /* 더 굵게 */
+  color: #2c2c2c;    /* 더 진한 색상 */
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8); /* 텍스트 선명도 향상 */
 }
 
+.movie-card h5 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;  /* 더 굵게 */
+  color: #444;       /* 더 진한 색상 */
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8); /* 텍스트 선명도 향상 */
+}
 
+/* 좋아요 버튼 컨테이너 */
 .movie-like-button {
-  background: transparent; /* 배경 투명 */
-  border: none; /* 테두리 제거 */
-  font-size: 20px; /* 버튼 크기 */
-  cursor: pointer; /* 클릭 시 포인터 표시 */
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+  transition: transform 0.2s ease;
+}
+
+.movie-like-button:hover {
+  transform: scale(1.1);
+}
+
+/* See VocaNote 버튼 (WishMovieCard에만 있는 버튼) */
+.movie-card .btn {
+  margin-top: 8px;
+  font-size: 13px;  /* 버튼 크기를 좀 더 작게 */
+  padding: 10px 15px;  /* 패딩도 좀 더 작게 조정 */
 }
 
 .emoji-button {
@@ -235,67 +163,111 @@ body {
   border: none;
 }
 
+/* 리뷰 컨테이너 스타일 */
 .review-container {
-  max-width: 800px; /* 적당한 너비 */
-  margin: 0 auto; /* 중앙 정렬 */
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
-  background-color: transparent /* 부드러운 배경색 */
-
+  background-color: transparent;
 }
+
 .review-box {
   display: flex;
-  flex-direction: column; /* 세로 정렬 */
-  gap: 15px; /* 아이템 간격 */
+  flex-direction: column;
+  gap: 20px;
 }
 
+/* 리뷰 아이템 스타일 */
 .review-item {
   display: flex;
-  flex-direction: column; /* 세로로 나열 */
-  padding: 15px;
-  border: 1px solid #ddd; /* 테두리 */
-  border-radius: 8px;
-  background-color: #fff; /* 배경색 */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  border: 1px solid rgba(90, 90, 90, 0.226);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
+/* 구분선 스타일 */
+.review-item hr {
+  width: 90%;
+  margin: 15px auto;
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(90, 90, 90, 0.2),
+    rgba(90, 90, 90, 0.3),
+    rgba(90, 90, 90, 0.2),
+    transparent
+  );
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* 리뷰 텍스트 스타일 */
 .review-item span {
   font-size: 16px;
-  font-weight: bold; /* 텍스트 강조 */
-  margin-bottom: 10px;
+  font-weight: 750;
+  color: #434040;
+  margin-bottom: 12px;
+  text-align: center; /* 텍스트 중앙 정렬 */
+  width: 100%; /* 전체 너비 사용 */
 }
 
 .review-item p {
   font-size: 14px;
-  color: #666;
-  margin-bottom: 10px;
+  color: #555;
+  margin-bottom: 15px;
+  line-height: 1.5;
+  text-align: center; /* 텍스트 중앙 정렬 */
+  width: 100%; /* 전체 너비 사용 */
 }
 
+/* 리뷰 링크 스타일 */
 .review-item a {
   text-decoration: none;
-  color: #3498db; /* 링크 색상 */
-  font-weight: bold;
+  color: #4da6f0;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 .review-item a:hover {
-  text-decoration: underline;
+  color: #2980b9;
+  text-decoration: none;
 }
 
+/* 리뷰 버튼 컨테이너 */
+.review-item .button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 5px;
+}
+
+/* 리뷰 버튼 스타일 */
 .review-item button {
-  align-self: flex-end; /* 오른쪽 정렬 */
+  margin-top: 10px;
 }
 
-.review-item button:hover {
-  background-color: #c0392b; /* 호버 색상 */
+/* 리뷰 삭제 버튼 특수 스타일 */
+.review-item button.delete {
+  background: rgba(255, 102, 102, 0.15);
+  color: #ff6666;
+  border: 1px solid rgba(255, 102, 102, 0.4);
+}
+
+.review-item button.delete:hover {
+  background: rgba(255, 102, 102, 0.25);
+  color: #ff4d4d;
 }
 
 
-  /* 비활성화된 버튼 스타일 */
-  .btn:disabled {
-    background-color: #f5f5f5; /* 비활성화 배경색 */
-    color: #cccccc; /* 비활성화 글씨 색상 */
-    border: 2px solid #cccccc; /* 비활성화 테두리 */
-    cursor: not-allowed; /* 클릭 불가 커서 */
-    opacity: 0.7; /* 약간 투명 */
-  }
   /* 필터에서 계 버튼의 눌려있는 상태 */
   .filter-btn-active {
     border: 2px solid #ff6b6b; /* 기본 컬러 테두리 */
@@ -321,3 +293,97 @@ body {
     font-weight: bold; /* 강조된 글꼴 */
     cursor: pointer; /* 클릭 가능하게 표시 */
   }
+
+/* WishMovieCard 특별 스타일 */
+.wish-movie-card h4 {
+  color: #1a1a1a;    /* 더 진한 색상 */
+  font-weight: 800;  /* 더 굵게 */
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9); /* 더 강한 선명도 */
+}
+
+.wish-movie-card h5 {
+  color: #333;       /* 더 진한 색상 */
+  font-weight: 600;  /* 더 굵게 */
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9); /* 더 강한 선명도 */
+}
+
+/* 일반 버튼들에 대한 통일된 스타일 */
+.btn,
+.styled-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 750;
+  color: #434040;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  border: 1px solid rgba(90, 90, 90, 0.226);
+  cursor: pointer;
+  gap: 8px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 호버 효과 통일 */
+.btn:hover,
+.styled-button:hover {
+  background: rgba(145, 145, 145, 0.25);
+  transform: translateY(-1px);
+  color: #292828;
+}
+
+/* 비활성화된 버튼 스타일 */
+.btn:disabled {
+  background: rgba(200, 200, 200, 0.15);
+  color: #999;
+  border: 1px solid rgba(200, 200, 200, 0.4);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 특수한 버튼들은 기본 스타일을 유지 */
+.movie-like-button,
+.emoji-button,
+.toggle-btn {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: initial;
+}
+
+/* 토글 버튼 스타일 */
+.toggle-btn {
+  width: 30px;
+  height: 10px;
+  background-color: #f0f0f0;
+  border-radius: 25px;
+  padding: 0;
+  position: relative;  /* 추가: 원의 위치 기준점 */
+  cursor: pointer;
+  transition: background-color 0.3s ease;  /* 배경색 전환 효과 */
+}
+
+.toggle-circle {
+  width: 13px;
+  height: 13px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: absolute;  /* 추가: 절대 위치 */
+  top: -1.5px;  /* 추가: 수직 중앙 정렬 */
+  left: 2px;  /* 추가: 초기 위치 */
+  transition: transform 0.3s ease;  /* 이동 전환 효과 */
+}
+
+/* 활성화 상태 스타일 */
+.toggle-btn.active {
+  background-color: #67ff67;  /* 활성화 시 배경색 */
+}
+
+.toggle-btn.active .toggle-circle {
+  transform: translateX(15px);  /* 활성화 시 원 이동 */
+}

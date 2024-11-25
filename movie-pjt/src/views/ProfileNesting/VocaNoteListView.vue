@@ -3,7 +3,10 @@
     <h2>My Voca Note Page</h2>
     <div class="select-wrapper" v-if="store.logedinUsername===userProfile.username">
       <span>{{ showDeleteButton ? '취소' : '삭제' }}</span>
-      <button id="toggle-button" class="toggle-btn" :aria-pressed="showDeleteButton" @click="toggleDeleteButtons" >
+      <button id="toggle-button" 
+              class="toggle-btn" 
+              :class="{ active: showDeleteButton }" 
+              @click="toggleDeleteButtons">
         <span class="toggle-circle"></span>
       </button>
     </div>
@@ -106,6 +109,9 @@ onMounted(()=>{
   }
 }
 
+#toggle-button {
+  position: relative;
+}
 
 #toggle-button .toggle-circle {
   position: absolute;
