@@ -25,6 +25,4 @@ class VocaNoteHistory(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
-        unique_together = ('movie', 'user')  # 같은 영화에 대해 한 명의 사용자만 단어장을 생성할 수 있도록 유니크 제약
 
