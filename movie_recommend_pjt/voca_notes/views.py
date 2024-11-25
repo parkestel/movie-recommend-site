@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 
-from .serializers import VocaNoteSerializers, VocaNoteAllSerializers, VocaSerializers, 
+from .serializers import VocaNoteSerializers, VocaNoteAllSerializers, VocaSerializers
 from .models import VocaNote, Voca, VocaNoteHistory
 from movies.models import Movie
 
