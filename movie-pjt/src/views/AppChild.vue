@@ -2,17 +2,15 @@
   <div class="main-container">
     <nav class="navbar navbar-expand-lg bg-body-tertiary rounded-custom" v-if="!isPopup">
       <div class="container-fluid">
-        <div class="nav-item styled-button" id="welcome">
-          <RouterLink :to="{name:'profile', params:{username:store.logedinUsername}}" 
-                      class="navbar-nav ms-auto mb-2 mb-lg-0" 
-                      v-if="store.isLogin && store.logedinUsername">
+        <!-- 왼쪽 사용자 정보 영역 -->
+        <div class="nav-item styled-button" id="welcome" v-if="store.isLogin && store.logedinUsername">
+          <RouterLink :to="{name:'profile', params:{username:store.logedinUsername}}" class="navbar-nav ms-auto mb-2 mb-lg-0">
             안녕하세요! {{ store.logedinUsername }} 님!
           </RouterLink>
-          <!-- <hr>
-          <p class="user-level" v-if="store.isLogin && store.logedinUserPoint.achievement_level">Lv. {{ store.logedinUserPoint.achievement_level }}</p> -->
         </div>
- <!-- 중앙 로고 -->
-          <div class="navbar-center">
+        
+        <!-- 중앙 로고 -->
+        <div class="navbar-center">
           <RouterLink v-if="store.isLogin" :to="{name:'movies'}" class="navbar-brand">
             <img :src="logo" alt="MoviENg Logo" class="logo" />
           </RouterLink>
@@ -20,23 +18,31 @@
             <img :src="logo" alt="MoviENg Logo" class="logo" />
           </RouterLink>
         </div>
+        
+        <!-- 네비게이션 버튼 -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+        
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item mx-2">
-              <RouterLink :to="{name:'login'}" v-if="!store.isLogin" class="nav-link active styled-button" aria-current="page">Log in</RouterLink>
+            <!-- Log in -->
+            <li class="nav-item mx-2" v-if="!store.isLogin">
+              <RouterLink :to="{name:'login'}" class="styled-button">Log in</RouterLink>
             </li>
-            <li class="nav-item mx-2">
-              <RouterLink :to="{name:'signup'}" v-if="!store.isLogin" class="nav-link active styled-button" aria-current="page">Sign Up</RouterLink>
+            <!-- Sign Up -->
+            <li class="nav-item mx-2" v-if="!store.isLogin">
+              <RouterLink :to="{name:'signup'}" class="styled-button">Sign Up</RouterLink>
             </li>
+            <!-- Wish Movie -->
             <li class="nav-item mx-2" v-if="store.isLogin && store.logedinUsername">
               <RouterLink :to="{name:'wishmovies', params:{username:store.logedinUsername}}" class="styled-button">Wish Movie</RouterLink>
             </li>
+            <!-- Voca Note -->
             <li class="nav-item mx-2" v-if="store.isLogin && store.logedinUsername">
               <RouterLink :to="{name:'mynotelist', params:{username:store.logedinUsername}}" class="styled-button">Voca Note</RouterLink>
             </li>
+            <!-- Log out -->
             <li class="nav-item mx-2" v-if="store.isLogin">
               <button @click="store.logOut" class="styled-button logout">Log out</button>
             </li>

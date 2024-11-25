@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h2>Movie WishList</h2>
+        <h1>Movie WishList</h1>
         <div v-if="userProfile.username===store.logedinUsername">
             <select v-model="filter" >
                 <option value="all">전체보기</option>
@@ -118,4 +118,26 @@ const filteredMovies = computed(()=>{
     }
   }
   
+.container h1 {
+  color: #1a365d;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 750;
+  text-align: center;  /* 중앙 정렬 추가 */
+}
+
+/* VocaNoteListView.vue, LikedReviews.vue, MyReview.vue에 추가 */
+.container h1 {
+  color: #1a365d;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 750;
+  text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .container h1 {
+    font-size: 1.8rem;
+  }
+}
 </style>

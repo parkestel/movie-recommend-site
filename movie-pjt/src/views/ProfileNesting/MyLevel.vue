@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <header class="header">
-      <h2>{{ userProfile.nickname }} 님의 학습 현황</h2>
+      <h1>{{ userProfile.nickname }} 님의 학습 현황</h1>
     </header>
     <div class="profile-section">
       <h4>내 정보</h4>
@@ -71,57 +71,96 @@ onMounted(() => {
 .container {
   max-width: 100%;
   margin: 0 auto;
-  padding: 20px;
-  background-color: #ffffff83;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  padding: 2rem;
+  background: linear-gradient(to bottom,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  box-shadow: 
+    0 8px 32px rgba(255, 255, 255, 0.15),
+    0 4px 16px rgba(255, 255, 255, 0.1);
+  border-radius: 2rem;
+  backdrop-filter: blur(8px);
+}
+
+.header h1 {
+  color: #1a365d;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 750;
   text-align: center;
 }
 
-.header {
-  margin-bottom: 20px;
-}
-
-.header h2 {
-  color: #4c77af;
-  font-size: 2rem;
-  margin: 0;
-}
-
-.header p {
-  font-size: 1rem;
-  color: #666;
-}
-
 .profile-section {
-  background-color: #f1f8e9;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-.profile-section h2 {
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  background: linear-gradient(145deg,
+    rgba(220, 242, 182, 0.25),
+    rgba(220, 242, 182, 0.15)
+  );
+  backdrop-filter: blur(8px);
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(90, 90, 90, 0.226);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .level-graphic {
-  padding: 15px;
-  background-color: #e3f2fd;
-  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  background: linear-gradient(145deg,
+    rgba(176, 219, 247, 0.25),
+    rgba(176, 219, 247, 0.15)
+  );
+  backdrop-filter: blur(8px);
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(90, 90, 90, 0.226);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .progress-bar {
   width: 100%;
-  height: 20px;
-  background-color: #eeeeee;
-  border-radius: 10px;
+  height: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 1rem;
   overflow: hidden;
-  margin: 10px 0;
+  margin: 1rem 0;
+  border: 1px solid rgba(90, 90, 90, 0.226);
 }
 
 .progress {
   height: 100%;
-  background: linear-gradient(to right, #4c77af, #425875);
-  transition: width 0.5s ease-in-out;
+  background: #1a365d;
+  transition: width 0.3s ease;
+}
+
+.profile-section h4,
+.profile-section p,
+.profile-section strong {
+  color: #2f5c1b;
+  font-weight: 750;
+}
+
+.profile-section span {
+  color: #447125;
+  font-weight: 750;
+}
+
+.level-graphic h4 {
+  color: #1a365d;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 750;
+}
+
+.level-graphic p {
+  color: #1a365d;
+  margin: 0.5rem 0;
+  font-weight: 750;
 }
 </style>

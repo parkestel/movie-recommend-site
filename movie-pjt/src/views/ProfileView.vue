@@ -296,4 +296,32 @@ hr {
   font-weight: bold;
 }
 
+/* 모든 h1 태그에 대한 공통 스타일 */
+h1 {
+  color: #1a365d;
+  font-size: 2rem;
+  font-weight: 750;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* user-header의 h1은 더 크게 */
+.user-header h1 {
+  font-size: 2.2rem;
+  margin-top: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 1200px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  .user-header h1 {
+    font-size: 2rem;
+  }
+}
+
 </style>
