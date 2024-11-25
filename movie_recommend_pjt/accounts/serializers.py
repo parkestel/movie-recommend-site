@@ -51,14 +51,6 @@ class CustomLoginSerializer(LoginSerializer):
     username = serializers.CharField(required=True)
     email = None
 
-    # def save(self, **kwargs):
-    #     # 로그인 성공 후 user 업데이트
-    #     user = self.user
-    #     if user and isinstance(user, User):  # AnonymousUser 방지
-    #         user.experience += 100  # 경험치 추가
-    #         user.save()  # 데이터베이스에 저장
-    #         logger.info(f"Updated experience: {user.experience}")
-    #     return super().save(**kwargs)
 
 
 class FollowSerializer(serializers.ModelSerializer):
@@ -78,6 +70,17 @@ class CustomUserDetailsSerializer(UserDetailsSerializer):
         # id == pk 값
         fields = ["id", "nickname", "username"]
         read_only_fields = ["id", "username", "nickname"]  # 읽기 전용 필드
+
+
+
+# 현재 로그인 한 사용자의 레벨 정보 
+class CustomUserDetailsLevelSerializer(UserDetailsSerializer):
+    class Meta:
+        model = User
+        fields = ["id", "nickname", "username", "experience", "achievement_level", "percent"]
+        read_only_fields = ["id", "username", "nickname", "experience", "achievement_level", "percent"]
+
+
 
 
 # 특정 사용자 조회

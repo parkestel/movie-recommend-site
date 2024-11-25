@@ -18,6 +18,11 @@ class GenreListSerializers(serializers.ModelSerializer):
         model = Genre
         fields = "__all__"
 
+class GenreRandomSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Genre
+        fields = ['name']
+
 
 # 배우
 class StarListSerializers(serializers.ModelSerializer):
@@ -68,9 +73,10 @@ class WishMovieSerializer(serializers.ModelSerializer):
 
 # 랜덤 무비 serializer
 class RandomMovieSerializer(serializers.ModelSerializer):
+    genres = GenreRandomSerializers(read_only=True, many=True)
     class Meta:
         model = Movie
-        fields = ["id", "title", "poster_path", "title_kr"]
+        fields = ["id", "title", "poster_path", "title_kr", "summary", "rank","genres"]
 
 
 # 로그인한 유저의 좋아요한 영화 목록 중 vocanote 없는

@@ -8,6 +8,7 @@ urlpatterns = [
     path("delete/", views.delete_user),
     path("<int:user_pk>/follow/", views.followings),
     path("dj-rest-auth/user/", views.login_user_data),
+    path("dj-rest-auth/user/level/", views.login_user_level_data),
     path("dj-rest-auth/user/<str:username>/", views.profile),
     path("user/update/", CustomUserUpdateView.as_view()),
     path("user/study-level/update/", CustomUserLevelUpdateView.as_view()),

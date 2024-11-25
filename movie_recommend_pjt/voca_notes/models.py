@@ -18,3 +18,11 @@ class VocaNote(models.Model):
     movies = models.ManyToManyField(Movie, related_name="voca_notes")
     users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="voca_notes")
     vocas = models.ManyToManyField(Voca, related_name="voca_notes")
+
+# 영화별 단어장 생성 기록을 관리하는 모델
+class VocaNoteHistory(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
