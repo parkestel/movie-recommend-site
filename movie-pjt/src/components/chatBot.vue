@@ -1,7 +1,11 @@
 <template>
   <div>
     <!-- 오른쪽 아래에 고정된 Open Chat 버튼 -->
-    <button @click="toggleModal" class="open-chat-btn">💬</button>
+    <button @click="toggleModal" class="open-chat-btn">
+      <font-awesome-icon :icon="['fas', 'person-chalkboard']" id="chatbot-icon"/>
+      <br>
+      <span>AI Teacher</span>
+    </button>
 
     <!-- 모달 창 -->
     <div v-if="isModalOpen" class="modal-overlay">
@@ -29,7 +33,7 @@
   <script setup>
   import { ref } from 'vue';
   import axios from 'axios';
-  
+
   const API_key = import.meta.env.VITE_GPT_API_KEY;
   const API_URL = 'https://api.openai.com/v1/chat/completions';
   
@@ -66,7 +70,8 @@
   
       // AI 응답을 messages에 추가
       messages.value.push({ role: 'assistant', content: response.data.choices[0].message.content });
-  
+
+      
     } catch (err) {
       console.log(err)
       let values = Object.values(err.response.data.error);
@@ -194,5 +199,9 @@ button:hover {
 
 .open-chat-btn:hover {
   background-color: #db6565;
+}
+
+#chatbot-icon{
+  color: #f9f9f9;
 }
 </style>
