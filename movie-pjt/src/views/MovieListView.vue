@@ -134,6 +134,7 @@ const clearAllFilters = function () {
     genreFilter.value=false
     levelFilter.value=false
     ottFilter.value=false
+    selectedSortOption.value=''
     applyFilters()
 }
 
