@@ -18,5 +18,10 @@ const {movieBestComments} = storeToRefs(store)
 </script>
 
 <style scoped>
-
+h5 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
+  margin: 0;
+}
 </style>

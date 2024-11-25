@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h1>Movie WishList</h1>
+    <div class="container">
+        <h2>Movie WishList</h2>
         <div v-if="userProfile.username===store.logedinUsername">
             <select v-model="filter" >
                 <option value="all">전체보기</option>
@@ -51,6 +51,15 @@ const filteredMovies = computed(()=>{
 </script>
 
 <style scoped>
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff83;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+
 .wish-card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -65,8 +74,30 @@ const filteredMovies = computed(()=>{
   background: transparent;
   box-shadow: none;
   padding: 10px;
-
 }
+
+.container select {
+  width: auto; /* 선택 박스 크기 자동 조절 */
+  padding: 4px 8px; /* 내부 여백 조정 */
+  font-size: 14px; /* 글자 크기 축소 */
+  border: 1px solid #ddd; /* 테두리 추가 */
+  border-radius: 4px; /* 둥근 모서리 */
+  background-color: #f9f9f9; /* 배경색 */
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+  transition: border-color 0.3s ease;
+  cursor: pointer; /* 커서 포인터로 변경 */
+}
+
+.container select:focus {
+  border-color: #007bff; /* 포커스 시 테두리 강조 */
+  outline: none;
+}
+
+.container select option {
+  padding: 4px; /* 옵션 항목의 여백 */
+  font-size: 14px; /* 옵션 글자 크기 */
+}
+
 
 /* 호버 효과 - 이미지에만 확대 적용 */
 .movie-card:hover .card-img {
@@ -75,7 +106,7 @@ const filteredMovies = computed(()=>{
 }
 
 
-  @media (max-width:900px) {
+  @media (max-width:800px) {
     .wish-card-container {
       grid-template-columns: repeat(3, 1fr); /* 가로 3개 */
     }

@@ -2,64 +2,67 @@
 <div>
     <MovieRecommendBaner :random-movies="todayRandomMovie"/>
     <!-- filter -->
+    <div class="mt-3">
     <div class="d-flex justify-content-center align-items-center mt-2">
-        <div class="btn-group d-flex" role="group" aria-label="Basic outlined example">
-            <button @click="handelClearFilters" class="btn btn-outline-primary w-100">Clear</button>
-            <button @click="toggleGenreFilter()" class="btn btn-outline-primary w-100">Genres</button>
-            <button @click="toggleOttFilter()" class="btn btn-outline-primary w-100">Otts</button>
-            <button @click="toggleLevelFilter()" class="btn btn-outline-primary w-100">Level</button>
-        </div>
+        <button @click="handelClearFilters" class="btn custom-btn">Clear</button>
+        <button @click="toggleGenreFilter()" class="btn custom-btn">Genres</button>
+        <button @click="toggleOttFilter()" class="btn custom-btn">Otts</button>
+        <button @click="toggleLevelFilter()" class="btn custom-btn">Level</button>
     </div>
     <div>
-        <div v-if="genreFilter"  class="d-flex flex-wrap justify-content-center align-items-center mt-2">
+        <div v-if="genreFilter" class="d-flex flex-wrap justify-content-center align-items-center mt-2">
             <button  
-            v-for="genre in genresList" 
-            :key="genre.id"
-            :class="{ 'filter-btn-active' : selectedGenres.includes(genre),'filter-btn-inactive': !selectedGenres.includes(genre) }"
-            @click="updateFilter($event, 'genre', genre)"
+                v-for="genre in genresList" 
+                :key="genre.id"
+                :class="{ 'filter-btn-active' : selectedGenres.includes(genre), 'filter-btn-inactive': !selectedGenres.includes(genre) }"
+                class="custom-filter-btn"
+                @click="updateFilter($event, 'genre', genre)"
             >{{ genre.name }}</button>
         </div>
-        <div v-if="ottFilter"  class="d-flex flex-wrap justify-content-center align-items-center mt-2">
+        <div v-if="ottFilter" class="d-flex flex-wrap justify-content-center align-items-center mt-2">
             <button  
-            v-for="ott in ottList" 
-            :key="ott.id"
-            :class="{ 'filter-btn-active' : selectedOtts.includes(ott),'filter-btn-inactive': !selectedOtts.includes(ott) }"
-            @click="updateFilter($event, 'ott', ott)"
+                v-for="ott in ottList" 
+                :key="ott.id"
+                :class="{ 'filter-btn-active' : selectedOtts.includes(ott), 'filter-btn-inactive': !selectedOtts.includes(ott) }"
+                class="custom-filter-btn"
+                @click="updateFilter($event, 'ott', ott)"
             >{{ ott.name }}</button>
         </div>
-        <div v-if="levelFilter"  class="d-flex justify-content-center align-items-center mt-2">
+        <div v-if="levelFilter" class="d-flex justify-content-center align-items-center mt-2">
             <button  
-            v-for="level in levelList" 
-            :key="level.id"
-            :class="{ 'filter-btn-active' : selectedLevel.includes(level), 'filter-btn-inactive': !selectedLevel.includes(level) }"
-            @click="updateFilter($event, 'level', level)"
+                v-for="level in levelList" 
+                :key="level.id"
+                :class="{ 'filter-btn-active' : selectedLevel.includes(level), 'filter-btn-inactive': !selectedLevel.includes(level) }"
+                class="custom-filter-btn"
+                @click="updateFilter($event, 'level', level)"
             >{{ level }}</button>
         </div>
     </div>
-    <div class="container mt-3">
-        <div class="d-flex justify-content-center">
-            <form class="d-flex" style="width: 800px;" role="search">
-                <input 
-                class="form-control" 
+    <div class="d-flex justify-content-center mt-3">
+        <form class="d-flex custom-search-form" style="width: 800px;" role="search">
+            <input 
+                class="form-control custom-search-input" 
                 type="search" 
                 placeholder="movie title, actor, director, release year..." 
                 aria-label="Search"
                 v-model="searchQuery"
-                @input="updateFilter($event, 'search')">
-            </form>            
-            <select id="sorting" class="form-select" style="width: 200px;" v-model="selectedSortOption">
-                <option value="" selected disabled>정렬 기준</option>
-                <option value="평점 높은 순"> 평점 높은 순 </option>
-                <option value="평점 낮은 순"> 평점 낮은 순 </option>
-                <option value="알파벳 오름차순 (A~Z)">알파벳 오름차순 (A~Z)</option>
-                <option value="알파벳 내림차순 (Z~A)">알파벳 내림차순 (Z~A)</option>
-                <option value="제목 한글 오름차순 (ㄱ~ㅎ)">제목 한글 오름차순 (ㄱ~ㅎ)</option>
-                <option value="제목 한글 내림차순 (ㅎ~ㄱ)">제목 한글 내림차순 (ㅎ~ㄱ)</option>
-                <option value="개봉 날짜 오름차순 (과거순)">개봉 날짜 오름차순 (과거순)</option>
-                <option value="개봉 날짜 내림차순 (최신순)">개봉 날짜 내림차순 (최신순)</option>
-            </select>
-        </div>
+                @input="updateFilter($event, 'search')"
+            >
+        </form>
+        <select id="sorting" class="form-select custom-select-box" style="width: 200px;" v-model="selectedSortOption">
+            <option value="" selected disabled>정렬 기준</option>
+            <option value="평점 높은 순"> 평점 높은 순 </option>
+            <option value="평점 낮은 순"> 평점 낮은 순 </option>
+            <option value="알파벳 오름차순 (A~Z)">알파벳 오름차순 (A~Z)</option>
+            <option value="알파벳 내림차순 (Z~A)">알파벳 내림차순 (Z~A)</option>
+            <option value="제목 한글 오름차순 (ㄱ~ㅎ)">제목 한글 오름차순 (ㄱ~ㅎ)</option>
+            <option value="제목 한글 내림차순 (ㅎ~ㄱ)">제목 한글 내림차순 (ㅎ~ㄱ)</option>
+            <option value="개봉 날짜 오름차순 (과거순)">개봉 날짜 오름차순 (과거순)</option>
+            <option value="개봉 날짜 내림차순 (최신순)">개봉 날짜 내림차순 (최신순)</option>
+        </select>
     </div>
+</div>
+
     <div>
         <div v-if="store.isLoading" class="d-flex justify-content-center mt-5">
             <div class="spinner-border" role="status">
@@ -131,6 +134,7 @@ const clearAllFilters = function () {
     genreFilter.value=false
     levelFilter.value=false
     ottFilter.value=false
+    selectedSortOption.value=''
     applyFilters()
 }
 
@@ -256,29 +260,70 @@ onMounted(()=>{
 </script>
 
 <style scoped>
-/* 필터에서 계속 버튼의 눌려있는 상태 */
-.filter-btn-active {
-    border: 2px solid #ff6b6b; /* 기본 컬러 테두리 */
-    border-radius: 15px; /* 둥근 모서리 */
-    padding: 10px 15px; /* 버튼 크기 조정 */
-    font-size: 16px; /* 기본 텍스트 크기 */
-    font-weight: bold; /* 강조된 글꼴 */
-    cursor: pointer; /* 클릭 가능하게 표시 */
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease; /* 부드러운 애니메이션 */
-    background-color: #ff6b6b; /* 컬러 배경 */
-    color: white; /* 흰색 글씨 */
-    outline: none; /* 기본 포커스 제거 */
-  }
+/* 버튼 스타일 */
+.custom-btn {
+    margin: 0 5px;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    background-color: #f8f9fa;
+    color: #555;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
 
-  /* 필터 버튼 해제 상태 */
-  .filter-btn-inactive {
-    background-color: white; /* 기본 흰 바탕 */
-    color: #ff6b6b; /* 기본 컬러 글씨 */
-    border: 2px solid #ff6b6b; /* 기본 컬러 테두리 */
-    border-radius: 15px; /* 둥근 모서리 */
-    padding: 10px 15px; /* 버튼 크기 조정 */
-    font-size: 16px; /* 기본 텍스트 크기 */
-    font-weight: bold; /* 강조된 글꼴 */
-    cursor: pointer; /* 클릭 가능하게 표시 */
-  }
+.custom-btn:hover {
+    background-color: #e9ecef;
+    color: #333;
+}
+
+/* 필터 버튼 스타일 */
+.custom-filter-btn {
+    margin: 5px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    background-color: #f8f9fa;
+    color: #555;
+    transition: all 0.3s ease;
+}
+
+.filter-btn-active {
+    background-color: #d2d2d3;
+    color: #333;
+    border: 1px solid #adb5bd;
+}
+
+.filter-btn-inactive {
+    background-color: #f8f9fa;
+    color: #555;
+    border: 1px solid #ccc;
+}
+
+.custom-filter-btn:hover {
+    background-color: #e9ecef;
+    color: #333;
+}
+
+/* 검색창 스타일 */
+.custom-search-input {
+    border-radius: 6px;
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* 정렬 선택 상자 스타일 */
+.custom-select-box {
+    margin-left: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background-color: #f8f9fa;
+    color: #555;
+}
 </style>

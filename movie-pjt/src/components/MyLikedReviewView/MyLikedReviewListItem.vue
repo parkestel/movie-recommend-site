@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="review-item">
         <span>{{ review.content }}</span>
         <p><RouterLink :to="{name:'movie-detail',params:{movieid:review.movies[0].id}}">{{ review.movies[0].title }}</RouterLink></p> 
         <hr>

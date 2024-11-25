@@ -1,6 +1,6 @@
 <template>
     <div class="banner-container">
-      <h4 class="banner-title">오늘 이런 영화 어떠세요?</h4>
+      <!-- <h5 class="banner-title">Today's Movie</h5> -->
       <Swiper
         :modules="[Navigation, Pagination, Autoplay]"
         :spaceBetween="30"
@@ -11,7 +11,6 @@
         loop
       >
         <SwiperSlide v-for="movie in randomMovies" :key="movie.id">
-            <img :src="store.getImgUrl(movie.poster_path,90)" alt="" class="banner-img">
           <MovieRecommendBanerPosterCard :movie="movie" />
         </SwiperSlide>
       </Swiper>
@@ -36,8 +35,7 @@
 /* 배너 전체 컨테이너 */
 .banner-container {
   background-color: rgba(0, 0, 0, 0.205); /* 짙은 검정 배경색 */
-  padding: 20px;
-  border-radius: 10px;
+  border-radius: 1.5rem;
   position: relative;
   margin-top: 20px;
 }
