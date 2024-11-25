@@ -32,7 +32,7 @@ const route = useRoute()
   // 데이터 추출
   const points = ref(userProfile.value.experience);
   const level = ref(userProfile.value.achievement_level);
-  const progress = ref(userProfile.value.percents); // 진행도 퍼센트
+  const progress = ref(userProfile.value.percent); // 진행도 퍼센트
 
 onMounted(()=>{
   store.getUserProfile(route.params.username)
@@ -93,7 +93,7 @@ onMounted(()=>{
   
   .progress {
     height: 100%;
-    background-color: #4c6baf;
+    background:linear-gradient(to right,#4c77af,#425875);
     transition: width 0.5s ease-in-out;
   }
   </style>

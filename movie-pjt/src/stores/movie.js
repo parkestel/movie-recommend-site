@@ -660,8 +660,9 @@ export const useMovieStore = defineStore('movie', () => {
       logIn({username, password})
     })
     .catch(err=>{
-      // console.log(err)
-      window.alert('회원가입에 실패했습니다! 다시 시도 해주십시오.')
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
       router.push({name:'signup'})
     })
   }
@@ -692,7 +693,10 @@ export const useMovieStore = defineStore('movie', () => {
       router.push({name:'movies'})
     })
     .catch(err=>{
-      window.alert('로그인에 실패 했습니다!')
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+      // window.alert('로그인에 실패 했습니다!')
       // router.push({name:'login'})
     })
   }
@@ -711,7 +715,10 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .catch(err=>{
       if (err) {
-        window.alert('로그아웃에 실패했습니다.')
+        let values = Object.values(err.response.data);
+        let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+        window.alert(formattedData);
+        // window.alert('로그아웃에 실패했습니다.')
       }
     })
 
@@ -735,8 +742,10 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .catch(err=>{
       if (err) {
-
-        window.alert('탈퇴에 실패하셨습니다.')
+        let values = Object.values(err.response.data);
+        let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+        window.alert(formattedData);
+        // window.alert('탈퇴에 실패하셨습니다.')
       }
     })
   }
