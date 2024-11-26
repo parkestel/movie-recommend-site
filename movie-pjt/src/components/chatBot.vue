@@ -98,15 +98,21 @@
 .modal-overlay {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
+  right: 0;
+  width: 450px;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.2) 15%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   z-index: 1000;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
 
 /* 모달 콘텐츠 스타일 */
@@ -117,8 +123,10 @@
   width: 80%;
   max-width: 600px;
   box-shadow: 0 8px 32px rgba(255, 103, 103, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1.5px solid rgba(82, 82, 82, 0.884);
   animation: fadeIn 0.3s ease-out;
+  margin-right: 40px;
+  max-width: 400px;
 }
 
 /* 채팅 창 스타일 */
