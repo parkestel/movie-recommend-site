@@ -58,6 +58,9 @@ onMounted(()=>{
   backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 700px;
+  margin-top: 100px;
 }
 
 .update-container:hover {
