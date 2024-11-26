@@ -1,7 +1,9 @@
 <template>
     <div v-if="isLoading" class="loading-container">
         <div class="loading-spinner">
-            <font-awesome-icon :icon="['fas', 'spinner']" spin size="2x" />
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
             <p>영화 정보를 불러오는 중...</p>
         </div>
     </div>
@@ -65,6 +67,10 @@ onMounted(async () => {
 
 .loading-spinner {
     text-align: center;
+    color: var(--point-peach);
+}
+
+.spinner-border {
     color: var(--point-peach);
 }
 
