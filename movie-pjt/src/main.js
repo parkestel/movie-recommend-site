@@ -19,11 +19,15 @@ import { faThumbsUp as farThumbsUp  } from '@fortawesome/free-regular-svg-icons'
 /* add icons to the library */
 library.add(faLock, faLockOpen, faTrashCan, faThumbsUp, farThumbsUp, faPersonChalkboard, faPenToSquare, faTimes)
 
+import { MotionPlugin } from '@vueuse/motion'
+
+
 const app = createApp(App)
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 
 app.component('font-awesome-icon', FontAwesomeIcon)
+app.use(MotionPlugin)
 // app.use(createPinia())
 app.use(pinia)
 app.use(router)
