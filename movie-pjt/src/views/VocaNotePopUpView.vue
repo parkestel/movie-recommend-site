@@ -40,8 +40,10 @@
             />
         </div>
         <div v-if="isDeleted" class="deleted-message">
-            <p>삭제 되었습니다.</p>
-            <button @click="returnToMyNote()">내 Voca Note List 보러가기</button>
+            <p class="delete-text">삭제 되었습니다.</p>
+            <button @click="returnToMyNote()" class="btn return-btn">
+                내 Voca Note List 보러가기
+            </button>
         </div>
     </div>
 </template>
@@ -165,6 +167,7 @@ h1 {
 .button-container {
   display: flex;
   justify-content: flex-end;  /* 오른쪽 정렬 */
+  align-items: center;
   gap: 15px;
   margin-bottom: 15px;
   padding: 0 5px;
@@ -262,6 +265,47 @@ h1 {
 
 .toggle-btn.active .toggle-circle {
   transform: translateX(15px);
+}
+
+.deleted-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1.5rem;
+  background: transparent;
+  margin-top: 100px;
+}
+
+.delete-text {
+  font-size: 1.2rem;
+  font-weight: 750;
+  color: #434040;
+  margin: 0;
+}
+
+.return-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 750;
+  color: #434040;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  border: 1px solid rgba(90, 90, 90, 0.226);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.return-btn:hover {
+  background: rgba(145, 145, 145, 0.25);
+  transform: translateY(-1px);
+  color: #292828;
 }
 
 </style>
