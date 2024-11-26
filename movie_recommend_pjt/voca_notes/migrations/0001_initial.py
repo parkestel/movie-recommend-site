@@ -11,6 +11,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('movies', '0001_initial'),
+        ('movies', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
