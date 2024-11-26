@@ -39,7 +39,7 @@
         <br />
       </div>
       <div style="display: flex; justify-content: space-between">
-        <button class="submit-button-both" @click="goPrevious">Back</button>
+        <button class="submit-button-back" @click="goPrevious">Back</button>
         <button class="submit-button-both" @click="goNext">Next</button>
       </div>
     </form>
