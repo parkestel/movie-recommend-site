@@ -3,7 +3,7 @@
     <span class="review-content">{{ review.content }}</span>
     <br>
     <div class="review-header">
-      <span id="review-nickname">작성자: {{ review.users[0].nickname }}</span>
+      <span id="review-nickname" @click="goToUserProfile(review.users[0].username)">작성자: {{ review.users[0].nickname }}</span>
       <span id="my-review-update">
         <button 
           v-if="review.users[0].username === store.logedinUsername" 
@@ -53,7 +53,7 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { useMovieStore } from '@/stores/movie';
 import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const props = defineProps({
   review:Object
@@ -63,7 +63,7 @@ const route = useRoute()
 const movieId = route.params.movieid
 const isVisable = ref(false) 
 const content = ref(props.review.content)
-
+const router = useRouter()
 const likeReview = function (id, movieId) {
   store.likeCommentsinMovie(id, movieId)
   store.getMovieComments(movieId)
@@ -81,6 +81,10 @@ const updateReview = function (id,movieId) {
 }
 const openUpdateForm = function () {
   isVisable.value = !isVisable.value
+}
+
+const goToUserProfile = function (username) {
+  router.push({ name: 'profile', params: { username } })
 }
 </script>
 
