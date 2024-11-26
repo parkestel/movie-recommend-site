@@ -8,7 +8,7 @@
     <button v-if="!store.isLikedMovie(wishMovie.id)" @click="store.addToggleWishMovie(wishMovie.id)" class="movie-like-button">🤍</button>
     <button v-else  @click="store.addToggleWishMovie(wishMovie.id)" class="movie-like-button">🖤</button>
     <div v-if="userProfile.username === store.logedinUsername">
-      <button class="btn" v-if="isHavingNote(wishMovie.id)" @click="popUp(noteId)">See VocaNote</button>
+      <button class="btn" v-if="isHavingNote(wishMovie.id)" @click="popUp(findNoteIdByMovieId(wishMovie.id))">See VocaNote</button>
     </div>
   </div>
 </template>
@@ -20,7 +20,7 @@ defineProps({
 
 import { useMovieStore } from "@/stores/movie"
 import { useRouter } from "vue-router"
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { storeToRefs } from "pinia";
 
 const store = useMovieStore()
@@ -39,8 +39,25 @@ const isHavingNote = function (movieId) {
   return vocaNoteList.value.some((note)=>note.movies[0].id===movieId)
 }
 const popUp = function (noteId) {
-  window.open(`/note/${noteId}`, '__blank', 'width=400,height=650')
+  window.open(`/note/${noteId}?isPopup=true`, '__blank', 'width=400,height=650')
 }
+
+const findNoteIdByMovieId = (movieId) => {
+  // vocaNoteList를 순회하면서
+  for (const note of vocaNoteList.value) {
+    // 각 노트의 movies 배열을 확인
+    const foundMovie = note.movies.find(movie => movie.id === movieId)
+    if (foundMovie) {
+      // 영화를 포함하고 있는 노트의 ID를 반환
+      return note.id
+    }
+  }
+  return null
+}
+
+onMounted(()=>{
+  store.getVocaNote(userProfile.value.id)
+})
 </script>
 
 <style scoped>
