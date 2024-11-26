@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submitVoca(note.id)" class="create-form" v-if="isOwner">
+  <form @submit.prevent="submitVoca" class="create-form" v-if="isOwner">
     <div class="input-group">
       <label for="word">word:</label>
       <input type="text" id="word" v-model.trim="word">
@@ -33,13 +33,14 @@ const examples = ref(null)
 const memo = ref(null)
 const { userProfile } = storeToRefs(store)
 
-defineProps({
-  note:Object,
-  isOwner: Boolean  // prop 정의
+const props = defineProps({
+  note: Object,
+  isOwner: Boolean
 })
 
-const submitVoca = function (noteId = note.id) {
-  //axios data 넘겨주기
+const submitVoca = function () {
+  if (!props.note?.id) return  // note.id가 없으면 함수 종료
+
   const payload = {
     word: word.value,
     word_mean: word_mean.value,
@@ -47,12 +48,12 @@ const submitVoca = function (noteId = note.id) {
     memo: memo.value
   }
 
-  store.createVoca(noteId, payload)
+  store.createVoca(props.note.id, payload)
   
-  word.value=""
-  word_mean.value=""
-  examples.value=""
-  memo.value=""
+  word.value = ""
+  word_mean.value = ""
+  examples.value = ""
+  memo.value = ""
 }
 </script>
 
