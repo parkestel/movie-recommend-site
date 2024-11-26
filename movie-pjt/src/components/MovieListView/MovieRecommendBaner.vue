@@ -48,12 +48,15 @@
 /* 제목 스타일 */
 .banner-title {
   position: absolute; /* 절대 위치로 설정하여 배너 오른쪽 상단에 고정 */
-  top: 10px; /* 상단에서 10px 정도의 여백 */
+  top: 20px; /* 상단에서 10px 정도의 여백 */
   right: 50px; /* 오른쪽에서 10px 정도의 여백 */
-  color: #fff; /* 흰색 텍스트 */
+  color: #dbdbdb;  /* 색상을 좀 더 밝은 흰색으로 변경 */
   font-size: 24px;
   margin: 0; /* 기본 마진 제거 */
   z-index: 10; /* 다른 콘텐츠보다 위에 표시되도록 설정 */
+  font-family: 'NanumSquareRoundEB', sans-serif !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),   /* 주요 그림자 */
+               0 0 10px rgba(255, 255, 255, 0.3);  /* 은은한 글로우 효과 */
 }
 
 /* Swiper 네비게이션 버튼 스타일 오버라이드 */
