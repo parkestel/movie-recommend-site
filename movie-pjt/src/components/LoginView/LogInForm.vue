@@ -59,6 +59,7 @@ const logIn = function () {
   height: 100vh;
   font-family: Arial, sans-serif;
   background: transparent;
+  padding-bottom: 400px;
 }
 
 h1 {
@@ -68,7 +69,7 @@ h1 {
 
 p {
   margin-bottom: 1.5rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(26, 25, 25, 0.8);
 }
 
 .login-form {
