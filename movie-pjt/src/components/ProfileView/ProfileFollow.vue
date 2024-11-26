@@ -5,8 +5,16 @@
             <span @click="openFollowersModal" class="modal-parent" id="follower">Follower : {{ userProfile.followers.length }}</span>
         </div>
         <br>
-        <FollowingModal v-if="isFollowingsModal" @close="closeFollowingsModal"/>
-        <FollowerModal v-if="isFollowersModal" @close="closeFollowersModal"/>
+        <FollowingModal 
+          v-if="isFollowingsModal" 
+          @close="closeFollowingsModal"
+          :followings="userProfile.followings"
+        />
+        <FollowerModal 
+          v-if="isFollowersModal" 
+          @close="closeFollowersModal"
+          :followers="userProfile.followers"
+        />
         <div v-if="userProfile.username!==logedinUsername">
             <button v-if="isFollowing()" @click="store.toggleFollowerbutton(userProfile.id, userProfile.username)">unFollow</button>
             <button v-else @click="store.toggleFollowerbutton(userProfile.id, userProfile.username)">Follow</button>

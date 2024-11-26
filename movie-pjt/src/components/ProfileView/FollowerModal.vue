@@ -1,15 +1,14 @@
 <template>
-    <div class="modal-backdrop">
+    <div class="modal-backdrop" @click.self="closeModal">
         <div class="modal-content">
-            <h3>Following List</h3>
-            <!-- X 대신 아이콘 사용 -->
+            <h3>Followers List</h3>
             <button class="close-button" @click="closeModal">
                 <font-awesome-icon :icon="['fas', 'times']" />
             </button>
             <hr>
-            <div v-for="following in userProfile.followings" :key="following.id">
-                <RouterLink :to="{name:'profile', params:{username:following.username}}" @click.native="closeModal">
-                    {{ following.nickname }} | {{ following.username }}
+            <div v-for="follower in userProfile.followers" :key="follower.id">
+                <RouterLink :to="{name:'profile', params:{username:follower.username}}" @click.native="closeModal">
+                    {{ follower.nickname }} | {{ follower.username }}
                 </RouterLink>
                 <hr>
             </div>

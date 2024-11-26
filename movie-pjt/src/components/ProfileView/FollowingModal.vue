@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-backdrop">
+    <div class="modal-backdrop" @click.self="closeModal">
         <div class="modal-content">
             <h3>Following List</h3>
             <!-- X 대신 아이콘 사용 -->
