@@ -1,7 +1,7 @@
 <template>
   <div class="signup-container">
-    <h1>Check</h1>
-    <p>성, 이름, 이메일, 생년월일</p>
+    <h1>회원가입</h1>
+    <p>성, 이름, 이메일, 생년월일을 입력해 주세요.</p>
     <form class="signup-form">
       <div class="form-group">
         <label for="username">LAST NAME</label>
@@ -39,7 +39,7 @@
         <br />
       </div>
       <div style="display: flex; justify-content: space-between">
-        <button class="submit-button-both" @click="goPrevious">Back</button>
+        <button class="submit-button-back" @click="goPrevious">Back</button>
         <button class="submit-button-both" @click="goNext">Next</button>
       </div>
     </form>
@@ -74,6 +74,7 @@ const goNext = () => {
 p {
     margin-bottom: 1.5rem;
     color: rgba(84, 83, 83, 0.8);
+    font-family: 'NanumSquareRound';
 }
 
 input[type="text"],
@@ -93,5 +94,9 @@ input[type="date"] {
 label {
     color: rgba(255, 255, 255, 0.6);
     margin: 0.3rem;
+}
+
+h1 {
+  font-family: 'NanumSquareRoundEB', sans-serif !important;
 }
 </style>

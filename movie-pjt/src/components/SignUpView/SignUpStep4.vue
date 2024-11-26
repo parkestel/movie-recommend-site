@@ -25,7 +25,7 @@
                 <br>
             </div>
             <div style="display: flex; justify-content: space-between;">
-                <button type="button" class="submit-button-both" @click="goPrevious">Back</button>
+                <button type="button" class="submit-button-back" @click="goPrevious">Back</button>
                 <button type="submit" class="submit-button-both">Submit</button>
             </div>
         </form>
@@ -135,8 +135,9 @@ const submit = () => {
 }
 
 p {
-    margin-bottom: 1.5rem;
+    margin-bottom: rem;
     color: rgba(84, 83, 83, 0.8);
+    font-family: 'NanumSquareRound';
 }
 
 input[type="text"],
@@ -156,5 +157,9 @@ input[type="date"] {
 label {
     color: rgba(255, 255, 255, 0.6);
     margin: 0.3rem;
+}
+
+h1 {
+  font-family: 'NanumSquareRoundEB', sans-serif !important;
 }
 </style>
