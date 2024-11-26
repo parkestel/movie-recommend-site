@@ -38,6 +38,7 @@ export const useMovieStore = defineStore('movie', () => {
   const logedinUserPoint = ref(0)
   
   const getMovies = function () {
+    console.log('getMovies 호출됨, token:', token.value)
     isLoading.value=true
     axios({
       method:'get',
@@ -47,21 +48,15 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      // console.log(res.data)
       movies.value = res.data
       isLoading.value=false
     })
     .catch(err=>{
-      if (err.response && err.response.status === 401) {
+      if (err.response && err.response.status === 401 && token.value) {
         token.value=null
         logedinUsername.value=null
         userProfile.value=null
-        window.alert('로그인이 필요합니다.')
         router.push({name:'login'})
-      } else {
-        let values = Object.values(err.response.data);
-        let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
-        window.alert(formattedData);
       }
     })
   }
@@ -75,6 +70,7 @@ export const useMovieStore = defineStore('movie', () => {
   }
 
   const getWishMovies = function () {
+    console.log('getWishMovies 호출됨, token:', token.value)
     axios({
       method:'get',
       url:`${API_BASE_URL}/movies/wish-movie/`,
@@ -86,16 +82,11 @@ export const useMovieStore = defineStore('movie', () => {
       wishMovies.value=res.data
     })
     .catch(err=>{
-      if (err.response && err.response.status === 401) {
+      if (err.response && err.response.status === 401 && token.value) {
         token.value=null
         logedinUsername.value=null
-        userProfile.value=null 
-        window.alert('로그인이 필요합니다.')
+        userProfile.value=null
         router.push({name:'login'})
-      } else {
-        let values = Object.values(err.response.data);
-        let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
-        window.alert(formattedData);
       }
     })
   }
@@ -112,16 +103,11 @@ export const useMovieStore = defineStore('movie', () => {
       todayRandomMovie.value=res.data
     })
     .catch(err=>{
-      if (err.response && err.response.status === 401) {
+      if (err.response && err.response.status === 401 && token.value) {
         token.value=null
         logedinUsername.value=null
-        userProfile.value=null 
-        window.alert('로그인이 필요합니다.')
+        userProfile.value=null
         router.push({name:'login'})
-      } else {
-        let values = Object.values(err.response.data);
-        let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
-        window.alert(formattedData);
       }
     })
   }
@@ -138,19 +124,13 @@ export const useMovieStore = defineStore('movie', () => {
       wishMoviesWithOutNote.value=res.data
     })
     .catch(err=>{
-      if (err.response && err.response.status === 401) {
+      if (err.response && err.response.status === 401 && token.value) {
         token.value=null
         logedinUsername.value=null
-        userProfile.value=null 
-        window.alert('로그인이 필요합니다.')
+        userProfile.value=null
         router.push({name:'login'})
-      } else {
-        let values = Object.values(err.response.data);
-        let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
-        window.alert(formattedData);
       }
     })
-    
   }
 
   const getGenres = function () {
@@ -165,9 +145,12 @@ export const useMovieStore = defineStore('movie', () => {
       genres.value=res.data
     })
     .catch(err=>{
-      let values = Object.values(err.response.data);
-      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
-      window.alert(formattedData);
+      if (err.response && err.response.status === 401 && token.value) {
+        token.value=null
+        logedinUsername.value=null
+        userProfile.value=null
+        router.push({name:'login'})
+      }
     })
   }
 
@@ -183,13 +166,17 @@ export const useMovieStore = defineStore('movie', () => {
       otts.value=res.data
     })
     .catch(err=>{
-      let values = Object.values(err.response.data);
-      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
-      window.alert(formattedData);
+      if (err.response && err.response.status === 401 && token.value) {
+        token.value=null
+        logedinUsername.value=null
+        userProfile.value=null
+        router.push({name:'login'})
+      }
     })
   }
 
   const getUserProfile = function (username) {
+    console.log('getUserProfile 호출됨, token:', token.value)
     axios({
       method:'get',
       url:`${API_BASE_URL}/accounts/dj-rest-auth/user/${username}/`,
@@ -203,17 +190,11 @@ export const useMovieStore = defineStore('movie', () => {
       getWishMovieWithOutNote()
     })
     .catch(err=>{
-      if (err.response && err.response.status === 401) {
+      if (err.response && err.response.status === 401 && token.value) {
         token.value=null
         logedinUsername.value=null
         userProfile.value=null
-        window.alert('로그인이 필요합니다.')
         router.push({name:'login'})
-      } else {
-        console.log(err.response)
-        let values = Object.values(err.response.data);
-        let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
-        window.alert(formattedData);
       }
     })
   }
@@ -229,10 +210,13 @@ export const useMovieStore = defineStore('movie', () => {
     .then(res=>{
       logedinUserPoint.value=res.data
     })
-    .catch(res=>{
-      let values = Object.values(err.response.data);
-      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
-      window.alert(formattedData);
+    .catch(err=>{
+      if (err.response && err.response.status === 401 && token.value) {
+        token.value=null
+        logedinUsername.value=null
+        userProfile.value=null
+        router.push({name:'login'})
+      }
     })
   }
 
@@ -720,26 +704,28 @@ export const useMovieStore = defineStore('movie', () => {
   }
 
   const logOut = function () {
-    token.value=null
-    logedinUsername.value=null
-    userProfile.value=null
+    console.log('로그아웃 시작')
+    // 먼저 상태 초기화
+    token.value = null
+    logedinUsername.value = null
+    userProfile.value = null
+    wishMovies.value = null
+    todayRandomMovie.value = null
+    movies.value = []  // 이것도 초기화
+    
     axios({
-      method:'post',
+      method: 'post',
       url: `${API_BASE_URL}/accounts/dj-rest-auth/logout/`
     })
-    .then(res=>{
+    .then(res => {
+      console.log('로그아웃 성공')
       window.alert('Bye! See you soon')
-      router.push({name:'login'})
+      router.push({ name: 'home' })
     })
-    .catch(err=>{
-      if (err) {
-        let values = Object.values(err.response.data);
-        let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
-        window.alert(formattedData);
-        // window.alert('로그아웃에 실패했습니다.')
-      }
+    .catch(err => {
+      console.log('로그아웃 에러')
+      router.push({ name: 'home' })
     })
-
   }
 
   const SignOut = function() {
@@ -756,7 +742,7 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       window.alert('탈퇴 완료')
-      router.push({name:'login'})
+      router.push({name:'home'})
     })
     .catch(err=>{
       if (err) {

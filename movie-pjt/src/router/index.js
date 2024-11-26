@@ -107,53 +107,44 @@ const router = createRouter({
       name:'chatbot',
       component:ChatBot
     },
-    {
-      path: '/:pathMatch(.*)*',
-      redirect: '/movies'
-    }
   ],
 })
 
 router.beforeEach((to, from) => {
   const store = useMovieStore()
-  // 앞으로 로그인 권한이 필요한 곳이라면 로그인이 필요하다고 알려주고
-  // 로그인 창으로 보내기
-  if (to.name === 'movie-detail' && !store.isLogin) {
-    window.alert('로그인이 필요합니다.')
-    return { name:'login'}
+  
+  // 로그인이 필요없는 페이지들 정의
+  const publicPages = ['home', 'login', 'signup']
+  
+  // 현재 페이지가 public 페이지라면 그대로 진행
+  if (publicPages.includes(to.name)) {
+    return true
   }
-  if (to.name === 'userinfoupdate' && !store.isLogin) {
-    window.alert('로그인이 필요합니다.')
-    return { name:'login'}
-  }
-  if (to.name === 'accountdelete' && !store.isLogin) {
-    window.alert('로그인이 필요합니다.')
-    return { name:'login'}
-  }
-  if (to.name === 'password' && !store.isLogin) {
-    window.alert('로그인이 필요합니다.')
-    return { name:'login'}
-  }
-  if (to.name === 'vocanote' && !store.isLogin) {
-    window.alert('로그인이 필요합니다.')
-    return { name:'login'}
-  }
-  if (to.name === 'profile' && !store.isLogin) {
-    window.alert('로그인이 필요합니다.')
-    return { name:'login'}
-  } 
-
-  if (to.name === 'myreviews' && (store.logedinUsername !== to.params.username)) {
-    return {name:'movies'}
-  }
-
-  if (to.name === 'likedreviews' && (store.logedinUsername !== to.params.username)) {
-    return {name:'movies'}
-  }
-
+  
+  // 이미 로그인된 상태에서 로그인/회원가입 페이지 접근 방지
   if ((to.name === 'signup' || to.name === 'login') && (store.isLogin)) {
     window.alert('이미 로그인 되어 있습니다.')
     return {name:'movies'}
+  }
+
+  // 로그인이 필요한 페이지에서 로그아웃했을 때 home으로 리다이렉트
+  if (!store.isLogin) {
+    // 로그인이 필요한 페이지에 접근할 때만 알림 표시
+    if (!publicPages.includes(to.name)) {
+      window.alert('로그인이 필요합니다.')
+      return { name: 'login' }
+    }
+  }
+
+  // 사용자 권한 체크 (로그인된 상태에서만 실행)
+  if (store.isLogin) {
+    if (to.name === 'myreviews' && (store.logedinUsername !== to.params.username)) {
+      return {name:'movies'}
+    }
+
+    if (to.name === 'likedreviews' && (store.logedinUsername !== to.params.username)) {
+      return {name:'movies'}
+    }
   }
 })
 export default router
