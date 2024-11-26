@@ -13,10 +13,7 @@
                 </button>
             </div>
             <h1>{{ vocaList.movies[0].title }}'s vocanote</h1>
-            <VocaCreate
-            :note="vocaList"
-            :is-owner="isOwner"
-            />
+            <VocaCreate :note="vocaList"/>
             <div class="mode-buttons" v-if="isOwner">
                 <div class="toggle-container">
                     <span>삭제</span>
