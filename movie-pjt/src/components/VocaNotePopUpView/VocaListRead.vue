@@ -1,7 +1,7 @@
 <template>
   <div class="voca-item">
     <div class="voca-header">
-      <input type="checkbox" @input="memorizedWord(voca.id)" v-model="voca.is_memorized">
+      <input type="checkbox" @input="memorizedWord(voca.id)" v-model="voca.is_memorized" v-if="isOwner">
       <span class="word-content" @click="toggleMemoShow">
         <span class="word">{{ voca.word }}</span> : 
         <span>{{ voca.word_mean }}</span>
@@ -48,7 +48,8 @@ const props = defineProps({
   voca:Object,
   showDelete:Boolean,
   showUpdate:Boolean,
-  closeEditForm: Boolean
+  closeEditForm: Boolean,
+  isOwner: Boolean
 })
 const emit = defineEmits(['deleteEvent', 'updateEvent', 'checkEvent'])
 const isVisiable = ref(false)

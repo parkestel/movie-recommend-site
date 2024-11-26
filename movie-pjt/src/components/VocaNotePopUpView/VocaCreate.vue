@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submitVoca(note.id)" class="create-form">
+  <form @submit.prevent="submitVoca(note.id)" class="create-form" v-if="isOwner">
     <div class="input-group">
       <label for="word">word:</label>
       <input type="text" id="word" v-model.trim="word">
@@ -23,6 +23,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useMovieStore } from '@/stores/movie';
+import { storeToRefs } from 'pinia';
 
 const store = useMovieStore()
 
@@ -30,9 +31,11 @@ const word = ref(null)
 const word_mean = ref(null)
 const examples = ref(null)
 const memo = ref(null)
+const { userProfile } = storeToRefs(store)
 
 defineProps({
-  note:Object
+  note:Object,
+  isOwner: Boolean  // prop 정의
 })
 
 const submitVoca = function (noteId = note.id) {

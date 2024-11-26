@@ -1,7 +1,7 @@
 <template>
     <div class="popup-container">
         <div class="voca-container" v-if="vocaList && !isDeleted">
-            <div class="button-container" v-if="userProfile.username===store.logedinUsername">
+            <div class="button-container" v-if="isOwner">
                 <button class="emoji-button" v-if="vocaList.is_public" @click="togglePublic(vocaList.movies[0].id)">
                     <font-awesome-icon :icon="['fas', 'lock-open']" class="locker-icon"/>
                 </button>
@@ -13,8 +13,11 @@
                 </button>
             </div>
             <h1>{{ vocaList.movies[0].title }}'s vocanote</h1>
-            <VocaCreate :note="vocaList"/>
-            <div class="mode-buttons">
+            <VocaCreate
+            :note="vocaList"
+            :is-owner="isOwner"
+            />
+            <div class="mode-buttons" v-if="isOwner">
                 <div class="toggle-container">
                     <span>삭제</span>
                     <button class="toggle-btn" :class="{ active: showDeleteButton }" @click="toggleDeleteButtons">
@@ -34,6 +37,7 @@
             :voca="voca"
             :show-delete="showDeleteButton"
             :show-update="showUpdateButton"
+            :is-owner="isOwner"
             @delete-event="deleteWord"
             @update-event="updateWord"
             @check-event="toggleMemorized"
@@ -50,7 +54,7 @@
 
 <script setup>
 import { useMovieStore } from "@/stores/movie";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useRoute } from "vue-router";
 import VocaCreate from "@/components/VocaNotePopUpView/VocaCreate.vue";
 import VocaListRead from "@/components/VocaNotePopUpView/VocaListRead.vue";
@@ -68,6 +72,12 @@ const noteId = ref(null)
 
 const emit = defineEmits(['deleteEvent', 'toggleEvent'])
 const isDeleted = ref(false)
+
+const isOwner = computed(() => {
+    return userProfile.value?.username && 
+           store.logedinUsername && 
+           userProfile.value.username === store.logedinUsername
+})
 
 const deleteNote = function (movieId, userId = userProfile.value.id) {
     const result = window.confirm('Really????')
@@ -128,6 +138,7 @@ onMounted(()=>{
     noteId.value = route.params.note_id
     store.getVocas(noteId.value)
     isDeleted.value=false
+    console.log(userProfile.value.username, store.logedinUsername)
 })
 
 </script>
