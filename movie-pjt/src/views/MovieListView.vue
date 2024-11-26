@@ -328,19 +328,4 @@ onMounted(()=>{
     background-color: #f8f9fa;
     color: #555;
 }
-
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  justify-items: center; /* 카드들을 가운데 정렬 */
-  margin: 0 auto; /* 컨테이너 자체를 가운데 정렬 */
-  max-width: 1200px; /* 최대 너비 설정 */
-}
-
-.movie-card {
-  width: 100%; /* 카드의 너비를 그리드 셀에 맞춤 */
-  max-width: 250px; /* 카드의 최대 너비 설정 */
-}
 </style>
