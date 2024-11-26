@@ -1,6 +1,7 @@
 <template>
   <div class="signup-container">
-    <h1>닉네임</h1>
+    <h1>회원가입</h1>
+    <p>닉네임을 입력해 주세요.</p>
     <form class="signup-form">
       <div class="form-group">
         <label for="username">NICKNAME</label>
@@ -45,6 +46,7 @@ const goNext = () => {
 p {
     margin-bottom: 1.5rem;
     color: rgba(84, 83, 83, 0.8);
+    font-family: 'NanumSquareRound';
 }
 
 input[type="text"],
@@ -64,5 +66,9 @@ input[type="date"] {
 label {
     color: rgba(255, 255, 255, 0.6);
     margin: 0.3rem;
+}
+
+h1 {
+  font-family: 'NanumSquareRoundEB', sans-serif !important;
 }
 </style>

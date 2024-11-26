@@ -1,10 +1,10 @@
 <template>
     <div class="signup-container">
-        <h1>Check</h1>
-        <p>username, password, ID</p>
+        <h1>회원가입</h1>
+        <p>아이디, 패스워드를 입력해 주세요.</p>
         <form class="signup-form">
             <div class="form-group">
-              <label for="username">USERNAME</label>
+              <label for="username">ID</label>
               <input type="text" id="username" v-model="localForm.username" placeholder="ID">
               <br>
             </div>
@@ -49,6 +49,7 @@ const goNext = () => {
 p {
     margin-bottom: 1.5rem;
     color: rgba(84, 83, 83, 0.8);
+    font-family: 'NanumSquareRound';
 }
 
 input[type="text"],
@@ -68,5 +69,9 @@ input[type="date"] {
 label {
     color: rgba(255, 255, 255, 0.6);
     margin: 0.3rem;
+}
+
+h1 {
+  font-family: 'NanumSquareRoundEB', sans-serif !important;
 }
 </style>
