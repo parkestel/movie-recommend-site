@@ -34,30 +34,36 @@ export const useMovieStore = defineStore('movie', () => {
   const movieBestComments = ref(null)
   const myReviews = ref(null)
   const myLikedReviews = ref(null)
-  const isLoading = ref(null)
+  const isLoading = ref(true)
+  const isDataLoaded = ref(false)
   const logedinUserPoint = ref(0)
   
   const getMovies = function () {
     console.log('getMovies 호출됨, token:', token.value)
-    isLoading.value=true
-    axios({
-      method:'get',
-      url:`${API_BASE_URL}/movies/`,
-      headers:{
-        Authorization: `Token ${token.value}`
-      }
-    })
-    .then(res=>{
-      movies.value = res.data
-      isLoading.value=false
-    })
-    .catch(err=>{
-      if (err.response && err.response.status === 401 && token.value) {
-        token.value=null
-        logedinUsername.value=null
-        userProfile.value=null
-        router.push({name:'login'})
-      }
+    isLoading.value = true
+    isDataLoaded.value = false
+    
+    return new Promise((resolve, reject) => {
+      axios({
+        method:'get',
+        url:`${API_BASE_URL}/movies/`,
+        headers:{
+          Authorization: `Token ${token.value}`
+        }
+      })
+      .then(res => {
+        movies.value = res.data
+        resolve(res.data)
+      })
+      .catch(err => {
+        if (err.response && err.response.status === 401 && token.value) {
+          token.value = null
+          logedinUsername.value = null
+          userProfile.value = null
+          router.push({name:'login'})
+        }
+        reject(err)
+      })
     })
   }
   const getImgUrl = function(poster_path,width) {
@@ -92,23 +98,31 @@ export const useMovieStore = defineStore('movie', () => {
   }
 
   const getRandomMovies = function () {
-    axios({
-      method:'get',
-      url:`${API_BASE_URL}/movies/random-movies/`,
-      headers:{
-        Authorization: `Token ${token.value}`
-      }
-    })
-    .then(res=>{
-      todayRandomMovie.value=res.data
-    })
-    .catch(err=>{
-      if (err.response && err.response.status === 401 && token.value) {
-        token.value=null
-        logedinUsername.value=null
-        userProfile.value=null
-        router.push({name:'login'})
-      }
+    return new Promise((resolve, reject) => {
+      axios({
+        method:'get',
+        url:`${API_BASE_URL}/movies/random-movies/`,
+        headers:{
+          Authorization: `Token ${token.value}`
+        }
+      })
+      .then(res => {
+        console.log('Random movies response:', res.data)
+        todayRandomMovie.value = Array.isArray(res.data) ? res.data : [res.data]
+        console.log('Stored random movies:', todayRandomMovie.value)
+        resolve(res.data)
+      })
+      .catch(err => {
+        console.error('Random movies loading error:', err)
+        todayRandomMovie.value = []
+        if (err.response && err.response.status === 401 && token.value) {
+          token.value = null
+          logedinUsername.value = null
+          userProfile.value = null
+          router.push({name:'login'})
+        }
+        reject(err)
+      })
     })
   }
 
@@ -134,44 +148,52 @@ export const useMovieStore = defineStore('movie', () => {
   }
 
   const getGenres = function () {
-    axios({
-      method:'get',
-      url:`${API_BASE_URL}/movies/genres-list/`,
-      headers:{
-        Authorization: `Token ${token.value}`
-      }
-    })
-    .then(res=>{
-      genres.value=res.data
-    })
-    .catch(err=>{
-      if (err.response && err.response.status === 401 && token.value) {
-        token.value=null
-        logedinUsername.value=null
-        userProfile.value=null
-        router.push({name:'login'})
-      }
+    return new Promise((resolve, reject) => {
+      axios({
+        method:'get',
+        url:`${API_BASE_URL}/movies/genres-list/`,
+        headers:{
+          Authorization: `Token ${token.value}`
+        }
+      })
+      .then(res => {
+        genres.value = res.data
+        resolve(res.data)
+      })
+      .catch(err => {
+        if (err.response && err.response.status === 401 && token.value) {
+          token.value = null
+          logedinUsername.value = null
+          userProfile.value = null
+          router.push({name:'login'})
+        }
+        reject(err)
+      })
     })
   }
 
   const getOtts = function () {
-    axios({
-      method:'get',
-      url:`${API_BASE_URL}/movies/otts-list/`,
-      headers:{
-        Authorization: `Token ${token.value}`
-      }
-    })
-    .then(res=>{
-      otts.value=res.data
-    })
-    .catch(err=>{
-      if (err.response && err.response.status === 401 && token.value) {
-        token.value=null
-        logedinUsername.value=null
-        userProfile.value=null
-        router.push({name:'login'})
-      }
+    return new Promise((resolve, reject) => {
+      axios({
+        method:'get',
+        url:`${API_BASE_URL}/movies/otts-list/`,
+        headers:{
+          Authorization: `Token ${token.value}`
+        }
+      })
+      .then(res => {
+        otts.value = res.data
+        resolve(res.data)
+      })
+      .catch(err => {
+        if (err.response && err.response.status === 401 && token.value) {
+          token.value = null
+          logedinUsername.value = null
+          userProfile.value = null
+          router.push({name:'login'})
+        }
+        reject(err)
+      })
     })
   }
 
@@ -868,5 +890,5 @@ export const useMovieStore = defineStore('movie', () => {
     })
   }
       isLoading.value=false
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, todayRandomMovie, otts, difficulties, wishMovies, userProfile, genres, isLoading, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, movieBestComments, myReviews, myLikedReviews, getImgUrl, getMovies, getRandomMovies, getGenres, getOtts, getMovie, getMyLevel, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, updateVoca, memorizedVoca, getMovieComments, createComment, likeCommentsinMovie, deleteCommentinMovie, updateCommentinMovie, getBestComments, getMyReviews, deleteCommentinMyPage, getLikedReviewInMyPage, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, updateUserInfo, getUserInfoForUpdate, updateUserStudyLevel, changePassword, token, isLogin, logedinUsername, logedinUserPoint, userInfo }
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, todayRandomMovie, otts, difficulties, wishMovies, userProfile, genres, isLoading, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, movieBestComments, myReviews, myLikedReviews, getImgUrl, getMovies, getRandomMovies, getGenres, getOtts, getMovie, getMyLevel, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, updateVoca, memorizedVoca, getMovieComments, createComment, likeCommentsinMovie, deleteCommentinMovie, updateCommentinMovie, getBestComments, getMyReviews, deleteCommentinMyPage, getLikedReviewInMyPage, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, updateUserInfo, getUserInfoForUpdate, updateUserStudyLevel, changePassword, token, isLogin, logedinUsername, logedinUserPoint, userInfo, isDataLoaded }
 }, { persist: true })

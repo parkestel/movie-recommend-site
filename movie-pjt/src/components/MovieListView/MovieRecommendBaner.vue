@@ -2,6 +2,7 @@
     <div class="banner-container">
       <h5 class="banner-title">Today's Movie for You</h5>
       <Swiper
+        v-if="randomMovies && randomMovies.length > 0"
         :modules="[Navigation, Pagination, Autoplay]"
         :spaceBetween="30"
         :slidesPerView="1"
@@ -9,11 +10,15 @@
         navigation
         pagination
         loop
+        class="banner-swiper"
       >
-        <SwiperSlide v-for="movie in randomMovies" :key="movie.id">
+        <SwiperSlide v-for="movie in randomMovies" :key="movie.id" class="banner-slide">
           <MovieRecommendBanerPosterCard :movie="movie" />
         </SwiperSlide>
       </Swiper>
+      <div v-else class="loading-state">
+        <p>영화 정보를 불러오는 중...</p>
+      </div>
     </div>
   </template>
   
@@ -27,22 +32,43 @@
 
   const store= useMovieStore()
   const props = defineProps({
-    randomMovies: Array, // 랜덤 영화 배열
+    randomMovies: {
+      type: Array,
+      required: true,
+      default: () => []
+    }
   });
   </script>
 
 
 <style scoped>
-/* 배너 전체 컨테이너 */
 .banner-container {
-  background-color: rgba(0, 0, 0, 0.5); /* 짙은 검정 배경색 */
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 1.5rem;
   position: relative;
   margin-top: 20px;
   height: 400px;
-  display: flex;
-  align-items: center;  /* 수직 중앙 정렬 */
-  justify-content: center;  /* 수평 중앙 정렬 */
+  overflow: hidden;
+}
+
+.banner-swiper {
+  height: 100%;
+  width: 100%;
+}
+
+.banner-slide {
+  height: 100%;
+  width: 100%;
+}
+
+:deep(.swiper) {
+  height: 100%;
+  width: 100%;
+}
+
+:deep(.swiper-slide) {
+  height: 100%;
+  width: 100%;
 }
 
 /* 제목 스타일 */
@@ -78,5 +104,13 @@
 
 :deep(.swiper-pagination-bullet-active) {
   background-color: #ffffff !important; /* 활성화된 페이지네이션 색상 */
+}
+
+.loading-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #dbdbdb;
 }
 </style>

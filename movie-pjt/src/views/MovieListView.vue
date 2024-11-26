@@ -1,6 +1,9 @@
 <template>
 <div>
-    <MovieRecommendBaner :random-movies="todayRandomMovie"/>
+    <MovieRecommendBaner 
+    v-if="store.todayRandomMovie" 
+    :randomMovies="store.todayRandomMovie" 
+  />
     <!-- filter -->
     <div class="mt-3">
     <div class="d-flex justify-content-center align-items-center mt-2">
@@ -68,9 +71,9 @@
             <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
-        <span>Loading</span>
+        <span>Loading...</span>
         </div>
-        <div v-else-if="sortedMovies && !store.isLoading" class="card-container">
+        <div v-else-if="sortedMovies && store.isDataLoaded" class="card-container">
             <MovieCard 
             v-for="movie in sortedMovies" 
             :key="movie.id" 
@@ -248,16 +251,32 @@ watch([movies, genres, otts, difficulties], () => {
     levelList.value = difficulties.value
 })
 
-onMounted(()=>{
-    store.getMovies()
-    store.getGenres()
-    store.getOtts()
-    store.getRandomMovies()
-    store.getMyLevel()
+onMounted(async () => {
+  try {
+    store.isLoading = true
+    store.isDataLoaded = false
+    
+    // 모든 데이터 로딩을 기다립니다
+    await Promise.all([
+      store.getMovies(),
+      store.getGenres(),
+      store.getOtts(),
+      store.getRandomMovies(),
+      store.getMyLevel()
+    ])
+    
+    // 데이터가 모두 로드되면 상태를 업데이트합니다
     filteredMovies.value = store.movies
     genresList.value = store.genres 
     ottList.value = store.otts
     levelList.value = store.difficulties
+    
+    store.isDataLoaded = true
+  } catch (error) {
+    console.error('데이터 로딩 중 오류 발생:', error)
+  } finally {
+    store.isLoading = false
+  }
 })
 </script>
 
