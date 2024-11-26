@@ -1,6 +1,7 @@
 <template>
   <div class="signup-container">
-    <h1>닉네임</h1>
+    <h1>회원가입</h1>
+    <p>닉네임을 입력해 주세요.</p>
     <form class="signup-form">
       <div class="form-group">
         <label for="username">NICKNAME</label>
@@ -13,7 +14,7 @@
         <br />
       </div>
       <div style="display: flex; justify-content: space-between">
-        <button class="submit-button-both" @click="goPrevious">Back</button>
+        <button class="submit-button-back" @click="goPrevious">Back</button>
         <button class="submit-button-both" @click="goNext">Next</button>
       </div>
     </form>
@@ -41,4 +42,33 @@ const goNext = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+p {
+    margin-bottom: 1.5rem;
+    color: rgba(84, 83, 83, 0.8);
+    font-family: 'NanumSquareRound';
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    background: #333;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 2rem;
+    /* 둥근 모서리 */
+}
+
+label {
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0.3rem;
+}
+
+h1 {
+  font-family: 'NanumSquareRoundEB', sans-serif !important;
+}
+</style>

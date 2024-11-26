@@ -39,7 +39,8 @@
       <button 
         v-if="review.users[0].username !== store.logedinUsername" 
         @click="likeReview(review.id, movieId)" 
-        class="emoji-button review-like"
+        class="review-like"
+        :class="{ 'liked': review.liked_users.some(user => user.username === store.logedinUsername) }"
       >
         <font-awesome-icon :icon="['far', 'thumbs-up']" id="thumbup"/>
       </button>
@@ -84,121 +85,171 @@ const openUpdateForm = function () {
 </script>
 
 <style scoped>
-/* 최상위 리뷰 컨테이너 */
 .review-item-container {
-  background-color: rgba(250, 250, 255, 0.5);
-  border: 1px solid rgba(200, 200, 255, 0.5);
-  border-radius: 15px;
-  padding: 20px;
-  margin-bottom: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2rem;
+  padding: 25px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
 }
 
-.review-container:hover {
-  transform: translateY(-5px);
+.review-item-container:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.08);
 }
 
-/* 리뷰 내용 */
 .review-content {
-  font-size: 16px;
-  line-height: 1.5;
-  color: rgb(80, 80, 80);
-  margin-bottom: 10px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 15px;
+  display: block;
+  border-left: 3px solid var(--point-peach);
+  padding-left: 15px;
 }
 
-/* 헤더 */
 .review-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin: 15px 0;
 }
 
-/* 닉네임 */
 #review-nickname {
-  font-size: 14px;
-  color: rgb(120, 120, 120);
+  font-size: 0.9rem;
+  color: var(--point-peach);
+  opacity: 0.9;
 }
 
-/* 삭제 및 수정 버튼 */
 #my-review-update button {
-  margin-left: 5px;
-  background-color: rgba(255, 200, 200, 0.5);
-  border: 1px solid rgba(255, 150, 150, 0.8);
-  border-radius: 10px;
-  padding: 5px 10px;
-  font-size: 14px;
+  background: transparent;
+  border: 1px solid var(--point-peach);
+  margin-left: 8px;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  color: var(--point-peach);
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  transition: all 0.3s ease;
 }
 
 #my-review-update button:hover {
-  background-color: rgba(255, 150, 150, 0.8);
+  background: rgba(255, 103, 103, 0.1);
+  transform: translateY(-2px);
+  border-color: var(--main-coral);
+  color: var(--main-coral);
 }
 
-/* 폼 스타일 */
 .review-form {
-  margin-top: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
+  margin-top: 15px;
 }
 
 .review-textarea {
   width: 100%;
-  height: 80px;
-  padding: 10px;
-  border: 1px solid rgba(200, 200, 255, 0.5);
+  height: 120px;
+  padding: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 0.95rem;
   resize: none;
-  background-color: rgba(255, 255, 255, 0.8);
-  color: rgb(80, 80, 80);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+.review-textarea:focus {
+  border-color: rgba(200, 200, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.08);
+  outline: none;
 }
 
 .review-submit-button {
   align-self: flex-end;
-  background-color: rgba(200, 200, 255, 0.8);
-  border: none;
+  background-color: rgba(200, 200, 255, 0.15);
+  border: 1px solid rgba(200, 200, 255, 0.3);
   border-radius: 10px;
-  padding: 8px 16px;
-  font-size: 14px;
-  color: rgb(60, 60, 60);
+  padding: 10px 25px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: all 0.3s ease;
 }
 
 .review-submit-button:hover {
-  background-color: rgba(150, 150, 255, 0.8);
+  background-color: rgba(200, 200, 255, 0.25);
   transform: translateY(-2px);
 }
 
-/* 푸터 */
 .review-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 103, 103, 0.2);
 }
 
 #liked_count {
-  font-size: 14px;
-  color: rgb(120, 120, 120);
+  font-size: 0.9rem;
+  color: var(--point-peach);
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .review-like {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(200, 200, 255, 0.5);
-  border-radius: 10px;
-  padding: 5px 10px;
+  background: transparent;
+  border: 1px solid var(--point-peach);
+  border-radius: 8px;
+  padding: 8px 15px;
   cursor: pointer;
-  font-size: 14px;
-  color: rgb(60, 60, 60);
-  transition: background-color 0.3s ease-in-out;
+  font-size: 0.9rem;
+  color: var(--point-peach);
+  transition: all 0.3s ease;
 }
 
 .review-like:hover {
-  background-color: rgba(200, 200, 255, 0.5);
+  background: rgba(255, 103, 103, 0.1);
+  transform: translateY(-2px);
+  border-color: var(--main-coral);
+  color: var(--main-coral);
+}
+
+.review-like.liked {
+  background: linear-gradient(
+    135deg,
+    var(--point-peach) 0%,
+    var(--main-coral) 100%
+  );
+  border: none;
+  color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 8px rgba(255, 103, 103, 0.2);
+}
+
+.review-like.liked:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 103, 103, 0.3);
+}
+
+hr {
+  display: none;
+}
+
+.delete-button {
+  border-color: rgba(255, 103, 103, 0.5) !important;
+  color: rgba(255, 103, 103, 0.7) !important;
+}
+
+.delete-button:hover {
+  border-color: var(--main-coral) !important;
+  color: var(--main-coral) !important;
 }
 </style>

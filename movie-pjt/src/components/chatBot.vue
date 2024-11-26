@@ -98,110 +98,192 @@
 .modal-overlay {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
+  right: 0;
+  width: 450px;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.2) 15%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  z-index: 1000; /* 모달이 다른 콘텐츠 위에 오도록 */
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
 
 /* 모달 콘텐츠 스타일 */
 .modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 25px;
+  border-radius: 25px;
   width: 80%;
   max-width: 600px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(255, 103, 103, 0.15);
+  border: 1.5px solid rgba(82, 82, 82, 0.884);
+  animation: fadeIn 0.3s ease-out;
+  margin-right: 40px;
+  max-width: 400px;
 }
 
 /* 채팅 창 스타일 */
 .chat-container {
   width: 100%;
   max-width: 600px;
-  margin: 20px auto;
+  margin: 10px auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  background-color: #f9f9f9;
+  border: 1px solid rgba(255, 103, 103, 0.2);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 15px rgba(255, 103, 103, 0.08);
 }
 
 .chat-box {
   max-height: 400px;
   overflow-y: auto;
   margin-bottom: 20px;
+  padding: 10px;
+}
+
+/* 스크롤바 스타일링 */
+.chat-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-box::-webkit-scrollbar-track {
+  background: rgba(255, 103, 103, 0.05);
+  border-radius: 10px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+  background: rgba(255, 103, 103, 0.3);
+  border-radius: 10px;
 }
 
 .message {
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 10px;
+  padding: 12px 16px;
+  border-radius: 15px;
+  margin-bottom: 12px;
   max-width: 80%;
+  line-height: 1.5;
+  position: relative;
+  transition: all 0.3s ease;
 }
-.message p{
-  color: rgb(41, 41, 41);
+
+.message p {
+  color: #434040;
+  font-size: 0.95rem;
+  margin: 0;
 }
 
 .message.user {
-  background-color: #f2e2ff;
-  align-self: flex-end;
+  background: rgba(255, 103, 103, 0.15);
+  margin-left: auto;
+  border-bottom-right-radius: 5px;
 }
 
 .message.assistant {
-  background-color: #e6e6e6;
-  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.9);
+  margin-right: auto;
+  border-bottom-left-radius: 5px;
+  box-shadow: 0 2px 8px rgba(255, 103, 103, 0.08);
 }
 
 .input-container {
   display: flex;
   justify-content: space-between;
+  gap: 12px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(255, 103, 103, 0.1);
 }
 
 input {
-  width: 80%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  margin-right: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 103, 103, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  color: #434040;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: rgba(255, 103, 103, 0.5);
+  box-shadow: 0 0 0 3px rgba(255, 103, 103, 0.1);
+}
+
+input::placeholder {
+  color: rgba(67, 64, 64, 0.6);
 }
 
 button {
-  padding: 10px;
+  padding: 12px 20px;
   border: none;
-  background-color: #e2d4ee;
-  color: rgb(32, 36, 83);
-  border-radius: 5px;
+  background: rgba(255, 103, 103, 0.7);
+  color: white;
+  border-radius: 12px;
   cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 button:hover {
-  background-color: #c4aad3;
+  background: rgba(255, 103, 103, 0.85);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 103, 103, 0.2);
 }
 
-/* Open Chat 버튼 고정 위치 */
+/* Open Chat 버튼 스타일 */
 .open-chat-btn {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  padding: 10px 20px;
-  background-color: #ff6767;
-  color: white;
-  border: none;
-  border-radius: 25px;
+  padding: 14px 25px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  color: #434040;
+  border: 1px solid rgba(255, 103, 103, 0.3);
+  border-radius: 20px;
   cursor: pointer;
-  font-size: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  z-index: 1001; /* 모달보다 위에 있도록 설정 */
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(255, 103, 103, 0.15);
+  z-index: 1001;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .open-chat-btn:hover {
-  background-color: #db6565;
+  background: rgba(255, 103, 103, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 103, 103, 0.2);
 }
 
-#chatbot-icon{
-  color: #f9f9f9;
+#chatbot-icon {
+  color: rgba(255, 103, 103, 0.8);
+  font-size: 16px;
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>

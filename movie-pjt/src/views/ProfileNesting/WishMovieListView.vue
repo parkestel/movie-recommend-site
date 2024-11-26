@@ -1,12 +1,15 @@
 <template>
     <div class="container">
-        <h2>Movie WishList</h2>
-        <div v-if="userProfile.username===store.logedinUsername">
-            <select v-model="filter" >
-                <option value="all">전체보기</option>
-                <option value="withoutNote">단어장 없는 영화</option>
-                <option value="withNote">단어장 있는 영화</option>
-            </select>
+        <h1>Movie WishList</h1>
+        <div v-if="userProfile.username===store.logedinUsername" class="filter-container">
+            <span class="filter-label">단어장이 있는 영화만 보기</span>
+            <button 
+                @click="toggleFilter" 
+                class="toggle-btn"
+                :class="{ active: showOnlyWithNote }"
+            >
+                <span class="toggle-circle"></span>
+            </button>
         </div>
         <div v-if="userProfile.username===store.logedinUsername" class="wish-card-container">
             <WishMovieCard  
@@ -30,20 +33,27 @@ import { computed, onMounted, ref } from 'vue';
 import { useMovieStore } from '@/stores/movie'
 import WishMovieCard from '@/components/WishMovieListView/WishMovieCard.vue'
 import { storeToRefs } from 'pinia'
-const store = useMovieStore()
-const { userProfile, wishMovies, wishMoviesWithOutNote, vocaNoteList } = storeToRefs(store)
-const withNoteMovie = ref(null)
 
-const filter = ref('all')
-const filteredMovies = computed(()=>{
-    if (filter.value==='withoutNote') {
-        return wishMoviesWithOutNote.value
-    } else if (filter.value==="withNote") {
-        // vocaNoteList에서 영화 id가 일치하는 영화들만 필터링
-        withNoteMovie.value = wishMovies.value.filter(movie => 
-            vocaNoteList.value.some(note => note.movies[0].id === movie.id)
+const store = useMovieStore()
+const { userProfile, wishMovies, vocaNoteList } = storeToRefs(store)
+const withNoteMovie = ref(null)
+const showOnlyWithNote = ref(false)
+
+const toggleFilter = () => {
+    showOnlyWithNote.value = !showOnlyWithNote.value
+}
+
+onMounted(() => {
+    store.getWishMovies()
+})
+
+const filteredMovies = computed(() => {
+    if (!wishMovies.value) return []
+    
+    if (showOnlyWithNote.value) {
+        return wishMovies.value.filter(movie => 
+            vocaNoteList.value?.some(note => note.movies[0].id === movie.id)
         )
-        return withNoteMovie.value
     } else {
         return wishMovies.value
     }
@@ -118,4 +128,75 @@ const filteredMovies = computed(()=>{
     }
   }
   
+.container h1 {
+  color: #1a365d;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 750;
+  text-align: center;  /* 중앙 정렬 추가 */
+}
+
+/* VocaNoteListView.vue, LikedReviews.vue, MyReview.vue에 추가 */
+.container h1 {
+  color: #222324;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 750;
+  text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .container h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* 필터 컨테이너 스타일 */
+.filter-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.filter-label {
+    font-size: 14px;
+    color: #434040;
+    font-weight: 600;
+}
+
+/* 토글 버튼 스타일 */
+.toggle-btn {
+    width: 30px;
+    height: 10px;
+    background-color: #f0f0f0;
+    border-radius: 25px;
+    padding: 0;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+.toggle-circle {
+    width: 13px;
+    height: 13px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: -1.5px;
+    left: 2px;
+    transition: transform 0.3s ease;
+}
+
+/* 활성화 상태 스타일 */
+.toggle-btn.active {
+    background-color: rgba(255, 103, 103, 0.7);  /* 코랄 색상 */
+}
+
+.toggle-btn.active .toggle-circle {
+    transform: translateX(15px);
+}
 </style>

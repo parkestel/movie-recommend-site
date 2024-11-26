@@ -99,7 +99,7 @@ class PersonUserDetailsSerializer(UserDetailsSerializer):
             "study_level",
             "experience",
             "achievement_level",
-            "percent"
+            "percent",
             "followings",
             "followers",
             "wish_movies",

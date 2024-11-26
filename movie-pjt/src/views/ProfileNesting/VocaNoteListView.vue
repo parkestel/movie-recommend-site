@@ -1,9 +1,12 @@
 <template>
   <div class="container">
-    <h2>My Voca Note Page</h2>
+    <h1>My Voca Note Page</h1>
     <div class="select-wrapper" v-if="store.logedinUsername===userProfile.username">
       <span>{{ showDeleteButton ? '취소' : '삭제' }}</span>
-      <button id="toggle-button" class="toggle-btn" :aria-pressed="showDeleteButton" @click="toggleDeleteButtons" >
+      <button id="toggle-button" 
+              class="toggle-btn" 
+              :class="{ active: showDeleteButton }" 
+              @click="toggleDeleteButtons">
         <span class="toggle-circle"></span>
       </button>
     </div>
@@ -68,6 +71,20 @@ onMounted(()=>{
     position: relative;
   }
 
+  /* VocaNoteListView.vue, LikedReviews.vue, MyReview.vue에 추가 */
+.container h1 {
+  color: #222324;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 750;
+  text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .container h1 {
+    font-size: 1.8rem;
+  }
+}
 .select-wrapper {
   position: absolute;
   top: 16px;
@@ -106,6 +123,9 @@ onMounted(()=>{
   }
 }
 
+#toggle-button {
+  position: relative;
+}
 
 #toggle-button .toggle-circle {
   position: absolute;

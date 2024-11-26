@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h2>좋아요한 리뷰 목록</h2>
+    <h1>좋아요한 리뷰 목록</h1>
     <div class="review-container">
       <MyLikedReviewList :liked-reviews="myLikedReviews" class="review-box"/>
     </div>
@@ -31,4 +31,19 @@ onMounted(()=>{
     border-radius: 10px;
     text-align: center;
   }
+
+  /* VocaNoteListView.vue, LikedReviews.vue, MyReview.vue에 추가 */
+.container h1 {
+  color: #222324;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 750;
+  text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .container h1 {
+    font-size: 1.8rem;
+  }
+}
 </style>

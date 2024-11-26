@@ -1,7 +1,7 @@
 <template>
     <div class="login-container">
-      <h1>Welcome back</h1>
-      <p>Please Enter your Account details</p>
+      <h1>로그인</h1>
+      <p>다시 만나서 반가워요!</p>
       <form @submit.prevent="logIn" class="login-form">
         <div class="form-group">
           <label for="username">ID</label>
@@ -59,16 +59,19 @@ const logIn = function () {
   height: 100vh;
   font-family: Arial, sans-serif;
   background: transparent;
+  padding-bottom: 400px;
 }
 
 h1 {
-  font-size: 2rem;
+  font-family: 'NanumSquareRoundEB', sans-serif !important;
+  /* font-size: 2rem; */
   margin-bottom: 0.5rem;
 }
 
 p {
   margin-bottom: 1.5rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(26, 25, 25, 0.8);
+  font-family: 'NanumSquareRound';
 }
 
 .login-form {

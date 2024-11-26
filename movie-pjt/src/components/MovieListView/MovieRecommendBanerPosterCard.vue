@@ -42,16 +42,17 @@ const goToDetail = function (movieId) {
   object-fit: cover;
   opacity: 20%;
   border-radius: 1.5rem;
+  z-index: 0;
+  position: relative;
 }
 
 .carousel-caption {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
   height: 100%;
   text-align: left;
 }
-
 .carousel-poster {
   flex-shrink: 0;
   max-height: 100%;
@@ -64,8 +65,6 @@ const goToDetail = function (movieId) {
   object-fit: cover;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
-
 
 .carousel-info {
   display: flex;
