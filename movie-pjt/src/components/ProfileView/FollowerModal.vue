@@ -49,30 +49,31 @@ const closeModal = function () {
 /* 모달 내용 */
 .modal-content {
     background: rgba(255, 255, 255, 0.95);
-    padding: 25px;
+    padding: 25px 20px 25px 25px;  /* 오른쪽 패딩 조정 */
     width: 300px;
     max-height: 400px;
-    border-radius: 25px;
+    border-radius: 15px;  /* 25px에서 15px로 수정 */
     position: relative;
     box-shadow: 0 8px 32px rgba(255, 103, 103, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.4);
-    overflow-y: auto;
+    overflow-y: overlay;  /* auto에서 overlay로 변경 */
     animation: fadeIn 0.3s ease-out;
 }
 
 /* 스크롤바 스타일링 */
 .modal-content::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;  /* 6px에서 4px로 줄임 */
 }
 
 .modal-content::-webkit-scrollbar-track {
     background: rgba(255, 103, 103, 0.05);
-    border-radius: 10px;
+    margin: 15px 0;  /* 상하 여백 추가 */
+    border-radius: 0;  /* 10px에서 0으로 수정 */
 }
 
 .modal-content::-webkit-scrollbar-thumb {
     background: rgba(255, 103, 103, 0.3);
-    border-radius: 10px;
+    border-radius: 2px;  /* 약간의 라운드 추가 */
 }
 
 .modal-content h3 {

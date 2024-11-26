@@ -126,6 +126,13 @@ const goToUserProfile = function (username) {
   font-size: 0.9rem;
   color: var(--point-peach);
   opacity: 0.9;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#review-nickname:hover {
+  text-decoration: underline;
+  opacity: 1;
 }
 
 #my-review-update button {
