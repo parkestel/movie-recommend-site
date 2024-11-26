@@ -1,42 +1,80 @@
 <template>
-  <div>
-    <MovieDetailReviewListItem
-    v-for="review in reviews" 
-    :key="review.id" 
-    :review="review"
-    @delete-event="deleteReview"
-    @update-event="updateReview"
-    @like-event="likeReview"/>
+  <div class="reviews-list-container">
+    <div class="reviews-header">
+      <h5 class="reviews-count">
+        <span class="count-number">{{ reviews.number_of_count }}</span>
+        개의 리뷰
+      </h5>
+    </div>
+    <div class="reviews-list">
+      <MovieDetailReviewListItem
+        v-for="review in reviews.comments" 
+        :key="review.id" 
+        :review="review"
+      />
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import MovieDetailReviewListItem from './MovieDetailReviewListItem.vue';
 
-const reviews = ref([
-  {id:1, content:'영어 공부에 도움이 되어요.', liked_user:20, nickname:'user1'},
-  {id:2, content:'내용이 재미있고, 좋아요!', liked_user:18, nickname:'user2'},
-  {id:3, content:'저는 영화 반복하면서 계속 들었더니 귀가 트였어용', liked_user:11, nickname:'user3'},
-])
-
-const deleteReview = function (id) {
-  console.log(id)
-  const targetid = reviews.value.findIndex((review)=>review.id === id)
-  reviews.value.splice(targetid, 1)
-}
-
-const updateReview = function (id) {
-  console.log(id)
-  // update가 발생하면 수정 post 보내는 함수를 사용해서 수정 내용 저장 할 것
-}
-
-const likeReview = function (id, user) {
-  console.log(id, user)
-  // 이벤트 발생 시 좋아요 post 요청하는 내용
-}
+defineProps({
+  reviews:Object
+})
 </script>
 
 <style scoped>
+.reviews-list-container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: linear-gradient(
+    to bottom,
+    rgba(25, 25, 25, 1) 0%,
+    rgba(30, 30, 30, 1) 100%
+  );
+  padding: 40px 20px;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  position: relative;
+  z-index: 1;
+}
 
+.reviews-header {
+  padding: 0 40px;
+  margin-bottom: 30px;
+}
+
+.reviews-count {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2rem;
+  font-weight: 500;
+  position: relative;
+  padding-left: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reviews-count::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 4px;
+  height: 20px;
+  background-color: var(--point-peach);
+  transform: translateY(-50%);
+}
+
+.count-number {
+  color: var(--point-peach);
+  font-weight: 600;
+}
+
+.reviews-list {
+  padding: 0 20px;
+  padding-bottom: 20px;
+}
 </style>

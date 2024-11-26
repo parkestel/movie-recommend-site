@@ -1,4 +1,4 @@
-import { ref, computed, reactive } from 'vue'
+import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
@@ -20,16 +20,26 @@ export const useMovieStore = defineStore('movie', () => {
   })
 
   const movies = ref([])
+  const todayRandomMovie = ref(null)
   const genres = ref(null)
   const otts = ref(null)
   const difficulties = ref(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'])
   const wishMovies = ref(null)
+  const wishMoviesWithOutNote = ref(null)
   const vocaNoteList = ref(null)
   const vocaList = ref(null)
-
+  const vocaNote = ref(null)
   const userProfile = ref(null)
+  const moviecomments = ref(null)
+  const movieBestComments = ref(null)
+  const myReviews = ref(null)
+  const myLikedReviews = ref(null)
+  const isLoading = ref(null)
+  const logedinUserPoint = ref(0)
   
   const getMovies = function () {
+    console.log('getMovies 호출됨, token:', token.value)
+    isLoading.value=true
     axios({
       method:'get',
       url:`${API_BASE_URL}/movies/`,
@@ -38,12 +48,14 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      // console.log(res.data)
       movies.value = res.data
+      isLoading.value=false
     })
     .catch(err=>{
-      if (err.response && err.response.status === 401) {
-        window.alert('로그인이 필요합니다.')
+      if (err.response && err.response.status === 401 && token.value) {
+        token.value=null
+        logedinUsername.value=null
+        userProfile.value=null
         router.push({name:'login'})
       }
     })
@@ -58,6 +70,7 @@ export const useMovieStore = defineStore('movie', () => {
   }
 
   const getWishMovies = function () {
+    console.log('getWishMovies 호출됨, token:', token.value)
     axios({
       method:'get',
       url:`${API_BASE_URL}/movies/wish-movie/`,
@@ -69,8 +82,52 @@ export const useMovieStore = defineStore('movie', () => {
       wishMovies.value=res.data
     })
     .catch(err=>{
-      if (err.response && err.response.status === 401) {
-        window.alert('로그인이 필요합니다.')
+      if (err.response && err.response.status === 401 && token.value) {
+        token.value=null
+        logedinUsername.value=null
+        userProfile.value=null
+        router.push({name:'login'})
+      }
+    })
+  }
+
+  const getRandomMovies = function () {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/movies/random-movies/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      todayRandomMovie.value=res.data
+    })
+    .catch(err=>{
+      if (err.response && err.response.status === 401 && token.value) {
+        token.value=null
+        logedinUsername.value=null
+        userProfile.value=null
+        router.push({name:'login'})
+      }
+    })
+  }
+
+  const getWishMovieWithOutNote = function () {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/movies/wish-movies-without-vocanote/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      wishMoviesWithOutNote.value=res.data
+    })
+    .catch(err=>{
+      if (err.response && err.response.status === 401 && token.value) {
+        token.value=null
+        logedinUsername.value=null
+        userProfile.value=null
         router.push({name:'login'})
       }
     })
@@ -88,7 +145,12 @@ export const useMovieStore = defineStore('movie', () => {
       genres.value=res.data
     })
     .catch(err=>{
-      console.log(err)
+      if (err.response && err.response.status === 401 && token.value) {
+        token.value=null
+        logedinUsername.value=null
+        userProfile.value=null
+        router.push({name:'login'})
+      }
     })
   }
 
@@ -104,11 +166,17 @@ export const useMovieStore = defineStore('movie', () => {
       otts.value=res.data
     })
     .catch(err=>{
-      console.log(err)
+      if (err.response && err.response.status === 401 && token.value) {
+        token.value=null
+        logedinUsername.value=null
+        userProfile.value=null
+        router.push({name:'login'})
+      }
     })
   }
 
   const getUserProfile = function (username) {
+    console.log('getUserProfile 호출됨, token:', token.value)
     axios({
       method:'get',
       url:`${API_BASE_URL}/accounts/dj-rest-auth/user/${username}/`,
@@ -118,10 +186,35 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       userProfile.value=res.data
+      getVocaNote(userProfile.value.id)
+      getWishMovieWithOutNote()
     })
     .catch(err=>{
-      if (err.response && err.response.status === 401) {
-        window.alert('로그인이 필요합니다.')
+      if (err.response && err.response.status === 401 && token.value) {
+        token.value=null
+        logedinUsername.value=null
+        userProfile.value=null
+        router.push({name:'login'})
+      }
+    })
+  }
+
+  const getMyLevel = function () {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/accounts/dj-rest-auth/user/level/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      logedinUserPoint.value=res.data
+    })
+    .catch(err=>{
+      if (err.response && err.response.status === 401 && token.value) {
+        token.value=null
+        logedinUsername.value=null
+        userProfile.value=null
         router.push({name:'login'})
       }
     })
@@ -140,14 +233,17 @@ export const useMovieStore = defineStore('movie', () => {
       getUserProfile(username)
     })
     .catch(err=>{
-      console.log('팔로우 실패')
-      console.log(err)
+      // console.log('팔로우 실패')
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
-  // const getNote = function (noteId) {
-  //   const targetNote = vocaNoteList.value.find((note)=>note.id===Number(noteId))
-  //   return targetNote
-  // }
+
+  const getNote = function (noteId) {
+    const targetNote = vocaNoteList.value.find((note)=>note.id===Number(noteId))
+    return targetNote
+  }
 
   const getVocaNote = function (profileuserId) {
     axios({
@@ -161,7 +257,9 @@ export const useMovieStore = defineStore('movie', () => {
       vocaNoteList.value = res.data
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -177,10 +275,12 @@ export const useMovieStore = defineStore('movie', () => {
       window.open(`/note/${res.data.id}`, '__blank', 'width=400,height=650')
       // router.push({name:'vocanote', params:{note_id:res.data.id}})
       getVocaNote(userId)
-      console.log('단어장 생성 성공!')
+      getWishMovieWithOutNote()
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     }) 
   }
 
@@ -194,10 +294,15 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       getVocaNote(userId)
-      console.log(res)
+      getWishMovieWithOutNote()
+      getWishMovies()
+      return res
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+      throw err
     })
   }
 
@@ -211,15 +316,118 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       getVocaNote(userId)
-      console.log(res)
+      getVocas(res.data.id)
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
   const getVocas = function (noteId) {
-    return vocaList.value.filter((voca)=>voca.note_id===Number(noteId))
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/voca/vocanote-detail/${noteId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      vocaList.value = res.data
+      // console.log(res.data)
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
+    // return vocaList.value.filter((voca)=>voca.note_id===Number(noteId))
+  }
+
+  const createVoca = function(noteId, payload){
+    axios({
+      method:'post',
+      url: `${API_BASE_URL}/voca/create-voca/${noteId}/`,
+      data:{
+        word: payload.word,
+        word_mean: payload.word_mean,
+        examples: payload.examples,
+        memo: payload.memo,
+        is_memorized: false
+      },
+      headers:{
+          Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      getVocas(noteId)
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
+  }
+
+  const deleteVoca = function(vocaId,noteId) {
+    axios({
+      method:'delete',
+      url:`${API_BASE_URL}/voca/delete-voca/${noteId}/${vocaId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      getVocas(noteId)
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
+  }
+
+  const updateVoca = function (vocaId,noteId,payload) {
+    axios({
+      method:'put',
+      url:`${API_BASE_URL}/voca/update-voca/${noteId}/${vocaId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+      data:{
+        word: payload.word,
+        word_mean: payload.word_mean,
+        examples: payload.examples,
+        memo: payload.memo,
+      }
+    })
+    .then(res=>{
+      getVocas(noteId)
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
+  }
+
+  const memorizedVoca = function(vocaId, noteId) {
+    axios({
+      method:'post',
+      url:`${API_BASE_URL}/voca/${noteId}/is_memorized/${vocaId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      getVocas(noteId)
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
   }
 
   const addToggleWishMovie = function (movieId){
@@ -231,11 +439,13 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log('좋아요 성공')
+      // console.log('좋아요 성공')
       getWishMovies()
     })
     .catch(err=>{
-      console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
 
@@ -243,6 +453,181 @@ export const useMovieStore = defineStore('movie', () => {
     return wishMovies.value?.some(movie => movie.id===movieId)
   }
 
+  const getMovieComments = function (movieId) {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/movies/comment-list/${movieId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      }
+    })
+    .then(res=>{
+      moviecomments.value=res.data
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
+  }
+
+  const createComment = function (movieId, payload) {
+    axios({
+      method:'post',
+      url:`${API_BASE_URL}/movies/${movieId}/create-comment/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+      data:{
+        content: payload.content
+      }
+    })
+    .then(res=>{
+      getMovieComments(movieId)
+      getBestComments(movieId)
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
+  }
+
+  const likeCommentsinMovie = function (reviewId, movieId) {
+    axios({
+      method: 'post',
+      url:`${API_BASE_URL}/movies/like-comment/${reviewId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+    })
+    .then(res=>{
+      // console.log("댓글 추천 토글")
+      getMovieComments(movieId)
+      getBestComments(movieId)
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
+  }
+
+  const deleteCommentinMovie = function (reviewId, movieId) {
+    axios({
+      method:'delete',
+      url:`${API_BASE_URL}/movies/comment-list/delete/${reviewId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+    })
+    .then(res=>{
+      // console.log('댓글 삭제 완료')
+      getMovieComments(movieId)
+      getBestComments(movieId)
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
+  }
+
+  const updateCommentinMovie = function(reviewId, movieId, payload) {
+    axios({
+      method:'put',
+      url:`${API_BASE_URL}/movies/${movieId}/comment-update/${reviewId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+      data:{
+        content: payload.content
+      }
+    })
+    .then(res=>{
+      // console.log('댓글 수정 완료')
+      getMovieComments(movieId)
+      getBestComments(movieId)
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
+  }
+
+  const getBestComments = function(movieId) {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/movies/top-5-comment/${movieId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+    })
+    .then(res=>{
+      movieBestComments.value = res.data
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
+  }
+
+  const getMyReviews = function() {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/movies/comment-list/user/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+    })
+    .then(res=>{
+      myReviews.value=res.data
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
+  }
+
+  const getLikedReviewInMyPage = function() {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/movies/like-comment/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+    })
+    .then(res=>{
+      myLikedReviews.value=res.data
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
+  }
+
+  const deleteCommentinMyPage = function (reviewId) {
+    axios({
+      method:'delete',
+      url:`${API_BASE_URL}/movies/comment-list/delete/${reviewId}/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+    })
+    .then(res=>{
+      // console.log('댓글 삭제 완료')
+      getMyReviews()
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
+  }
 
   const signUp = function (payload) {
     const username = payload.username
@@ -277,8 +662,9 @@ export const useMovieStore = defineStore('movie', () => {
       logIn({username, password})
     })
     .catch(err=>{
-      console.log(err)
-      window.alert('회원가입에 실패했습니다! 다시 시도 해주십시오.')
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
       router.push({name:'signup'})
     })
   }
@@ -302,36 +688,45 @@ export const useMovieStore = defineStore('movie', () => {
         username, password
       }
     })
-    .then(res=>{
+    .then((res)=>{
       token.value = res.data.key
       getLogedInUserName()
       getWishMovies()
+      getMyLevel()
       router.push({name:'movies'})
     })
     .catch(err=>{
-      window.alert('로그인에 실패 했습니다!')
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+      // window.alert('로그인에 실패 했습니다!')
       // router.push({name:'login'})
     })
   }
 
   const logOut = function () {
-    token.value=null
-    logedinUsername.value=null
-    userProfile.value=null
+    console.log('로그아웃 시작')
+    // 먼저 상태 초기화
+    token.value = null
+    logedinUsername.value = null
+    userProfile.value = null
+    wishMovies.value = null
+    todayRandomMovie.value = null
+    movies.value = []  // 이것도 초기화
+    
     axios({
-      method:'post',
+      method: 'post',
       url: `${API_BASE_URL}/accounts/dj-rest-auth/logout/`
     })
-    .then(res=>{
+    .then(res => {
+      console.log('로그아웃 성공')
       window.alert('Bye! See you soon')
-      router.push({name:'login'})
+      router.push({ name: 'home' })
     })
-    .catch(err=>{
-      if (err) {
-        window.alert('로그아웃에 실패했습니다.')
-      }
+    .catch(err => {
+      console.log('로그아웃 에러')
+      router.push({ name: 'home' })
     })
-
   }
 
   const SignOut = function() {
@@ -348,12 +743,14 @@ export const useMovieStore = defineStore('movie', () => {
     })
     .then(res=>{
       window.alert('탈퇴 완료')
-      router.push({name:'login'})
+      router.push({name:'home'})
     })
     .catch(err=>{
       if (err) {
-
-        window.alert('탈퇴에 실패하셨습니다.')
+        let values = Object.values(err.response.data);
+        let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+        window.alert(formattedData);
+        // window.alert('탈퇴에 실패하셨습니다.')
       }
     })
   }
@@ -367,13 +764,109 @@ export const useMovieStore = defineStore('movie', () => {
       }
     })
     .then(res=>{
-      console.log(res.data)
+      // console.log(res.data)
       logedinUsername.value=res.data.username
     })
     .catch(err=>{
-      console.log(err)
+      // console.log(err)
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
+  }
+
+  const updateUserInfo = function(payload, username){
+    axios({
+      method:'put',
+      url:`${API_BASE_URL}/accounts/user/update/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+      data:{
+        last_name:payload.last_name,
+        first_name:payload.first_name,
+        nickname:payload.nickname,
+        email:payload.email,
+        birth:payload.birth
+      }
+    })
+    .then(res=>{
+      getLogedInUserName()
+      getUserProfile(username)
+      router.push({name:'profile', params:{username:username}})
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
+  }
+
+  const userInfo = ref(null)
+  const getUserInfoForUpdate = function () {
+    axios({
+      method:'get',
+      url:`${API_BASE_URL}/accounts/user/update/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+    })
+    .then(res=>{
+      // console.log(res.data)
+      userInfo.value = res.data
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
+  }
+
+  const updateUserStudyLevel = function(payload, username){
+    axios({
+      method:'put',
+      url:`${API_BASE_URL}/accounts/user/update/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+      data:{
+        study_level:payload.study_level
+      }
+    })
+    .then(res=>{
+      getUserProfile(username)
+      router.push({name:'profile', params:{username:username}})
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
     })
   }
   
-  return { API_BASE_URL, IMAGE_BASE_URL, movies, otts, difficulties, wishMovies, userProfile, genres, vocaNoteList, vocaList, getImgUrl, getMovies, getGenres, getOtts, getMovie, getUserProfile, getVocaNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas,  signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, token, isLogin, logedinUsername }
+  
+  const changePassword = function (payload) {
+    axios({
+      method:'post',
+      url:`${API_BASE_URL}/accounts/dj-rest-auth/password/change/`,
+      headers:{
+        Authorization: `Token ${token.value}`
+      },
+      data: {
+        new_password1:payload.new_password1,
+        new_password2:payload.new_password2,
+      }
+    })
+    .then(res=>{
+      window.alert('비밀번호 변경이 완료 되었습니다.')
+      router.push({name:'movies'})
+    })
+    .catch(err=>{
+      let values = Object.values(err.response.data);
+      let formattedData = values.join("\n");  // 각 값을 줄바꿈으로 구분
+      window.alert(formattedData);
+    })
+  }
+      isLoading.value=false
+  return { API_BASE_URL, IMAGE_BASE_URL, movies, todayRandomMovie, otts, difficulties, wishMovies, userProfile, genres, isLoading, vocaNoteList, vocaList, wishMoviesWithOutNote, vocaNote, moviecomments, movieBestComments, myReviews, myLikedReviews, getImgUrl, getMovies, getRandomMovies, getGenres, getOtts, getMovie, getMyLevel, getUserProfile, getVocaNote, getWishMovieWithOutNote, getNote, createVocaNote, togglePublicVocaNote, toggleFollowerbutton, getVocas, createVoca, deleteVoca, updateVoca, memorizedVoca, getMovieComments, createComment, likeCommentsinMovie, deleteCommentinMovie, updateCommentinMovie, getBestComments, getMyReviews, deleteCommentinMyPage, getLikedReviewInMyPage, signUp, logIn, logOut, SignOut, getLogedInUserName, addToggleWishMovie, isLikedMovie, getWishMovies, deleteNote, updateUserInfo, getUserInfoForUpdate, updateUserStudyLevel, changePassword, token, isLogin, logedinUsername, logedinUserPoint, userInfo }
 }, { persist: true })

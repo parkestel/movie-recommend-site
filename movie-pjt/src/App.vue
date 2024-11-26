@@ -1,50 +1,43 @@
 <template>
-<div>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <RouterLink :to="{name:'movies'}" v-if="store.isLogin">Home</RouterLink>
-    </div>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item mx-2">
-          <RouterLink :to="{name:'login'}" v-if="!store.isLogin">Log in</RouterLink>
-        </li>
-        <li class="nav-item mx-2">
-          <RouterLink :to="{name:'signup'}" v-if="!store.isLogin">Sign Up</RouterLink>
-        </li>
-        <li class="nav-item mx-2">
-        </li>
-        <li class="nav-item dropdown" v-if="store.isLogin">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            안녕하세요! {{ store.logedinUsername }} 님!
-          </a>
-          <ul class="dropdown-menu" v-if="store.logedinUsername">
-            <li><RouterLink :to="{name:'wishmovies', params:{username:store.logedinUsername}}" class="dropdown-item">Wish Movie</RouterLink></li>
-            <li><RouterLink :to="{name:'mynotelist', params:{username:store.logedinUsername}}" class="dropdown-item">Voca Note</RouterLink></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><RouterLink :to="{name:'profile', params:{username:store.logedinUsername}}" class="dropdown-item">My Page</RouterLink></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><button @click="store.logOut">Log out</button></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <RouterView/>
-  <footer>
-    <div>
-      <p>ⓒ 2024. </p>
-    </div>
-  </footer>
-</div>
+  <div>
+    <!-- 네비게이션바와 메인 컨테이너가 필요없는 페이지들 -->
+    <template v-if="isPublicPage">
+      <HomeView v-if="$route.name === 'home'"/>
+      <RouterView v-else/>
+    </template>
+    
+    <!-- 네비게이션바와 메인 컨테이너가 필요한 페이지들 -->
+    <AppChild v-else/>
+  </div>
 </template>
 
 <script setup>
 import { useMovieStore } from './stores/movie';
+import { useRoute, useRouter } from 'vue-router';
+import { computed, watch } from 'vue';
+import AppChild from '@/views/AppChild.vue'
+import HomeView from '@/views/HomeView.vue'
 
 const store = useMovieStore()
+const route = useRoute()
+const router = useRouter()
+
+// 네비게이션바와 메인 컨테이너가 필요없는 페이지들
+const publicPages = ['home', 'login', 'signup']
+
+const isPublicPage = computed(() => {
+  return !store.isLogin || publicPages.includes(route.name)
+})
+
+// 로그인 상태 변화 감지
+watch(() => store.isLogin, (newValue) => {
+  if (!newValue) {
+    // 로그아웃 시 홈페이지로 리다이렉트
+    router.push({ name: 'home' })
+  }
+})
 </script>
 
-<style scoped>
-
+<style>
+/* 전역 스타일 유지 */
 </style>
