@@ -51,4 +51,4 @@ class User(AbstractUser):
         else:
             progress = 100  # 레벨 4 이상일 경우, 경험치가 무한대이므로 100% 처리
 
-        self.percent = round(progress, 2)
+        self.percent = int(round(progress))
