@@ -22,7 +22,7 @@ const store = useMovieStore()
 .movie-detail {
   position: relative;
   width: 80%;
-  max-width: 1200px; /* 가로 폭을 제한합니다. 필요에 따라 값 조정 */
+  max-width: 1200px;
   height: 900px;
   display: flex;
   justify-content: center;
@@ -30,7 +30,7 @@ const store = useMovieStore()
   overflow: hidden;
   border-top-left-radius: 2rem;
   border-top-right-radius: 2rem;
-  margin: 20px auto; /* 중앙 정렬과 상단 마진 */
+  margin: 20px auto 0;
 }
 
 .movie-poster {

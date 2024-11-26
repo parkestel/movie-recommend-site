@@ -21,15 +21,19 @@ defineProps({
 
 <style scoped>
 .best-review-card {
-  background-color: rgba(245, 245, 255, 0.95);
-  border: 1px solid rgba(180, 180, 255, 0.6);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 2rem;
   padding: 20px;
   margin: 20px 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s;
-  width: 300px;  /* 너비 고정 */
-  height: 180px; /* 높이 고정 */
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+  width: 300px;
+  height: 180px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -43,7 +47,7 @@ defineProps({
 .card-content {
   font-size: 14px;
   line-height: 1.6;
-  color: rgb(60, 60, 60);
+  color: rgba(255, 255, 255, 0.9);
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;  /* 최대 5줄까지 표시 */
@@ -60,7 +64,7 @@ defineProps({
 .card-author {
   font-size: 14px;
   font-weight: 500;
-  color: rgb(90, 90, 150);
+  color: var(--point-peach);
   margin: 0;
   text-align: right;
 }
@@ -75,11 +79,15 @@ defineProps({
 .like-count {
   font-size: 13px;
   font-weight: bold;
-  color: rgb(120, 120, 180);
+  color: var(--point-rose);
 }
 
 .best-review-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 </style>

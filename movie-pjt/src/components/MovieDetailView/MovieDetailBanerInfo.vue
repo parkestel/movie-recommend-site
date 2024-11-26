@@ -123,7 +123,6 @@ const store = useMovieStore()
 .basic-info {
   margin-left: 40px;
   margin-right: 40px;
-  margin-bottom: 15px;
 }
 
 .movie-header {

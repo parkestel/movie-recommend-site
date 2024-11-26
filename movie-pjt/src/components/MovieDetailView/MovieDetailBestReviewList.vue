@@ -56,22 +56,22 @@ const slidesPerView = computed(() => {
 .best-reviews-section {
   width: 80%;
   max-width: 1200px;
-  margin: -1px auto 0;
-  background: linear-gradient(
-    to bottom,
-    rgb(0, 0, 0) 0%,
-    rgb(26, 26, 46) 100%
-  );
+  margin: 0 auto;
+  background: rgb(0, 0, 0);
   padding: 40px 20px;
   position: relative;
+  box-shadow: none;
+  border: none;
 }
 
 .best-reviews h5 {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 1.5rem;
+  font-weight: 700;
   margin-bottom: 20px;
   padding-left: 20px;
   position: relative;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .best-reviews h5::before {
@@ -81,22 +81,20 @@ const slidesPerView = computed(() => {
   top: 50%;
   width: 4px;
   height: 20px;
-  background-color: #ff4444;
+  background-color: var(--main-coral);
   transform: translateY(-50%);
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(255, 103, 103, 0.3);
 }
 
 .no-reviews {
   width: 80%;
   max-width: 1200px;
-  margin: -1px auto 0;
-  background: linear-gradient(
-    to bottom,
-    rgb(0, 0, 0) 0%,
-    rgb(26, 26, 46) 100%
-  );
+  margin: 0 auto;
+  background: rgb(0, 0, 0);
   padding: 40px;
   text-align: center;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 1.2rem;
   position: relative;
 }
@@ -109,10 +107,35 @@ const slidesPerView = computed(() => {
 :deep(.swiper-slide) {
   display: flex;
   justify-content: center;
-  transition: transform 0.3s;
+  transition: all 0.3s ease;
 }
 
 :deep(.swiper-slide:hover) {
   transform: translateY(-5px);
+}
+
+/* 스와이퍼 네비게이션 버튼 스타일링 */
+:deep(.swiper-button-next),
+:deep(.swiper-button-prev) {
+  color: var(--point-peach);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+:deep(.swiper-button-next:hover),
+:deep(.swiper-button-prev:hover) {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* 페이지네이션 스타일링 */
+:deep(.swiper-pagination-bullet) {
+  background: var(--point-peach);
+  opacity: 0.5;
+}
+
+:deep(.swiper-pagination-bullet-active) {
+  opacity: 1;
+  background: var(--point-peach);
 }
 </style>
