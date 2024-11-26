@@ -108,6 +108,10 @@ const router = createRouter({
       component:ChatBot
     },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    // 항상 페이지 최상단으로 스크롤
+    return { top: 0 }
+  }
 })
 
 router.beforeEach((to, from) => {
