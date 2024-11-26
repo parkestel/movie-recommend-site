@@ -57,7 +57,11 @@ const slidesPerView = computed(() => {
   width: 80%;
   max-width: 1200px;
   margin: 0 auto;
-  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    to bottom,
+    rgb(0, 0, 0) 0%,
+    rgba(20, 20, 20, 1) 100%
+  );
   padding: 40px 20px;
   position: relative;
   box-shadow: none;

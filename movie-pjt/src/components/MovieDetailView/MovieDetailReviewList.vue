@@ -28,11 +28,11 @@ defineProps({
 .reviews-list-container {
   width: 80%;
   max-width: 1200px;
-  margin: -2px auto 0;
+  margin: 0 auto;
   background: linear-gradient(
     to bottom,
-    rgb(36, 36, 66) 0%,
-    rgb(46, 46, 76) 100%
+    rgba(25, 25, 25, 1) 0%,
+    rgba(30, 30, 30, 1) 100%
   );
   padding: 40px 20px;
   border-bottom-left-radius: 2rem;
@@ -64,12 +64,12 @@ defineProps({
   top: 50%;
   width: 4px;
   height: 20px;
-  background-color: #ff4444;
+  background-color: var(--point-peach);
   transform: translateY(-50%);
 }
 
 .count-number {
-  color: #ff4444;
+  color: var(--point-peach);
   font-weight: 600;
 }
 

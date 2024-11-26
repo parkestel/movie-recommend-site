@@ -32,11 +32,11 @@ const submitComment = function () {
 .reviews-background {
   width: 80%;
   max-width: 1200px;
-  margin: -1px auto 0;
+  margin: 0 auto;
   background: linear-gradient(
     to bottom,
-    rgb(26, 26, 46) 0%,
-    rgb(36, 36, 66) 100%
+    rgba(20, 20, 20, 1) 0%,
+    rgba(25, 25, 25, 1) 100%
   );
   padding: 40px 20px;
 }
@@ -44,7 +44,7 @@ const submitComment = function () {
 .comment-container {
   margin: 0 auto;
   max-width: 1160px;
-  background-color: rgba(250, 250, 255, 0.07);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   padding: 25px;
